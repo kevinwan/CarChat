@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  RegisterViewController.h
 //  CarChat
 //
 //  Created by Develop on 15/1/9.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface RegisterViewController : UIViewController
 
 @end
-
