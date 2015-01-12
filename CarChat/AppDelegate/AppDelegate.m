@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "RegisterViewController.h"
+#import "SuggestedActivityViewController.h"
 
 @interface AppDelegate ()
 
@@ -20,9 +20,8 @@
     // Override point for customization after application launch.
     
     _window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    _window.rootViewController = [RegisterViewController new];
-    
-    
+    UINavigationController * rootNav = [[UINavigationController alloc]initWithRootViewController:[[SuggestedActivityViewController alloc]init]];
+    _window.rootViewController = rootNav;
     [_window makeKeyAndVisible];
     return YES;
 }

@@ -7,7 +7,6 @@
 //
 
 #import "LoginViewController.h"
-#import "ControllerCoordinator.h"
 
 @interface LoginViewController ()
 
@@ -19,6 +18,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.navigationItem.title = @"登录";
+    
+    [self setLeftNavigationBarItem:@"取消" target:self andAction:@selector(dismissSelf)];
+    [self setRightNavigationBarItem:@"注册" target:self andAction:@selector(goRegister)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -29,7 +33,7 @@
 #pragma mark - User Interaction
 - (IBAction)loginButtonTapped:(id)sender {
     
-    [ControllerCoordinator goNextFrom:self whitTag:LoginLoginButtonTag andContext:nil];
+    [self dismissSelf];
 }
 
 - (IBAction)forgetPWDButtonTapped:(id)sender {
@@ -37,20 +41,10 @@
     [ControllerCoordinator goNextFrom:self whitTag:LoginForgetButtonTag andContext:nil];
 }
 
-- (IBAction)registerButtonTapped:(id)sender {
-    
+#pragma Internal Helper
+- (void)goRegister
+{
     [ControllerCoordinator goNextFrom:self whitTag:LoginRegisterButtonTag andContext:nil];
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

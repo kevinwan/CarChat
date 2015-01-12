@@ -7,7 +7,6 @@
 //
 
 #import "SuggestedActivityViewController.h"
-#import "ControllerCoordinator.h"
 #import "ActivitiesCollectionDelegator.h"
 #import "ActivityModel.h"
 
@@ -26,6 +25,7 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationItem.title = @"推荐活动";
     
     [self __createActivitiesForDevelop];
     
@@ -66,14 +66,5 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     }
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

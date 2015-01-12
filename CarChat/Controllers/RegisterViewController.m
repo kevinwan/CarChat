@@ -7,13 +7,8 @@
 //
 
 #import "RegisterViewController.h"
-#import "ControllerCoordinator.h"
-
 
 @interface RegisterViewController ()
-
-@property (weak, nonatomic) IBOutlet UIButton *haveCarButton;
-@property (weak, nonatomic) IBOutlet UIButton *notHaveCarButton;
 
 @end
 
@@ -23,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.navigationItem.title = @"注册";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -31,28 +28,18 @@
 }
 
 #pragma mark - User Interaction
-- (IBAction)didHaveCar:(UIButton *)sender {
-    if (sender.tag == 1) {
-        [ControllerCoordinator goNextFrom:self
-                                  whitTag:RegisterHaveCarButtonTag
-                               andContext:nil];
-    }
-    else {
-        [ControllerCoordinator goNextFrom:self
-                                  whitTag:RegisterDontHaveCarButtonTag
-                               andContext:nil];
-    }
+- (IBAction)getVerifyCode:(id)sender
+{
 }
 
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)registerAction:(id)sender
+{
+    [ControllerCoordinator goNextFrom:self whitTag:RegisterRegisterButtonTag andContext:nil];
 }
-*/
+
+- (IBAction)checkIAgreePolicy:(id)sender
+{
+}
+
 
 @end
