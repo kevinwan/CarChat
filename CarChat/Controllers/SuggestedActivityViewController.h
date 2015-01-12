@@ -1,5 +1,5 @@
 //
-//  RegisterViewController.h
+//  SuggestedActivityViewController.h
 //  CarChatLocal
 //
 //  Created by 赵佳 on 15/1/11.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController
+@interface SuggestedActivityViewController : UIViewController
 
 @end

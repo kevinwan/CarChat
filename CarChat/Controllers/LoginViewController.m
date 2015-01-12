@@ -1,23 +1,19 @@
 //
-//  RegisterViewController.m
+//  LoginViewController.m
 //  CarChatLocal
 //
 //  Created by 赵佳 on 15/1/11.
 //  Copyright (c) 2015年 GongPingJia. All rights reserved.
 //
 
-#import "RegisterViewController.h"
+#import "LoginViewController.h"
 #import "ControllerCoordinator.h"
 
-
-@interface RegisterViewController ()
-
-@property (weak, nonatomic) IBOutlet UIButton *haveCarButton;
-@property (weak, nonatomic) IBOutlet UIButton *notHaveCarButton;
+@interface LoginViewController ()
 
 @end
 
-@implementation RegisterViewController
+@implementation LoginViewController
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
@@ -31,17 +27,19 @@
 }
 
 #pragma mark - User Interaction
-- (IBAction)didHaveCar:(UIButton *)sender {
-    if (sender.tag == 1) {
-        [ControllerCoordinator goNextFrom:self
-                                  whitTag:RegisterHaveCarButtonTag
-                               andContext:nil];
-    }
-    else {
-        [ControllerCoordinator goNextFrom:self
-                                  whitTag:RegisterDontHaveCarButtonTag
-                               andContext:nil];
-    }
+- (IBAction)loginButtonTapped:(id)sender {
+    
+    [ControllerCoordinator goNextFrom:self whitTag:LoginLoginButtonTag andContext:nil];
+}
+
+- (IBAction)forgetPWDButtonTapped:(id)sender {
+    
+    [ControllerCoordinator goNextFrom:self whitTag:LoginForgetButtonTag andContext:nil];
+}
+
+- (IBAction)registerButtonTapped:(id)sender {
+    
+    [ControllerCoordinator goNextFrom:self whitTag:LoginRegisterButtonTag andContext:nil];
 }
 
 
