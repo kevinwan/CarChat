@@ -8,15 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		642F096BB6DD364A0E068E09 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5613B50C8095EBA08F4494D0 /* libPods.a */; };
+		BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC70E1A635FE400DA033C /* AppDelegate.m */; };
+		BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC7161A63606700DA033C /* RegisterViewController.m */; };
+		BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6BC71A1A63607F00DA033C /* RegisterViewController.xib */; };
 		BAD65A6C1A5FA89200987B06 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD65A6B1A5FA89200987B06 /* main.m */; };
-		BAD65A6F1A5FA89200987B06 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD65A6E1A5FA89200987B06 /* AppDelegate.m */; };
 		BAD65A721A5FA89200987B06 /* CarChat.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BAD65A701A5FA89200987B06 /* CarChat.xcdatamodeld */; };
 		BAD65A781A5FA89200987B06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAD65A761A5FA89200987B06 /* Main.storyboard */; };
 		BAD65A7A1A5FA89200987B06 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAD65A791A5FA89200987B06 /* Images.xcassets */; };
 		BAD65A7D1A5FA89200987B06 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAD65A7B1A5FA89200987B06 /* LaunchScreen.xib */; };
 		BAD65A891A5FA89200987B06 /* CarChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD65A881A5FA89200987B06 /* CarChatTests.m */; };
-		BAD65A9F1A5FD9BB00987B06 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD65A9D1A5FD9BB00987B06 /* RegisterViewController.m */; };
-		BAD65AA01A5FD9BB00987B06 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAD65A9E1A5FD9BB00987B06 /* RegisterViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,11 +32,14 @@
 /* Begin PBXFileReference section */
 		5613B50C8095EBA08F4494D0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A1C4A7F3479EED06C580E1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		BA6BC70D1A635FE400DA033C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BA6BC70E1A635FE400DA033C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BA6BC7151A63606700DA033C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		BA6BC7161A63606700DA033C /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		BA6BC71A1A63607F00DA033C /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		BAD65A661A5FA89200987B06 /* CarChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAD65A6A1A5FA89200987B06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAD65A6B1A5FA89200987B06 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		BAD65A6D1A5FA89200987B06 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		BAD65A6E1A5FA89200987B06 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BAD65A711A5FA89200987B06 /* CarChat.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CarChat.xcdatamodel; sourceTree = "<group>"; };
 		BAD65A771A5FA89200987B06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BAD65A791A5FA89200987B06 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -44,9 +47,6 @@
 		BAD65A821A5FA89200987B06 /* CarChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAD65A871A5FA89200987B06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAD65A881A5FA89200987B06 /* CarChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarChatTests.m; sourceTree = "<group>"; };
-		BAD65A9C1A5FD9BB00987B06 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
-		BAD65A9D1A5FD9BB00987B06 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
-		BAD65A9E1A5FD9BB00987B06 /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RegisterViewController.xib; path = ViewControllers/RegisterViewController.xib; sourceTree = "<group>"; };
 		D0739C1B0EA98A7CE326B445 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -77,13 +77,60 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		BA6BC70C1A635FE400DA033C /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				BA6BC70D1A635FE400DA033C /* AppDelegate.h */,
+				BA6BC70E1A635FE400DA033C /* AppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		BA6BC7101A63603E00DA033C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BA6BC7111A63603E00DA033C /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BA6BC7121A63603E00DA033C /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		BA6BC7131A63603E00DA033C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BA6BC7141A63606700DA033C /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BA6BC7151A63606700DA033C /* RegisterViewController.h */,
+				BA6BC7161A63606700DA033C /* RegisterViewController.m */,
+				BA6BC71A1A63607F00DA033C /* RegisterViewController.xib */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		BAD65A5D1A5FA89200987B06 = {
 			isa = PBXGroup;
 			children = (
 				BAD65A681A5FA89200987B06 /* CarChat */,
-				BAD65A851A5FA89200987B06 /* CarChatTests */,
 				BAD65A671A5FA89200987B06 /* Products */,
 				C2A044BD05448574EAB491E7 /* Pods */,
+				BAD65A851A5FA89200987B06 /* CarChatTests */,
 				4607AC9485DFC4302F334B2B /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -100,8 +147,11 @@
 		BAD65A681A5FA89200987B06 /* CarChat */ = {
 			isa = PBXGroup;
 			children = (
-				BAD65A921A5FD8B900987B06 /* AppDelegate */,
-				BAD65A9B1A5FD9BB00987B06 /* ViewControllers */,
+				BA6BC7141A63606700DA033C /* Controllers */,
+				BA6BC7131A63603E00DA033C /* Views */,
+				BA6BC7111A63603E00DA033C /* Models */,
+				BA6BC7101A63603E00DA033C /* Helpers */,
+				BA6BC7121A63603E00DA033C /* Modules */,
 				BAD65A691A5FA89200987B06 /* Supporting Files */,
 			);
 			path = CarChat;
@@ -110,9 +160,11 @@
 		BAD65A691A5FA89200987B06 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				BAD65AA11A5FD9C700987B06 /* NIBs */,
+				BA6BC70C1A635FE400DA033C /* AppDelegate */,
 				BAD65A701A5FA89200987B06 /* CarChat.xcdatamodeld */,
 				BAD65A791A5FA89200987B06 /* Images.xcassets */,
+				BAD65A7B1A5FA89200987B06 /* LaunchScreen.xib */,
+				BAD65A761A5FA89200987B06 /* Main.storyboard */,
 				BAD65A6A1A5FA89200987B06 /* Info.plist */,
 				BAD65A6B1A5FA89200987B06 /* main.m */,
 			);
@@ -134,34 +186,6 @@
 				BAD65A871A5FA89200987B06 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		BAD65A921A5FD8B900987B06 /* AppDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				BAD65A6D1A5FA89200987B06 /* AppDelegate.h */,
-				BAD65A6E1A5FA89200987B06 /* AppDelegate.m */,
-			);
-			name = AppDelegate;
-			sourceTree = "<group>";
-		};
-		BAD65A9B1A5FD9BB00987B06 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				BAD65A9C1A5FD9BB00987B06 /* RegisterViewController.h */,
-				BAD65A9D1A5FD9BB00987B06 /* RegisterViewController.m */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		BAD65AA11A5FD9C700987B06 /* NIBs */ = {
-			isa = PBXGroup;
-			children = (
-				BAD65A9E1A5FD9BB00987B06 /* RegisterViewController.xib */,
-				BAD65A7B1A5FA89200987B06 /* LaunchScreen.xib */,
-				BAD65A761A5FA89200987B06 /* Main.storyboard */,
-			);
-			name = NIBs;
 			sourceTree = "<group>";
 		};
 		C2A044BD05448574EAB491E7 /* Pods */ = {
@@ -256,9 +280,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAD65A781A5FA89200987B06 /* Main.storyboard in Resources */,
+				BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */,
 				BAD65A7D1A5FA89200987B06 /* LaunchScreen.xib in Resources */,
 				BAD65A7A1A5FA89200987B06 /* Images.xcassets in Resources */,
-				BAD65AA01A5FD9BB00987B06 /* RegisterViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,10 +333,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BAD65A6F1A5FA89200987B06 /* AppDelegate.m in Sources */,
+				BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */,
 				BAD65A721A5FA89200987B06 /* CarChat.xcdatamodeld in Sources */,
 				BAD65A6C1A5FA89200987B06 /* main.m in Sources */,
-				BAD65A9F1A5FD9BB00987B06 /* RegisterViewController.m in Sources */,
+				BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
