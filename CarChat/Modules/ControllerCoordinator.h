@@ -33,11 +33,15 @@ extern const NSInteger LoginForgetResetDoneTag;
  *  需要完善个人信息
  */
 extern const NSInteger ShowCompleteInfoFromSomeWhereTag;
+/**
+ *  建议活动列表，选中某个活动
+ */
+extern const NSInteger SuggestActivitiesSelectItem;
 
 @interface ControllerCoordinator : NSObject
 
 + (void)goNextFrom:(UIViewController *)vc
            whitTag:(NSInteger)tag
-        andContext:(void *)context;
+        andContext:(id)context;
 
 @end

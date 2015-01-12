@@ -7,10 +7,12 @@
 //
 
 #import "ActivityDetailViewController.h"
+#import "ActivityDescriptionView.h"
 
 @interface ActivityDetailViewController ()
 
 @property (nonatomic, strong) ActivityModel * activity;
+@property (weak, nonatomic) IBOutlet UITableView *commentTableView;
 
 @end
 
@@ -29,6 +31,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    ActivityDescriptionView * header = [ActivityDescriptionView viewFromNib];
+    [header layoutWithModel:_activity];
+    [self.commentTableView setTableHeaderView:header];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

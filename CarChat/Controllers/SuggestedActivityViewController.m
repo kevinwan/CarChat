@@ -38,9 +38,7 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     __weak typeof(self) weakRef = self;
     [self.tableDelegator setSelectingBlock: ^(ActivityModel * activity) {
         __strong typeof(self) strongRef = weakRef;
-        [ControllerCoordinator goNextFrom:strongRef
-                                  whitTag:ShowLoginFromSomeWhereTag
-                               andContext:nil];
+        [ControllerCoordinator goNextFrom:strongRef whitTag:SuggestActivitiesSelectItem andContext:activity];
     }];
     [self.suggestionTableView setDataSource:self.tableDelegator];
     [self.suggestionTableView setDelegate:self.tableDelegator];
@@ -56,12 +54,25 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
 - (void)__createActivitiesForDevelop
 {
     self.activities = [NSMutableArray array];
+    NSArray * posters = @[@"http://pic3.bbzhi.com/youxibizhi/jipinfeiche114/jingxuan_yxjx_214782_18.jpg",
+                          @"http://f.hiphotos.baidu.com/zhidao/pic/item/c8177f3e6709c93d0d1704f39d3df8dcd00054c8.jpg",
+                          @"http://bizhi.zhuoku.com/2011/02/19/1080p/1080p80.jpg",
+                          @"http://f.hiphotos.baidu.com/zhidao/pic/item/d833c895d143ad4b041066b180025aafa40f0680.jpg",
+                          @"http://d.hiphotos.baidu.com/zhidao/pic/item/cdbf6c81800a19d8d7698e0131fa828ba61e464f.jpg",@"http://pic3.bbzhi.com/youxibizhi/jipinfeiche114/jingxuan_yxjx_214782_18.jpg",
+                          @"http://f.hiphotos.baidu.com/zhidao/pic/item/c8177f3e6709c93d0d1704f39d3df8dcd00054c8.jpg",
+                          @"http://bizhi.zhuoku.com/2011/02/19/1080p/1080p80.jpg",
+                          @"http://f.hiphotos.baidu.com/zhidao/pic/item/d833c895d143ad4b041066b180025aafa40f0680.jpg",
+                          @"http://d.hiphotos.baidu.com/zhidao/pic/item/cdbf6c81800a19d8d7698e0131fa828ba61e464f.jpg"];
     for (int i = 0; i < 10; i++) {
         ActivityModel * activity = [ActivityModel new];
         activity.name = [NSString stringWithFormat:@"name %d",i];
         activity.destination = [NSString stringWithFormat:@"destination %d",i];
         activity.date = [NSString stringWithFormat:@"%@",[NSDate date]];
         activity.amountOfPeople = [NSString stringWithFormat:@"%d",i];
+        activity.posterUrlStr = posters[i];
+        activity.starterAvtar = @"http://b.hiphotos.baidu.com/image/pic/item/ca1349540923dd5427f5bd1dd309b3de9d8248c4.jpg";
+        activity.starterName = @"红烧肉";
+        activity.starterGender = 1;
         [self.activities addObject:activity];
     }
 }

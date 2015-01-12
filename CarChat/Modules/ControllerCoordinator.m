@@ -11,6 +11,7 @@
 #import "RegisterViewController.h"
 #import "ForgetPasswordViewController.h"
 #import "CompletePersonalInfoViewController.h"
+#import "ActivityDetailViewController.h"
 
 const NSInteger ShowLoginFromSomeWhereTag = 1;
 const NSInteger RegisterRegisterButtonTag = 101;
@@ -18,12 +19,13 @@ const NSInteger LoginForgetButtonTag = 201;
 const NSInteger LoginRegisterButtonTag = 202;
 const NSInteger LoginForgetResetDoneTag = 203;
 const NSInteger ShowCompleteInfoFromSomeWhereTag = 204;
+const NSInteger SuggestActivitiesSelectItem = 300;
 
 @implementation ControllerCoordinator
 
 + (void)goNextFrom:(UIViewController *)vc
            whitTag:(NSInteger)tag
-        andContext:(void *)context
+        andContext:(id)context
 {
     switch (tag) {
         case RegisterRegisterButtonTag:
@@ -72,6 +74,12 @@ const NSInteger ShowCompleteInfoFromSomeWhereTag = 204;
             
             UINavigationController * completeInfoNav = [[UINavigationController alloc]initWithRootViewController:[[CompletePersonalInfoViewController alloc]init]];
             [currentTopContainer presentViewController:completeInfoNav animated:YES completion:nil];
+        }
+            break;
+        case SuggestActivitiesSelectItem:
+        {
+            ActivityDetailViewController * detail = [[ActivityDetailViewController alloc]initWithActivity:( ActivityModel *)context];
+            [vc.navigationController pushViewController:detail animated:YES];
         }
             break;
         default:
