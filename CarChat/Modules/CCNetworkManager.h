@@ -1,0 +1,100 @@
+//
+//  CCNetworkManager.h
+//  CarChat
+//
+//  Created by 赵佳 on 15/1/12.
+//  Copyright (c) 2015年 GongPingJia. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "CCNetworkResponse.h"
+#import "RequestArgument.h"
+
+/**
+ *  登录api
+ */
+extern NSString * const ApiLogin ;
+/**
+ *  注册api
+ */
+extern NSString * const ApiRegister ;
+/**
+ *  重置密码
+ */
+extern NSString * const ApiResetPassword ;
+/**
+ *  获取验证码
+ */
+extern NSString * const ApiGetVerifySMS ;
+/**
+ *  设置个人信息
+ */
+extern NSString * const ApiSetPersonalInfo ;
+/**
+ *  获取用户信息
+ */
+extern NSString * const ApiGetUserInfo ;
+/**
+ *  提交认证车主信息
+ */
+extern NSString * const ApiSubmitCertificationProfile ;
+/**
+ *  获取推荐活动列表
+ */
+extern NSString * const ApiGetSuggestActivities ;
+/**
+ *  获取我的活动列表
+ */
+extern NSString * const ApiGetMyActivities ;
+/**
+ *  获取活动详情
+ */
+extern NSString * const ApiGetActivitiesDetail ;
+/**
+ *  获取活动评论
+ */
+extern NSString * const ApiGetCommentsInActivity ;
+/**
+ *  评论活动
+ */
+extern NSString * const ApiReplyActivity ;
+/**
+ *  创建活动
+ */
+extern NSString * const ApiCreateActivity ;
+/**
+ *  邀请用户
+ */
+extern NSString * const ApiInviteUsers ;
+/**
+ *  发起聊天
+ */
+extern NSString * const ApiChatToUser ;
+/**
+ *  关注某人
+ */
+extern NSString * const ApiFollowUser ;
+/**
+ *  取关
+ */
+extern NSString * const ApiUnfollowUser ;
+/**
+ *  获取我关注人列表
+ */
+extern NSString * const ApiGetFollowing ;
+/**
+ *  获取关注我的人列表
+ */
+extern NSString * const ApiGetFollowers ;
+
+
+@interface CCNetworkManager : NSObject
+
++ (instancetype)defaultManager;
+
+- (void)addObserver:(NSObject<CCNetworkResponse> * )observer forApi:(NSString *)api;
+- (void)removeObserver:(NSObject *)observer forApi:(NSString *)api;
+
+- (void)requestApi:(NSString *)api withParameters:(RequestArgument *)parameters;
+
+@end
