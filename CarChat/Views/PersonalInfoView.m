@@ -11,11 +11,6 @@
 
 @interface PersonalInfoView ()
 
-@property (weak, nonatomic) IBOutlet UIButton *avatarButton;
-@property (weak, nonatomic) IBOutlet UITextField *nickNameField;
-@property (weak, nonatomic) IBOutlet UITextField *genderField;
-@property (weak, nonatomic) IBOutlet UITextField *ageField;
-
 @end
 
 @implementation PersonalInfoView

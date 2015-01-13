@@ -13,6 +13,11 @@ typedef UIImage * (^AvatarPickerBlock)();
 
 @interface PersonalInfoView : UIView
 
+@property (weak, nonatomic) IBOutlet UIButton *avatarButton;
+@property (weak, nonatomic) IBOutlet UITextField *nickNameField;
+@property (weak, nonatomic) IBOutlet UITextField *genderField;
+@property (weak, nonatomic) IBOutlet UITextField *ageField;
+
 + (instancetype)view;
 
 - (void)setUser:(UserModel *)user;
