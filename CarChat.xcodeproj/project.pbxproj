@@ -44,6 +44,9 @@
 		BAD723281A64BF5100FB4645 /* UIImage+Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD723231A64BF5100FB4645 /* UIImage+Gif.m */; };
 		BAD7232C1A64D3DF00FB4645 /* ServerPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD7232A1A64D3DF00FB4645 /* ServerPolicyViewController.m */; };
 		BAD7232D1A64D3DF00FB4645 /* ServerPolicyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAD7232B1A64D3DF00FB4645 /* ServerPolicyViewController.xib */; };
+		BAD723361A64FA6900FB4645 /* PersonalInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD723351A64FA6900FB4645 /* PersonalInfoView.m */; };
+		BAD723381A64FAA300FB4645 /* PersonalInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAD723371A64FAA300FB4645 /* PersonalInfoView.xib */; };
+		BAD7233B1A64FC9300FB4645 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD7233A1A64FC9300FB4645 /* UserModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +126,11 @@
 		BAD723291A64D3DF00FB4645 /* ServerPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerPolicyViewController.h; sourceTree = "<group>"; };
 		BAD7232A1A64D3DF00FB4645 /* ServerPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerPolicyViewController.m; sourceTree = "<group>"; };
 		BAD7232B1A64D3DF00FB4645 /* ServerPolicyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerPolicyViewController.xib; sourceTree = "<group>"; };
+		BAD723341A64FA6900FB4645 /* PersonalInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalInfoView.h; sourceTree = "<group>"; };
+		BAD723351A64FA6900FB4645 /* PersonalInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalInfoView.m; sourceTree = "<group>"; };
+		BAD723371A64FAA300FB4645 /* PersonalInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalInfoView.xib; sourceTree = "<group>"; };
+		BAD723391A64FC9300FB4645 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
+		BAD7233A1A64FC9300FB4645 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		D0739C1B0EA98A7CE326B445 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,6 +216,8 @@
 			children = (
 				BA6BC7291A63628800DA033C /* ActivityModel.h */,
 				BA6BC72A1A63628800DA033C /* ActivityModel.m */,
+				BAD723391A64FC9300FB4645 /* UserModel.h */,
+				BAD7233A1A64FC9300FB4645 /* UserModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -231,6 +241,7 @@
 				BA6BC7401A63719700DA033C /* ActivityDetail */,
 				BA6BC73E1A63717500DA033C /* SignIn */,
 				BA6BC73D1A63716700DA033C /* SignUp */,
+				BAD723301A64F95100FB4645 /* PersonalProfile */,
 				BA6BC7381A63647C00DA033C /* ABC */,
 			);
 			path = Controllers;
@@ -254,9 +265,6 @@
 				BAD723291A64D3DF00FB4645 /* ServerPolicyViewController.h */,
 				BAD7232A1A64D3DF00FB4645 /* ServerPolicyViewController.m */,
 				BAD7232B1A64D3DF00FB4645 /* ServerPolicyViewController.xib */,
-				BAB810981A63A85D00142DDA /* CompletePersonalInfoViewController.h */,
-				BAB810991A63A85D00142DDA /* CompletePersonalInfoViewController.m */,
-				BAB8109A1A63A85D00142DDA /* CompletePersonalInfoViewController.xib */,
 			);
 			name = SignUp;
 			sourceTree = "<group>";
@@ -297,9 +305,8 @@
 		BAB8109F1A63C18900142DDA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				BAB810A01A63C1A100142DDA /* ActivityDescriptionView.h */,
-				BAB810A11A63C1A100142DDA /* ActivityDescriptionView.m */,
-				BAB810A31A63C1B400142DDA /* ActivityDescriptionView.xib */,
+				BAD723331A64F98800FB4645 /* PersonalProfile */,
+				BAD723321A64F97B00FB4645 /* Activity */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -367,6 +374,36 @@
 				BAD65A871A5FA89200987B06 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BAD723301A64F95100FB4645 /* PersonalProfile */ = {
+			isa = PBXGroup;
+			children = (
+				BAB810981A63A85D00142DDA /* CompletePersonalInfoViewController.h */,
+				BAB810991A63A85D00142DDA /* CompletePersonalInfoViewController.m */,
+				BAB8109A1A63A85D00142DDA /* CompletePersonalInfoViewController.xib */,
+			);
+			name = PersonalProfile;
+			sourceTree = "<group>";
+		};
+		BAD723321A64F97B00FB4645 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				BAB810A01A63C1A100142DDA /* ActivityDescriptionView.h */,
+				BAB810A11A63C1A100142DDA /* ActivityDescriptionView.m */,
+				BAB810A31A63C1B400142DDA /* ActivityDescriptionView.xib */,
+			);
+			name = Activity;
+			sourceTree = "<group>";
+		};
+		BAD723331A64F98800FB4645 /* PersonalProfile */ = {
+			isa = PBXGroup;
+			children = (
+				BAD723341A64FA6900FB4645 /* PersonalInfoView.h */,
+				BAD723351A64FA6900FB4645 /* PersonalInfoView.m */,
+				BAD723371A64FAA300FB4645 /* PersonalInfoView.xib */,
+			);
+			name = PersonalProfile;
 			sourceTree = "<group>";
 		};
 		C2A044BD05448574EAB491E7 /* Pods */ = {
@@ -464,6 +501,7 @@
 				BAB810971A639D1900142DDA /* ForgetPasswordViewController.xib in Resources */,
 				BA6BC7261A63627B00DA033C /* LoginViewController.xib in Resources */,
 				BAD65A781A5FA89200987B06 /* Main.storyboard in Resources */,
+				BAD723381A64FAA300FB4645 /* PersonalInfoView.xib in Resources */,
 				BAB810A41A63C1B400142DDA /* ActivityDescriptionView.xib in Resources */,
 				BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */,
 				BAB8109E1A63B84700142DDA /* ActivityDetailViewController.xib in Resources */,
@@ -529,11 +567,13 @@
 				BAD723241A64BF5100FB4645 /* NSDate+Helpers.m in Sources */,
 				BA6BC7341A63644500DA033C /* AbstractViewController.m in Sources */,
 				BA6BC72B1A63628800DA033C /* ActivityModel.m in Sources */,
+				BAD7233B1A64FC9300FB4645 /* UserModel.m in Sources */,
 				BA6BC7271A63627B00DA033C /* SuggestedActivityViewController.m in Sources */,
 				BAB810961A639D1900142DDA /* ForgetPasswordViewController.m in Sources */,
 				7EF6A01B1A641FEC0022DBCE /* LoginParameter.m in Sources */,
 				BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */,
 				7EF16D361A63FED00008B16F /* CCNetworkManager.m in Sources */,
+				BAD723361A64FA6900FB4645 /* PersonalInfoView.m in Sources */,
 				BAD65A721A5FA89200987B06 /* CarChat.xcdatamodeld in Sources */,
 				BAB810A21A63C1A100142DDA /* ActivityDescriptionView.m in Sources */,
 				BA6BC7251A63627B00DA033C /* LoginViewController.m in Sources */,

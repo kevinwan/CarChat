@@ -34,8 +34,8 @@
     
     [self setRightNavigationBarItem:@"GO!" target:self andAction:@selector(createAndEditTheActivity)];
     
-    ActivityDescriptionView * header = [ActivityDescriptionView viewFromNib];
-    [header layoutWithModel:_activity];
+    ActivityDescriptionView * header = [ActivityDescriptionView view];
+    [header setModel:_activity];
     [self.commentTableView setTableHeaderView:header];
     
     

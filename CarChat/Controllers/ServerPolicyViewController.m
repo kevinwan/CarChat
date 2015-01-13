@@ -23,7 +23,7 @@
     self.navigationItem.title = @"服务条款";
     [self setLeftNavigationBarItem:@"关闭" target:self andAction:@selector(dismissSelf)];
     
-    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://www.gongpingjia.com"]]];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"http://m.gongpingjia.com"]]];
 }
 
 - (void)didReceiveMemoryWarning {
