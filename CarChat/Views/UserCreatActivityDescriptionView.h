@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ActivityModel.h"
 
-@interface ActivityDescriptionView : UIView
+@interface UserCreatActivityDescriptionView : UIView
 
 + (instancetype)view;
 
 - (void)setModel:(ActivityModel *)activity;
+
+@property (nonatomic, assign) BOOL editable;
 
 @end

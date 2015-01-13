@@ -63,7 +63,10 @@ NSString * const ApiGetFollowers = @"";
 
 - (void)requestApi:(NSString *)api withParameters:(RequestArgument *)parameters
 {
-    [self _requestApi:api withParameters:parameters];
+    [[NSNotificationCenter defaultCenter] postNotificationName:ApiLogin object:@{} userInfo:parameters.toDic];
+    return;
+    
+//    [self _requestApi:api withParameters:parameters];
 }
 
 #pragma mark - Internal Helper

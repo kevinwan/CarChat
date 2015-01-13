@@ -15,5 +15,8 @@
 #import "AbstractViewController.h"
 #import <VTPG_LogExpr.h>
 #import "ControllerCoordinator.h"
+#import "CCNetworkManager.h"
+#import "CCNetworkResponse.h"
+
 
 #endif

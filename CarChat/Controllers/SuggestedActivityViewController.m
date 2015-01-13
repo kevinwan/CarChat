@@ -75,6 +75,7 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
         activity.starterAvtar = @"http://b.hiphotos.baidu.com/image/pic/item/ca1349540923dd5427f5bd1dd309b3de9d8248c4.jpg";
         activity.starterName = @"红烧肉";
         activity.starterGender = 1;
+        activity.cost = [NSString stringWithFormat:@"%d0$/person",i];
         [self.activities addObject:activity];
     }
 }

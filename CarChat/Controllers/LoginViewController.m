@@ -10,6 +10,7 @@
 #import "LoginParameter.h"
 #import "CCNetworkManager.h"
 #import "NSString+Helpers.h"
+#import "LoginParameter.h"
 
 @interface LoginViewController () <CCNetworkResponse>
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumber;
@@ -36,7 +37,10 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(updateLoginButton)
-                                                 name:UITextFieldTextDidChangeNotification object:nil];
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:nil];
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
+                                            forApi:ApiLogin];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,13 +54,25 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UITextFieldTextDidChangeNotification
                                                   object:nil];
+    [[CCNetworkManager defaultManager] removeObserver:self
+                                               forApi:ApiLogin];
 }
 
 #pragma mark - User Interaction
 - (IBAction)loginButtonTapped:(id)sender
 {
-    
-    [self dismissSelf];
+//    if ([self isPhoneNumberValid]) {
+        [self showLoading:@"正在登录"];
+        
+        LoginParameter * parameter = [LoginParameter parameter];
+        parameter.phone = self.phoneNumber.text;
+        parameter.pwd = self.password.text;
+        [[CCNetworkManager defaultManager] requestApi:ApiLogin
+                                       withParameters:parameter];
+//    }
+//    else {
+//        [self showTip:@"请输入正确的手机号码"];
+//    }
 }
 
 - (IBAction)forgetPWDButtonTapped:(id)sender
@@ -77,7 +93,17 @@
 #pragma mark - CCNetworkResponse
 - (void)didGetResponseNotification:(NSNotification *)response
 {
+    [self hideHud];
     
+    if ([response.object isKindOfClass:[NSError class]]) {
+        // failed
+    }
+    else {
+        // successful
+        [self showTip:@"登录成功" whenDone:^{
+            [self dismissSelf];
+        }];
+    }
 }
 
 #pragma mark - UITextFieldNotify

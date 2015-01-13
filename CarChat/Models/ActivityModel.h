@@ -14,6 +14,7 @@
 @property (nonatomic, strong) NSString * destination;
 @property (nonatomic, strong) NSString * date;
 @property (nonatomic, strong) NSString * amountOfPeople;
+@property (nonatomic, strong) NSString * cost;
 @property (nonatomic, strong) NSString * posterUrlStr;
 @property (nonatomic, strong) NSString * starterAvtar;
 @property (nonatomic, strong) NSString * starterName;

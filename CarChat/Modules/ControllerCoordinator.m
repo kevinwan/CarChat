@@ -11,7 +11,7 @@
 #import "RegisterViewController.h"
 #import "ForgetPasswordViewController.h"
 #import "CompletePersonalInfoViewController.h"
-#import "ActivityDetailViewController.h"
+#import "ActivityIntroductViewController.h"
 #import "ServerPolicyViewController.h"
 
 const NSInteger ShowLoginFromSomeWhereTag = 1;
@@ -101,7 +101,7 @@ const NSInteger SuggestActivitiesSelectItem = 300;
             break;
         case SuggestActivitiesSelectItem:
         {
-            ActivityDetailViewController * detail = [[ActivityDetailViewController alloc]initWithActivity:( ActivityModel *)context];
+            ActivityIntroductViewController * detail = [[ActivityIntroductViewController alloc]initWithActivity:( ActivityModel *)context];
             [vc.navigationController pushViewController:detail
                                                animated:YES];
         }

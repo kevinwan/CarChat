@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ActivityModel.h"
 
-@interface ActivityDetailViewController : AbstractViewController
+@interface ActivityIntroductViewController : AbstractViewController
 
 - (instancetype)initWithActivity:(ActivityModel *)activity;
 

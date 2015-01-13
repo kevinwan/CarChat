@@ -6,10 +6,10 @@
 //  Copyright (c) 2015年 GongPingJia. All rights reserved.
 //
 
-#import "ActivityDescriptionView.h"
+#import "UserCreatActivityDescriptionView.h"
 #import <UIImageView+WebCache.h>
 
-@interface ActivityDescriptionView ()
+@interface UserCreatActivityDescriptionView ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *poster;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -20,11 +20,11 @@
 
 @end
 
-@implementation ActivityDescriptionView
+@implementation UserCreatActivityDescriptionView
 
 + (instancetype)view
 {
-    ActivityDescriptionView * view = [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil][0];
+    UserCreatActivityDescriptionView * view = [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil][0];
     return view;
 }
 
@@ -36,6 +36,12 @@
     [self.starterGender setBackgroundColor:[UIColor redColor]];
     [self.starterCertifyIcon setBackgroundColor:[UIColor blueColor]];
     [self.starterName setText: activity.starterName];
+}
+
+- (void)setEditable:(BOOL)editable
+{
+    _editable = editable;
+    [self.poster setUserInteractionEnabled:YES];
 }
 
 @end
