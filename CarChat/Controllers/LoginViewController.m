@@ -7,8 +7,13 @@
 //
 
 #import "LoginViewController.h"
+#import "LoginParameter.h"
+#import "CCNetworkManager.h"
+#import "NSString+Helpers.h"
 
-@interface LoginViewController ()
+@interface LoginViewController () <CCNetworkResponse>
+@property (weak, nonatomic) IBOutlet UITextField *phoneNumber;
+@property (weak, nonatomic) IBOutlet UITextField *password;
 
 @end
 
@@ -21,8 +26,12 @@
     
     self.navigationItem.title = @"登录";
     
-    [self setLeftNavigationBarItem:@"取消" target:self andAction:@selector(dismissSelf)];
-    [self setRightNavigationBarItem:@"注册" target:self andAction:@selector(goRegister)];
+    [self setLeftNavigationBarItem:@"取消"
+                            target:self
+                         andAction:@selector(dismissSelf)];
+    [self setRightNavigationBarItem:@"注册"
+                             target:self
+                          andAction:@selector(goRegister)];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,18 +42,43 @@
 #pragma mark - User Interaction
 - (IBAction)loginButtonTapped:(id)sender {
     
+    if (![self allFiledsTexted]) {
+        [self showTip:@"请填写完整"];
+        return;
+    }
+    
     [self dismissSelf];
 }
 
 - (IBAction)forgetPWDButtonTapped:(id)sender {
     
-    [ControllerCoordinator goNextFrom:self whitTag:LoginForgetButtonTag andContext:nil];
+    [ControllerCoordinator goNextFrom:self
+                              whitTag:LoginForgetButtonTag
+                           andContext:nil];
+}
+
+- (void)goRegister
+{
+    [ControllerCoordinator goNextFrom:self
+                              whitTag:LoginRegisterButtonTag
+                           andContext:nil];
+}
+
+#pragma mark - CCNetworkResponse
+- (void)didGetResponseNotification:(NSNotification *)response
+{
+    
 }
 
 #pragma Internal Helper
-- (void)goRegister
+- (BOOL)allFiledsTexted
 {
-    [ControllerCoordinator goNextFrom:self whitTag:LoginRegisterButtonTag andContext:nil];
+    return ![self.phoneNumber.text isBlank] && ![self.phoneNumber.text isBlank];
+}
+
+- (BOOL)isPhoneNumberValid
+{
+    return [self.phoneNumber.text isMobileNumber];
 }
 
 @end

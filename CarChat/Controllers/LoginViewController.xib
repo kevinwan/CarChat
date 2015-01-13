@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="password" destination="OvM-3p-YXt" id="mad-n0-uEa"/>
+                <outlet property="phoneNumber" destination="fTb-am-YWV" id="IA5-DL-FUB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

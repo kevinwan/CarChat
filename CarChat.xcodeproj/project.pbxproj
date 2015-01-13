@@ -37,6 +37,11 @@
 		BAD65A7A1A5FA89200987B06 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAD65A791A5FA89200987B06 /* Images.xcassets */; };
 		BAD65A7D1A5FA89200987B06 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAD65A7B1A5FA89200987B06 /* LaunchScreen.xib */; };
 		BAD65A891A5FA89200987B06 /* CarChatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD65A881A5FA89200987B06 /* CarChatTests.m */; };
+		BAD723241A64BF5100FB4645 /* NSDate+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD7231B1A64BF5100FB4645 /* NSDate+Helpers.m */; };
+		BAD723251A64BF5100FB4645 /* NSString+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD7231D1A64BF5100FB4645 /* NSString+Helpers.m */; };
+		BAD723261A64BF5100FB4645 /* NSUserDefaults+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD7231F1A64BF5100FB4645 /* NSUserDefaults+Helpers.m */; };
+		BAD723271A64BF5100FB4645 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD723211A64BF5100FB4645 /* UIColor+Helper.m */; };
+		BAD723281A64BF5100FB4645 /* UIImage+Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD723231A64BF5100FB4645 /* UIImage+Gif.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +108,16 @@
 		BAD65A821A5FA89200987B06 /* CarChatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarChatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAD65A871A5FA89200987B06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BAD65A881A5FA89200987B06 /* CarChatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CarChatTests.m; sourceTree = "<group>"; };
+		BAD7231A1A64BF5100FB4645 /* NSDate+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Helpers.h"; sourceTree = "<group>"; };
+		BAD7231B1A64BF5100FB4645 /* NSDate+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Helpers.m"; sourceTree = "<group>"; };
+		BAD7231C1A64BF5100FB4645 /* NSString+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helpers.h"; sourceTree = "<group>"; };
+		BAD7231D1A64BF5100FB4645 /* NSString+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helpers.m"; sourceTree = "<group>"; };
+		BAD7231E1A64BF5100FB4645 /* NSUserDefaults+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSUserDefaults+Helpers.h"; sourceTree = "<group>"; };
+		BAD7231F1A64BF5100FB4645 /* NSUserDefaults+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSUserDefaults+Helpers.m"; sourceTree = "<group>"; };
+		BAD723201A64BF5100FB4645 /* UIColor+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Helper.h"; sourceTree = "<group>"; };
+		BAD723211A64BF5100FB4645 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
+		BAD723221A64BF5100FB4645 /* UIImage+Gif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Gif.h"; sourceTree = "<group>"; };
+		BAD723231A64BF5100FB4645 /* UIImage+Gif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Gif.m"; sourceTree = "<group>"; };
 		D0739C1B0EA98A7CE326B445 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,6 +182,16 @@
 		BA6BC7101A63603E00DA033C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				BAD7231A1A64BF5100FB4645 /* NSDate+Helpers.h */,
+				BAD7231B1A64BF5100FB4645 /* NSDate+Helpers.m */,
+				BAD7231C1A64BF5100FB4645 /* NSString+Helpers.h */,
+				BAD7231D1A64BF5100FB4645 /* NSString+Helpers.m */,
+				BAD7231E1A64BF5100FB4645 /* NSUserDefaults+Helpers.h */,
+				BAD7231F1A64BF5100FB4645 /* NSUserDefaults+Helpers.m */,
+				BAD723201A64BF5100FB4645 /* UIColor+Helper.h */,
+				BAD723211A64BF5100FB4645 /* UIColor+Helper.m */,
+				BAD723221A64BF5100FB4645 /* UIImage+Gif.h */,
+				BAD723231A64BF5100FB4645 /* UIImage+Gif.m */,
 				BA6BC73A1A63651600DA033C /* UIView+HUD.h */,
 				BA6BC73B1A63651600DA033C /* UIView+HUD.m */,
 			);
@@ -487,9 +512,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAD723261A64BF5100FB4645 /* NSUserDefaults+Helpers.m in Sources */,
 				BA6BC73C1A63651600DA033C /* UIView+HUD.m in Sources */,
 				BA6BC7311A63629400DA033C /* ControllerCoordinator.m in Sources */,
 				BA6BC7301A63629400DA033C /* ActivitiesCollectionDelegator.m in Sources */,
+				BAD723281A64BF5100FB4645 /* UIImage+Gif.m in Sources */,
+				BAD723241A64BF5100FB4645 /* NSDate+Helpers.m in Sources */,
 				BA6BC7341A63644500DA033C /* AbstractViewController.m in Sources */,
 				BA6BC72B1A63628800DA033C /* ActivityModel.m in Sources */,
 				BA6BC7271A63627B00DA033C /* SuggestedActivityViewController.m in Sources */,
@@ -500,11 +528,13 @@
 				BAD65A721A5FA89200987B06 /* CarChat.xcdatamodeld in Sources */,
 				BAB810A21A63C1A100142DDA /* ActivityDescriptionView.m in Sources */,
 				BA6BC7251A63627B00DA033C /* LoginViewController.m in Sources */,
+				BAD723271A64BF5100FB4645 /* UIColor+Helper.m in Sources */,
 				BAB8109B1A63A85D00142DDA /* CompletePersonalInfoViewController.m in Sources */,
 				BAD65A6C1A5FA89200987B06 /* main.m in Sources */,
 				BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */,
 				BA6BC7241A63627B00DA033C /* ActivityDetailViewController.m in Sources */,
 				7EF6A0181A641ED70022DBCE /* RequestArgument.m in Sources */,
+				BAD723251A64BF5100FB4645 /* NSString+Helpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

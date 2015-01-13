@@ -38,7 +38,9 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     __weak typeof(self) weakRef = self;
     [self.tableDelegator setSelectingBlock: ^(ActivityModel * activity) {
         __strong typeof(self) strongRef = weakRef;
-        [ControllerCoordinator goNextFrom:strongRef whitTag:SuggestActivitiesSelectItem andContext:activity];
+        [ControllerCoordinator goNextFrom:strongRef
+                                  whitTag:SuggestActivitiesSelectItem
+                               andContext:activity];
     }];
     [self.suggestionTableView setDataSource:self.tableDelegator];
     [self.suggestionTableView setDelegate:self.tableDelegator];

@@ -20,7 +20,9 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"完善个人信息";
     [self.navigationItem setLeftBarButtonItem:nil];
-    [self setRightNavigationBarItem:@"完成" target:self andAction:@selector(completeInfoDone)];
+    [self setRightNavigationBarItem:@"完成"
+                             target:self
+                          andAction:@selector(completeInfoDone)];
 }
 
 - (void)didReceiveMemoryWarning {

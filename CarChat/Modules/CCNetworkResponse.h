@@ -10,6 +10,7 @@
 
 @protocol CCNetworkResponse <NSObject>
 
+@required
 - (void)didGetResponseNotification:(NSNotification *)response;
 
 @end
