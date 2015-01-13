@@ -42,6 +42,8 @@
 		BAD723261A64BF5100FB4645 /* NSUserDefaults+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD7231F1A64BF5100FB4645 /* NSUserDefaults+Helpers.m */; };
 		BAD723271A64BF5100FB4645 /* UIColor+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD723211A64BF5100FB4645 /* UIColor+Helper.m */; };
 		BAD723281A64BF5100FB4645 /* UIImage+Gif.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD723231A64BF5100FB4645 /* UIImage+Gif.m */; };
+		BAD7232C1A64D3DF00FB4645 /* ServerPolicyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD7232A1A64D3DF00FB4645 /* ServerPolicyViewController.m */; };
+		BAD7232D1A64D3DF00FB4645 /* ServerPolicyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAD7232B1A64D3DF00FB4645 /* ServerPolicyViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,9 @@
 		BAD723211A64BF5100FB4645 /* UIColor+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Helper.m"; sourceTree = "<group>"; };
 		BAD723221A64BF5100FB4645 /* UIImage+Gif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Gif.h"; sourceTree = "<group>"; };
 		BAD723231A64BF5100FB4645 /* UIImage+Gif.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Gif.m"; sourceTree = "<group>"; };
+		BAD723291A64D3DF00FB4645 /* ServerPolicyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerPolicyViewController.h; sourceTree = "<group>"; };
+		BAD7232A1A64D3DF00FB4645 /* ServerPolicyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerPolicyViewController.m; sourceTree = "<group>"; };
+		BAD7232B1A64D3DF00FB4645 /* ServerPolicyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ServerPolicyViewController.xib; sourceTree = "<group>"; };
 		D0739C1B0EA98A7CE326B445 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -246,6 +251,9 @@
 				BA6BC7151A63606700DA033C /* RegisterViewController.h */,
 				BA6BC7161A63606700DA033C /* RegisterViewController.m */,
 				BA6BC71A1A63607F00DA033C /* RegisterViewController.xib */,
+				BAD723291A64D3DF00FB4645 /* ServerPolicyViewController.h */,
+				BAD7232A1A64D3DF00FB4645 /* ServerPolicyViewController.m */,
+				BAD7232B1A64D3DF00FB4645 /* ServerPolicyViewController.xib */,
 				BAB810981A63A85D00142DDA /* CompletePersonalInfoViewController.h */,
 				BAB810991A63A85D00142DDA /* CompletePersonalInfoViewController.m */,
 				BAB8109A1A63A85D00142DDA /* CompletePersonalInfoViewController.xib */,
@@ -461,6 +469,7 @@
 				BAB8109E1A63B84700142DDA /* ActivityDetailViewController.xib in Resources */,
 				BA6BC7281A63627B00DA033C /* SuggestedActivityViewController.xib in Resources */,
 				BAD65A7D1A5FA89200987B06 /* LaunchScreen.xib in Resources */,
+				BAD7232D1A64D3DF00FB4645 /* ServerPolicyViewController.xib in Resources */,
 				BAD65A7A1A5FA89200987B06 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -533,6 +542,7 @@
 				BAD65A6C1A5FA89200987B06 /* main.m in Sources */,
 				BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */,
 				BA6BC7241A63627B00DA033C /* ActivityDetailViewController.m in Sources */,
+				BAD7232C1A64D3DF00FB4645 /* ServerPolicyViewController.m in Sources */,
 				7EF6A0181A641ED70022DBCE /* RequestArgument.m in Sources */,
 				BAD723251A64BF5100FB4645 /* NSString+Helpers.m in Sources */,
 			);

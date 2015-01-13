@@ -14,6 +14,7 @@
 @interface LoginViewController () <CCNetworkResponse>
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumber;
 @property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
 @end
 
@@ -32,6 +33,10 @@
     [self setRightNavigationBarItem:@"注册"
                              target:self
                           andAction:@selector(goRegister)];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateLoginButton)
+                                                 name:UITextFieldTextDidChangeNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,18 +44,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - Lifecycle
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UITextFieldTextDidChangeNotification
+                                                  object:nil];
+}
+
 #pragma mark - User Interaction
-- (IBAction)loginButtonTapped:(id)sender {
-    
-    if (![self allFiledsTexted]) {
-        [self showTip:@"请填写完整"];
-        return;
-    }
+- (IBAction)loginButtonTapped:(id)sender
+{
     
     [self dismissSelf];
 }
 
-- (IBAction)forgetPWDButtonTapped:(id)sender {
+- (IBAction)forgetPWDButtonTapped:(id)sender
+{
     
     [ControllerCoordinator goNextFrom:self
                               whitTag:LoginForgetButtonTag
@@ -70,10 +80,16 @@
     
 }
 
+#pragma mark - UITextFieldNotify
+- (void)updateLoginButton
+{
+    [self.loginButton setEnabled: [self allFiledsTexted]];
+}
+
 #pragma Internal Helper
 - (BOOL)allFiledsTexted
 {
-    return ![self.phoneNumber.text isBlank] && ![self.phoneNumber.text isBlank];
+    return ![self.phoneNumber.text isBlank] && ![self.password.text isBlank];
 }
 
 - (BOOL)isPhoneNumberValid

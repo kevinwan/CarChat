@@ -12,6 +12,7 @@
 #import "ForgetPasswordViewController.h"
 #import "CompletePersonalInfoViewController.h"
 #import "ActivityDetailViewController.h"
+#import "ServerPolicyViewController.h"
 
 const NSInteger ShowLoginFromSomeWhereTag = 1;
 const NSInteger RegisterRegisterButtonTag = 101;
@@ -19,6 +20,7 @@ const NSInteger LoginForgetButtonTag = 201;
 const NSInteger LoginRegisterButtonTag = 202;
 const NSInteger LoginForgetResetDoneTag = 203;
 const NSInteger ShowCompleteInfoFromSomeWhereTag = 204;
+const NSInteger ShowServerPolicyTag = 205;
 const NSInteger SuggestActivitiesSelectItem = 300;
 
 @implementation ControllerCoordinator
@@ -31,20 +33,23 @@ const NSInteger SuggestActivitiesSelectItem = 300;
         case RegisterRegisterButtonTag:
         {
             CompletePersonalInfoViewController * complete = [[CompletePersonalInfoViewController alloc]init];
-            [vc.navigationController pushViewController:complete animated:YES];
+            [vc.navigationController pushViewController:complete
+                                               animated:YES];
         }
             break;
         case LoginForgetButtonTag:
         {
             ForgetPasswordViewController * forget = [[ForgetPasswordViewController alloc]init];
-            [vc.navigationController pushViewController:forget animated:YES];
+            [vc.navigationController pushViewController:forget
+                                               animated:YES];
         }
             break;
         case LoginRegisterButtonTag:
         {
             if (vc.navigationController) {
                 RegisterViewController * regVC = [[RegisterViewController alloc]init];
-                [vc.navigationController pushViewController:regVC animated:YES];
+                [vc.navigationController pushViewController:regVC
+                                                   animated:YES];
             }
             else return;
         }
@@ -62,7 +67,9 @@ const NSInteger SuggestActivitiesSelectItem = 300;
             }
             LoginViewController * login = [[LoginViewController alloc] init];
             UINavigationController * loginNav = [[UINavigationController alloc]initWithRootViewController:login];
-            [vc presentViewController:loginNav animated:YES completion:nil];
+            [vc presentViewController:loginNav
+                             animated:YES
+                           completion:nil];
         }
             break;
         case ShowCompleteInfoFromSomeWhereTag:
@@ -73,13 +80,30 @@ const NSInteger SuggestActivitiesSelectItem = 300;
             }
             
             UINavigationController * completeInfoNav = [[UINavigationController alloc]initWithRootViewController:[[CompletePersonalInfoViewController alloc]init]];
-            [currentTopContainer presentViewController:completeInfoNav animated:YES completion:nil];
+            [currentTopContainer presentViewController:completeInfoNav
+                                              animated:YES
+                                            completion:nil];
+        }
+            break;
+        case ShowServerPolicyTag:
+        {
+            ServerPolicyViewController * sp = [[ServerPolicyViewController alloc]init];
+            UINavigationController * spNav = [[UINavigationController alloc]initWithRootViewController:sp];
+            
+            UIViewController *currentTopContainer = vc;
+            if (vc.navigationController) {
+                currentTopContainer = vc.navigationController;
+            }
+            [currentTopContainer presentViewController:spNav
+                                              animated:YES
+                                            completion:nil];
         }
             break;
         case SuggestActivitiesSelectItem:
         {
             ActivityDetailViewController * detail = [[ActivityDetailViewController alloc]initWithActivity:( ActivityModel *)context];
-            [vc.navigationController pushViewController:detail animated:YES];
+            [vc.navigationController pushViewController:detail
+                                               animated:YES];
         }
             break;
         default:

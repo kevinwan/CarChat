@@ -34,6 +34,10 @@ extern const NSInteger LoginForgetResetDoneTag;
  */
 extern const NSInteger ShowCompleteInfoFromSomeWhereTag;
 /**
+ *  显示服务条款
+ */
+extern const NSInteger ShowServerPolicyTag;
+/**
  *  建议活动列表，选中某个活动
  */
 extern const NSInteger SuggestActivitiesSelectItem;

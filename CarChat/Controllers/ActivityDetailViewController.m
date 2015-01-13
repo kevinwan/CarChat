@@ -32,6 +32,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    [self setRightNavigationBarItem:@"GO!" target:self andAction:@selector(createAndEditTheActivity)];
+    
     ActivityDescriptionView * header = [ActivityDescriptionView viewFromNib];
     [header layoutWithModel:_activity];
     [self.commentTableView setTableHeaderView:header];
@@ -44,5 +46,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+#pragma mark - User Interaction
+- (void)createAndEditTheActivity
+{
+    [ControllerCoordinator goNextFrom:self
+                              whitTag:ShowLoginFromSomeWhereTag
+                           andContext:nil];
+}
 
 @end
