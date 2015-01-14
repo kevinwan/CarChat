@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 GongPingJia. All rights reserved.
 //
 
-#import "RequestArgument.h"
+#import "ABCParameter.h"
 
-@implementation RequestArgument
+@implementation ABCParameter
 
 + (instancetype)parameter
 {

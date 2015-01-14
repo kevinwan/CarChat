@@ -1,18 +1,17 @@
 //
-//  LoginParameter.h
+//  RegisterParameter.h
 //  CarChat
 //
-//  Created by 赵佳 on 15/1/12.
+//  Created by Develop on 15/1/14.
 //  Copyright (c) 2015年 GongPingJia. All rights reserved.
 //
 
 #import "ABCParameter.h"
 
-@interface LoginParameter : ABCParameter
+@interface RegisterParameter : ABCParameter
 
 @property (nonatomic, strong) NSString * phone;
+@property (nonatomic, strong) NSString * verifyCode;
 @property (nonatomic, strong) NSString * pwd;
-
-- (NSDictionary *)toDic;
 
 @end

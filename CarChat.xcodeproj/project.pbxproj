@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		642F096BB6DD364A0E068E09 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5613B50C8095EBA08F4494D0 /* libPods.a */; };
 		7E415BE21A6583EC0025E5FB /* ActivityIntrudoctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BE11A6583EC0025E5FB /* ActivityIntrudoctionView.m */; };
 		7E415BE41A6584000025E5FB /* ActivityIntrudoctionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E415BE31A6584000025E5FB /* ActivityIntrudoctionView.xib */; };
 		7E415BE71A6589430025E5FB /* ActivityEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BE61A6589430025E5FB /* ActivityEditView.m */; };
 		7E415BE91A65895E0025E5FB /* ActivityEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E415BE81A65895E0025E5FB /* ActivityEditView.xib */; };
 		7EF16D361A63FED00008B16F /* CCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF16D351A63FED00008B16F /* CCNetworkManager.m */; };
-		7EF6A0181A641ED70022DBCE /* RequestArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A0171A641ED70022DBCE /* RequestArgument.m */; };
+		7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A0171A641ED70022DBCE /* ABCParameter.m */; };
 		7EF6A01B1A641FEC0022DBCE /* LoginParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A01A1A641FEC0022DBCE /* LoginParameter.m */; };
+		BA03556A1A660AAB00252F99 /* ParameterFactor.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0355691A660AAB00252F99 /* ParameterFactor.m */; };
+		BA03556D1A660E0400252F99 /* ValidateInviteCodeParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03556C1A660E0400252F99 /* ValidateInviteCodeParameter.m */; };
+		BA0355701A66196100252F99 /* RegisterParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03556F1A66196100252F99 /* RegisterParameter.m */; };
+		BA0355731A661C7500252F99 /* GetVerifySMSParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0355721A661C7500252F99 /* GetVerifySMSParameter.m */; };
 		BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC70E1A635FE400DA033C /* AppDelegate.m */; };
 		BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC7161A63606700DA033C /* RegisterViewController.m */; };
 		BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6BC71A1A63607F00DA033C /* RegisterViewController.xib */; };
@@ -51,6 +54,7 @@
 		BAD723361A64FA6900FB4645 /* PersonalInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD723351A64FA6900FB4645 /* PersonalInfoView.m */; };
 		BAD723381A64FAA300FB4645 /* PersonalInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAD723371A64FAA300FB4645 /* PersonalInfoView.xib */; };
 		BAD7233B1A64FC9300FB4645 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD7233A1A64FC9300FB4645 /* UserModel.m */; };
+		D8A7439E174DC2430CFB553D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12FB037F979C42EA46571C1A /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,7 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5613B50C8095EBA08F4494D0 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		12FB037F979C42EA46571C1A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E415BE01A6583EC0025E5FB /* ActivityIntrudoctionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIntrudoctionView.h; sourceTree = "<group>"; };
 		7E415BE11A6583EC0025E5FB /* ActivityIntrudoctionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIntrudoctionView.m; sourceTree = "<group>"; };
 		7E415BE31A6584000025E5FB /* ActivityIntrudoctionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityIntrudoctionView.xib; sourceTree = "<group>"; };
@@ -74,11 +78,19 @@
 		7EF16D341A63FED00008B16F /* CCNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNetworkManager.h; sourceTree = "<group>"; };
 		7EF16D351A63FED00008B16F /* CCNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCNetworkManager.m; sourceTree = "<group>"; };
 		7EF6A0131A641A420022DBCE /* CCNetworkResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNetworkResponse.h; sourceTree = "<group>"; };
-		7EF6A0161A641ED70022DBCE /* RequestArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestArgument.h; sourceTree = "<group>"; };
-		7EF6A0171A641ED70022DBCE /* RequestArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestArgument.m; sourceTree = "<group>"; };
+		7EF6A0161A641ED70022DBCE /* ABCParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABCParameter.h; sourceTree = "<group>"; };
+		7EF6A0171A641ED70022DBCE /* ABCParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABCParameter.m; sourceTree = "<group>"; };
 		7EF6A0191A641FEC0022DBCE /* LoginParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginParameter.h; sourceTree = "<group>"; };
 		7EF6A01A1A641FEC0022DBCE /* LoginParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginParameter.m; sourceTree = "<group>"; };
 		91A1C4A7F3479EED06C580E1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		BA0355681A660AAB00252F99 /* ParameterFactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterFactor.h; sourceTree = "<group>"; };
+		BA0355691A660AAB00252F99 /* ParameterFactor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParameterFactor.m; sourceTree = "<group>"; };
+		BA03556B1A660E0400252F99 /* ValidateInviteCodeParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidateInviteCodeParameter.h; sourceTree = "<group>"; };
+		BA03556C1A660E0400252F99 /* ValidateInviteCodeParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidateInviteCodeParameter.m; sourceTree = "<group>"; };
+		BA03556E1A66196100252F99 /* RegisterParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterParameter.h; sourceTree = "<group>"; };
+		BA03556F1A66196100252F99 /* RegisterParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterParameter.m; sourceTree = "<group>"; };
+		BA0355711A661C7500252F99 /* GetVerifySMSParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetVerifySMSParameter.h; sourceTree = "<group>"; };
+		BA0355721A661C7500252F99 /* GetVerifySMSParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetVerifySMSParameter.m; sourceTree = "<group>"; };
 		BA6BC70D1A635FE400DA033C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BA6BC70E1A635FE400DA033C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BA6BC7151A63606700DA033C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -149,7 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				642F096BB6DD364A0E068E09 /* libPods.a in Frameworks */,
+				D8A7439E174DC2430CFB553D /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,7 +178,7 @@
 		4607AC9485DFC4302F334B2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5613B50C8095EBA08F4494D0 /* libPods.a */,
+				12FB037F979C42EA46571C1A /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -185,10 +197,18 @@
 		7EF6A0151A641E5B0022DBCE /* requestParameter */ = {
 			isa = PBXGroup;
 			children = (
-				7EF6A0161A641ED70022DBCE /* RequestArgument.h */,
-				7EF6A0171A641ED70022DBCE /* RequestArgument.m */,
+				7EF6A0161A641ED70022DBCE /* ABCParameter.h */,
+				7EF6A0171A641ED70022DBCE /* ABCParameter.m */,
+				BA0355681A660AAB00252F99 /* ParameterFactor.h */,
+				BA0355691A660AAB00252F99 /* ParameterFactor.m */,
 				7EF6A0191A641FEC0022DBCE /* LoginParameter.h */,
 				7EF6A01A1A641FEC0022DBCE /* LoginParameter.m */,
+				BA03556B1A660E0400252F99 /* ValidateInviteCodeParameter.h */,
+				BA03556C1A660E0400252F99 /* ValidateInviteCodeParameter.m */,
+				BA03556E1A66196100252F99 /* RegisterParameter.h */,
+				BA03556F1A66196100252F99 /* RegisterParameter.m */,
+				BA0355711A661C7500252F99 /* GetVerifySMSParameter.h */,
+				BA0355721A661C7500252F99 /* GetVerifySMSParameter.m */,
 			);
 			name = requestParameter;
 			sourceTree = "<group>";
@@ -581,9 +601,11 @@
 				BA6BC73C1A63651600DA033C /* UIView+HUD.m in Sources */,
 				BA6BC7311A63629400DA033C /* ControllerCoordinator.m in Sources */,
 				BA6BC7301A63629400DA033C /* ActivitiesCollectionDelegator.m in Sources */,
+				BA0355731A661C7500252F99 /* GetVerifySMSParameter.m in Sources */,
 				BAD723281A64BF5100FB4645 /* UIImage+Gif.m in Sources */,
 				BAD723241A64BF5100FB4645 /* NSDate+Helpers.m in Sources */,
 				BA6BC7341A63644500DA033C /* AbstractViewController.m in Sources */,
+				BA03556D1A660E0400252F99 /* ValidateInviteCodeParameter.m in Sources */,
 				BA6BC72B1A63628800DA033C /* ActivityModel.m in Sources */,
 				BAD7233B1A64FC9300FB4645 /* UserModel.m in Sources */,
 				BA6BC7271A63627B00DA033C /* SuggestedActivityViewController.m in Sources */,
@@ -591,6 +613,7 @@
 				7E415BE71A6589430025E5FB /* ActivityEditView.m in Sources */,
 				7EF6A01B1A641FEC0022DBCE /* LoginParameter.m in Sources */,
 				BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */,
+				BA03556A1A660AAB00252F99 /* ParameterFactor.m in Sources */,
 				7EF16D361A63FED00008B16F /* CCNetworkManager.m in Sources */,
 				BAD723361A64FA6900FB4645 /* PersonalInfoView.m in Sources */,
 				BAD65A721A5FA89200987B06 /* CarChat.xcdatamodeld in Sources */,
@@ -603,7 +626,8 @@
 				BA6BC7241A63627B00DA033C /* ActivityIntroductViewController.m in Sources */,
 				BAD7232C1A64D3DF00FB4645 /* ServerPolicyViewController.m in Sources */,
 				7E415BE21A6583EC0025E5FB /* ActivityIntrudoctionView.m in Sources */,
-				7EF6A0181A641ED70022DBCE /* RequestArgument.m in Sources */,
+				7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */,
+				BA0355701A66196100252F99 /* RegisterParameter.m in Sources */,
 				BAD723251A64BF5100FB4645 /* NSString+Helpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,26 +9,31 @@
 #import "CCNetworkManager.h"
 #import <AFNetworking/AFNetworking.h>
 
+const NSString * const ResponseUserInfoParameterKey = @"parameter";
+
 static NSString * const baseUrl = @"http://www.baidu.com/";
-NSString * const ApiLogin = @"";
-NSString * const ApiRegister = @"";
-NSString * const ApiResetPassword = @"";
-NSString * const ApiGetVerifySMS = @"";
-NSString * const ApiSetPersonalInfo = @"";
-NSString * const ApiGetUserInfo = @"";
-NSString * const ApiSubmitCertificationProfile = @"";
-NSString * const ApiGetSuggestActivities = @"";
-NSString * const ApiGetMyActivities = @"";
-NSString * const ApiGetActivitiesDetail = @"";
-NSString * const ApiGetCommentsInActivity = @"";
-NSString * const ApiReplyActivity = @"";
-NSString * const ApiCreateActivity = @"";
-NSString * const ApiInviteUsers = @"";
-NSString * const ApiChatToUser = @"";
-NSString * const ApiFollowUser = @"";
-NSString * const ApiUnfollowUser = @"";
-NSString * const ApiGetFollowing = @"";
-NSString * const ApiGetFollowers = @"";
+
+NSString * const ApiLogin = @"Login";
+NSString * const ApiRegister = @"Register";
+NSString * const ApiValidateInviteCode = @"ValidateInviteCode";
+NSString * const ApiResetPassword = @"ResetPassword";
+NSString * const ApiGetVerifySMS = @"GetVerifySMS";
+NSString * const ApiSetPersonalInfo = @"SetPersonalInfo";
+NSString * const ApiGetUserInfo = @"GetUserInfo";
+NSString * const ApiSubmitCertificationProfile = @"SubmitCertificationProfile";
+NSString * const ApiGetSuggestActivities = @"GetSuggestActivities";
+NSString * const ApiGetMyActivities = @"GetMyActivities";
+NSString * const ApiGetActivitiesDetail = @"GetActivitiesDetail";
+NSString * const ApiGetCommentsInActivity = @"GetCommentsInActivity";
+NSString * const ApiReplyActivity = @"ReplyActivity";
+NSString * const ApiCreateActivity = @"CreateActivity";
+NSString * const ApiCreateInviteCode = @"CreateInviteCode";
+NSString * const ApiInviteUsers = @"InviteUsers";
+NSString * const ApiChatToUser = @"ChatToUser";
+NSString * const ApiFollowUser = @"FollowUser";
+NSString * const ApiUnfollowUser = @"UnfollowUser";
+NSString * const ApiGetFollowing = @"GetFollowing";
+NSString * const ApiGetFollowers = @"GetFollowers";
 
 
 @interface CCNetworkManager ()
@@ -61,24 +66,30 @@ NSString * const ApiGetFollowers = @"";
     [[NSNotificationCenter defaultCenter] removeObserver:observer name:api object:nil];
 }
 
-- (void)requestApi:(NSString *)api withParameters:(RequestArgument *)parameters
+- (void)requestWithParameter:(ABCParameter *)parameter
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:ApiLogin object:@{} userInfo:parameters.toDic];
+    [[NSNotificationCenter defaultCenter] postNotificationName:parameter.api
+                                                        object:@{}
+                                                      userInfo:@{ResponseUserInfoParameterKey:parameter}];
     return;
     
-//    [self _requestApi:api withParameters:parameters];
+//    [self _requestApi:parameter.api withParameters:parameters];
 }
 
 #pragma mark - Internal Helper
-- (void)_requestApi:(NSString *)api withParameters:(RequestArgument *)parameters
+- (void)_requestApi:(NSString *)api withParameters:(ABCParameter *)parameters
 {
     [self.requestManager GET:api
                   parameters:parameters.toDic
                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                         [[NSNotificationCenter defaultCenter] postNotificationName:api object:@{} userInfo:parameters.toDic];
+                         [[NSNotificationCenter defaultCenter] postNotificationName:api
+                                                                             object:@{}
+                                                                           userInfo:@{ResponseUserInfoParameterKey:parameters}];
                      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                         [[NSNotificationCenter defaultCenter] postNotificationName:api object:[NSError errorWithDomain:@"" code:0 userInfo:parameters.toDic]];
+                         [[NSNotificationCenter defaultCenter] postNotificationName:api
+                                                                             object:[NSError errorWithDomain:@"" code:0 userInfo:nil]
+                                                                           userInfo:@{ResponseUserInfoParameterKey:parameters}];
                      }];
 }
 

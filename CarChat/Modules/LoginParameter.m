@@ -12,7 +12,8 @@
 
 - (NSDictionary *)toDic
 {
-    return @{};
+    return @{@"loginName":_phone,
+             @"password":_pwd};
 }
 
 @end

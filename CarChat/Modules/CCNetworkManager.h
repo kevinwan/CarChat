@@ -8,7 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "CCNetworkResponse.h"
-#import "RequestArgument.h"
+#import "ABCParameter.h"
+
 
 /**
  *  登录api
@@ -18,6 +19,10 @@ extern NSString * const ApiLogin ;
  *  注册api
  */
 extern NSString * const ApiRegister ;
+/**
+ *  验证邀请码
+ */
+extern NSString * const ApiValidateInviteCode ;
 /**
  *  重置密码
  */
@@ -63,6 +68,10 @@ extern NSString * const ApiReplyActivity ;
  */
 extern NSString * const ApiCreateActivity ;
 /**
+ *  根据活动创建邀请码
+ */
+extern NSString * const ApiCreateInviteCode ;
+/**
  *  邀请用户
  */
 extern NSString * const ApiInviteUsers ;
@@ -95,6 +104,12 @@ extern NSString * const ApiGetFollowers ;
 - (void)addObserver:(NSObject<CCNetworkResponse> * )observer forApi:(NSString *)api;
 - (void)removeObserver:(NSObject *)observer forApi:(NSString *)api;
 
-- (void)requestApi:(NSString *)api withParameters:(RequestArgument *)parameters;
+- (void)requestWithParameter:(ABCParameter *)parameter;
 
 @end
+
+
+/**
+ *  回调Notification中的UserInfo对应parameter的key
+ */
+extern const NSString * const ResponseUserInfoParameterKey;

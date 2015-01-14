@@ -24,6 +24,7 @@ PODS:
   - JSONModel (1.0.1)
   - LOG_EXPR (1.2)
   - MBProgressHUD (0.9)
+  - SCLAlertView-Objective-C (0.3.8)
   - SDWebImage (3.7.1):
     - SDWebImage/Core (= 3.7.1)
   - SDWebImage/Core (3.7.1)
@@ -36,6 +37,7 @@ DEPENDENCIES:
   - JSONModel
   - LOG_EXPR
   - MBProgressHUD
+  - SCLAlertView-Objective-C
   - SDWebImage
   - SVPullToRefresh
   - UzysAssetsPickerController
@@ -46,6 +48,7 @@ SPEC CHECKSUMS:
   JSONModel: 634100aaacbd89811bc8a03da209356e5989c569
   LOG_EXPR: 8163e1664f5526a2603f7e09312a6ef29e8a038b
   MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
+  SCLAlertView-Objective-C: 3febe07eb361b6ee61701fa99bb8c8b348218e5f
   SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
   SVPullToRefresh: d5161ebc833a38b465364412e5e307ca80bbb190
   UzysAssetsPickerController: e8e0e4df8073a9c571d13a02bda9191b8c67dac8

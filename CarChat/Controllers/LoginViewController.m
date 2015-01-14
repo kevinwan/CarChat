@@ -8,9 +8,11 @@
 
 #import "LoginViewController.h"
 #import "LoginParameter.h"
+#import "ValidateInviteCodeParameter.h"
 #import "CCNetworkManager.h"
 #import "NSString+Helpers.h"
-#import "LoginParameter.h"
+#import "ParameterFactor.h"
+#import <SCLAlertView.h>
 
 @interface LoginViewController () <CCNetworkResponse>
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumber;
@@ -41,6 +43,8 @@
                                                object:nil];
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
                                             forApi:ApiLogin];
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
+                                            forApi:ApiValidateInviteCode];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,6 +60,8 @@
                                                   object:nil];
     [[CCNetworkManager defaultManager] removeObserver:self
                                                forApi:ApiLogin];
+    [[CCNetworkManager defaultManager] removeObserver:self
+                                               forApi:ApiValidateInviteCode];
 }
 
 #pragma mark - User Interaction
@@ -64,11 +70,10 @@
 //    if ([self isPhoneNumberValid]) {
         [self showLoading:@"正在登录"];
         
-        LoginParameter * parameter = [LoginParameter parameter];
+        LoginParameter * parameter = (LoginParameter *)[ParameterFactor parameterWithApi:ApiLogin];
         parameter.phone = self.phoneNumber.text;
         parameter.pwd = self.password.text;
-        [[CCNetworkManager defaultManager] requestApi:ApiLogin
-                                       withParameters:parameter];
+        [[CCNetworkManager defaultManager] requestWithParameter:parameter];
 //    }
 //    else {
 //        [self showTip:@"请输入正确的手机号码"];
@@ -85,9 +90,19 @@
 
 - (void)goRegister
 {
-    [ControllerCoordinator goNextFrom:self
-                              whitTag:LoginRegisterButtonTag
-                           andContext:nil];
+    SCLAlertView *alert = [[SCLAlertView alloc] init];
+    
+    UITextField *textField = [alert addTextField:@"输入邀请码"];
+    
+    [alert addButton:@"验证" actionBlock:^(void) {
+        [self showLoading:@"正在验证"];
+        LOG_EXPR(textField.text);
+        ValidateInviteCodeParameter * parameter = (ValidateInviteCodeParameter *)[ParameterFactor parameterWithApi:ApiValidateInviteCode];
+        [parameter setInviteCode:textField.text];
+        [[CCNetworkManager defaultManager] requestWithParameter:parameter];
+    }];
+    
+    [alert showInfo:self title:nil subTitle:@"请输入您的邀请码" closeButtonTitle:@"取消" duration:.0f];
 }
 
 #pragma mark - CCNetworkResponse
@@ -100,9 +115,19 @@
     }
     else {
         // successful
-        [self showTip:@"登录成功" whenDone:^{
-            [self dismissSelf];
-        }];
+        ABCParameter * parameter = response.userInfo[ResponseUserInfoParameterKey];
+        NSString * api = parameter.api;
+        if (api == ApiLogin) {
+            // 登录成功
+        }
+        else if (api == ApiValidateInviteCode) {
+            // 验证成功
+            [self showTip:@"验证成功" whenDone:^{
+                [ControllerCoordinator goNextFrom:self whitTag:LoginRegisterButtonTag andContext:nil];
+            }];
+        }
+        else {
+        }
     }
 }
 

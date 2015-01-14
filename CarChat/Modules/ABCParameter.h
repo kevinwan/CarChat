@@ -8,16 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol RequestArgument <NSObject>
+@protocol ABCParameter <NSObject>
 
+@property (nonatomic, strong) NSString * api;
 - (NSDictionary *)toDic;
 
 @end
 
-@interface RequestArgument : NSObject
+@interface ABCParameter : NSObject <ABCParameter>
 
 + (instancetype)parameter;
 
+@property (nonatomic, strong) NSString * api;
 - (NSDictionary *)toDic;
 
 @end
