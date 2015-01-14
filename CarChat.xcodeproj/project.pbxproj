@@ -11,6 +11,9 @@
 		7E415BE41A6584000025E5FB /* ActivityIntrudoctionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E415BE31A6584000025E5FB /* ActivityIntrudoctionView.xib */; };
 		7E415BE71A6589430025E5FB /* ActivityEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BE61A6589430025E5FB /* ActivityEditView.m */; };
 		7E415BE91A65895E0025E5FB /* ActivityEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E415BE81A65895E0025E5FB /* ActivityEditView.xib */; };
+		7E415BEC1A66B2ED0025E5FB /* CreateActivityParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BEB1A66B2ED0025E5FB /* CreateActivityParameter.m */; };
+		7E415BF11A66CABA0025E5FB /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BEF1A66CABA0025E5FB /* InviteViewController.m */; };
+		7E415BF21A66CABA0025E5FB /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E415BF01A66CABA0025E5FB /* InviteViewController.xib */; };
 		7EF16D361A63FED00008B16F /* CCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF16D351A63FED00008B16F /* CCNetworkManager.m */; };
 		7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A0171A641ED70022DBCE /* ABCParameter.m */; };
 		7EF6A01B1A641FEC0022DBCE /* LoginParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A01A1A641FEC0022DBCE /* LoginParameter.m */; };
@@ -81,6 +84,11 @@
 		7E415BE51A6589430025E5FB /* ActivityEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityEditView.h; sourceTree = "<group>"; };
 		7E415BE61A6589430025E5FB /* ActivityEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityEditView.m; sourceTree = "<group>"; };
 		7E415BE81A65895E0025E5FB /* ActivityEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityEditView.xib; sourceTree = "<group>"; };
+		7E415BEA1A66B2ED0025E5FB /* CreateActivityParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateActivityParameter.h; sourceTree = "<group>"; };
+		7E415BEB1A66B2ED0025E5FB /* CreateActivityParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateActivityParameter.m; sourceTree = "<group>"; };
+		7E415BEE1A66CABA0025E5FB /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
+		7E415BEF1A66CABA0025E5FB /* InviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
+		7E415BF01A66CABA0025E5FB /* InviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteViewController.xib; sourceTree = "<group>"; };
 		7EF16D341A63FED00008B16F /* CCNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNetworkManager.h; sourceTree = "<group>"; };
 		7EF16D351A63FED00008B16F /* CCNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCNetworkManager.m; sourceTree = "<group>"; };
 		7EF6A0131A641A420022DBCE /* CCNetworkResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNetworkResponse.h; sourceTree = "<group>"; };
@@ -200,6 +208,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7E415BED1A66C4B20025E5FB /* MyActivity */ = {
+			isa = PBXGroup;
+			children = (
+				7E415BEE1A66CABA0025E5FB /* InviteViewController.h */,
+				7E415BEF1A66CABA0025E5FB /* InviteViewController.m */,
+				7E415BF01A66CABA0025E5FB /* InviteViewController.xib */,
+			);
+			name = MyActivity;
+			sourceTree = "<group>";
+		};
 		7EF6A0141A641E510022DBCE /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -231,6 +249,8 @@
 				BA0355751A6638B100252F99 /* ResetPasswordParameter.m */,
 				BAB11C7D1A6670FB007FDE38 /* GetActivityWithInviteCodeParameter.h */,
 				BAB11C7E1A6670FB007FDE38 /* GetActivityWithInviteCodeParameter.m */,
+				7E415BEA1A66B2ED0025E5FB /* CreateActivityParameter.h */,
+				7E415BEB1A66B2ED0025E5FB /* CreateActivityParameter.m */,
 			);
 			name = requestParameter;
 			sourceTree = "<group>";
@@ -299,6 +319,7 @@
 		BA6BC7141A63606700DA033C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7E415BED1A66C4B20025E5FB /* MyActivity */,
 				BA6BC73F1A63718700DA033C /* SuggestActivity */,
 				BA6BC7401A63719700DA033C /* ActivityDetail */,
 				BA6BC73E1A63717500DA033C /* Login */,
@@ -584,6 +605,7 @@
 				BAD65A781A5FA89200987B06 /* Main.storyboard in Resources */,
 				BAD723381A64FAA300FB4645 /* PersonalInfoView.xib in Resources */,
 				BAB810A41A63C1B400142DDA /* UserCreatActivityDescriptionView.xib in Resources */,
+				7E415BF21A66CABA0025E5FB /* InviteViewController.xib in Resources */,
 				BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */,
 				BAB8109E1A63B84700142DDA /* ActivityIntroductViewController.xib in Resources */,
 				BA6BC7281A63627B00DA033C /* SuggestedActivityViewController.xib in Resources */,
@@ -668,6 +690,7 @@
 				BAB810A21A63C1A100142DDA /* UserCreatActivityDescriptionView.m in Sources */,
 				BA6BC7251A63627B00DA033C /* LoginViewController.m in Sources */,
 				BAB11C7C1A6667C4007FDE38 /* CCStatusManager.m in Sources */,
+				7E415BEC1A66B2ED0025E5FB /* CreateActivityParameter.m in Sources */,
 				BAD723271A64BF5100FB4645 /* UIColor+Helper.m in Sources */,
 				BAB8109B1A63A85D00142DDA /* CompletePersonalInfoViewController.m in Sources */,
 				BAD65A6C1A5FA89200987B06 /* main.m in Sources */,
@@ -678,6 +701,7 @@
 				7E415BE21A6583EC0025E5FB /* ActivityIntrudoctionView.m in Sources */,
 				7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */,
 				BA0355701A66196100252F99 /* RegisterParameter.m in Sources */,
+				7E415BF11A66CABA0025E5FB /* InviteViewController.m in Sources */,
 				BAD723251A64BF5100FB4645 /* NSString+Helpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

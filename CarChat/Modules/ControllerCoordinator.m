@@ -14,6 +14,7 @@
 #import "ActivityIntroductViewController.h"
 #import "ServerPolicyViewController.h"
 #import "InviteActivityDetailViewController.h"
+#import "InviteViewController.h"
 #import "AppDelegate.h"
 
 const NSInteger ShowLoginFromSomeWhereTag = 1;
@@ -25,6 +26,10 @@ const NSInteger LoginForgetResetDoneTag = 203;
 const NSInteger ShowCompleteInfoFromSomeWhereTag = 204;
 const NSInteger ShowServerPolicyTag = 205;
 const NSInteger SuggestActivitiesSelectItem = 300;
+const NSInteger CreatedActivityCloseButtonItemTag = 301;
+const NSInteger CreatedActivityInviteButtonItemTag = 302;
+const NSInteger InviteCloseButtonItemTag = 303;
+const NSInteger InviteInviteButtonItemTag = 304;
 const NSInteger ShowInviteDetailFromSomeWhereTag = 400;
 
 @implementation ControllerCoordinator
@@ -114,6 +119,31 @@ const NSInteger ShowInviteDetailFromSomeWhereTag = 400;
             ActivityIntroductViewController * detail = [[ActivityIntroductViewController alloc]initWithActivity:( ActivityModel *)context];
             [vc.navigationController pushViewController:detail
                                                animated:YES];
+        }
+            break;
+        case CreatedActivityCloseButtonItemTag:
+        {
+            [vc.navigationController popViewControllerAnimated:YES];
+        }
+            break;
+        case CreatedActivityInviteButtonItemTag:
+        {
+            InviteViewController * invite = [[InviteViewController alloc]initWithActivity:(ActivityModel *)context];
+            UINavigationController * inviteNav = [[UINavigationController alloc]initWithRootViewController:invite];
+            [vc.navigationController presentViewController:inviteNav
+                                                  animated:YES
+                                                completion:nil];
+        }
+            break;
+        case InviteCloseButtonItemTag:
+        {
+            [vc.navigationController dismissViewControllerAnimated:YES
+                                                        completion:nil];
+        }
+            break;
+        case InviteInviteButtonItemTag:
+        {
+            
         }
             break;
         case ShowInviteDetailFromSomeWhereTag:

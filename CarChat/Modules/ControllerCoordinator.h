@@ -46,6 +46,22 @@ extern const NSInteger ShowServerPolicyTag;
  */
 extern const NSInteger SuggestActivitiesSelectItem;
 /**
+ *  创建成功活动页面，点击导航栏关闭按钮
+ */
+extern const NSInteger CreatedActivityCloseButtonItemTag;
+/**
+ *  创建成功活动页面，点击导航栏邀请按钮
+ */
+extern const NSInteger CreatedActivityInviteButtonItemTag;
+/**
+ *  邀请页面，点击导航栏关闭按钮
+ */
+extern const NSInteger InviteCloseButtonItemTag;
+/**
+ *  邀请页面，点击导航栏邀请按钮
+ */
+extern const NSInteger InviteInviteButtonItemTag;
+/**
  *  从某个地方显示活动邀请页面
  */
 extern const NSInteger ShowInviteDetailFromSomeWhereTag;

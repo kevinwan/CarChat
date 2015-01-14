@@ -100,9 +100,10 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
         activity.date = [NSString stringWithFormat:@"%@",[NSDate date]];
         activity.amountOfPeople = [NSString stringWithFormat:@"%d",i];
         activity.posterUrlStr = posters[i];
-        activity.starterAvtar = @"http://b.hiphotos.baidu.com/image/pic/item/ca1349540923dd5427f5bd1dd309b3de9d8248c4.jpg";
-        activity.starterName = @"红烧肉";
-        activity.starterGender = 1;
+        activity.owner = [UserModel new];
+        activity.owner.avatarUrlStr = @"http://b.hiphotos.baidu.com/image/pic/item/ca1349540923dd5427f5bd1dd309b3de9d8248c4.jpg";
+        activity.owner.nickName = @"红烧肉";
+        activity.owner.gender = GenderFemale;
         activity.cost = [NSString stringWithFormat:@"%d0$/person",i];
         [self.activities addObject:activity];
     }

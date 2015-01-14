@@ -74,9 +74,9 @@
                  act.amountOfPeople = @"12";
                  act.cost = @"50$/人";
                  act.posterUrlStr = @"http://f.hiphotos.baidu.com/image/pic/item/11385343fbf2b2119695ec50c98065380cd78e70.jpg";
-                 act.starterAvtar = @"http://f.hiphotos.baidu.com/image/pic/item/fd039245d688d43f5a0f54f37f1ed21b0ef43b09.jpg";
-                 act.starterName = @"范爷";
-                 act.starterGender = GenderFemale;
+                 act.owner.avatarUrlStr = @"http://f.hiphotos.baidu.com/image/pic/item/fd039245d688d43f5a0f54f37f1ed21b0ef43b09.jpg";
+                 act.owner.nickName = @"范爷";
+                 act.owner.gender = GenderFemale;
                  
                  [self showInviteWithActivity:act];
              }];

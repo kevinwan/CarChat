@@ -13,6 +13,7 @@
 @interface ActivityIntroductViewController ()
 
 @property (nonatomic, strong) ActivityModel * activity;
+@property (nonatomic, strong) ActivityModel * createdActivity;
 @property (nonatomic, strong) ActivityIntrudoctionView * introductView;
 @property (nonatomic, strong) ActivityEditView * editView;
 @property (nonatomic, strong) UIBarButtonItem * leftItemStore;
@@ -37,6 +38,10 @@
 {
     [[CCNetworkManager defaultManager] removeObserver:self
                                                forApi:ApiLogin];
+    [[CCNetworkManager defaultManager] removeObserver:self
+                                               forApi:ApiRegister];
+    [[CCNetworkManager defaultManager] removeObserver:self
+                                               forApi:ApiCreateActivity];
 }
 
 #pragma mark - View Liftcycle
@@ -54,6 +59,10 @@
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
                                             forApi:ApiLogin];
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
+                                            forApi:ApiRegister];
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
+                                            forApi:ApiCreateActivity];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -71,20 +80,29 @@
 }
 
 #pragma mark - CCNetworkResponse
-// 登录完成后，会改变活动的可编辑状态
 - (void)didGetResponseNotification:(ConcreteResponseObject *)response
 {
+    [self hideHud];
+    
     if (response.error) {
         // failed
     }
     else {
         // successful
         NSString * api = response.api;
-        if (api == ApiLogin) {
+        if (api == ApiLogin || api == ApiRegister) {
+            // 登录完成后，会改变活动的可编辑状态
             self.showEditingAnimatedAfterLogin = YES;
         }
-        else {
-            
+        else if (api == ApiCreateActivity) {
+            // 创建成功
+            // 复用introduction view显示创建好的活动
+            self.createdActivity = [ActivityModel ActivityWithParameter:(CreateActivityParameter *)response.parameter];
+            [self.introductView layoutWithActivity:self.createdActivity];
+            [self.editView setHidden:YES];
+            [self.introductView setHidden:NO];
+            [self setLeftNavigationBarItem:@"关闭" target:self andAction:@selector(close)];
+            [self setRightNavigationBarItem:@"邀请" target:self andAction:@selector(invite)];
         }
     }
 }
@@ -103,6 +121,10 @@
     NSData * imgData;
     ActivityModel * fromEditing = [self.editView generateActivityAndStoreImageData:&imgData];
     // 调用接口，创建活动
+    CreateActivityParameter * parameter = [fromEditing parameter];
+    
+    [self showLoading:nil];
+    [[CCNetworkManager defaultManager] requestWithParameter:parameter];
 }
 
 - (void)giveUp
@@ -115,9 +137,24 @@
     }];
 }
 
+- (void)close
+{
+    [ControllerCoordinator goNextFrom:self
+                              whitTag:CreatedActivityCloseButtonItemTag
+                           andContext:nil];
+}
+
+- (void)invite
+{
+    [ControllerCoordinator goNextFrom:self
+                              whitTag:CreatedActivityInviteButtonItemTag
+                           andContext:self.createdActivity];
+}
+
 #pragma mark - Internal Helper
 - (void)animateEditingView
 {
+    self.showEditingAnimatedAfterLogin = NO;
     self.editView = [ActivityEditView viewWithActivity:self.activity];
     [self.editView setHidden:YES];
     [self.view addSubview:self.editView];

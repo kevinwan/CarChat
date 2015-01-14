@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "UserModel.h"
+#import "CreateActivityParameter.h"
 
 @interface ActivityModel : NSObject
 
@@ -17,8 +18,9 @@
 @property (nonatomic, strong) NSString * amountOfPeople;
 @property (nonatomic, strong) NSString * cost;
 @property (nonatomic, strong) NSString * posterUrlStr;
-@property (nonatomic, strong) NSString * starterAvtar;
-@property (nonatomic, strong) NSString * starterName;
-@property (nonatomic, assign) Gender starterGender;
+@property (nonatomic, strong) UserModel * owner;
+
+- (CreateActivityParameter *)parameter;
++ (instancetype)ActivityWithParameter:(CreateActivityParameter *)parameter;
 
 @end

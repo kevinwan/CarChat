@@ -32,10 +32,10 @@
 {
     [self.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrlStr]];
     [self.nameLabel setText:activity.name];
-    [self.starterAvtar sd_setImageWithURL:[NSURL URLWithString:activity.starterAvtar]];
+    [self.starterAvtar sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatarUrlStr]];
     [self.starterGender setBackgroundColor:[UIColor redColor]];
     [self.starterCertifyIcon setBackgroundColor:[UIColor blueColor]];
-    [self.starterName setText: activity.starterName];
+    [self.starterName setText: activity.owner.nickName];
 }
 
 - (void)setEditable:(BOOL)editable
