@@ -24,6 +24,10 @@ extern NSString * const ApiRegister ;
  */
 extern NSString * const ApiValidateInviteCode ;
 /**
+ *  获取邀请码对应的活动
+ */
+extern NSString * const ApiGetActivityWithInviteCode;
+/**
  *  重置密码
  */
 extern NSString * const ApiResetPassword ;
@@ -75,6 +79,10 @@ extern NSString * const ApiCreateInviteCode ;
  *  邀请用户
  */
 extern NSString * const ApiInviteUsers ;
+/**
+ *  回复邀请，接受或忽略
+ */
+extern NSString * const ApiReplyInvitation ;
 /**
  *  发起聊天
  */

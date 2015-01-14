@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CCStatusProvider : NSObject
+/**
+ *  用于检查应用内的状态，比如邀请码状态，邀请状态，登录状态等等
+ */
+@interface CCStatusManager : NSObject
+
++ (instancetype)defaultManager;
+
+@property (nonatomic, copy) NSString * verifyedInviteCode;
 
 @end

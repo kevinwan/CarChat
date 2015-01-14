@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "UserModel.h"
 
 @interface ActivityModel : NSObject
 
@@ -18,6 +19,6 @@
 @property (nonatomic, strong) NSString * posterUrlStr;
 @property (nonatomic, strong) NSString * starterAvtar;
 @property (nonatomic, strong) NSString * starterName;
-@property (nonatomic, assign) NSInteger starterGender;
+@property (nonatomic, assign) Gender starterGender;
 
 @end

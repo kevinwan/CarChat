@@ -10,4 +10,9 @@
 
 @implementation GetActivityWithInviteCodeParameter
 
+- (NSDictionary *)toDic
+{
+    return @{@"inviteCode":self.inviteCode};
+}
+
 @end

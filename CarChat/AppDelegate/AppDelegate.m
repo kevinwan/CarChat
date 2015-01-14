@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "SuggestedActivityViewController.h"
+#import <SCLAlertView.h>
+#import "ActivityModel.h"
 
 @interface AppDelegate ()
 
@@ -18,6 +20,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetActivityWithInviteCode];
     
     _window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     UINavigationController * rootNav = [[UINavigationController alloc]initWithRootViewController:[[SuggestedActivityViewController alloc]init]];
@@ -47,7 +51,50 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     // Saves changes in the application's managed object context before the application terminates.
+    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiGetActivityWithInviteCode];
+    
 //    [self saveContext];
+}
+
+#pragma mark - CCNetworkResponse
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response
+{
+    if (response.error) {
+        // fail
+        // do nothing
+    }
+    else {
+        SCLAlertView *alert = [[SCLAlertView alloc] init];
+        [alert addButton:@"查看"
+             actionBlock:^(void) {
+                 ActivityModel * act = [[ActivityModel alloc]init];
+                 act.name = @"栖霞山看枫叶";
+                 act.destination = @"栖霞山";
+                 act.date = @"2015年2月14日";
+                 act.amountOfPeople = @"12";
+                 act.cost = @"50$/人";
+                 act.posterUrlStr = @"http://f.hiphotos.baidu.com/image/pic/item/11385343fbf2b2119695ec50c98065380cd78e70.jpg";
+                 act.starterAvtar = @"http://f.hiphotos.baidu.com/image/pic/item/fd039245d688d43f5a0f54f37f1ed21b0ef43b09.jpg";
+                 act.starterName = @"范爷";
+                 act.starterGender = GenderFemale;
+                 
+                 [self showInviteWithActivity:act];
+             }];
+        
+        [alert showInfo:_window.rootViewController
+                  title:@"收到一个活动邀请"
+               subTitle:@"点击查看了解详情"
+       closeButtonTitle:@"忽略"
+               duration:.0f];
+    }
+}
+
+#pragma mark - Internal Helper
+- (void)showInviteWithActivity:(ActivityModel *)activity
+{
+    [ControllerCoordinator goNextFrom:self.window.rootViewController
+                              whitTag:ShowInviteDetailFromSomeWhereTag
+                           andContext:activity];
 }
 
 #pragma mark - Core Data stack

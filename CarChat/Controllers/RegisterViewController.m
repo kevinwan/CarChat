@@ -10,6 +10,8 @@
 #import "NSString+Helpers.h"
 #import "RegisterParameter.h"
 #import "GetVerifySMSParameter.h"
+#import "GetActivityWithInviteCodeParameter.h"
+#import "CCStatusManager.h"
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumber;
@@ -66,6 +68,9 @@
                 [ControllerCoordinator goNextFrom:self
                                           whitTag:RegisterRegisterButtonTag
                                        andContext:nil];
+                GetActivityWithInviteCodeParameter * parameter = (GetActivityWithInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiGetActivityWithInviteCode];
+                parameter.inviteCode = [CCStatusManager defaultManager].verifyedInviteCode;
+                [[CCNetworkManager defaultManager] requestWithParameter:parameter];
             }];
         }
         else if (api == ApiGetVerifySMS) {

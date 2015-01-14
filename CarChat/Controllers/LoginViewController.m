@@ -12,6 +12,7 @@
 #import "CCNetworkManager.h"
 #import "NSString+Helpers.h"
 #import "ParameterFactory.h"
+#import "CCStatusManager.h"
 #import <SCLAlertView.h>
 
 @interface LoginViewController () <CCNetworkResponse>
@@ -130,6 +131,8 @@
         }
         else if (api == ApiValidateInviteCode) {
             // 验证成功
+            ValidateInviteCodeParameter * parameter = (ValidateInviteCodeParameter *)response.parameter;
+            [[CCStatusManager defaultManager] setVerifyedInviteCode:parameter.inviteCode];
             [self showTip:@"验证成功" whenDone:^{
                 [ControllerCoordinator goNextFrom:self
                                           whitTag:LoginRegisterButtonTag

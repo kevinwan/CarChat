@@ -44,11 +44,39 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     }];
     [self.suggestionTableView setDataSource:self.tableDelegator];
     [self.suggestionTableView setDelegate:self.tableDelegator];
+    
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
+                                            forApi:ApiGetSuggestActivities];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Lifecycle
+- (void)dealloc
+{
+    [[CCNetworkManager defaultManager] removeObserver:self
+                                               forApi:ApiGetSuggestActivities];
+}
+
+#pragma mark - CCNetworkResponse
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response
+{
+    if (response.error) {
+        // failed
+    }
+    else {
+        // success
+        NSString * api = response.api;
+        if (api == ApiGetSuggestActivities) {
+            // TODO
+        }
+        else {
+            
+        }
+    }
 }
 
 #pragma mark - Internal Helper

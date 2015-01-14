@@ -10,4 +10,6 @@
 
 @interface GetActivityWithInviteCodeParameter : ABCParameter
 
+@property (nonatomic, strong) NSString * inviteCode;
+
 @end

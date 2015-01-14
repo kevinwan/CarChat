@@ -13,6 +13,8 @@
 #import "CompletePersonalInfoViewController.h"
 #import "ActivityIntroductViewController.h"
 #import "ServerPolicyViewController.h"
+#import "InviteActivityDetailViewController.h"
+#import "AppDelegate.h"
 
 const NSInteger ShowLoginFromSomeWhereTag = 1;
 const NSInteger RegisterRegisterButtonTag = 101;
@@ -23,6 +25,7 @@ const NSInteger LoginForgetResetDoneTag = 203;
 const NSInteger ShowCompleteInfoFromSomeWhereTag = 204;
 const NSInteger ShowServerPolicyTag = 205;
 const NSInteger SuggestActivitiesSelectItem = 300;
+const NSInteger ShowInviteDetailFromSomeWhereTag = 400;
 
 @implementation ControllerCoordinator
 
@@ -113,9 +116,59 @@ const NSInteger SuggestActivitiesSelectItem = 300;
                                                animated:YES];
         }
             break;
+        case ShowInviteDetailFromSomeWhereTag:
+        {
+            InviteActivityDetailViewController * detail = [[InviteActivityDetailViewController alloc]initWithActivity:(ActivityModel *)context];
+            UINavigationController * detailNav = [[UINavigationController alloc]initWithRootViewController:detail];
+            UIViewController * activeVC = [self activityViewController];
+            [activeVC presentViewController:detailNav
+                                   animated:YES
+                                 completion:nil];
+        }
+            break;
         default:
             break;
     }
+}
+
+
+#pragma mark - Internal Helper
++ (UIViewController *)activityViewController
+{
+    UIViewController* activityViewController = nil;
+    
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    if(window.windowLevel != UIWindowLevelNormal)
+    {
+        NSArray *windows = [[UIApplication sharedApplication] windows];
+        for(UIWindow *tmpWin in windows)
+        {
+            if(tmpWin.windowLevel == UIWindowLevelNormal)
+            {
+                window = tmpWin;
+                break;
+            }
+        }
+    }
+    
+    NSArray *viewsArray = [window subviews];
+    if([viewsArray count] > 0)
+    {
+        UIView *frontView = [viewsArray objectAtIndex:0];
+        
+        id nextResponder = [frontView nextResponder];
+        
+        if([nextResponder isKindOfClass:[UIViewController class]])
+        {
+            activityViewController = nextResponder;
+        }
+        else
+        {
+            activityViewController = window.rootViewController;
+        }
+    }
+    
+    return activityViewController;
 }
 
 @end

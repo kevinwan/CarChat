@@ -79,7 +79,13 @@
     }
     else {
         // successful
-        self.showEditingAnimatedAfterLogin = YES;
+        NSString * api = response.api;
+        if (api == ApiLogin) {
+            self.showEditingAnimatedAfterLogin = YES;
+        }
+        else {
+            
+        }
     }
 }
 

@@ -45,6 +45,10 @@ extern const NSInteger ShowServerPolicyTag;
  *  建议活动列表，选中某个活动
  */
 extern const NSInteger SuggestActivitiesSelectItem;
+/**
+ *  从某个地方显示活动邀请页面
+ */
+extern const NSInteger ShowInviteDetailFromSomeWhereTag;
 
 @interface ControllerCoordinator : NSObject
 

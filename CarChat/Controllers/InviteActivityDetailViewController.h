@@ -7,7 +7,10 @@
 //
 
 #import "AbstractViewController.h"
+#import "ActivityModel.h"
 
 @interface InviteActivityDetailViewController : AbstractViewController
+
+- (instancetype)initWithActivity:(ActivityModel *)activity;
 
 @end
