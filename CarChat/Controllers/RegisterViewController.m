@@ -52,16 +52,15 @@
 }
 
 #pragma mark - CCNetworkResponse
-- (void)didGetResponseNotification:(NSNotification *)response
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response
 {
     [self hideHud];
-    if ([response.object isKindOfClass:[NSError class]]) {
+    if (response.error) {
         // fail
     }
     else {
         // successful
-        ABCParameter * parameter = response.userInfo[ResponseUserInfoParameterKey];
-        NSString * api = parameter.api;
+        NSString * api = response.api;
         if (api == ApiRegister) {
             [self showTip:@"注册成功"  whenDone:^{
                 [ControllerCoordinator goNextFrom:self
@@ -85,10 +84,15 @@
 #pragma mark - User Interaction
 - (IBAction)getVerifyCode:(id)sender
 {
-    [self showLoading:nil];
-    GetVerifySMSParameter * parameter = (GetVerifySMSParameter *)[ParameterFactor parameterWithApi:ApiGetVerifySMS];
-    [parameter setPhone:self.phoneNumber.text];
-    [[CCNetworkManager defaultManager] requestWithParameter:parameter];
+    if ([self.phoneNumber.text isMobileNumber]) {
+        [self showLoading:nil];
+        GetVerifySMSParameter * parameter = (GetVerifySMSParameter *)[ParameterFactory parameterWithApi:ApiGetVerifySMS];
+        [parameter setPhone:self.phoneNumber.text];
+        [[CCNetworkManager defaultManager] requestWithParameter:parameter];
+    }
+    else {
+        [self showTip:@"请检查手机号码"];
+    }
 }
 
 - (IBAction)registerAction:(id)sender
@@ -100,7 +104,7 @@
     
     [self showLoading:@"正在注册"];
     
-    RegisterParameter * reg = (RegisterParameter *)[ParameterFactor parameterWithApi:ApiRegister];
+    RegisterParameter * reg = (RegisterParameter *)[ParameterFactory parameterWithApi:ApiRegister];
     [reg setPhone:self.phoneNumber.text];
     [reg setVerifyCode:self.verifyCode.text];
     [reg setPwd:self.password.text];

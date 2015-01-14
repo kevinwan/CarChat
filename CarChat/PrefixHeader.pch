@@ -17,6 +17,6 @@
 #import "ControllerCoordinator.h"
 #import "CCNetworkManager.h"
 #import "CCNetworkResponse.h"
-#import "ParameterFactor.h"
+#import "ParameterFactory.h"
 
 #endif

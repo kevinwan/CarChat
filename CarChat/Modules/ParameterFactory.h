@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ABCParameter.h"
 
-@interface ParameterFactor : NSObject
+@interface ParameterFactory : NSObject
 
 + (ABCParameter *)parameterWithApi:(NSString *)api;
 

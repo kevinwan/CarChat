@@ -17,8 +17,6 @@
 
 @interface ABCParameter : NSObject <ABCParameter>
 
-+ (instancetype)parameter;
-
 @property (nonatomic, strong) NSString * api;
 - (NSDictionary *)toDic;
 

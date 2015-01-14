@@ -14,10 +14,12 @@
 		7EF16D361A63FED00008B16F /* CCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF16D351A63FED00008B16F /* CCNetworkManager.m */; };
 		7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A0171A641ED70022DBCE /* ABCParameter.m */; };
 		7EF6A01B1A641FEC0022DBCE /* LoginParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A01A1A641FEC0022DBCE /* LoginParameter.m */; };
-		BA03556A1A660AAB00252F99 /* ParameterFactor.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0355691A660AAB00252F99 /* ParameterFactor.m */; };
+		BA03556A1A660AAB00252F99 /* ParameterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0355691A660AAB00252F99 /* ParameterFactory.m */; };
 		BA03556D1A660E0400252F99 /* ValidateInviteCodeParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03556C1A660E0400252F99 /* ValidateInviteCodeParameter.m */; };
 		BA0355701A66196100252F99 /* RegisterParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03556F1A66196100252F99 /* RegisterParameter.m */; };
 		BA0355731A661C7500252F99 /* GetVerifySMSParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0355721A661C7500252F99 /* GetVerifySMSParameter.m */; };
+		BA0355761A6638B100252F99 /* ResetPasswordParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0355751A6638B100252F99 /* ResetPasswordParameter.m */; };
+		BA0355801A66502200252F99 /* ConcreteResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03557F1A66502200252F99 /* ConcreteResponseObject.m */; };
 		BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC70E1A635FE400DA033C /* AppDelegate.m */; };
 		BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC7161A63606700DA033C /* RegisterViewController.m */; };
 		BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6BC71A1A63607F00DA033C /* RegisterViewController.xib */; };
@@ -83,14 +85,18 @@
 		7EF6A0191A641FEC0022DBCE /* LoginParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginParameter.h; sourceTree = "<group>"; };
 		7EF6A01A1A641FEC0022DBCE /* LoginParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginParameter.m; sourceTree = "<group>"; };
 		91A1C4A7F3479EED06C580E1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		BA0355681A660AAB00252F99 /* ParameterFactor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterFactor.h; sourceTree = "<group>"; };
-		BA0355691A660AAB00252F99 /* ParameterFactor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParameterFactor.m; sourceTree = "<group>"; };
+		BA0355681A660AAB00252F99 /* ParameterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterFactory.h; sourceTree = "<group>"; };
+		BA0355691A660AAB00252F99 /* ParameterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParameterFactory.m; sourceTree = "<group>"; };
 		BA03556B1A660E0400252F99 /* ValidateInviteCodeParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidateInviteCodeParameter.h; sourceTree = "<group>"; };
 		BA03556C1A660E0400252F99 /* ValidateInviteCodeParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidateInviteCodeParameter.m; sourceTree = "<group>"; };
 		BA03556E1A66196100252F99 /* RegisterParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterParameter.h; sourceTree = "<group>"; };
 		BA03556F1A66196100252F99 /* RegisterParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterParameter.m; sourceTree = "<group>"; };
 		BA0355711A661C7500252F99 /* GetVerifySMSParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetVerifySMSParameter.h; sourceTree = "<group>"; };
 		BA0355721A661C7500252F99 /* GetVerifySMSParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetVerifySMSParameter.m; sourceTree = "<group>"; };
+		BA0355741A6638B100252F99 /* ResetPasswordParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordParameter.h; sourceTree = "<group>"; };
+		BA0355751A6638B100252F99 /* ResetPasswordParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordParameter.m; sourceTree = "<group>"; };
+		BA03557E1A66502200252F99 /* ConcreteResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcreteResponseObject.h; sourceTree = "<group>"; };
+		BA03557F1A66502200252F99 /* ConcreteResponseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcreteResponseObject.m; sourceTree = "<group>"; };
 		BA6BC70D1A635FE400DA033C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BA6BC70E1A635FE400DA033C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BA6BC7151A63606700DA033C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -186,6 +192,7 @@
 		7EF6A0141A641E510022DBCE /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				BA0355771A664BC700252F99 /* responseObject */,
 				7EF6A0151A641E5B0022DBCE /* requestParameter */,
 				7EF16D341A63FED00008B16F /* CCNetworkManager.h */,
 				7EF16D351A63FED00008B16F /* CCNetworkManager.m */,
@@ -199,8 +206,8 @@
 			children = (
 				7EF6A0161A641ED70022DBCE /* ABCParameter.h */,
 				7EF6A0171A641ED70022DBCE /* ABCParameter.m */,
-				BA0355681A660AAB00252F99 /* ParameterFactor.h */,
-				BA0355691A660AAB00252F99 /* ParameterFactor.m */,
+				BA0355681A660AAB00252F99 /* ParameterFactory.h */,
+				BA0355691A660AAB00252F99 /* ParameterFactory.m */,
 				7EF6A0191A641FEC0022DBCE /* LoginParameter.h */,
 				7EF6A01A1A641FEC0022DBCE /* LoginParameter.m */,
 				BA03556B1A660E0400252F99 /* ValidateInviteCodeParameter.h */,
@@ -209,8 +216,19 @@
 				BA03556F1A66196100252F99 /* RegisterParameter.m */,
 				BA0355711A661C7500252F99 /* GetVerifySMSParameter.h */,
 				BA0355721A661C7500252F99 /* GetVerifySMSParameter.m */,
+				BA0355741A6638B100252F99 /* ResetPasswordParameter.h */,
+				BA0355751A6638B100252F99 /* ResetPasswordParameter.m */,
 			);
 			name = requestParameter;
+			sourceTree = "<group>";
+		};
+		BA0355771A664BC700252F99 /* responseObject */ = {
+			isa = PBXGroup;
+			children = (
+				BA03557E1A66502200252F99 /* ConcreteResponseObject.h */,
+				BA03557F1A66502200252F99 /* ConcreteResponseObject.m */,
+			);
+			name = responseObject;
 			sourceTree = "<group>";
 		};
 		BA6BC70C1A635FE400DA033C /* AppDelegate */ = {
@@ -597,6 +615,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA0355761A6638B100252F99 /* ResetPasswordParameter.m in Sources */,
 				BAD723261A64BF5100FB4645 /* NSUserDefaults+Helpers.m in Sources */,
 				BA6BC73C1A63651600DA033C /* UIView+HUD.m in Sources */,
 				BA6BC7311A63629400DA033C /* ControllerCoordinator.m in Sources */,
@@ -613,8 +632,9 @@
 				7E415BE71A6589430025E5FB /* ActivityEditView.m in Sources */,
 				7EF6A01B1A641FEC0022DBCE /* LoginParameter.m in Sources */,
 				BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */,
-				BA03556A1A660AAB00252F99 /* ParameterFactor.m in Sources */,
+				BA03556A1A660AAB00252F99 /* ParameterFactory.m in Sources */,
 				7EF16D361A63FED00008B16F /* CCNetworkManager.m in Sources */,
+				BA0355801A66502200252F99 /* ConcreteResponseObject.m in Sources */,
 				BAD723361A64FA6900FB4645 /* PersonalInfoView.m in Sources */,
 				BAD65A721A5FA89200987B06 /* CarChat.xcdatamodeld in Sources */,
 				BAB810A21A63C1A100142DDA /* UserCreatActivityDescriptionView.m in Sources */,

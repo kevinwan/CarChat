@@ -7,6 +7,8 @@
 //
 
 #import "ForgetPasswordViewController.h"
+#import "GetVerifySMSParameter.h"
+#import "ResetPasswordParameter.h"
 #import "NSString+Helpers.h"
 
 @interface ForgetPasswordViewController ()
@@ -29,6 +31,10 @@
                                              selector:@selector(updateResetButton)
                                                  name:UITextFieldTextDidChangeNotification object:nil];
 
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
+                                            forApi:ApiGetVerifySMS];
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
+                                            forApi:ApiResetPassword];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,13 +49,20 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UITextFieldTextDidChangeNotification
                                                   object:nil];
+    [[CCNetworkManager defaultManager] removeObserver:self
+                                               forApi:ApiGetVerifySMS];
+    [[CCNetworkManager defaultManager] removeObserver:self
+                                               forApi:ApiResetPassword];
 }
 
 #pragma mark - User Interaction
 - (IBAction)getVerifyCode:(id)sender
 {
     if ([self.phoneNumber.text isMobileNumber]) {
-        // go request api
+        [self showLoading:nil];
+        GetVerifySMSParameter * parameter = (GetVerifySMSParameter *)[ParameterFactory parameterWithApi:ApiGetVerifySMS];
+        [parameter setPhone:self.phoneNumber.text];
+        [[CCNetworkManager defaultManager] requestWithParameter:parameter];
     }
     else {
         [self showTip:@"请检查手机号码"];
@@ -58,10 +71,34 @@
 
 - (IBAction)requestResetPWD:(id)sender
 {
+    ResetPasswordParameter * parameter = (ResetPasswordParameter *)[ParameterFactory parameterWithApi:ApiResetPassword];
+    [parameter setPhone:self.phoneNumber.text];
+    [parameter setVerifyCode:self.verifyCode.text];
+    [parameter setTheNewPassword:self.newerPwd.text];
     
-    [ControllerCoordinator goNextFrom:self
-                              whitTag:LoginForgetResetDoneTag
-                           andContext:nil];
+    [[CCNetworkManager defaultManager] requestWithParameter:parameter];
+}
+
+#pragma mark - CCNetworkResponse
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response
+{
+    [self hideHud];
+    if (response.error) {
+        // failed
+    }
+    else {
+        NSString * api = response.api;
+        if (api == ApiGetVerifySMS) {
+            [self showTip:@"获取验证码成功"];
+        }
+        else if (api == ApiResetPassword) {
+            [self showTip:@"密码重置成功，请重新登录" whenDone:^{
+                [ControllerCoordinator goNextFrom:self
+                                          whitTag:LoginForgetResetDoneTag
+                                       andContext:nil];
+            }];
+        }
+    }
 }
 
 #pragma mark - UITextFieldNotify

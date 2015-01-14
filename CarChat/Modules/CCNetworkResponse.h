@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ConcreteResponseObject.h"
 
 @protocol CCNetworkResponse <NSObject>
 
 @required
-- (void)didGetResponseNotification:(NSNotification *)response;
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response;
 
 @end

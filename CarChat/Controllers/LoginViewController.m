@@ -11,7 +11,7 @@
 #import "ValidateInviteCodeParameter.h"
 #import "CCNetworkManager.h"
 #import "NSString+Helpers.h"
-#import "ParameterFactor.h"
+#import "ParameterFactory.h"
 #import <SCLAlertView.h>
 
 @interface LoginViewController () <CCNetworkResponse>
@@ -70,7 +70,7 @@
 //    if ([self isPhoneNumberValid]) {
         [self showLoading:@"正在登录"];
         
-        LoginParameter * parameter = (LoginParameter *)[ParameterFactor parameterWithApi:ApiLogin];
+        LoginParameter * parameter = (LoginParameter *)[ParameterFactory parameterWithApi:ApiLogin];
         parameter.phone = self.phoneNumber.text;
         parameter.pwd = self.password.text;
         [[CCNetworkManager defaultManager] requestWithParameter:parameter];
@@ -94,36 +94,46 @@
     
     UITextField *textField = [alert addTextField:@"输入邀请码"];
     
-    [alert addButton:@"验证" actionBlock:^(void) {
-        [self showLoading:@"正在验证"];
-        LOG_EXPR(textField.text);
-        ValidateInviteCodeParameter * parameter = (ValidateInviteCodeParameter *)[ParameterFactor parameterWithApi:ApiValidateInviteCode];
-        [parameter setInviteCode:textField.text];
-        [[CCNetworkManager defaultManager] requestWithParameter:parameter];
-    }];
+    [alert addButton:@"验证"
+     validationBlock:^BOOL{
+         return ![textField.text isBlank];
+     }
+         actionBlock:^(void) {
+             [self showLoading:@"正在验证"];
+             LOG_EXPR(textField.text);
+             ValidateInviteCodeParameter * parameter = (ValidateInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiValidateInviteCode];
+             [parameter setInviteCode:textField.text];
+             [[CCNetworkManager defaultManager] requestWithParameter:parameter];
+         }];
     
     [alert showInfo:self title:nil subTitle:@"请输入您的邀请码" closeButtonTitle:@"取消" duration:.0f];
 }
 
 #pragma mark - CCNetworkResponse
-- (void)didGetResponseNotification:(NSNotification *)response
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response
 {
     [self hideHud];
     
-    if ([response.object isKindOfClass:[NSError class]]) {
+    if (response.error != nil) {
         // failed
     }
     else {
         // successful
-        ABCParameter * parameter = response.userInfo[ResponseUserInfoParameterKey];
-        NSString * api = parameter.api;
+        NSString * api = response.api;
         if (api == ApiLogin) {
             // 登录成功
+            [self showTip:@"登录成功" whenDone:^{
+                [ControllerCoordinator goNextFrom:self
+                                          whitTag:LoginLoginButtonTag
+                                       andContext:nil];
+            }];
         }
         else if (api == ApiValidateInviteCode) {
             // 验证成功
             [self showTip:@"验证成功" whenDone:^{
-                [ControllerCoordinator goNextFrom:self whitTag:LoginRegisterButtonTag andContext:nil];
+                [ControllerCoordinator goNextFrom:self
+                                          whitTag:LoginRegisterButtonTag
+                                       andContext:nil];
             }];
         }
         else {

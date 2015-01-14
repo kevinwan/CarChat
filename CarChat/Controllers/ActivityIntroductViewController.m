@@ -71,9 +71,10 @@
 }
 
 #pragma mark - CCNetworkResponse
-- (void)didGetResponseNotification:(NSNotification *)response
+// 登录完成后，会改变活动的可编辑状态
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response
 {
-    if ([response.object isKindOfClass:[NSError class]]) {
+    if (response.error) {
         // failed
     }
     else {

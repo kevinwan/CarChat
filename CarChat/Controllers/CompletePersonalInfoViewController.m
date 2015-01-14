@@ -26,7 +26,7 @@
 
     /*Navigation item custom*/
     self.navigationItem.title = @"个人信息";
-    [self.navigationItem setLeftBarButtonItem:nil];
+    [self.navigationItem setHidesBackButton:YES animated:NO];
     [self setRightNavigationBarItem:@"完成"
                              target:self
                           andAction:@selector(completeInfoDone)];

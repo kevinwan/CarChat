@@ -10,11 +10,6 @@
 
 @implementation ABCParameter
 
-+ (instancetype)parameter
-{
-    return [[[self class] alloc]init];
-}
-
 - (NSDictionary *)toDic {return nil;}
 
 @end

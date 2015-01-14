@@ -101,8 +101,23 @@ extern NSString * const ApiGetFollowers ;
 
 + (instancetype)defaultManager;
 
-- (void)addObserver:(NSObject<CCNetworkResponse> * )observer forApi:(NSString *)api;
-- (void)removeObserver:(NSObject *)observer forApi:(NSString *)api;
+/**
+ *  添加请求回调对象，必须实现CCNetworkResponse协议中的回调方法
+ *
+ *  @param observer 回调接受对象
+ *  @param api      调用的网络请求Api
+ */
+- (void)addObserver:(NSObject<CCNetworkResponse> * )observer
+             forApi:(NSString *)api;
+/**
+ *  移除请求回调对象
+ *
+ *  @param observer 回调接受对象
+ *  @param api      调用的网络请求Api
+ *  @see -(void)addObserver:forApi
+ */
+- (void)removeObserver:(NSObject *)observer
+                forApi:(NSString *)api;
 
 - (void)requestWithParameter:(ABCParameter *)parameter;
 

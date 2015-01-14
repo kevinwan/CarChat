@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 GongPingJia. All rights reserved.
 //
 
-#import "ParameterFactor.h"
+#import "ParameterFactory.h"
 
-@implementation ParameterFactor
+@implementation ParameterFactory
 
 + (ABCParameter *)parameterWithApi:(NSString *)api
 {

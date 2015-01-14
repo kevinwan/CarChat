@@ -16,6 +16,7 @@
 
 const NSInteger ShowLoginFromSomeWhereTag = 1;
 const NSInteger RegisterRegisterButtonTag = 101;
+const NSInteger LoginLoginButtonTag = 200;
 const NSInteger LoginForgetButtonTag = 201;
 const NSInteger LoginRegisterButtonTag = 202;
 const NSInteger LoginForgetResetDoneTag = 203;
@@ -35,6 +36,12 @@ const NSInteger SuggestActivitiesSelectItem = 300;
             CompletePersonalInfoViewController * complete = [[CompletePersonalInfoViewController alloc]init];
             [vc.navigationController pushViewController:complete
                                                animated:YES];
+        }
+            break;
+        case LoginLoginButtonTag:
+        {
+            [vc.navigationController dismissViewControllerAnimated:YES
+                                                        completion:nil];
         }
             break;
         case LoginForgetButtonTag:

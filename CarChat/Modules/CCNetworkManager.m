@@ -8,6 +8,7 @@
 
 #import "CCNetworkManager.h"
 #import <AFNetworking/AFNetworking.h>
+#import "ConcreteResponseObject.h"
 
 const NSString * const ResponseUserInfoParameterKey = @"parameter";
 
@@ -68,9 +69,10 @@ NSString * const ApiGetFollowers = @"GetFollowers";
 
 - (void)requestWithParameter:(ABCParameter *)parameter
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:parameter.api
-                                                        object:@{}
-                                                      userInfo:@{ResponseUserInfoParameterKey:parameter}];
+    ConcreteResponseObject * responseObj = [ConcreteResponseObject responseObjectWithApi:parameter.api
+                                                                                  object:@{}
+                                                                     andRequestParameter:parameter];
+    [[NSNotificationCenter defaultCenter] postNotification:responseObj];
     return;
     
 //    [self _requestApi:parameter.api withParameters:parameters];
@@ -82,14 +84,15 @@ NSString * const ApiGetFollowers = @"GetFollowers";
     [self.requestManager GET:api
                   parameters:parameters.toDic
                      success:^(AFHTTPRequestOperation *operation, id responseObject) {
-                         [[NSNotificationCenter defaultCenter] postNotificationName:api
-                                                                             object:@{}
-                                                                           userInfo:@{ResponseUserInfoParameterKey:parameters}];
+                         ConcreteResponseObject * responseObj = [ConcreteResponseObject responseObjectWithApi:parameters.api
+                                                                                                       object:@{}
+                                                                                          andRequestParameter:parameters];
+                         [[NSNotificationCenter defaultCenter] postNotification:responseObj];
                      }
                      failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-                         [[NSNotificationCenter defaultCenter] postNotificationName:api
-                                                                             object:[NSError errorWithDomain:@"" code:0 userInfo:nil]
-                                                                           userInfo:@{ResponseUserInfoParameterKey:parameters}];
+                         ConcreteResponseObject * responseObj = [ConcreteResponseObject responseObjectWithApi:parameters.api object:nil andRequestParameter:parameters];
+                         [responseObj setError:error];
+                         [[NSNotificationCenter defaultCenter] postNotification:responseObj];
                      }];
 }
 

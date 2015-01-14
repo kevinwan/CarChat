@@ -18,6 +18,10 @@ extern const NSInteger ShowLoginFromSomeWhereTag;
  */
 extern const NSInteger RegisterRegisterButtonTag;
 /**
+ *  登录结束后使用
+ */
+extern const NSInteger LoginLoginButtonTag;
+/**
  *  点击忘记密码使用
  */
 extern const NSInteger LoginForgetButtonTag;
@@ -44,6 +48,13 @@ extern const NSInteger SuggestActivitiesSelectItem;
 
 @interface ControllerCoordinator : NSObject
 
+/**
+ *  切换controller转场
+ *
+ *  @param vc      当前正在显示的vc
+ *  @param tag     以转场触发控件命名，表示当前触发事件，该方法内部定义下一步操作
+ *  @param context 转场时传递的上下文参数
+ */
 + (void)goNextFrom:(UIViewController *)vc
            whitTag:(NSInteger)tag
         andContext:(id)context;
