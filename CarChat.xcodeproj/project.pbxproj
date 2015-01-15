@@ -40,6 +40,14 @@
 		BAB11C7F1A6670FB007FDE38 /* GetActivityWithInviteCodeParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C7E1A6670FB007FDE38 /* GetActivityWithInviteCodeParameter.m */; };
 		BAB11C831A668C80007FDE38 /* InviteActivityDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C811A668C80007FDE38 /* InviteActivityDetailViewController.m */; };
 		BAB11C841A668C80007FDE38 /* InviteActivityDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C821A668C80007FDE38 /* InviteActivityDetailViewController.xib */; };
+		BAB11C881A675B0E007FDE38 /* MyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C861A675B0E007FDE38 /* MyViewController.m */; };
+		BAB11C891A675B0E007FDE38 /* MyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C871A675B0E007FDE38 /* MyViewController.xib */; };
+		BAB11C8D1A679C9A007FDE38 /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C8B1A679C9A007FDE38 /* FollowingViewController.m */; };
+		BAB11C8E1A679C9A007FDE38 /* FollowingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C8C1A679C9A007FDE38 /* FollowingViewController.xib */; };
+		BAB11C921A679CE7007FDE38 /* MyActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C901A679CE7007FDE38 /* MyActivitiesViewController.m */; };
+		BAB11C931A679CE7007FDE38 /* MyActivitiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C911A679CE7007FDE38 /* MyActivitiesViewController.xib */; };
+		BAB11C971A67A28B007FDE38 /* FollowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C951A67A28B007FDE38 /* FollowerViewController.m */; };
+		BAB11C981A67A28B007FDE38 /* FollowerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C961A67A28B007FDE38 /* FollowerViewController.xib */; };
 		BAB810961A639D1900142DDA /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB810941A639D1900142DDA /* ForgetPasswordViewController.m */; };
 		BAB810971A639D1900142DDA /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB810951A639D1900142DDA /* ForgetPasswordViewController.xib */; };
 		BAB8109B1A63A85D00142DDA /* CompletePersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB810991A63A85D00142DDA /* CompletePersonalInfoViewController.m */; };
@@ -139,6 +147,18 @@
 		BAB11C801A668C80007FDE38 /* InviteActivityDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteActivityDetailViewController.h; sourceTree = "<group>"; };
 		BAB11C811A668C80007FDE38 /* InviteActivityDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteActivityDetailViewController.m; sourceTree = "<group>"; };
 		BAB11C821A668C80007FDE38 /* InviteActivityDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteActivityDetailViewController.xib; sourceTree = "<group>"; };
+		BAB11C851A675B0E007FDE38 /* MyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyViewController.h; sourceTree = "<group>"; };
+		BAB11C861A675B0E007FDE38 /* MyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyViewController.m; sourceTree = "<group>"; };
+		BAB11C871A675B0E007FDE38 /* MyViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyViewController.xib; sourceTree = "<group>"; };
+		BAB11C8A1A679C9A007FDE38 /* FollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingViewController.h; sourceTree = "<group>"; };
+		BAB11C8B1A679C9A007FDE38 /* FollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingViewController.m; sourceTree = "<group>"; };
+		BAB11C8C1A679C9A007FDE38 /* FollowingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowingViewController.xib; sourceTree = "<group>"; };
+		BAB11C8F1A679CE7007FDE38 /* MyActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyActivitiesViewController.h; sourceTree = "<group>"; };
+		BAB11C901A679CE7007FDE38 /* MyActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyActivitiesViewController.m; sourceTree = "<group>"; };
+		BAB11C911A679CE7007FDE38 /* MyActivitiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyActivitiesViewController.xib; sourceTree = "<group>"; };
+		BAB11C941A67A28B007FDE38 /* FollowerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowerViewController.h; sourceTree = "<group>"; };
+		BAB11C951A67A28B007FDE38 /* FollowerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowerViewController.m; sourceTree = "<group>"; };
+		BAB11C961A67A28B007FDE38 /* FollowerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowerViewController.xib; sourceTree = "<group>"; };
 		BAB8108D1A638FA800142DDA /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		BAB810931A639D1900142DDA /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		BAB810941A639D1900142DDA /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
@@ -208,14 +228,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		7E415BED1A66C4B20025E5FB /* MyActivity */ = {
+		7E415BED1A66C4B20025E5FB /* My */ = {
 			isa = PBXGroup;
 			children = (
+				BAB11C851A675B0E007FDE38 /* MyViewController.h */,
+				BAB11C861A675B0E007FDE38 /* MyViewController.m */,
+				BAB11C871A675B0E007FDE38 /* MyViewController.xib */,
 				7E415BEE1A66CABA0025E5FB /* InviteViewController.h */,
 				7E415BEF1A66CABA0025E5FB /* InviteViewController.m */,
 				7E415BF01A66CABA0025E5FB /* InviteViewController.xib */,
+				BAB11C8A1A679C9A007FDE38 /* FollowingViewController.h */,
+				BAB11C8B1A679C9A007FDE38 /* FollowingViewController.m */,
+				BAB11C8C1A679C9A007FDE38 /* FollowingViewController.xib */,
+				BAB11C941A67A28B007FDE38 /* FollowerViewController.h */,
+				BAB11C951A67A28B007FDE38 /* FollowerViewController.m */,
+				BAB11C961A67A28B007FDE38 /* FollowerViewController.xib */,
+				BAB11C8F1A679CE7007FDE38 /* MyActivitiesViewController.h */,
+				BAB11C901A679CE7007FDE38 /* MyActivitiesViewController.m */,
+				BAB11C911A679CE7007FDE38 /* MyActivitiesViewController.xib */,
 			);
-			name = MyActivity;
+			name = My;
 			sourceTree = "<group>";
 		};
 		7EF6A0141A641E510022DBCE /* Networking */ = {
@@ -319,7 +351,7 @@
 		BA6BC7141A63606700DA033C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				7E415BED1A66C4B20025E5FB /* MyActivity */,
+				7E415BED1A66C4B20025E5FB /* My */,
 				BA6BC73F1A63718700DA033C /* SuggestActivity */,
 				BA6BC7401A63719700DA033C /* ActivityDetail */,
 				BA6BC73E1A63717500DA033C /* Login */,
@@ -598,12 +630,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BAB11C891A675B0E007FDE38 /* MyViewController.xib in Resources */,
 				BAB8109C1A63A85D00142DDA /* CompletePersonalInfoViewController.xib in Resources */,
+				BAB11C8E1A679C9A007FDE38 /* FollowingViewController.xib in Resources */,
 				BAB810971A639D1900142DDA /* ForgetPasswordViewController.xib in Resources */,
 				BA6BC7261A63627B00DA033C /* LoginViewController.xib in Resources */,
 				7E415BE41A6584000025E5FB /* ActivityIntrudoctionView.xib in Resources */,
 				BAD65A781A5FA89200987B06 /* Main.storyboard in Resources */,
 				BAD723381A64FAA300FB4645 /* PersonalInfoView.xib in Resources */,
+				BAB11C981A67A28B007FDE38 /* FollowerViewController.xib in Resources */,
+				BAB11C931A679CE7007FDE38 /* MyActivitiesViewController.xib in Resources */,
 				BAB810A41A63C1B400142DDA /* UserCreatActivityDescriptionView.xib in Resources */,
 				7E415BF21A66CABA0025E5FB /* InviteViewController.xib in Resources */,
 				BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */,
@@ -668,10 +704,12 @@
 				BAD723261A64BF5100FB4645 /* NSUserDefaults+Helpers.m in Sources */,
 				BA6BC73C1A63651600DA033C /* UIView+HUD.m in Sources */,
 				BA6BC7311A63629400DA033C /* ControllerCoordinator.m in Sources */,
+				BAB11C8D1A679C9A007FDE38 /* FollowingViewController.m in Sources */,
 				BA6BC7301A63629400DA033C /* ActivitiesCollectionDelegator.m in Sources */,
 				BA0355731A661C7500252F99 /* GetVerifySMSParameter.m in Sources */,
 				BAD723281A64BF5100FB4645 /* UIImage+Gif.m in Sources */,
 				BAD723241A64BF5100FB4645 /* NSDate+Helpers.m in Sources */,
+				BAB11C921A679CE7007FDE38 /* MyActivitiesViewController.m in Sources */,
 				BA6BC7341A63644500DA033C /* AbstractViewController.m in Sources */,
 				BA03556D1A660E0400252F99 /* ValidateInviteCodeParameter.m in Sources */,
 				BA6BC72B1A63628800DA033C /* ActivityModel.m in Sources */,
@@ -698,7 +736,9 @@
 				BA6BC7241A63627B00DA033C /* ActivityIntroductViewController.m in Sources */,
 				BAD7232C1A64D3DF00FB4645 /* ServerPolicyViewController.m in Sources */,
 				BAB11C831A668C80007FDE38 /* InviteActivityDetailViewController.m in Sources */,
+				BAB11C881A675B0E007FDE38 /* MyViewController.m in Sources */,
 				7E415BE21A6583EC0025E5FB /* ActivityIntrudoctionView.m in Sources */,
+				BAB11C971A67A28B007FDE38 /* FollowerViewController.m in Sources */,
 				7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */,
 				BA0355701A66196100252F99 /* RegisterParameter.m in Sources */,
 				7E415BF11A66CABA0025E5FB /* InviteViewController.m in Sources */,

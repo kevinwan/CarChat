@@ -27,6 +27,16 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (self.tabBarController) {
+        if ([self.view.window isKeyWindow] && self.view.window.windowLevel == UIWindowLevelNormal) {
+            self.tabBarController.navigationItem.title = self.navigationItem.title;
+        }
+    }
+}
 
 #pragma mark - Public APIs
 - (void)showLoading:(NSString *)loading

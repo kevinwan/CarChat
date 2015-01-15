@@ -7,6 +7,7 @@
 //
 
 #import "InviteActivityDetailViewController.h"
+#import "UserCreatActivityDescriptionView.h"
 
 @interface InviteActivityDetailViewController ()
 
@@ -28,7 +29,14 @@
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    self.navigationItem.title = @"收到邀请";
+    [self setLeftNavigationBarItem:@"忽略" target:self andAction:@selector(ignore)];
+    [self setRightNavigationBarItem:@"加入" target:self andAction:@selector(join)];
+    
+    UserCreatActivityDescriptionView * view  = [UserCreatActivityDescriptionView view];
+    [view setModel:self.activity];
+    [self.view addSubview:view];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,5 +44,23 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - User Interaction
+- (void)ignore
+{
+    // TODO: told server ignore it
+    
+    // then
+    [ControllerCoordinator goNextFrom:self whitTag:InviteDetailIgnoreButonItemTag andContext:nil];
+}
+
+- (void)join
+{
+    // TODO: told server join it
+    
+    // then
+    [ControllerCoordinator goNextFrom:self
+                              whitTag:InviteDetailJoinButtonItemTag
+                           andContext:nil];
+}
 
 @end

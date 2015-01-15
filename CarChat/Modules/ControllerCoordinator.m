@@ -16,6 +16,9 @@
 #import "InviteActivityDetailViewController.h"
 #import "InviteViewController.h"
 #import "AppDelegate.h"
+#import "MyActivitiesViewController.h"
+#import "FollowingViewController.h"
+#import "FollowerViewController.h"
 
 const NSInteger ShowLoginFromSomeWhereTag = 1;
 const NSInteger RegisterRegisterButtonTag = 101;
@@ -31,6 +34,11 @@ const NSInteger CreatedActivityInviteButtonItemTag = 302;
 const NSInteger InviteCloseButtonItemTag = 303;
 const NSInteger InviteInviteButtonItemTag = 304;
 const NSInteger ShowInviteDetailFromSomeWhereTag = 400;
+const NSInteger InviteDetailIgnoreButonItemTag = 401;
+const NSInteger InviteDetailJoinButtonItemTag = 402;
+const NSInteger MyActivityCellTag = 500;
+const NSInteger MyFollowingCellTag = 501;
+const NSInteger MyFollowerCellTag = 502;
 
 @implementation ControllerCoordinator
 
@@ -154,6 +162,39 @@ const NSInteger ShowInviteDetailFromSomeWhereTag = 400;
             [activeVC presentViewController:detailNav
                                    animated:YES
                                  completion:nil];
+        }
+            break;
+        case InviteDetailIgnoreButonItemTag:
+        {
+            [vc.navigationController dismissViewControllerAnimated:YES
+                                                        completion:nil];
+        }
+            break;
+        case InviteDetailJoinButtonItemTag:
+        {
+            [vc.navigationController dismissViewControllerAnimated:YES
+                                                        completion:nil];
+        }
+            break;
+        case MyActivityCellTag:
+        {
+            MyActivitiesViewController * myActivity = [[MyActivitiesViewController alloc]init];
+            [vc.navigationController pushViewController:myActivity
+                                               animated:YES];
+        }
+            break;
+        case MyFollowerCellTag:
+        {
+            FollowerViewController * following = [[FollowerViewController alloc]init];
+            [vc.navigationController pushViewController:following
+                                               animated:YES];
+        }
+            break;
+        case MyFollowingCellTag:
+        {
+            FollowingViewController * follower = [[FollowingViewController alloc]init];
+            [vc.navigationController pushViewController:follower
+                                               animated:YES];
         }
             break;
         default:

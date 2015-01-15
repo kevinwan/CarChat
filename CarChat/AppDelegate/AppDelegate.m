@@ -8,8 +8,12 @@
 
 #import "AppDelegate.h"
 #import "SuggestedActivityViewController.h"
+#import "MyViewController.h"
 #import <SCLAlertView.h>
 #import "ActivityModel.h"
+
+static const NSInteger SuggestNavItemTag = 1;
+static const NSInteger MyNavItemTag = 2;
 
 @interface AppDelegate ()
 
@@ -17,15 +21,40 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetActivityWithInviteCode];
     
     _window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    UINavigationController * rootNav = [[UINavigationController alloc]initWithRootViewController:[[SuggestedActivityViewController alloc]init]];
-    _window.rootViewController = rootNav;
+    UITabBarController * rootTabbar = [[UITabBarController alloc]init];
+    // item 1 - suggest
+//    UINavigationController * suggestNav = [[UINavigationController alloc]initWithRootViewController:[[SuggestedActivityViewController alloc]init]];
+//    UITabBarItem * suggestNavItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemTopRated tag:SuggestNavItemTag];
+//    suggestNav.tabBarItem = suggestNavItem;
+    
+    // item 2 - my
+//    UINavigationController * myNav = [[UINavigationController alloc]initWithRootViewController:[[MyViewController alloc]init]];
+//    UITabBarItem * myNavItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemContacts tag:MyNavItemTag];
+//    myNav.tabBarItem = myNavItem;
+//    [rootTabbar setViewControllers:@[suggestNav, myNav]];
+//    [rootTabbar setSelectedIndex:0];
+    
+    // item 1 - suggest
+    SuggestedActivityViewController * suggestVC = [[SuggestedActivityViewController alloc]init];
+    suggestVC.title = @"推荐";
+    suggestVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemTopRated tag:SuggestNavItemTag];
+    
+    // item 2 - my
+    MyViewController *myVC = [[MyViewController alloc]init];
+    myVC.title = @"我的";
+    myVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemContacts tag:MyNavItemTag];
+    [rootTabbar setViewControllers:@[suggestVC, myVC]];
+    [rootTabbar setSelectedIndex:0];
+    
+    UINavigationController * rootNav = [[UINavigationController alloc]initWithRootViewController:rootTabbar];
+    [_window setRootViewController:rootNav];
+//    _window.rootViewController = rootTabbar;
     [_window makeKeyAndVisible];
     return YES;
 }

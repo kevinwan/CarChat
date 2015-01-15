@@ -71,7 +71,7 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
         // success
         NSString * api = response.api;
         if (api == ApiGetSuggestActivities) {
-            // TODO
+            // TODO:
         }
         else {
             

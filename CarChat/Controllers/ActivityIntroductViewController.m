@@ -47,8 +47,8 @@
 #pragma mark - View Liftcycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
+    self.navigationItem.title = self.activity.name;
     [self setRightNavigationBarItem:@"GO!"
                              target:self
                           andAction:@selector(createAndEditTheActivity)];

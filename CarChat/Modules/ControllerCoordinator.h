@@ -62,9 +62,29 @@ extern const NSInteger InviteCloseButtonItemTag;
  */
 extern const NSInteger InviteInviteButtonItemTag;
 /**
- *  从某个地方显示活动邀请页面
+ *  从某个地方显示收到邀请的活动详情页面
  */
 extern const NSInteger ShowInviteDetailFromSomeWhereTag;
+/**
+ *  受邀活动详情，点击导航栏忽略按钮
+ */
+extern const NSInteger InviteDetailIgnoreButonItemTag;
+/**
+ *  受邀活动详情，点击导航栏加入按钮
+ */
+extern const NSInteger InviteDetailJoinButtonItemTag;
+/**
+ *  在我的页面，点击我的活动
+ */
+extern const NSInteger MyActivityCellTag;
+/**
+ *  在我的页面，点击Following
+ */
+extern const NSInteger MyFollowingCellTag;
+/**
+ *  在我的页面，点击Follower
+ */
+extern const NSInteger MyFollowerCellTag;
 
 @interface ControllerCoordinator : NSObject
 
