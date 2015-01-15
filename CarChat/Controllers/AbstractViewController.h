@@ -20,7 +20,9 @@
 - (void)hideHud;
 
 - (void)setLeftNavigationBarItem:(NSString *)title target:(id)target andAction:(SEL)action;
+- (void)setLeftNavigationBarItem:(NSString *)title target:(id)target andAction:(SEL)action animated:(BOOL)animated;
 - (void)setRightNavigationBarItem:(NSString*)title target:(id)target andAction:(SEL)action;
+- (void)setRightNavigationBarItem:(NSString*)title target:(id)target andAction:(SEL)action animated:(BOOL)animated;
 
 - (void)dismissSelf;
 @end

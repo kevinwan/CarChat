@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationItem.title = @"我的";
+    self.navigationItem.title = @"我";
     
     // Hack the edgeLayout
     [self.myTableView setContentInset:UIEdgeInsetsMake(64.f, 0, 0, 0)];

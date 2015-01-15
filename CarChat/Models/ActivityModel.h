@@ -12,6 +12,7 @@
 
 @interface ActivityModel : NSObject
 
+@property (nonatomic, strong) NSString * ID;
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSString * destination;
 @property (nonatomic, strong) NSString * date;

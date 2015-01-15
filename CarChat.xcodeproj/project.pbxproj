@@ -14,6 +14,8 @@
 		7E415BEC1A66B2ED0025E5FB /* CreateActivityParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BEB1A66B2ED0025E5FB /* CreateActivityParameter.m */; };
 		7E415BF11A66CABA0025E5FB /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BEF1A66CABA0025E5FB /* InviteViewController.m */; };
 		7E415BF21A66CABA0025E5FB /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E415BF01A66CABA0025E5FB /* InviteViewController.xib */; };
+		7E415BF51A6808160025E5FB /* CreateInviteCodeParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BF41A6808160025E5FB /* CreateInviteCodeParameter.m */; };
+		7E415BF81A680C3C0025E5FB /* InviteTableDelegator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BF71A680C3C0025E5FB /* InviteTableDelegator.m */; };
 		7EF16D361A63FED00008B16F /* CCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF16D351A63FED00008B16F /* CCNetworkManager.m */; };
 		7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A0171A641ED70022DBCE /* ABCParameter.m */; };
 		7EF6A01B1A641FEC0022DBCE /* LoginParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A01A1A641FEC0022DBCE /* LoginParameter.m */; };
@@ -97,6 +99,10 @@
 		7E415BEE1A66CABA0025E5FB /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
 		7E415BEF1A66CABA0025E5FB /* InviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
 		7E415BF01A66CABA0025E5FB /* InviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteViewController.xib; sourceTree = "<group>"; };
+		7E415BF31A6808160025E5FB /* CreateInviteCodeParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateInviteCodeParameter.h; sourceTree = "<group>"; };
+		7E415BF41A6808160025E5FB /* CreateInviteCodeParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateInviteCodeParameter.m; sourceTree = "<group>"; };
+		7E415BF61A680C3C0025E5FB /* InviteTableDelegator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteTableDelegator.h; sourceTree = "<group>"; };
+		7E415BF71A680C3C0025E5FB /* InviteTableDelegator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteTableDelegator.m; sourceTree = "<group>"; };
 		7EF16D341A63FED00008B16F /* CCNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNetworkManager.h; sourceTree = "<group>"; };
 		7EF16D351A63FED00008B16F /* CCNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCNetworkManager.m; sourceTree = "<group>"; };
 		7EF6A0131A641A420022DBCE /* CCNetworkResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNetworkResponse.h; sourceTree = "<group>"; };
@@ -283,6 +289,8 @@
 				BAB11C7E1A6670FB007FDE38 /* GetActivityWithInviteCodeParameter.m */,
 				7E415BEA1A66B2ED0025E5FB /* CreateActivityParameter.h */,
 				7E415BEB1A66B2ED0025E5FB /* CreateActivityParameter.m */,
+				7E415BF31A6808160025E5FB /* CreateInviteCodeParameter.h */,
+				7E415BF41A6808160025E5FB /* CreateInviteCodeParameter.m */,
 			);
 			name = requestParameter;
 			sourceTree = "<group>";
@@ -425,6 +433,8 @@
 			children = (
 				BA6BC72C1A63629400DA033C /* ActivitiesCollectionDelegator.h */,
 				BA6BC72D1A63629400DA033C /* ActivitiesCollectionDelegator.m */,
+				7E415BF61A680C3C0025E5FB /* InviteTableDelegator.h */,
+				7E415BF71A680C3C0025E5FB /* InviteTableDelegator.m */,
 			);
 			name = CollectionDelegator;
 			sourceTree = "<group>";
@@ -733,6 +743,7 @@
 				BAB8109B1A63A85D00142DDA /* CompletePersonalInfoViewController.m in Sources */,
 				BAD65A6C1A5FA89200987B06 /* main.m in Sources */,
 				BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */,
+				7E415BF51A6808160025E5FB /* CreateInviteCodeParameter.m in Sources */,
 				BA6BC7241A63627B00DA033C /* ActivityIntroductViewController.m in Sources */,
 				BAD7232C1A64D3DF00FB4645 /* ServerPolicyViewController.m in Sources */,
 				BAB11C831A668C80007FDE38 /* InviteActivityDetailViewController.m in Sources */,
@@ -741,6 +752,7 @@
 				BAB11C971A67A28B007FDE38 /* FollowerViewController.m in Sources */,
 				7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */,
 				BA0355701A66196100252F99 /* RegisterParameter.m in Sources */,
+				7E415BF81A680C3C0025E5FB /* InviteTableDelegator.m in Sources */,
 				7E415BF11A66CABA0025E5FB /* InviteViewController.m in Sources */,
 				BAD723251A64BF5100FB4645 /* NSString+Helpers.m in Sources */,
 			);

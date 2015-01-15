@@ -9,7 +9,9 @@
 #import "CompletePersonalInfoViewController.h"
 #import <UzysAssetsPickerController.h>
 #import "PersonalInfoView.h"
+#import "GetActivityWithInviteCodeParameter.h"
 #import "NSString+Helpers.h"
+#import "CCStatusManager.h"
 
 @interface CompletePersonalInfoViewController ()
 
@@ -87,6 +89,9 @@
 #pragma mark - User Interaction
 - (void)completeInfoDone
 {
+    GetActivityWithInviteCodeParameter * parameter = (GetActivityWithInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiGetActivityWithInviteCode];
+    parameter.inviteCode = [CCStatusManager defaultManager].verifyedInviteCode;
+    [[CCNetworkManager defaultManager] requestWithParameter:parameter];
     [self dismissSelf];
 }
 

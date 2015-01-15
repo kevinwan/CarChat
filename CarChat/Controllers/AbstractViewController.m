@@ -66,13 +66,21 @@
 
 - (void)setLeftNavigationBarItem:(NSString *)title target:(id)target andAction:(SEL)action
 {
+    [self setLeftNavigationBarItem:title target:target andAction:action animated:NO];
+}
+- (void)setLeftNavigationBarItem:(NSString *)title target:(id)target andAction:(SEL)action animated:(BOOL)animated
+{
     UIBarButtonItem * item = [[UIBarButtonItem alloc]initWithTitle:title style:UIBarButtonItemStylePlain target:target action:action];
-    [self.navigationItem setLeftBarButtonItem:item];
+    [self.navigationItem setLeftBarButtonItem:item animated:animated];
 }
 - (void)setRightNavigationBarItem:(NSString *)title target:(id)target andAction:(SEL)action
 {
+    [self setRightNavigationBarItem:title target:target andAction:action animated:NO];
+}
+- (void)setRightNavigationBarItem:(NSString *)title target:(id)target andAction:(SEL)action animated:(BOOL)animated
+{
     UIBarButtonItem * item = [[UIBarButtonItem alloc]initWithTitle:title style:UIBarButtonItemStylePlain target:target action:action];
-    [self.navigationItem setRightBarButtonItem:item];
+    [self.navigationItem setRightBarButtonItem:item animated:animated];
 }
 
 - (void)dismissSelf

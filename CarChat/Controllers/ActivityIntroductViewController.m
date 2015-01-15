@@ -97,12 +97,14 @@
         else if (api == ApiCreateActivity) {
             // 创建成功
             // 复用introduction view显示创建好的活动
+//            self.createdActivity = response.object;
+            // TODO: 调用网络层解析好的activity对象
             self.createdActivity = [ActivityModel ActivityWithParameter:(CreateActivityParameter *)response.parameter];
             [self.introductView layoutWithActivity:self.createdActivity];
             [self.editView setHidden:YES];
             [self.introductView setHidden:NO];
-            [self setLeftNavigationBarItem:@"关闭" target:self andAction:@selector(close)];
-            [self setRightNavigationBarItem:@"邀请" target:self andAction:@selector(invite)];
+            [self setLeftNavigationBarItem:@"关闭" target:self andAction:@selector(close) animated:YES];
+            [self setRightNavigationBarItem:@"邀请" target:self andAction:@selector(invite) animated:YES];
         }
     }
 }
@@ -129,12 +131,10 @@
 
 - (void)giveUp
 {
-    [UIView animateWithDuration:.3f animations:^{
-        self.navigationItem.leftBarButtonItem = self.leftItemStore;
-        self.navigationItem.rightBarButtonItem = self.rightItemStore;
-        [self.editView setHidden:NO];
-        [self.introductView setHidden:YES];
-    }];
+    [self.navigationItem setLeftBarButtonItem:self.leftItemStore animated:YES];;
+    [self.navigationItem setRightBarButtonItem:self.rightItemStore animated:YES];
+    [self.editView setHidden:NO];
+    [self.introductView setHidden:YES];
 }
 
 - (void)close
@@ -159,17 +159,15 @@
     [self.editView setHidden:YES];
     [self.view addSubview:self.editView];
     
-    [UIView animateWithDuration:.3f animations:^{
-        self.rightItemStore = self.navigationItem.rightBarButtonItem;
-        [self setRightNavigationBarItem:@"创建" target:self andAction:@selector(create)];
-        [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStyleDone];
-        
-        self.leftItemStore = self.navigationItem.leftBarButtonItem;
-        [self setLeftNavigationBarItem:@"取消" target:self andAction:@selector(giveUp)];
-        
-        [self.introductView setHidden:YES];
-        [self.editView setHidden:NO];
-    }];
+    self.rightItemStore = self.navigationItem.rightBarButtonItem;
+    [self setRightNavigationBarItem:@"创建" target:self andAction:@selector(create) animated:YES];
+    [self.navigationItem.rightBarButtonItem setStyle:UIBarButtonItemStyleDone];
+    
+    self.leftItemStore = self.navigationItem.leftBarButtonItem;
+    [self setLeftNavigationBarItem:@"取消" target:self andAction:@selector(giveUp) animated:YES];
+    
+    [self.introductView setHidden:YES];
+    [self.editView setHidden:NO];
 }
 
 @end
