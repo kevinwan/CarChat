@@ -73,6 +73,12 @@
 #define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
 #define COCOAPODS_VERSION_PATCH_MBProgressHUD 0
 
+// RPFloatingPlaceholders
+#define COCOAPODS_POD_AVAILABLE_RPFloatingPlaceholders
+#define COCOAPODS_VERSION_MAJOR_RPFloatingPlaceholders 0
+#define COCOAPODS_VERSION_MINOR_RPFloatingPlaceholders 2
+#define COCOAPODS_VERSION_PATCH_RPFloatingPlaceholders 6
+
 // SCLAlertView-Objective-C
 #define COCOAPODS_POD_AVAILABLE_SCLAlertView_Objective_C
 #define COCOAPODS_VERSION_MAJOR_SCLAlertView_Objective_C 0
