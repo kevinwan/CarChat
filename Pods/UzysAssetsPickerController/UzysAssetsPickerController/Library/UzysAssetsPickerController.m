@@ -155,9 +155,9 @@
         self.segmentedControl.hidden = YES;
         self.labelSelectedMedia.hidden = NO;
         if(_maximumNumberOfSelection > 1)
-            self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"Choose media", @"UzysAssetsPickerController", nil);
+            self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"选择图片或视频", @"UzysAssetsPickerController", nil);
         else
-            self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"Choose a media", @"UzysAssetsPickerController", nil);
+            self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"选择一个图片或视频", @"UzysAssetsPickerController", nil);
 
     }
     else
@@ -171,9 +171,9 @@
             self.segmentedControl.hidden = YES;
             self.labelSelectedMedia.hidden = NO;
             if(_maximumNumberOfSelection > 1)
-                self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"Choose videos", @"UzysAssetsPickerController", nil);
+                self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"选择视频", @"UzysAssetsPickerController", nil);
             else
-                self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"Choose a video", @"UzysAssetsPickerController", nil);
+                self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"选择一个视频", @"UzysAssetsPickerController", nil);
         }
         else if(_maximumNumberOfSelectionVideo == 0)
         {
@@ -185,9 +185,9 @@
             self.segmentedControl.hidden = YES;
             self.labelSelectedMedia.hidden = NO;
             if(_maximumNumberOfSelection >1)
-                self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"Choose photos", @"UzysAssetsPickerController", nil);
+                self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"选择图片", @"UzysAssetsPickerController", nil);
             else
-                self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"Choose a photo", @"UzysAssetsPickerController", nil);
+                self.labelSelectedMedia.text = NSLocalizedStringFromTable(@"选择一个图片", @"UzysAssetsPickerController", nil);
         }
         else
         {
@@ -322,7 +322,7 @@
         self.segmentedControl.enabled = NO;
         self.btnDone.enabled = NO;
         self.btnCamera.enabled = NO;
-        [self setTitle:NSLocalizedStringFromTable(@"Not Allowed", @"UzysAssetsPickerController",nil)];
+        [self setTitle:NSLocalizedStringFromTable(@"禁止", @"UzysAssetsPickerController",nil)];
 //        [self.btnTitle setTitle:NSLocalizedStringFromTable(@"Not Allowed", @"UzysAssetsPickerController",nil) forState:UIControlStateNormal];
         [self.btnTitle setImage:nil forState:UIControlStateNormal];
         
@@ -394,14 +394,14 @@
     UILabel *title          = [[UILabel alloc] initWithFrame:rect];
     UILabel *message        = [[UILabel alloc] initWithFrame:rect];
     
-    title.text              = NSLocalizedStringFromTable(@"No Photos or Videos", @"UzysAssetsPickerController", nil);
+    title.text              = NSLocalizedStringFromTable(@"不是图片或视频", @"UzysAssetsPickerController", nil);
     title.font              = [UIFont systemFontOfSize:19.0];
     title.textColor         = [UIColor colorWithRed:153.0/255.0 green:153.0/255.0 blue:153.0/255.0 alpha:1];
     title.textAlignment     = NSTextAlignmentCenter;
     title.numberOfLines     = 5;
     title.tag               = kTagNoAssetViewTitleLabel;
     
-    message.text            = NSLocalizedStringFromTable(@"You can sync photos and videos onto your iPhone using iTunes.", @"UzysAssetsPickerController",nil);
+    message.text            = NSLocalizedStringFromTable(@"可以通过iTunes把图片或视频传送到iPhone上", @"UzysAssetsPickerController",nil);
     message.font            = [UIFont systemFontOfSize:15.0];
     message.textColor       = [UIColor colorWithRed:153.0/255.0 green:153.0/255.0 blue:153.0/255.0 alpha:1];
     message.textAlignment   = NSTextAlignmentCenter;
@@ -439,13 +439,13 @@
     UILabel *title          = [[UILabel alloc] initWithFrame:rect];
     UILabel *message        = [[UILabel alloc] initWithFrame:rect];
     
-    title.text              = NSLocalizedStringFromTable(@"This app does not have access to your photos or videos.", @"UzysAssetsPickerController",nil);
+    title.text              = NSLocalizedStringFromTable(@"没有访问媒体库的权限", @"UzysAssetsPickerController",nil);
     title.font              = [UIFont boldSystemFontOfSize:17.0];
     title.textColor         = [UIColor colorWithRed:129.0/255.0 green:136.0/255.0 blue:148.0/255.0 alpha:1];
     title.textAlignment     = NSTextAlignmentCenter;
     title.numberOfLines     = 5;
     
-    message.text            = NSLocalizedStringFromTable(@"You can enable access in Privacy Settings.", @"UzysAssetsPickerController",nil);
+    message.text            = NSLocalizedStringFromTable(@"在隐私设置中打开访问权限", @"UzysAssetsPickerController",nil);
     message.font            = [UIFont systemFontOfSize:14.0];
     message.textColor       = [UIColor colorWithRed:129.0/255.0 green:136.0/255.0 blue:148.0/255.0 alpha:1];
     message.textAlignment   = NSTextAlignmentCenter;
@@ -482,18 +482,18 @@
         imgView.image = [UIImage imageNamed:@"UzysAssetPickerController.bundle/uzysAP_ico_no_image"];
         
         UILabel *title = (UILabel *)[weakSelf.noAssetView viewWithTag:kTagNoAssetViewTitleLabel];
-        title.text = NSLocalizedStringFromTable(@"No Photos", @"UzysAssetsPickerController",nil);
+        title.text = NSLocalizedStringFromTable(@"没有图片", @"UzysAssetsPickerController",nil);
         UILabel *msg = (UILabel *)[weakSelf.noAssetView viewWithTag:kTagNoAssetViewMsgLabel];
-        msg.text = NSLocalizedStringFromTable(@"You can sync photos onto your iPhone using iTunes.",@"UzysAssetsPickerController", nil);
+        msg.text = NSLocalizedStringFromTable(@"可以通过iTunes把图片或视频传送到iPhone上",@"UzysAssetsPickerController", nil);
     };
     voidBlock setNoVideo = ^{
         UIImageView *imgView = (UIImageView *)[weakSelf.noAssetView viewWithTag:kTagNoAssetViewImageView];
         imgView.image = [UIImage imageNamed:@"UzysAssetPickerController.bundle/uzysAP_ico_no_video"];
         DLog(@"no video");
         UILabel *title = (UILabel *)[weakSelf.noAssetView viewWithTag:kTagNoAssetViewTitleLabel];
-        title.text = NSLocalizedStringFromTable(@"No Videos", @"UzysAssetsPickerController",nil);
+        title.text = NSLocalizedStringFromTable(@"没有视频", @"UzysAssetsPickerController",nil);
         UILabel *msg = (UILabel *)[weakSelf.noAssetView viewWithTag:kTagNoAssetViewMsgLabel];
-        msg.text = NSLocalizedStringFromTable(@"You can sync videos onto your iPhone using iTunes.",@"UzysAssetsPickerController", nil);
+        msg.text = NSLocalizedStringFromTable(@"可以通过iTunes把图片或视频传送到iPhone上",@"UzysAssetsPickerController", nil);
 
     };
     
@@ -519,9 +519,9 @@
                 imgView.image = [UIImage imageNamed:@"UzysAssetPickerController.bundle/uzysAP_ico_no_image"];
                 DLog(@"no media");
                 UILabel *title = (UILabel *)[self.noAssetView viewWithTag:kTagNoAssetViewTitleLabel];
-                title.text = NSLocalizedStringFromTable(@"No Videos", @"UzysAssetsPickerController",nil);
+                title.text = NSLocalizedStringFromTable(@"没有视频", @"UzysAssetsPickerController",nil);
                 UILabel *msg = (UILabel *)[self.noAssetView viewWithTag:kTagNoAssetViewMsgLabel];
-                msg.text = NSLocalizedStringFromTable(@"You can sync media onto your iPhone using iTunes.",@"UzysAssetsPickerController", nil);
+                msg.text = NSLocalizedStringFromTable(@"可以通过iTunes把图片或视频传送到iPhone上",@"UzysAssetsPickerController", nil);
 
             }
             else if(self.maximumNumberOfSelectionPhoto == 0)
@@ -799,8 +799,8 @@
         case kTagButtonCamera:
         {
             if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-                NSString *title = NSLocalizedStringFromTable(@"Error", @"UzysAssetsPickerController", nil);
-                NSString *message = NSLocalizedStringFromTable(@"Device has no camera", @"UzysAssetsPickerController", nil);
+                NSString *title = NSLocalizedStringFromTable(@"失败", @"UzysAssetsPickerController", nil);
+                NSString *message = NSLocalizedStringFromTable(@"找不到摄像头", @"UzysAssetsPickerController", nil);
                 UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:title message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
                 [myAlertView show];
             }
