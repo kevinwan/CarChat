@@ -7,12 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef NS_ENUM(NSInteger, Gender) {
-    GenderUnknow = 0,
-    GenderMale,
-    GenderFemale
-};
+#import "Common.h"
 
 @interface UserModel : NSObject
 
@@ -24,4 +19,8 @@ typedef NS_ENUM(NSInteger, Gender) {
 @property (nonatomic, assign) NSUInteger numOfFollowing;
 @property (nonatomic, assign) NSUInteger numOfFollower;
 
+@end
+
+@interface UserModel (icons)
+- (UIImage *)genderImage;
 @end

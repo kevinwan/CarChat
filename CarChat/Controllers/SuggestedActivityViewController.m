@@ -9,6 +9,7 @@
 #import "SuggestedActivityViewController.h"
 #import "ActivitiesCollectionDelegator.h"
 #import "ActivityModel.h"
+#import <UIImageView+WebCache.h>
 
 static NSString * const activityCellIdentifier = @"activityCellIdentifier";
 
@@ -31,9 +32,12 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     
     
     self.tableDelegator = [[ActivitiesCollectionDelegator alloc]initWithActivities:self.activities cellIdentifier:activityCellIdentifier];
-    [self.tableDelegator setConfigBlock:^(ActivityModel * activity, UITableViewCell * cell) {
-        cell.textLabel.text = [NSString stringWithFormat:@"suggestion %@",activity.description];
-        cell.detailTextLabel.text = [NSString stringWithFormat:@"date %@",[NSDate date]];
+    [self.tableDelegator setConfigBlock:^(ActivityModel * activity, ActivityCell * cell) {
+        [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrlStr]];
+        [cell.createrAvatar sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatarUrlStr]];
+        [cell.genderIcon setImage:[activity.owner genderImage]];
+        cell.name.text = activity.name;
+        cell.nicknameLabel.text = activity.owner.nickName;
     }];
     __weak typeof(self) weakRef = self;
     [self.tableDelegator setSelectingBlock: ^(ActivityModel * activity) {
@@ -95,7 +99,7 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
                           @"http://d.hiphotos.baidu.com/zhidao/pic/item/cdbf6c81800a19d8d7698e0131fa828ba61e464f.jpg"];
     for (int i = 0; i < 10; i++) {
         ActivityModel * activity = [ActivityModel new];
-        activity.name = [NSString stringWithFormat:@"name %d",i];
+        activity.name = [NSString stringWithFormat:@"去钓鱼，上次我钓了%d条鱼，称了一下，%d斤！！！哎呀，还不够行数？",i,i*3];
         activity.destination = [NSString stringWithFormat:@"destination %d",i];
         activity.date = [NSString stringWithFormat:@"%@",[NSDate date]];
         activity.amountOfPeople = [NSString stringWithFormat:@"%d",i];
@@ -103,7 +107,7 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
         activity.owner = [UserModel new];
         activity.owner.avatarUrlStr = @"http://b.hiphotos.baidu.com/image/pic/item/ca1349540923dd5427f5bd1dd309b3de9d8248c4.jpg";
         activity.owner.nickName = @"红烧肉";
-        activity.owner.gender = GenderFemale;
+        activity.owner.gender = (Gender)i%2;
         activity.cost = [NSString stringWithFormat:@"%d0$/person",i];
         [self.activities addObject:activity];
     }

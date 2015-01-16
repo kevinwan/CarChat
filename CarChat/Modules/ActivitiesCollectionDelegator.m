@@ -32,11 +32,18 @@
     return self.acitivities.count;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGFloat height =  [ActivityCell heightForActivity:self.acitivities[indexPath.row]];
+    LOG_EXPR(height);
+    return height;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+    ActivityCell * cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:self.cellIdentifier];
+        cell = [[NSBundle mainBundle]loadNibNamed:@"ActivityCell" owner:nil options:nil][0];
     }
     
     self.configBlock(self.acitivities[indexPath.row], cell);
