@@ -16,6 +16,37 @@
 @implementation ActivityCell
 
 #pragma mark - Lifecycle
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.poster = [[UIImageView alloc]initWithFrame:CGRectZero];
+        [self.contentView addSubview:self.poster];
+        
+        self.name = [[UILabel alloc]initWithFrame:CGRectZero];
+        [self.name setFont:[UIFont boldSystemFontOfSize:15.f]];
+        [self.name setNumberOfLines:9];
+        [self.contentView addSubview:self.name];
+        
+        self.createrAvatar = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, 50.f, 50.f)];
+        [self.contentView addSubview:self.createrAvatar];
+        
+        self.genderIcon = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, 20.f, 20.f)];
+        [self.contentView addSubview:self.genderIcon];
+        
+        self.certificatedCarLogo = [[UIImageView alloc]initWithFrame:CGRectZero];
+        [self.contentView addSubview:self.certificatedCarLogo];
+        
+        self.nicknameLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+        [self.nicknameLabel setFont:[UIFont systemFontOfSize:14.f]];
+        [self.contentView addSubview:self.nicknameLabel];
+        
+        
+        [self.createrAvatar makeRoundIfIsSquare];
+        [self.genderIcon makeRoundIfIsSquare];
+    }
+    return self;
+}
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     
@@ -31,22 +62,15 @@
 {
     [super layoutSubviews];
     
-    CGFloat y = self.name.frame.origin.y + self.name.frame.size.height + 8;
-    CGRect avatarFrame = self.createrAvatar.frame;
-    avatarFrame.origin.y = y;
-    [self.createrAvatar setFrame:avatarFrame];
+    CGFloat cellWidth = self.contentView.bounds.size.width;
+    CGFloat cellHeight = self.contentView.bounds.size.height;
     
-    CGRect genderFrame = self.genderIcon.frame;
-    genderFrame.origin.y = y;
-    [self.genderIcon setFrame:genderFrame];
-    
-    CGRect carIcon = self.certificatedCarLogo.frame;
-    carIcon.origin.y = y;
-    [self.certificatedCarLogo setFrame:carIcon];
-    
-    CGRect nickNameFrame = self.nicknameLabel.frame;
-    nickNameFrame.origin.y = y + carIcon.size.height + 8.f;
-    [self.nicknameLabel setFrame:nickNameFrame];
+    [self.poster setFrame:CGRectMake(0.f, 0.f, cellWidth, 180.f)];
+    [self.createrAvatar setFrame:CGRectMake(8.f, cellHeight - 58.f, 50.f, 50.f)];
+    [self.genderIcon setFrame:CGRectMake(66.f, cellHeight - 58.f, 20.f, 20.f)];
+    [self.certificatedCarLogo setFrame:CGRectMake(94.f, cellHeight - 58.f, 20.f, 20.f)];
+    [self.nicknameLabel setFrame:CGRectMake(66.f, cellHeight - 30.f, cellWidth - 66.f - 8.f, 22.f)];
+    [self.name setFrame:CGRectMake(0.f, 180.f, cellWidth, cellHeight - 180.f - 8.f - 58.f)];
 }
 
 @end

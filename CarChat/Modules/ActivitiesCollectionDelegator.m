@@ -43,7 +43,7 @@
 {
     ActivityCell * cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
     if (!cell) {
-        cell = [[NSBundle mainBundle]loadNibNamed:@"ActivityCell" owner:nil options:nil][0];
+        cell = [[ActivityCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
     }
     
     self.configBlock(self.acitivities[indexPath.row], cell);

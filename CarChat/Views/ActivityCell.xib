@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="gray" indentationWidth="10" reuseIdentifier="activityCellIdentifier" rowHeight="265" id="KGk-i7-Jjw" customClass="ActivityCell">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleAspectFit" selectionStyle="blue" indentationWidth="10" reuseIdentifier="activityCellIdentifier" id="KGk-i7-Jjw" customClass="ActivityCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="265"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -24,22 +24,22 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Cjz-1S-wHs">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="MOt-lC-Jt4">
-                        <rect key="frame" x="8" y="205" width="50" height="50"/>
+                        <rect key="frame" x="8" y="206" width="50" height="50"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oIQ-hA-HAR">
-                        <rect key="frame" x="66" y="205" width="20" height="20"/>
+                        <rect key="frame" x="66" y="206" width="20" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="gs7-UI-7eQ">
-                        <rect key="frame" x="94" y="205" width="20" height="20"/>
+                        <rect key="frame" x="94" y="206" width="20" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="riC-ea-daD">
-                        <rect key="frame" x="66" y="233" width="246" height="23"/>
+                        <rect key="frame" x="66" y="234" width="246" height="23"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                         <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -48,14 +48,6 @@
                     </label>
                 </subviews>
             </tableViewCellContentView>
-            <connections>
-                <outlet property="certificatedCarLogo" destination="gs7-UI-7eQ" id="wjs-Zu-1tG"/>
-                <outlet property="createrAvatar" destination="MOt-lC-Jt4" id="q5N-FT-7tM"/>
-                <outlet property="genderIcon" destination="oIQ-hA-HAR" id="uzt-VT-Oqd"/>
-                <outlet property="name" destination="0IR-ke-5NG" id="kKX-Ko-Pyd"/>
-                <outlet property="nicknameLabel" destination="riC-ea-daD" id="TcJ-mp-gKj"/>
-                <outlet property="poster" destination="Cjz-1S-wHs" id="pzH-0G-Rjr"/>
-            </connections>
             <point key="canvasLocation" x="361" y="400.5"/>
         </tableViewCell>
     </objects>

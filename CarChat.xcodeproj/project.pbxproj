@@ -51,7 +51,6 @@
 		BAB11C971A67A28B007FDE38 /* FollowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C951A67A28B007FDE38 /* FollowerViewController.m */; };
 		BAB11C981A67A28B007FDE38 /* FollowerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C961A67A28B007FDE38 /* FollowerViewController.xib */; };
 		BAB11C9C1A68EED6007FDE38 /* ActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C9A1A68EED6007FDE38 /* ActivityCell.m */; };
-		BAB11C9D1A68EED6007FDE38 /* ActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C9B1A68EED6007FDE38 /* ActivityCell.xib */; };
 		BAB11CA11A690E6F007FDE38 /* UIImage+color.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11CA01A690E6F007FDE38 /* UIImage+color.m */; };
 		BAB11CA41A6910E9007FDE38 /* UIView+square2Round.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11CA31A6910E9007FDE38 /* UIView+square2Round.m */; };
 		BAB810961A639D1900142DDA /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB810941A639D1900142DDA /* ForgetPasswordViewController.m */; };
@@ -171,7 +170,6 @@
 		BAB11C961A67A28B007FDE38 /* FollowerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowerViewController.xib; sourceTree = "<group>"; };
 		BAB11C991A68EED6007FDE38 /* ActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityCell.h; sourceTree = "<group>"; };
 		BAB11C9A1A68EED6007FDE38 /* ActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityCell.m; sourceTree = "<group>"; };
-		BAB11C9B1A68EED6007FDE38 /* ActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityCell.xib; sourceTree = "<group>"; };
 		BAB11C9E1A68F7A1007FDE38 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		BAB11C9F1A690E6F007FDE38 /* UIImage+color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+color.h"; sourceTree = "<group>"; };
 		BAB11CA01A690E6F007FDE38 /* UIImage+color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+color.m"; sourceTree = "<group>"; };
@@ -554,7 +552,6 @@
 				7E415BE81A65895E0025E5FB /* ActivityEditView.xib */,
 				BAB11C991A68EED6007FDE38 /* ActivityCell.h */,
 				BAB11C9A1A68EED6007FDE38 /* ActivityCell.m */,
-				BAB11C9B1A68EED6007FDE38 /* ActivityCell.xib */,
 			);
 			name = Activity;
 			sourceTree = "<group>";
@@ -673,7 +670,6 @@
 				BAB810A41A63C1B400142DDA /* UserCreatActivityDescriptionView.xib in Resources */,
 				7E415BF21A66CABA0025E5FB /* InviteViewController.xib in Resources */,
 				BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */,
-				BAB11C9D1A68EED6007FDE38 /* ActivityCell.xib in Resources */,
 				BAB8109E1A63B84700142DDA /* ActivityIntroductViewController.xib in Resources */,
 				BA6BC7281A63627B00DA033C /* SuggestedActivityViewController.xib in Resources */,
 				BAD65A7D1A5FA89200987B06 /* LaunchScreen.xib in Resources */,

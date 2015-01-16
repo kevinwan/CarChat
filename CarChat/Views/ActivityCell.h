@@ -12,12 +12,12 @@
 
 @interface ActivityCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *poster;
-@property (weak, nonatomic) IBOutlet UILabel *name;
-@property (weak, nonatomic) IBOutlet UIImageView *createrAvatar;
-@property (weak, nonatomic) IBOutlet UIImageView *genderIcon;
-@property (weak, nonatomic) IBOutlet UIImageView *certificatedCarLogo;
-@property (weak, nonatomic) IBOutlet UILabel *nicknameLabel;
+@property (strong, nonatomic)  UIImageView *poster;
+@property (strong, nonatomic)  UILabel *name;
+@property (strong, nonatomic)  UIImageView *createrAvatar;
+@property (strong, nonatomic)  UIImageView *genderIcon;
+@property (strong, nonatomic)  UIImageView *certificatedCarLogo;
+@property (strong, nonatomic)  UILabel *nicknameLabel;
 
 @end
 
