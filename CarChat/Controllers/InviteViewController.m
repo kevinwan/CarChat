@@ -9,6 +9,7 @@
 #import "InviteViewController.h"
 #import "CreateInviteCodeParameter.h"
 #import "InviteTableDelegator.h"
+#import <MessageUI/MessageUI.h>
 
 static NSString * const cellIdentifier = @"inviteCell";
 static NSString * const InviteItemWXTimeLine = @"微信朋友圈";
@@ -16,7 +17,7 @@ static NSString * const InviteItemWXChat = @"微信好友";
 static NSString * const InviteItemSMS = @"短信";
 static NSString * const InviteItemEMAIL = @"邮件";
 
-@interface InviteViewController ()
+@interface InviteViewController () <MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) ActivityModel *activity;
 @property (nonatomic, strong) NSString * inviteCode;
@@ -81,10 +82,13 @@ static NSString * const InviteItemEMAIL = @"邮件";
 {
     [super viewDidAppear:animated];
     
-    [self showLoading:nil];
-    CreateInviteCodeParameter * parameter = (CreateInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiCreateInviteCode];
-    parameter.activityIdentifier = self.activity.ID;
-    [[CCNetworkManager defaultManager] requestWithParameter:parameter];
+    // 没有邀请码，要去服务器创建一个邀请码
+    if (!self.inviteCode) {
+        [self showLoading:nil];
+        CreateInviteCodeParameter * parameter = (CreateInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiCreateInviteCode];
+        parameter.activityIdentifier = self.activity.ID;
+        [[CCNetworkManager defaultManager] requestWithParameter:parameter];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -105,6 +109,27 @@ static NSString * const InviteItemEMAIL = @"邮件";
     }
 }
 
+#pragma mark - MFMessageComposeViewControllerDelegate
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result
+{
+    /*
+     MessageComposeResultCancelled,
+     MessageComposeResultSent,
+     MessageComposeResultFailed
+     */
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
+#pragma mark - MFMailComposeViewControllerDelegate
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    /*
+     MFMailComposeResultCancelled,
+     MFMailComposeResultSaved,
+     MFMailComposeResultSent,
+     MFMailComposeResultFailed
+     */
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
 #pragma mark - User Interaction
 - (void)close
 {
@@ -126,12 +151,44 @@ static NSString * const InviteItemEMAIL = @"邮件";
 
 - (void)inviteViaSMS
 {
-    
+    if( [MFMessageComposeViewController canSendText] )// 判断设备能不能发送短信
+    {
+        MFMessageComposeViewController * smsSender = [[MFMessageComposeViewController alloc] init];
+        smsSender.messageComposeDelegate= self;
+        // TODO: 编辑分享内容
+        smsSender.body = self.inviteCode;
+        [self presentViewController:smsSender animated:YES completion:nil];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意"
+                                                        message:@"您的设备不支持短信功能"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void)iniviteViaEmail
 {
-    
+    if ([MFMailComposeViewController canSendMail]) {
+        MFMailComposeViewController * mailSender = [[MFMailComposeViewController alloc]init];
+        [mailSender setMailComposeDelegate:self];
+        // TODO: 编辑邮件内容
+        [mailSender setSubject:self.activity.name];
+        [mailSender setMessageBody:self.inviteCode isHTML:NO];
+        [self.navigationController presentViewController:mailSender animated:YES completion:nil];
+    }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"注意"
+                                                        message:@"您的设备不支持邮件功能"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"确定"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 @end
