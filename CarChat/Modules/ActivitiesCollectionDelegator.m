@@ -34,16 +34,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat height =  [ActivityCell heightForActivity:self.acitivities[indexPath.row]];
-    LOG_EXPR(height);
-    return height;
+    return SuggestActivityCellDefaultHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ActivityCell * cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+    SuggestActivityCell * cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
     if (!cell) {
-        cell = [[ActivityCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
+        cell = [[SuggestActivityCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
     }
     
     self.configBlock(self.acitivities[indexPath.row], cell);
@@ -54,6 +52,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.selectingBlock(self.acitivities[indexPath.row]);
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

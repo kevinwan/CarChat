@@ -6,37 +6,37 @@
 //  Copyright (c) 2015年 GongPingJia. All rights reserved.
 //
 
-#import "ActivityCell.h"
+#import "UserCreatedActivityCell.h"
 #import "UIView+square2Round.h"
 
 #define HeightPerLineAtSystemBoldFontSize15 18.f
 #define HeightPerLineAtSystemFontSize14 17.f
 
 
-@implementation ActivityCell
+@implementation UserCreatedActivityCell
 
 #pragma mark - Lifecycle
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        self.poster = [[UIImageView alloc]initWithFrame:CGRectZero];
+        _poster = [[UIImageView alloc]initWithFrame:CGRectZero];
         [self.contentView addSubview:self.poster];
         
-        self.name = [[UILabel alloc]initWithFrame:CGRectZero];
+        _name = [[UILabel alloc]initWithFrame:CGRectZero];
         [self.name setFont:[UIFont boldSystemFontOfSize:15.f]];
         [self.name setNumberOfLines:9];
         [self.contentView addSubview:self.name];
         
-        self.createrAvatar = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, 50.f, 50.f)];
+        _createrAvatar = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, 50.f, 50.f)];
         [self.contentView addSubview:self.createrAvatar];
         
-        self.genderIcon = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, 20.f, 20.f)];
+        _genderIcon = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, 20.f, 20.f)];
         [self.contentView addSubview:self.genderIcon];
         
-        self.certificatedCarLogo = [[UIImageView alloc]initWithFrame:CGRectZero];
+        _certificatedCarLogo = [[UIImageView alloc]initWithFrame:CGRectZero];
         [self.contentView addSubview:self.certificatedCarLogo];
         
-        self.nicknameLabel = [[UILabel alloc]initWithFrame:CGRectZero];
+        _nicknameLabel = [[UILabel alloc]initWithFrame:CGRectZero];
         [self.nicknameLabel setFont:[UIFont systemFontOfSize:14.f]];
         [self.contentView addSubview:self.nicknameLabel];
         
@@ -75,7 +75,7 @@
 
 @end
 
-@implementation ActivityCell (caculate)
+@implementation UserCreatedActivityCell (caculate)
 
 + (CGFloat)heightForActivity:(ActivityModel *)activity
 {

@@ -32,12 +32,11 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     
     
     self.tableDelegator = [[ActivitiesCollectionDelegator alloc]initWithActivities:self.activities cellIdentifier:activityCellIdentifier];
-    [self.tableDelegator setConfigBlock:^(ActivityModel * activity, ActivityCell * cell) {
+    [self.tableDelegator setConfigBlock:^(ActivityModel * activity, SuggestActivityCell * cell) {
         [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrlStr]];
-        [cell.createrAvatar sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatarUrlStr]];
-        [cell.genderIcon setImage:[activity.owner genderImage]];
         cell.name.text = activity.name;
-        cell.nicknameLabel.text = activity.owner.nickName;
+        cell.cost.text = [NSString stringWithFormat:@"费用:%@",activity.cost];
+        cell.peopleCount.text = [NSString stringWithFormat:@"人数:%@",activity.amountOfPeople];
     }];
     __weak typeof(self) weakRef = self;
     [self.tableDelegator setSelectingBlock: ^(ActivityModel * activity) {
@@ -90,13 +89,14 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     self.activities = [NSMutableArray array];
     NSArray * posters = @[@"http://pic3.bbzhi.com/youxibizhi/jipinfeiche114/jingxuan_yxjx_214782_18.jpg",
                           @"http://f.hiphotos.baidu.com/zhidao/pic/item/c8177f3e6709c93d0d1704f39d3df8dcd00054c8.jpg",
-                          @"http://bizhi.zhuoku.com/2011/02/19/1080p/1080p80.jpg",
-                          @"http://f.hiphotos.baidu.com/zhidao/pic/item/d833c895d143ad4b041066b180025aafa40f0680.jpg",
-                          @"http://d.hiphotos.baidu.com/zhidao/pic/item/cdbf6c81800a19d8d7698e0131fa828ba61e464f.jpg",@"http://pic3.bbzhi.com/youxibizhi/jipinfeiche114/jingxuan_yxjx_214782_18.jpg",
+                          @"http://pic3.bbzhi.com/youxibizhi/zhengdangfangwei2/jingxuan_yxjx_277739_18.jpg",
+                          @"http://pic1a.nipic.com/2008-10-23/2008102323598475_2.jpg",
+                          @"http://img2.niutuku.com/desk/1208/1524/ntk-1524-42510.jpg",
                           @"http://f.hiphotos.baidu.com/zhidao/pic/item/c8177f3e6709c93d0d1704f39d3df8dcd00054c8.jpg",
-                          @"http://bizhi.zhuoku.com/2011/02/19/1080p/1080p80.jpg",
-                          @"http://f.hiphotos.baidu.com/zhidao/pic/item/d833c895d143ad4b041066b180025aafa40f0680.jpg",
-                          @"http://d.hiphotos.baidu.com/zhidao/pic/item/cdbf6c81800a19d8d7698e0131fa828ba61e464f.jpg"];
+                          @"http://pic3.bbzhi.com/youxibizhi/zhengdangfangwei2/jingxuan_yxjx_277739_18.jpg",
+                          @"http://pic1a.nipic.com/2008-10-23/2008102323598475_2.jpg",
+                          @"http://img2.niutuku.com/desk/1208/1524/ntk-1524-42510.jpg",
+                          @"http://img.pconline.com.cn/images/upload/upc/tx/auto5/1102/16/c1/6758855_6758855_1297853768203.jpg"];
     for (int i = 0; i < 10; i++) {
         ActivityModel * activity = [ActivityModel new];
         activity.name = [NSString stringWithFormat:@"去钓鱼，上次我钓了%d条鱼，称了一下，%d斤！！！哎呀，还不够行数？",i,i*3];
