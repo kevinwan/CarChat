@@ -24,4 +24,25 @@
     return model;
 }
 
+- (NSString *)payTypeString
+{
+    if (self.payType == 0) {
+        return nil;
+    }
+    switch (self.payType) {
+        case PayTypeSBTreat:
+            return @"土豪请客";
+            break;
+        case PayTypeEverybodyDutch:
+            return @"AA制";
+            break;
+        case PayTypeBoysDutch:
+            return @"男士AA";
+            break;
+        default:
+            return nil;
+            break;
+    }
+}
+
 @end

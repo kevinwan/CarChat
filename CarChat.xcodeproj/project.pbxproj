@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E415BE21A6583EC0025E5FB /* ActivityIntrudoctionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BE11A6583EC0025E5FB /* ActivityIntrudoctionView.m */; };
-		7E415BE41A6584000025E5FB /* ActivityIntrudoctionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E415BE31A6584000025E5FB /* ActivityIntrudoctionView.xib */; };
 		7E415BE71A6589430025E5FB /* ActivityEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BE61A6589430025E5FB /* ActivityEditView.m */; };
 		7E415BE91A65895E0025E5FB /* ActivityEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E415BE81A65895E0025E5FB /* ActivityEditView.xib */; };
 		7E415BEC1A66B2ED0025E5FB /* CreateActivityParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BEB1A66B2ED0025E5FB /* CreateActivityParameter.m */; };
@@ -92,9 +90,6 @@
 
 /* Begin PBXFileReference section */
 		12FB037F979C42EA46571C1A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E415BE01A6583EC0025E5FB /* ActivityIntrudoctionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIntrudoctionView.h; sourceTree = "<group>"; };
-		7E415BE11A6583EC0025E5FB /* ActivityIntrudoctionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIntrudoctionView.m; sourceTree = "<group>"; };
-		7E415BE31A6584000025E5FB /* ActivityIntrudoctionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityIntrudoctionView.xib; sourceTree = "<group>"; };
 		7E415BE51A6589430025E5FB /* ActivityEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityEditView.h; sourceTree = "<group>"; };
 		7E415BE61A6589430025E5FB /* ActivityEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityEditView.m; sourceTree = "<group>"; };
 		7E415BE81A65895E0025E5FB /* ActivityEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityEditView.xib; sourceTree = "<group>"; };
@@ -547,9 +542,6 @@
 				BAB810A01A63C1A100142DDA /* UserCreatActivityDescriptionView.h */,
 				BAB810A11A63C1A100142DDA /* UserCreatActivityDescriptionView.m */,
 				BAB810A31A63C1B400142DDA /* UserCreatActivityDescriptionView.xib */,
-				7E415BE01A6583EC0025E5FB /* ActivityIntrudoctionView.h */,
-				7E415BE11A6583EC0025E5FB /* ActivityIntrudoctionView.m */,
-				7E415BE31A6584000025E5FB /* ActivityIntrudoctionView.xib */,
 				7E415BE51A6589430025E5FB /* ActivityEditView.h */,
 				7E415BE61A6589430025E5FB /* ActivityEditView.m */,
 				7E415BE81A65895E0025E5FB /* ActivityEditView.xib */,
@@ -667,7 +659,6 @@
 				BAB11C8E1A679C9A007FDE38 /* FollowingViewController.xib in Resources */,
 				BAB810971A639D1900142DDA /* ForgetPasswordViewController.xib in Resources */,
 				BA6BC7261A63627B00DA033C /* LoginViewController.xib in Resources */,
-				7E415BE41A6584000025E5FB /* ActivityIntrudoctionView.xib in Resources */,
 				BAD65A781A5FA89200987B06 /* Main.storyboard in Resources */,
 				BAD723381A64FAA300FB4645 /* PersonalInfoView.xib in Resources */,
 				BAB11C981A67A28B007FDE38 /* FollowerViewController.xib in Resources */,
@@ -774,7 +765,6 @@
 				BAD7232C1A64D3DF00FB4645 /* ServerPolicyViewController.m in Sources */,
 				BAB11C831A668C80007FDE38 /* InviteActivityDetailViewController.m in Sources */,
 				BAB11C881A675B0E007FDE38 /* MyViewController.m in Sources */,
-				7E415BE21A6583EC0025E5FB /* ActivityIntrudoctionView.m in Sources */,
 				BAB11C971A67A28B007FDE38 /* FollowerViewController.m in Sources */,
 				7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */,
 				BA0355701A66196100252F99 /* RegisterParameter.m in Sources */,

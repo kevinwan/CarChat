@@ -12,6 +12,7 @@
 @interface ActivityIntrudoctionView ()
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *destiny;
 @property (weak, nonatomic) IBOutlet UILabel *costLabel;
 @property (weak, nonatomic) IBOutlet UILabel *suggestCountLabel;
 
@@ -27,10 +28,10 @@
 
 - (void)layoutWithActivity:(ActivityModel *)activity
 {
-    [self.posterView sd_setImageWithURL:[NSURL URLWithString:activity.posterUrlStr]];
+    [self.posterView sd_setImageWithURL:[NSURL URLWithString:activity.poster]];
     self.costLabel.text = activity.cost;
     self.nameLabel.text = activity.name;
-    self.suggestCountLabel.text = activity.amountOfPeople;
+    self.suggestCountLabel.text = activity.toplimit;
 }
 
 @end

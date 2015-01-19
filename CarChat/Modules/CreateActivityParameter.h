@@ -8,7 +8,9 @@
 
 #import "ABCParameter.h"
 
-
+/**
+ *  创建活动接口参数
+ */
 @interface CreateActivityParameter : ABCParameter
 
 

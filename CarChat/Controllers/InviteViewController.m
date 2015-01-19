@@ -86,7 +86,7 @@ static NSString * const InviteItemEMAIL = @"邮件";
     if (!self.inviteCode) {
         [self showLoading:nil];
         CreateInviteCodeParameter * parameter = (CreateInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiCreateInviteCode];
-        parameter.activityIdentifier = self.activity.ID;
+        parameter.activityIdentifier = self.activity.identifier;
         [[CCNetworkManager defaultManager] requestWithParameter:parameter];
     }
 }

@@ -11,7 +11,11 @@
 
 @interface ActivityEditView : UIView
 
-+ (instancetype)viewWithActivity:(ActivityModel *)activity;
++ (instancetype)view;
+
+- (void)layoutWithActivity:(ActivityModel *)activity;
+
+- (void)beginEdit;
 
 - (ActivityModel *)generateActivityAndStoreImageData:(NSData **)imageData;
 

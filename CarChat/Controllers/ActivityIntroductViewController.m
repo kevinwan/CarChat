@@ -7,14 +7,12 @@
 //
 
 #import "ActivityIntroductViewController.h"
-#import "ActivityIntrudoctionView.h"
 #import "ActivityEditView.h"
 
 @interface ActivityIntroductViewController ()
 
 @property (nonatomic, strong) ActivityModel * activity;
 @property (nonatomic, strong) ActivityModel * createdActivity;
-@property (nonatomic, strong) ActivityIntrudoctionView * introductView;
 @property (nonatomic, strong) ActivityEditView * editView;
 @property (nonatomic, strong) UIBarButtonItem * leftItemStore;
 @property (nonatomic, strong) UIBarButtonItem * rightItemStore;
@@ -53,9 +51,9 @@
                              target:self
                           andAction:@selector(createAndEditTheActivity)];
     
-    self.introductView = [ActivityIntrudoctionView view];
-    [self.introductView layoutWithActivity:self.activity];
-    [self.view addSubview:self.introductView];
+    self.editView = [ActivityEditView view];
+    [self.editView layoutWithActivity:self.activity];
+    [self.view addSubview:self.editView];
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
                                             forApi:ApiLogin];
@@ -96,13 +94,10 @@
         }
         else if (api == ApiCreateActivity) {
             // 创建成功
-            // 复用introduction view显示创建好的活动
-//            self.createdActivity = response.object;
             // TODO: 调用网络层解析好的activity对象
             self.createdActivity = [ActivityModel ActivityWithParameter:(CreateActivityParameter *)response.parameter];
-            [self.introductView layoutWithActivity:self.createdActivity];
-            [self.editView setHidden:YES];
-            [self.introductView setHidden:NO];
+            [self.editView layoutWithActivity:self.createdActivity];
+            [self.editView setUserInteractionEnabled:NO];
             [self setLeftNavigationBarItem:@"关闭" target:self andAction:@selector(close) animated:YES];
             [self setRightNavigationBarItem:@"邀请" target:self andAction:@selector(invite) animated:YES];
         }
@@ -120,6 +115,9 @@
 
 - (void)create
 {
+    [self.editView endEditing:YES];
+    [self.editView setUserInteractionEnabled:NO];
+    
     NSData * imgData;
     ActivityModel * fromEditing = [self.editView generateActivityAndStoreImageData:&imgData];
     // 调用接口，创建活动
@@ -133,8 +131,8 @@
 {
     [self.navigationItem setLeftBarButtonItem:self.leftItemStore animated:YES];;
     [self.navigationItem setRightBarButtonItem:self.rightItemStore animated:YES];
-    [self.editView setHidden:NO];
-    [self.introductView setHidden:YES];
+    [self.editView endEditing:YES];
+    [self.editView setUserInteractionEnabled:NO];
 }
 
 - (void)close
@@ -155,9 +153,9 @@
 - (void)animateEditingView
 {
     self.showEditingAnimatedAfterLogin = NO;
-    self.editView = [ActivityEditView viewWithActivity:self.activity];
-    [self.editView setHidden:YES];
-    [self.view addSubview:self.editView];
+    
+    [self.editView setUserInteractionEnabled:YES];
+    [self.editView beginEdit];
     
     self.rightItemStore = self.navigationItem.rightBarButtonItem;
     [self setRightNavigationBarItem:@"创建" target:self andAction:@selector(create) animated:YES];
@@ -165,9 +163,6 @@
     
     self.leftItemStore = self.navigationItem.leftBarButtonItem;
     [self setLeftNavigationBarItem:@"取消" target:self andAction:@selector(giveUp) animated:YES];
-    
-    [self.introductView setHidden:YES];
-    [self.editView setHidden:NO];
 }
 
 @end

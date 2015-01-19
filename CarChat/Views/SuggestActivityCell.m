@@ -8,7 +8,7 @@
 
 #import "SuggestActivityCell.h"
 
-CGFloat const SuggestActivityCellDefaultHeight = 220.f;
+CGFloat const SuggestActivityCellDefaultHeight = 233.f;
 
 @implementation SuggestActivityCell
 
@@ -21,6 +21,7 @@ CGFloat const SuggestActivityCellDefaultHeight = 220.f;
         
         _name = [[UILabel alloc]initWithFrame:CGRectZero];
         [_name setFont:[UIFont boldSystemFontOfSize:15]];
+        [_name setNumberOfLines:99];
         [_name setBackgroundColor:[UIColor colorWithRed:0.701 green:0.999 blue:1.000 alpha:1.000]];
         [self.contentView addSubview:_name];
         
@@ -52,9 +53,9 @@ CGFloat const SuggestActivityCellDefaultHeight = 220.f;
     CGSize cellSize = self.bounds.size;
     
     [self.poster setFrame:CGRectMake(0.f, 0.f, cellSize.width, 180.f)];
-    [self.name setFrame:CGRectMake(0.f, 180.f, cellSize.width, 18.f)];
-    [self.cost setFrame:CGRectMake(0.f, 198.f, cellSize.width/2, 16.f)];
-    [self.peopleCount setFrame:CGRectMake(cellSize.width/2, 198.f, cellSize.width/2, 16.f)];
+    [self.name setFrame:CGRectMake(0.f, 180.f, cellSize.width, 36.f)];
+    [self.cost setFrame:CGRectMake(0.f, 216.f, cellSize.width/2, 16.f)];
+    [self.peopleCount setFrame:CGRectMake(cellSize.width/2, 216.f, cellSize.width/2, 16.f)];
 }
 
 @end

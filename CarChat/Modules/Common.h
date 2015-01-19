@@ -16,4 +16,10 @@ typedef NS_ENUM(NSInteger, Gender) {
     GenderFemale
 };
 
+typedef NS_ENUM(NSInteger, PayType) {
+    PayTypeSBTreat = 1,
+    PayTypeEverybodyDutch = 2,
+    PayTypeBoysDutch = 3
+};
+
 #endif

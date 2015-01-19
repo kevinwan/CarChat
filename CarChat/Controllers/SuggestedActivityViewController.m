@@ -33,10 +33,10 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     
     self.tableDelegator = [[ActivitiesCollectionDelegator alloc]initWithActivities:self.activities cellIdentifier:activityCellIdentifier];
     [self.tableDelegator setConfigBlock:^(ActivityModel * activity, SuggestActivityCell * cell) {
-        [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrlStr]];
+        [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.poster]];
         cell.name.text = activity.name;
         cell.cost.text = [NSString stringWithFormat:@"费用:%@",activity.cost];
-        cell.peopleCount.text = [NSString stringWithFormat:@"人数:%@",activity.amountOfPeople];
+        cell.peopleCount.text = [NSString stringWithFormat:@"人数:%@",activity.toplimit];
     }];
     __weak typeof(self) weakRef = self;
     [self.tableDelegator setSelectingBlock: ^(ActivityModel * activity) {
@@ -102,12 +102,13 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
         activity.name = [NSString stringWithFormat:@"去钓鱼，上次我钓了%d条鱼，称了一下，%d斤！！！哎呀，还不够行数？",i,i*3];
         activity.destination = [NSString stringWithFormat:@"destination %d",i];
         activity.date = [NSString stringWithFormat:@"%@",[NSDate date]];
-        activity.amountOfPeople = [NSString stringWithFormat:@"%d",i];
-        activity.posterUrlStr = posters[i];
+        activity.toplimit = [NSString stringWithFormat:@"%d",i];
+        activity.poster = posters[i];
         activity.owner = [UserModel new];
         activity.owner.avatarUrlStr = @"http://b.hiphotos.baidu.com/image/pic/item/ca1349540923dd5427f5bd1dd309b3de9d8248c4.jpg";
         activity.owner.nickName = @"红烧肉";
         activity.owner.gender = (Gender)i%2;
+        activity.payType = PayTypeSBTreat;
         activity.cost = [NSString stringWithFormat:@"%d0$/person",i];
         [self.activities addObject:activity];
     }
