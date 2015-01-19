@@ -89,6 +89,10 @@ extern const NSInteger MyFollowerCellTag;
  *  在我的页面，点击编辑资料
  */
 extern const NSInteger MyEditProfileTag;
+/**
+ *  在编辑资料页面，点击上传车主认证材料
+ */
+extern const NSInteger MyEditProfileUploadCertifyButtonTag;
 
 @interface ControllerCoordinator : NSObject
 

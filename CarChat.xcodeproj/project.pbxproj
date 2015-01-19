@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E2F43111A6D428A00971789 /* PersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2F430F1A6D428A00971789 /* PersonalProfileViewController.m */; };
+		7E2F43121A6D428A00971789 /* PersonalProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2F43101A6D428A00971789 /* PersonalProfileViewController.xib */; };
+		7E2F43161A6D46B800971789 /* UploadCertifyProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E2F43141A6D46B800971789 /* UploadCertifyProfileViewController.m */; };
+		7E2F43171A6D46B800971789 /* UploadCertifyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E2F43151A6D46B800971789 /* UploadCertifyProfileViewController.xib */; };
 		7E415BE71A6589430025E5FB /* ActivityEditView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BE61A6589430025E5FB /* ActivityEditView.m */; };
 		7E415BE91A65895E0025E5FB /* ActivityEditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E415BE81A65895E0025E5FB /* ActivityEditView.xib */; };
 		7E415BEC1A66B2ED0025E5FB /* CreateActivityParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BEB1A66B2ED0025E5FB /* CreateActivityParameter.m */; };
@@ -93,6 +97,12 @@
 
 /* Begin PBXFileReference section */
 		12FB037F979C42EA46571C1A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E2F430E1A6D428A00971789 /* PersonalProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalProfileViewController.h; sourceTree = "<group>"; };
+		7E2F430F1A6D428A00971789 /* PersonalProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalProfileViewController.m; sourceTree = "<group>"; };
+		7E2F43101A6D428A00971789 /* PersonalProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalProfileViewController.xib; sourceTree = "<group>"; };
+		7E2F43131A6D46B800971789 /* UploadCertifyProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadCertifyProfileViewController.h; sourceTree = "<group>"; };
+		7E2F43141A6D46B800971789 /* UploadCertifyProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadCertifyProfileViewController.m; sourceTree = "<group>"; };
+		7E2F43151A6D46B800971789 /* UploadCertifyProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadCertifyProfileViewController.xib; sourceTree = "<group>"; };
 		7E415BE51A6589430025E5FB /* ActivityEditView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityEditView.h; sourceTree = "<group>"; };
 		7E415BE61A6589430025E5FB /* ActivityEditView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityEditView.m; sourceTree = "<group>"; };
 		7E415BE81A65895E0025E5FB /* ActivityEditView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityEditView.xib; sourceTree = "<group>"; };
@@ -256,6 +266,12 @@
 				BAB11C851A675B0E007FDE38 /* MyViewController.h */,
 				BAB11C861A675B0E007FDE38 /* MyViewController.m */,
 				BAB11C871A675B0E007FDE38 /* MyViewController.xib */,
+				7E2F430E1A6D428A00971789 /* PersonalProfileViewController.h */,
+				7E2F430F1A6D428A00971789 /* PersonalProfileViewController.m */,
+				7E2F43101A6D428A00971789 /* PersonalProfileViewController.xib */,
+				7E2F43131A6D46B800971789 /* UploadCertifyProfileViewController.h */,
+				7E2F43141A6D46B800971789 /* UploadCertifyProfileViewController.m */,
+				7E2F43151A6D46B800971789 /* UploadCertifyProfileViewController.xib */,
 				7E415BEE1A66CABA0025E5FB /* InviteViewController.h */,
 				7E415BEF1A66CABA0025E5FB /* InviteViewController.m */,
 				7E415BF01A66CABA0025E5FB /* InviteViewController.xib */,
@@ -673,6 +689,7 @@
 				BAB810971A639D1900142DDA /* ForgetPasswordViewController.xib in Resources */,
 				BA6BC7261A63627B00DA033C /* LoginViewController.xib in Resources */,
 				BAD65A781A5FA89200987B06 /* Main.storyboard in Resources */,
+				7E2F43121A6D428A00971789 /* PersonalProfileViewController.xib in Resources */,
 				BAD723381A64FAA300FB4645 /* PersonalInfoView.xib in Resources */,
 				BAB11CAE1A6CE032007FDE38 /* UserProfileCard.xib in Resources */,
 				BAB11C981A67A28B007FDE38 /* FollowerViewController.xib in Resources */,
@@ -686,6 +703,7 @@
 				7E415BE91A65895E0025E5FB /* ActivityEditView.xib in Resources */,
 				BAD7232D1A64D3DF00FB4645 /* ServerPolicyViewController.xib in Resources */,
 				BAD65A7A1A5FA89200987B06 /* Images.xcassets in Resources */,
+				7E2F43171A6D46B800971789 /* UploadCertifyProfileViewController.xib in Resources */,
 				BAB11C841A668C80007FDE38 /* InviteActivityDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -756,8 +774,10 @@
 				BAB11CA41A6910E9007FDE38 /* UIView+square2Round.m in Sources */,
 				BAB810961A639D1900142DDA /* ForgetPasswordViewController.m in Sources */,
 				7E415BE71A6589430025E5FB /* ActivityEditView.m in Sources */,
+				7E2F43111A6D428A00971789 /* PersonalProfileViewController.m in Sources */,
 				BAB11C7F1A6670FB007FDE38 /* GetActivityWithInviteCodeParameter.m in Sources */,
 				7EF6A01B1A641FEC0022DBCE /* LoginParameter.m in Sources */,
+				7E2F43161A6D46B800971789 /* UploadCertifyProfileViewController.m in Sources */,
 				BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */,
 				BA03556A1A660AAB00252F99 /* ParameterFactory.m in Sources */,
 				7EF16D361A63FED00008B16F /* CCNetworkManager.m in Sources */,

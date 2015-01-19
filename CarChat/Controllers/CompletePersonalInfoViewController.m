@@ -16,7 +16,7 @@
 
 @interface CompletePersonalInfoViewController ()
 
-@property (nonatomic, strong) UserModel * user;
+@property (nonatomic, copy) NSString * userId;
 @property (nonatomic, strong) PersonalInfoView * contentView;
 @property (nonatomic, strong) ALAsset * asset;
 
@@ -24,10 +24,10 @@
 
 @implementation CompletePersonalInfoViewController
 #pragma mark - Lifecycle
-- (instancetype)initWithUser:(UserModel *)user
+- (instancetype)initWithUserId:(NSString *)userId
 {
     if (self = [super init]) {
-        self.user = user;
+        self.userId = userId;
     }
     return self;
 }
@@ -45,9 +45,8 @@
     [self.navigationItem.rightBarButtonItem setEnabled:NO]; // default is disable
     
     /*Load content view*/
-    self.contentView = [PersonalInfoView view];
+    self.contentView = [PersonalInfoView viewWithStyle:PersonalInfoViewStyleNormal];
     [self.contentView setFrame:self.view.bounds];
-    [self.contentView setUser:self.user];
     [self.view addSubview:self.contentView];
     [self.contentView setEditable:YES];
     __weak typeof(self) _weakRef = self;

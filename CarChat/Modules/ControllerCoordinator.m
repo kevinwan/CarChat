@@ -19,6 +19,8 @@
 #import "MyActivitiesViewController.h"
 #import "FollowingViewController.h"
 #import "FollowerViewController.h"
+#import "PersonalProfileViewController.h"
+#import "UploadCertifyProfileViewController.h"
 
 const NSInteger ShowLoginFromSomeWhereTag = 1;
 const NSInteger RegisterRegisterButtonTag = 101;
@@ -40,6 +42,7 @@ const NSInteger MyActivityCellTag = 500;
 const NSInteger MyFollowingCellTag = 501;
 const NSInteger MyFollowerCellTag = 502;
 const NSInteger MyEditProfileTag = 503;
+const NSInteger MyEditProfileUploadCertifyButtonTag = 504;
 
 @implementation ControllerCoordinator
 
@@ -200,11 +203,16 @@ const NSInteger MyEditProfileTag = 503;
             break;
         case MyEditProfileTag:
         {
-            CompletePersonalInfoViewController * profileVC = [[CompletePersonalInfoViewController alloc]initWithUser:(UserModel *)context];
+            PersonalProfileViewController * profileVC = [[PersonalProfileViewController alloc]initWithUserModel:(UserModel *)context];
             UINavigationController * profileNav = [[UINavigationController alloc]initWithRootViewController:profileVC];
             [vc.navigationController presentViewController:profileNav animated:YES completion:nil];
         }
             break;
+        case MyEditProfileUploadCertifyButtonTag:
+        {
+            UploadCertifyProfileViewController *uploadVC = [[UploadCertifyProfileViewController alloc]initWithUserId:(NSString *)context];
+            [vc.navigationController pushViewController:uploadVC animated:YES];
+        }
         default:
             break;
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -39,6 +39,16 @@
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits" returnKeyType="done"/>
                 </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kVW-5k-e4o">
+                    <rect key="frame" x="88" y="265" width="144" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="成为认证车主">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="certifyButtonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="Dbv-ot-blf"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
@@ -46,6 +56,7 @@
             <connections>
                 <outlet property="ageField" destination="OJq-lY-f2U" id="c0o-UT-UeL"/>
                 <outlet property="avatarButton" destination="c4U-ll-2sQ" id="1eo-ql-VJf"/>
+                <outlet property="certifyButton" destination="kVW-5k-e4o" id="mAw-Vd-LZP"/>
                 <outlet property="genderField" destination="gCt-8i-wvt" id="dMW-MJ-rk1"/>
                 <outlet property="nickNameField" destination="Xih-sL-Kne" id="TwH-q3-WDk"/>
             </connections>

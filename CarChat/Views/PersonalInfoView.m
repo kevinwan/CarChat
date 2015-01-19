@@ -12,14 +12,19 @@
 
 @interface PersonalInfoView ()
 
+@property (nonatomic, assign) PersonalInfoViewStyle style;
+@property (weak, nonatomic) IBOutlet UIButton *certifyButton;
+
 @end
 
 @implementation PersonalInfoView
 
 #pragma mark - Lifecycle
-+ (instancetype)view
++ (instancetype)viewWithStyle:(PersonalInfoViewStyle)style
 {
     PersonalInfoView * view = [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil][0];
+    view.style = style;
+    [view.certifyButton setHidden:style == PersonalInfoViewStyleNormal];
     return view;
 }
 
@@ -28,6 +33,7 @@
     [super awakeFromNib];
     
     [self.avatarButton makeRoundIfIsSquare];
+    
 }
 
 #pragma mark - User Interaction
@@ -35,6 +41,11 @@
 {
     [self.avatarButton setBackgroundImage:self.pickBlock() forState:UIControlStateNormal];
 }
+
+- (IBAction)certifyButtonTapped:(id)sender {
+    self.certifyBlock();
+}
+
 
 #pragma mark - Public Apis
 - (void)setUser:(UserModel *)user
