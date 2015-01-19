@@ -7,7 +7,10 @@
 //
 
 #import "AbstractViewController.h"
+#import "UserModel.h"
 
 @interface CompletePersonalInfoViewController : AbstractViewController
+
+- (instancetype)initWithUser:(UserModel *)user;
 
 @end

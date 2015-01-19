@@ -32,7 +32,7 @@
 {
     [self.poster sd_setImageWithURL:[NSURL URLWithString:activity.poster]];
     [self.nameLabel setText:activity.name];
-    [self.starterAvtar sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatarUrlStr]];
+    [self.starterAvtar sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatar]];
     [self.starterGender setBackgroundColor:[UIColor redColor]];
     [self.starterCertifyIcon setBackgroundColor:[UIColor blueColor]];
     [self.starterName setText: activity.owner.nickName];

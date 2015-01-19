@@ -8,40 +8,75 @@
 
 #import "ActivityModel.h"
 
+static NSString * const sbtreat = @"土豪请客";
+static NSString * const aa = @"AA";
+static NSString * const boyAA = @"男士AA";
+
 @implementation ActivityModel
 
 - (CreateActivityParameter *)parameter
 {
     CreateActivityParameter *parameter = (CreateActivityParameter *)[ParameterFactory parameterWithApi:ApiCreateActivity];
-    // TODO:
+    parameter.name = self.name;
+    parameter.destination = self.destination;
+    parameter.date = self.date;
+    parameter.toplimit = self.toplimit;
+    parameter.payType = self.payType;
+    parameter.cost = self.cost;
+    parameter.poster = self.posterData;
+    parameter.posterUrl = self.poster;
     return parameter;
 }
 
 + (instancetype)ActivityWithParameter:(CreateActivityParameter *)parameter
 {
     ActivityModel * model = [ActivityModel new];
-    // TODO:
+    model.name = parameter.name;
+    model.destination = parameter.destination;
+    model.date = parameter.date;
+    model.toplimit = parameter.toplimit;
+    model.payType = parameter.payType;
+    model.cost = parameter.cost;
+    model.posterData = parameter.poster;
+    model.poster = parameter.posterUrl;
     return model;
 }
 
-- (NSString *)payTypeString
++ (NSString *)stringFromPayType:(PayType)type
 {
-    if (self.payType == 0) {
+    if (type == 0) {
         return nil;
     }
-    switch (self.payType) {
+    switch (type) {
         case PayTypeSBTreat:
-            return @"土豪请客";
+            return sbtreat;
             break;
         case PayTypeEverybodyDutch:
-            return @"AA制";
+            return aa;
             break;
         case PayTypeBoysDutch:
-            return @"男士AA";
+            return boyAA;
             break;
         default:
             return nil;
             break;
+    }
+}
+
++ (PayType)payTypeFromString:(NSString *)string
+{
+    if ([string isEqualToString:sbtreat]) {
+        return PayTypeSBTreat;
+    }
+    else if ([string isEqualToString:aa]) {
+        return PayTypeEverybodyDutch;
+    }
+    else if ([string isEqualToString:boyAA]) {
+        return PayTypeBoysDutch;
+    }
+    else
+    {
+        return 0;
     }
 }
 

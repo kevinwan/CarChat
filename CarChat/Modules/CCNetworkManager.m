@@ -24,7 +24,7 @@ NSString * const ApiSetPersonalInfo = @"SetPersonalInfo";
 NSString * const ApiGetUserInfo = @"GetUserInfo";
 NSString * const ApiSubmitCertificationProfile = @"SubmitCertificationProfile";
 NSString * const ApiGetSuggestActivities = @"GetSuggestActivities";
-NSString * const ApiGetMyActivities = @"GetMyActivities";
+NSString * const ApiGetUserActivities = @"GetUserActivities";
 NSString * const ApiGetActivitiesDetail = @"GetActivitiesDetail";
 NSString * const ApiGetCommentsInActivity = @"GetCommentsInActivity";
 NSString * const ApiReplyActivity = @"ReplyActivity";
@@ -37,6 +37,7 @@ NSString * const ApiFollowUser = @"FollowUser";
 NSString * const ApiUnfollowUser = @"UnfollowUser";
 NSString * const ApiGetFollowing = @"GetFollowing";
 NSString * const ApiGetFollowers = @"GetFollowers";
+NSString * const ApiGetParticipants = @"GetParticipants";
 
 
 @interface CCNetworkManager ()

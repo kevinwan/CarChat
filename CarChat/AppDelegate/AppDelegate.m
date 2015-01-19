@@ -103,7 +103,7 @@ static const NSInteger MyNavItemTag = 2;
                  act.toplimit = @"12";
                  act.cost = @"50$/人";
                  act.poster = @"http://f.hiphotos.baidu.com/image/pic/item/11385343fbf2b2119695ec50c98065380cd78e70.jpg";
-                 act.owner.avatarUrlStr = @"http://f.hiphotos.baidu.com/image/pic/item/fd039245d688d43f5a0f54f37f1ed21b0ef43b09.jpg";
+                 act.owner.avatar = @"http://f.hiphotos.baidu.com/image/pic/item/fd039245d688d43f5a0f54f37f1ed21b0ef43b09.jpg";
                  act.owner.nickName = @"范爷";
                  act.owner.gender = GenderFemale;
                  

@@ -85,6 +85,10 @@ extern const NSInteger MyFollowingCellTag;
  *  在我的页面，点击Follower
  */
 extern const NSInteger MyFollowerCellTag;
+/**
+ *  在我的页面，点击编辑资料
+ */
+extern const NSInteger MyEditProfileTag;
 
 @interface ControllerCoordinator : NSObject
 

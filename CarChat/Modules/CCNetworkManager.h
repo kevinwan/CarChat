@@ -103,6 +103,10 @@ extern NSString * const ApiGetFollowing ;
  *  获取关注我的人列表
  */
 extern NSString * const ApiGetFollowers ;
+/**
+ *  获取某个活动下所有成员
+ */
+extern NSString * const ApiGetParticipants;
 
 
 @interface CCNetworkManager : NSObject

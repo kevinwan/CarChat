@@ -20,6 +20,15 @@
 @property (weak, nonatomic) IBOutlet RPFloatingPlaceholderTextField *payType;
 @property (weak, nonatomic) IBOutlet RPFloatingPlaceholderTextField *cost;
 
+/**
+ *  用户选择的图片文件。如果用户自己选择了图片，创建model时就用这个。
+ */
+@property (nonatomic, copy) UIImage * userChoosedPoster;
+/**
+ *  原始poster图片的地址，如果用户没有选择图片，创建model时就回传原始图片地址。
+ */
+@property (nonatomic, copy) NSString * originPosterUrl;
+
 @end
 
 @implementation ActivityEditView
@@ -36,13 +45,23 @@
 - (void)layoutWithActivity:(ActivityModel *)activity
 {
     [self.name setPlaceholder:@"活动名称"];
-    [self.posterView sd_setImageWithURL:[NSURL URLWithString:activity.poster]];
+    if (activity.posterData) {
+        UIImage * posterImage = [UIImage imageWithData:activity.posterData];
+        [self.posterView setImage:posterImage];
+        self.userChoosedPoster = posterImage;
+        self.originPosterUrl = nil;
+    }
+    else  {
+        [self.posterView sd_setImageWithURL:[NSURL URLWithString:activity.poster]];
+        self.originPosterUrl = activity.poster;
+        self.userChoosedPoster = nil;
+    }
     self.name.text = activity.name;
     self.cost.text = activity.cost;
     self.date.text = activity.date;
     self.destiny.text = activity.destination;
     self.toplimit.text = activity.toplimit;
-    self.payType.text = activity.payTypeString;
+    self.payType.text = [ActivityModel stringFromPayType:activity.payType];
     self.cost.text = activity.cost;
 }
 
@@ -51,14 +70,21 @@
     [self.name becomeFirstResponder];
 }
 
-- (ActivityModel *)generateActivityAndStoreImageData:(NSData *__autoreleasing *)imageData
+- (ActivityModel *)generateActivity
 {
     ActivityModel * model = [[ActivityModel alloc]init];
     model.name = self.name.text;
-//    model.cost = self.costField.text;
-//    model.toplimit = self.suggestCountField.text;
-    
-    *imageData = UIImageJPEGRepresentation(self.posterView.image, .5);
+    model.destination = self.destiny.text;
+    model.date = self.date.text;
+    model.toplimit = self.toplimit.text;
+    model.payType = [ActivityModel payTypeFromString:self.payType.text];
+    model.cost = self.cost.text;
+    if (self.userChoosedPoster != nil) {
+        model.posterData = UIImageJPEGRepresentation(self.userChoosedPoster, .5);
+    }
+    else {
+        model.poster = self.originPosterUrl;
+    }
     
     return model;
 }

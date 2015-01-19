@@ -8,6 +8,7 @@
 
 #import "PersonalInfoView.h"
 #import <UIButton+WebCache.h>
+#import "UIView+square2Round.h"
 
 @interface PersonalInfoView ()
 
@@ -22,6 +23,13 @@
     return view;
 }
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    [self.avatarButton makeRoundIfIsSquare];
+}
+
 #pragma mark - User Interaction
 - (IBAction)avatarButtonTapped:(id)sender
 {
@@ -31,17 +39,19 @@
 #pragma mark - Public Apis
 - (void)setUser:(UserModel *)user
 {
-    [self.avatarButton sd_setBackgroundImageWithURL:[NSURL URLWithString:user.avatarUrlStr] forState:UIControlStateNormal];
-    self.nickNameField.text = user.nickName;
-    NSString * genderStr = @"";
-    if (user.gender == GenderMale) {
-        genderStr = @"男";
+    if (user) {
+        [self.avatarButton sd_setBackgroundImageWithURL:[NSURL URLWithString:user.avatar] forState:UIControlStateNormal];
+        self.nickNameField.text = user.nickName;
+        NSString * genderStr = @"";
+        if (user.gender == GenderMale) {
+            genderStr = @"男";
+        }
+        else if (user.gender == GenderFemale) {
+            genderStr = @"女";
+        }
+        self.genderField.text = genderStr;
+        self.ageField.text = user.age;
     }
-    else if (user.gender == GenderFemale) {
-        genderStr = @"女";
-    }
-    self.genderField.text = genderStr;
-    self.ageField.text = user.age;
 }
 
 - (void)setEditable:(BOOL)editable

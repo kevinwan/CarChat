@@ -7,9 +7,13 @@
 //
 
 #import "MyViewController.h"
+#import "UserModel.h"
+#import "UserProfileCard.h"
+#import "UIView+frame.h"
 
-@interface MyViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UITableView *myTableView;
+@interface MyViewController ()
+
+@property (nonatomic, strong) UserModel *i;
 
 @end
 
@@ -20,12 +24,33 @@
     [super viewDidLoad];
 
     self.navigationItem.title = @"我";
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(slapMe)]];
     
-    // Hack the edgeLayout
-    [self.myTableView setContentInset:UIEdgeInsetsMake(64.f, 0, 0, 0)];
+    self.i = [[UserModel alloc]init];
+    self.i.phone = @"13515125483";
+    self.i.nickName = @"格格巫";
+    self.i.age = @"28";
+    self.i.avatar = @"http://b.hiphotos.baidu.com/image/pic/item/810a19d8bc3eb135eae45086a51ea8d3fd1f44e8.jpg";
+    self.i.gender = GenderMale;
+    self.i.city = @"南京";
+    self.i.countOfActvity = @"20";
+    self.i.countOfFollowing = @"5";
+    self.i.countOfFollower = @"1000000000";
     
-    // hack the empty cell
-    [self.myTableView setTableFooterView:[UIView new]];
+    UserProfileCard * card = [UserProfileCard view];
+    [card layoutWithUser:self.i];
+    card.y += 64.f;
+    [self.view addSubview:card];
+    
+    [card setActivityTouched:^{
+        LOG_EXPR(@"activity:");
+    }];
+    [card setFollowingTouched:^{
+        LOG_EXPR(@"following");
+    }];
+    [card setFollowerTouched:^{
+        LOG_EXPR(@"follower");
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,78 +58,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - UITableViewDataSource
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 3;
-}
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString * identifier = @"myCell";
-    UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-    if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault
-                                     reuseIdentifier:identifier];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    
-    [self configCelleAtIndexPath:indexPath cell:cell];
-    
-    return cell;
-}
-
-#pragma mark - UITableViewDelegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    switch (indexPath.row) {
-        case 0:
-        {
-            [ControllerCoordinator goNextFrom:self
-                                      whitTag:MyActivityCellTag
-                                   andContext:nil];
-        }
-            break;
-        case 1:
-        {
-            [ControllerCoordinator goNextFrom:self
-                                      whitTag:MyFollowingCellTag
-                                   andContext:nil];
-        }
-            break;
-        case 2:
-        {
-            [ControllerCoordinator goNextFrom:self
-                                      whitTag:MyFollowerCellTag
-                                   andContext:nil];
-        }
-            break;
-        default:
-            break;
-    }
-}
-
-#pragma mark - Internal Helper
-- (void)configCelleAtIndexPath:(NSIndexPath *)indexPath cell:(UITableViewCell *)cell
-{
-    switch (indexPath.row) {
-        case 0:
-            cell.textLabel.text = @"我的活动";
-            break;
-        case 1:
-            cell.textLabel.text = @"Following";
-            break;
-        case 2:
-            cell.textLabel.text = @"Follower";
-            break;
-        default:
-            break;
-    }
+- (void)slapMe {
+    [ControllerCoordinator goNextFrom:self whitTag:MyEditProfileTag andContext:self.i];
 }
 
 @end

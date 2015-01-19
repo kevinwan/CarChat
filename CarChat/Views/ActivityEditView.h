@@ -17,6 +17,6 @@
 
 - (void)beginEdit;
 
-- (ActivityModel *)generateActivityAndStoreImageData:(NSData **)imageData;
+- (ActivityModel *)generateActivity;
 
 @end

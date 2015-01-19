@@ -34,6 +34,9 @@
     if (self.tabBarController) {
         if ([self.view.window isKeyWindow] && self.view.window.windowLevel == UIWindowLevelNormal) {
             self.tabBarController.navigationItem.title = self.navigationItem.title;
+            self.tabBarController.navigationItem.rightBarButtonItem
+            = self.navigationItem.rightBarButtonItem;
+            self.tabBarController.navigationItem.leftBarButtonItem = self.navigationItem.leftBarButtonItem;
         }
     }
 }

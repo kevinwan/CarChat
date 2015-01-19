@@ -12,15 +12,25 @@
 #import "GetActivityWithInviteCodeParameter.h"
 #import "NSString+Helpers.h"
 #import "CCStatusManager.h"
+#import <UIButton+WebCache.h>
 
 @interface CompletePersonalInfoViewController ()
 
+@property (nonatomic, strong) UserModel * user;
 @property (nonatomic, strong) PersonalInfoView * contentView;
 @property (nonatomic, strong) ALAsset * asset;
 
 @end
 
 @implementation CompletePersonalInfoViewController
+#pragma mark - Lifecycle
+- (instancetype)initWithUser:(UserModel *)user
+{
+    if (self = [super init]) {
+        self.user = user;
+    }
+    return self;
+}
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
@@ -37,6 +47,7 @@
     /*Load content view*/
     self.contentView = [PersonalInfoView view];
     [self.contentView setFrame:self.view.bounds];
+    [self.contentView setUser:self.user];
     [self.view addSubview:self.contentView];
     [self.contentView setEditable:YES];
     __weak typeof(self) _weakRef = self;

@@ -52,6 +52,9 @@
 		BAB11CA11A690E6F007FDE38 /* UIImage+color.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11CA01A690E6F007FDE38 /* UIImage+color.m */; };
 		BAB11CA41A6910E9007FDE38 /* UIView+square2Round.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11CA31A6910E9007FDE38 /* UIView+square2Round.m */; };
 		BAB11CA91A69FE5B007FDE38 /* SuggestActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11CA81A69FE5B007FDE38 /* SuggestActivityCell.m */; };
+		BAB11CAC1A6CE021007FDE38 /* UserProfileCard.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11CAB1A6CE021007FDE38 /* UserProfileCard.m */; };
+		BAB11CAE1A6CE032007FDE38 /* UserProfileCard.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11CAD1A6CE032007FDE38 /* UserProfileCard.xib */; };
+		BAB11CB11A6CFDC5007FDE38 /* UIView+frame.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11CB01A6CFDC5007FDE38 /* UIView+frame.m */; };
 		BAB810961A639D1900142DDA /* ForgetPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB810941A639D1900142DDA /* ForgetPasswordViewController.m */; };
 		BAB810971A639D1900142DDA /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB810951A639D1900142DDA /* ForgetPasswordViewController.xib */; };
 		BAB8109B1A63A85D00142DDA /* CompletePersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB810991A63A85D00142DDA /* CompletePersonalInfoViewController.m */; };
@@ -173,6 +176,11 @@
 		BAB11CA31A6910E9007FDE38 /* UIView+square2Round.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+square2Round.m"; sourceTree = "<group>"; };
 		BAB11CA71A69FE5B007FDE38 /* SuggestActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestActivityCell.h; sourceTree = "<group>"; };
 		BAB11CA81A69FE5B007FDE38 /* SuggestActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestActivityCell.m; sourceTree = "<group>"; };
+		BAB11CAA1A6CE021007FDE38 /* UserProfileCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileCard.h; sourceTree = "<group>"; };
+		BAB11CAB1A6CE021007FDE38 /* UserProfileCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileCard.m; sourceTree = "<group>"; };
+		BAB11CAD1A6CE032007FDE38 /* UserProfileCard.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileCard.xib; sourceTree = "<group>"; };
+		BAB11CAF1A6CFDC5007FDE38 /* UIView+frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+frame.h"; sourceTree = "<group>"; };
+		BAB11CB01A6CFDC5007FDE38 /* UIView+frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+frame.m"; sourceTree = "<group>"; };
 		BAB8108D1A638FA800142DDA /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		BAB810931A639D1900142DDA /* ForgetPasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordViewController.h; sourceTree = "<group>"; };
 		BAB810941A639D1900142DDA /* ForgetPasswordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordViewController.m; sourceTree = "<group>"; };
@@ -340,6 +348,8 @@
 				BAB11CA01A690E6F007FDE38 /* UIImage+color.m */,
 				BAB11CA21A6910E9007FDE38 /* UIView+square2Round.h */,
 				BAB11CA31A6910E9007FDE38 /* UIView+square2Round.m */,
+				BAB11CAF1A6CFDC5007FDE38 /* UIView+frame.h */,
+				BAB11CB01A6CFDC5007FDE38 /* UIView+frame.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -559,6 +569,9 @@
 				BAD723341A64FA6900FB4645 /* PersonalInfoView.h */,
 				BAD723351A64FA6900FB4645 /* PersonalInfoView.m */,
 				BAD723371A64FAA300FB4645 /* PersonalInfoView.xib */,
+				BAB11CAA1A6CE021007FDE38 /* UserProfileCard.h */,
+				BAB11CAB1A6CE021007FDE38 /* UserProfileCard.m */,
+				BAB11CAD1A6CE032007FDE38 /* UserProfileCard.xib */,
 			);
 			name = PersonalProfile;
 			sourceTree = "<group>";
@@ -661,6 +674,7 @@
 				BA6BC7261A63627B00DA033C /* LoginViewController.xib in Resources */,
 				BAD65A781A5FA89200987B06 /* Main.storyboard in Resources */,
 				BAD723381A64FAA300FB4645 /* PersonalInfoView.xib in Resources */,
+				BAB11CAE1A6CE032007FDE38 /* UserProfileCard.xib in Resources */,
 				BAB11C981A67A28B007FDE38 /* FollowerViewController.xib in Resources */,
 				BAB11C931A679CE7007FDE38 /* MyActivitiesViewController.xib in Resources */,
 				BAB810A41A63C1B400142DDA /* UserCreatActivityDescriptionView.xib in Resources */,
@@ -731,6 +745,7 @@
 				BA6BC7301A63629400DA033C /* ActivitiesCollectionDelegator.m in Sources */,
 				BA0355731A661C7500252F99 /* GetVerifySMSParameter.m in Sources */,
 				BAD723281A64BF5100FB4645 /* UIImage+Gif.m in Sources */,
+				BAB11CB11A6CFDC5007FDE38 /* UIView+frame.m in Sources */,
 				BAD723241A64BF5100FB4645 /* NSDate+Helpers.m in Sources */,
 				BAB11C921A679CE7007FDE38 /* MyActivitiesViewController.m in Sources */,
 				BA6BC7341A63644500DA033C /* AbstractViewController.m in Sources */,
@@ -758,6 +773,7 @@
 				BAD723271A64BF5100FB4645 /* UIColor+Helper.m in Sources */,
 				BAB8109B1A63A85D00142DDA /* CompletePersonalInfoViewController.m in Sources */,
 				BAD65A6C1A5FA89200987B06 /* main.m in Sources */,
+				BAB11CAC1A6CE021007FDE38 /* UserProfileCard.m in Sources */,
 				BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */,
 				7E415BF51A6808160025E5FB /* CreateInviteCodeParameter.m in Sources */,
 				BA6BC7241A63627B00DA033C /* ActivityIntroductViewController.m in Sources */,

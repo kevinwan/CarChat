@@ -39,6 +39,7 @@ const NSInteger InviteDetailJoinButtonItemTag = 402;
 const NSInteger MyActivityCellTag = 500;
 const NSInteger MyFollowingCellTag = 501;
 const NSInteger MyFollowerCellTag = 502;
+const NSInteger MyEditProfileTag = 503;
 
 @implementation ControllerCoordinator
 
@@ -195,6 +196,13 @@ const NSInteger MyFollowerCellTag = 502;
             FollowingViewController * follower = [[FollowingViewController alloc]init];
             [vc.navigationController pushViewController:follower
                                                animated:YES];
+        }
+            break;
+        case MyEditProfileTag:
+        {
+            CompletePersonalInfoViewController * profileVC = [[CompletePersonalInfoViewController alloc]initWithUser:(UserModel *)context];
+            UINavigationController * profileNav = [[UINavigationController alloc]initWithRootViewController:profileVC];
+            [vc.navigationController presentViewController:profileNav animated:YES completion:nil];
         }
             break;
         default:

@@ -11,6 +11,23 @@
 
 @implementation UserModel
 
+- (NSString *)genderString
+{
+    switch (self.gender) {
+        case GenderUnknow:
+            return @"";
+            break;
+        case GenderMale:
+            return @"Male";
+            break;
+        case GenderFemale:
+            return @"Female";
+            break;
+        default:
+            break;
+    }
+}
+
 @end
 
 @implementation UserModel (icons)

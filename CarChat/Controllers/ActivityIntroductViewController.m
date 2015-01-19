@@ -94,7 +94,8 @@
         }
         else if (api == ApiCreateActivity) {
             // 创建成功
-            // TODO: 调用网络层解析好的activity对象
+            [self showTip:@"创建成功"];
+            // TODO: 把创建成功返回的id，赋值给createdActivity
             self.createdActivity = [ActivityModel ActivityWithParameter:(CreateActivityParameter *)response.parameter];
             [self.editView layoutWithActivity:self.createdActivity];
             [self.editView setUserInteractionEnabled:NO];
@@ -118,10 +119,8 @@
     [self.editView endEditing:YES];
     [self.editView setUserInteractionEnabled:NO];
     
-    NSData * imgData;
-    ActivityModel * fromEditing = [self.editView generateActivityAndStoreImageData:&imgData];
     // 调用接口，创建活动
-    CreateActivityParameter * parameter = [fromEditing parameter];
+    CreateActivityParameter * parameter = [[self.editView generateActivity] parameter];
     
     [self showLoading:nil];
     [[CCNetworkManager defaultManager] requestWithParameter:parameter];

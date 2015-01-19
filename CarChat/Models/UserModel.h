@@ -11,13 +11,18 @@
 
 @interface UserModel : NSObject
 
-@property (nonatomic, strong) NSString * nickName;
-@property (nonatomic, strong) NSString * age;
-@property (nonatomic, strong) NSString * avatarUrlStr;
+@property (nonatomic, copy) NSString * identifier;
+@property (nonatomic, copy) NSString * phone;
+@property (nonatomic, copy) NSString * nickName;
+@property (nonatomic, copy) NSString * age;
+@property (nonatomic, copy) NSString * avatar;
 @property (nonatomic, strong) NSArray * certifications;
 @property (nonatomic, assign) Gender gender;
-@property (nonatomic, assign) NSUInteger numOfFollowing;
-@property (nonatomic, assign) NSUInteger numOfFollower;
+@property (nonatomic, readonly) NSString * genderString;
+@property (nonatomic, copy) NSString * city;
+@property (nonatomic, copy) NSString * countOfActvity;
+@property (nonatomic, copy) NSString * countOfFollowing;
+@property (nonatomic, copy) NSString * countOfFollower;
 
 @end
 
