@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "ActivityModel.h"
-#import "SuggestActivityCell.h"
+#import "ActivityCell.h"
 
 /**
  *  选中集合空间中某个Item执行的回调Block，由调用者实现
@@ -23,7 +23,7 @@ typedef void (^ActivitySelectingBlock)(ActivityModel * activity);
  *  @param activity Item对应的Model对象
  *  @param cell     Item对应的Cell
  */
-typedef void (^ActivityCellConfigBlock)(ActivityModel * activity, SuggestActivityCell * cell);
+typedef void (^ActivityCellConfigBlock)(ActivityModel * activity, ActivityCell * cell);
 
 /**
  集合控件（tableview）的委托对象，实现控件所需的委托方法。
@@ -31,7 +31,7 @@ typedef void (^ActivityCellConfigBlock)(ActivityModel * activity, SuggestActivit
  */
 @interface ActivitiesCollectionDelegator : NSObject <UITableViewDelegate, UITableViewDataSource>
 
-- (instancetype)initWithActivities:(NSArray *)activities cellIdentifier:(NSString *)identifier;
+- (instancetype)initWithActivities:(NSArray *)activities cellIdentifier:(NSString *)identifier andCellStyle:(ActivityCellStyle)style;
 
 @property (nonatomic, copy) ActivityCellConfigBlock configBlock;
 @property (nonatomic, copy) ActivitySelectingBlock selectingBlock;

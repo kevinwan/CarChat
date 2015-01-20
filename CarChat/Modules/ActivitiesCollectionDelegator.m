@@ -12,16 +12,18 @@
 
 @property (nonatomic, strong) NSArray * acitivities;
 @property (nonatomic, assign) NSString * cellIdentifier;
+@property (nonatomic, assign) ActivityCellStyle style;
 
 @end
 
 @implementation ActivitiesCollectionDelegator
 
-- (instancetype)initWithActivities:(NSArray *)activities cellIdentifier:(NSString *)identifier
+- (instancetype)initWithActivities:(NSArray *)activities cellIdentifier:(NSString *)identifier andCellStyle:(ActivityCellStyle)style
 {
     if (self = [super init]) {
         self.acitivities = activities;
         self.cellIdentifier = identifier;
+        self.style = style;
     }
     return self;
 }
@@ -34,14 +36,14 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return SuggestActivityCellDefaultHeight;
+    return self.style == ActivityCellStyleSuggest ? ActivityCellStyleSuggestHeight : ActivityCellStyleUserCreatedHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SuggestActivityCell * cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+    ActivityCell * cell = [tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
     if (!cell) {
-        cell = [[SuggestActivityCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
+        cell = [[ActivityCell alloc]initWithActivityCellStyle:self.style reuseIdentifier:self.cellIdentifier];
     }
     
     self.configBlock(self.acitivities[indexPath.row], cell);

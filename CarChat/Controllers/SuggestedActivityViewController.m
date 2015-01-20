@@ -31,12 +31,12 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     [self __createActivitiesForDevelop];
     
     
-    self.tableDelegator = [[ActivitiesCollectionDelegator alloc]initWithActivities:self.activities cellIdentifier:activityCellIdentifier];
-    [self.tableDelegator setConfigBlock:^(ActivityModel * activity, SuggestActivityCell * cell) {
+    self.tableDelegator = [[ActivitiesCollectionDelegator alloc]initWithActivities:self.activities cellIdentifier:activityCellIdentifier andCellStyle:ActivityCellStyleSuggest];
+    [self.tableDelegator setConfigBlock:^(ActivityModel * activity, ActivityCell * cell) {
         [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.poster]];
         cell.name.text = activity.name;
         cell.cost.text = [NSString stringWithFormat:@"费用:%@",activity.cost];
-        cell.peopleCount.text = [NSString stringWithFormat:@"人数:%@",activity.toplimit];
+        cell.toplimit.text = [NSString stringWithFormat:@"人数:%@",activity.toplimit];
     }];
     __weak typeof(self) weakRef = self;
     [self.tableDelegator setSelectingBlock: ^(ActivityModel * activity) {

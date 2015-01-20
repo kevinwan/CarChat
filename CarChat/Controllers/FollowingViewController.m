@@ -7,18 +7,40 @@
 //
 
 #import "FollowingViewController.h"
+#import "UsersCollectionDelegator.h"
+#import "UserCell.h"
+#import <UIImageView+WebCache.h>
+
+static NSString * const followingCellIdentifier = @"followingCell";
 
 @interface FollowingViewController ()
 
+@property (nonatomic, copy) NSString * userId;
+@property (weak, nonatomic) IBOutlet UITableView *followingTable;
+@property (nonatomic, strong) NSMutableArray *followingUsers;
+@property (nonatomic, strong) UsersCollectionDelegator * followingDelegator;
 @end
 
 @implementation FollowingViewController
+
+#pragma mark - Lifecycle
+- (instancetype)initWithUserId:(NSString *)userId
+{
+    if (self = [super init]) {
+        self.userId = userId;
+        self.followingUsers = [NSMutableArray array];
+        return self;
+    }
+    return nil;
+}
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.navigationItem.title = @"我关注的";
+    [self setupFollowingData];
+    [self setupDelegator];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -26,14 +48,39 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+#pragma mark - Internal Helper
+- (void)setupDelegator
+{
+    self.followingDelegator = [[UsersCollectionDelegator alloc]initWithUsers:self.followingUsers cellIdentifier:followingCellIdentifier];
+    [self.followingTable setDelegate:self.followingDelegator];
+    [self.followingTable setDataSource:self.followingDelegator];
+    
+    [self.followingDelegator setConfigBlock:^(UserModel * user, UserCell * cell) {
+        [cell.avatar sd_setImageWithURL:[NSURL URLWithString:user.avatar]];
+        cell.name.text = user.nickName;
+        cell.genderIcon.image = user.genderImage;
+        [cell.certifyIcon sd_setImageWithURL:[NSURL URLWithString:user.avatar]];
+    }];
+    [self.followingDelegator setSelectingBlock:^(UserModel * user) {
+        // TODO: 进入用户主页
+    }];
 }
-*/
+
+- (void)setupFollowingData
+{
+    for (int i = 0; i < 10; i++) {
+        UserModel *user = [[UserModel alloc]init];
+        user.phone = @"13515125483";
+        user.nickName = [NSString stringWithFormat:@"嫖娼公知NO.%d",i];
+        user.age = @"55?";
+        user.avatar = @"http://g.hiphotos.baidu.com/image/pic/item/5366d0160924ab18713a223136fae6cd7b890b8c.jpg";
+        user.gender = i%2 + 1;
+        user.city = @"魔都";
+        user.countOfActvity = [@(5*i) stringValue];
+        user.countOfFollowing = @"5";
+        user.countOfFollower = @"两千四百万";
+        [self.followingUsers addObject:user];
+    }
+}
 
 @end

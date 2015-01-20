@@ -10,4 +10,6 @@
 
 @interface FollowerViewController : AbstractViewController
 
+- (instancetype)initWithUserId:(NSString *)userId;
+
 @end
