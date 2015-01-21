@@ -23,6 +23,8 @@
 @property (nonatomic, copy) NSString * countOfActvity;
 @property (nonatomic, copy) NSString * countOfFollowing;
 @property (nonatomic, copy) NSString * countOfFollower;
+@property (nonatomic, assign) NSInteger relationship;
+@property (nonatomic, assign) NSInteger certifyStatus;
 
 @end
 

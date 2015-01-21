@@ -93,6 +93,10 @@ extern const NSInteger MyEditProfileTag;
  *  在编辑资料页面，点击上传车主认证材料
  */
 extern const NSInteger MyEditProfileUploadCertifyButtonTag;
+/**
+ *  在我的页面，点击活动cell
+ */
+extern const NSInteger MyActivitiesCellTag;
 
 @interface ControllerCoordinator : NSObject
 

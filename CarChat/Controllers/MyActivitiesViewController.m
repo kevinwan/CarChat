@@ -53,8 +53,9 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
         cell.genderIcon.image = [activity.owner genderImage];
         [cell.certifyIcon sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatar]];
     }];
+    __weak typeof(self) weakRef = self;
     [self.tableDelegator setSelectingBlock:^(ActivityModel *activity) {
-        // TODO: push activity detail here
+        [ControllerCoordinator goNextFrom:weakRef whitTag:MyActivitiesCellTag andContext:activity];
     }];
     
     [self.activityTable setDelegate:self.tableDelegator];

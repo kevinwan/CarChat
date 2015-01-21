@@ -26,6 +26,11 @@
     return self;
 }
 
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,11 +42,6 @@
     UserCreatActivityDescriptionView * view  = [UserCreatActivityDescriptionView view];
     [view setModel:self.activity];
     [self.view addSubview:view];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - User Interaction

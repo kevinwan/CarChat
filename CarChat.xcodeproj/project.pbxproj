@@ -27,6 +27,12 @@
 		BA0355731A661C7500252F99 /* GetVerifySMSParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0355721A661C7500252F99 /* GetVerifySMSParameter.m */; };
 		BA0355761A6638B100252F99 /* ResetPasswordParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0355751A6638B100252F99 /* ResetPasswordParameter.m */; };
 		BA0355801A66502200252F99 /* ConcreteResponseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03557F1A66502200252F99 /* ConcreteResponseObject.m */; };
+		BA2009C61A6F84320052EE0F /* UserCreatedActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009C41A6F84320052EE0F /* UserCreatedActivityViewController.m */; };
+		BA2009C71A6F84320052EE0F /* UserCreatedActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2009C51A6F84320052EE0F /* UserCreatedActivityViewController.xib */; };
+		BA2009CB1A6F90A60052EE0F /* CommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009C91A6F90A60052EE0F /* CommentViewController.m */; };
+		BA2009CC1A6F90A60052EE0F /* CommentViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2009CA1A6F90A60052EE0F /* CommentViewController.xib */; };
+		BA2009CF1A6F923B0052EE0F /* CommentCollectionDelegator.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009CE1A6F923B0052EE0F /* CommentCollectionDelegator.m */; };
+		BA2009D21A6F9B2F0052EE0F /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009D11A6F9B2F0052EE0F /* CommentModel.m */; };
 		BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC70E1A635FE400DA033C /* AppDelegate.m */; };
 		BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC7161A63606700DA033C /* RegisterViewController.m */; };
 		BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6BC71A1A63607F00DA033C /* RegisterViewController.xib */; };
@@ -137,6 +143,16 @@
 		BA0355751A6638B100252F99 /* ResetPasswordParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordParameter.m; sourceTree = "<group>"; };
 		BA03557E1A66502200252F99 /* ConcreteResponseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConcreteResponseObject.h; sourceTree = "<group>"; };
 		BA03557F1A66502200252F99 /* ConcreteResponseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConcreteResponseObject.m; sourceTree = "<group>"; };
+		BA2009C31A6F84320052EE0F /* UserCreatedActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCreatedActivityViewController.h; sourceTree = "<group>"; };
+		BA2009C41A6F84320052EE0F /* UserCreatedActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCreatedActivityViewController.m; sourceTree = "<group>"; };
+		BA2009C51A6F84320052EE0F /* UserCreatedActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCreatedActivityViewController.xib; sourceTree = "<group>"; };
+		BA2009C81A6F90A60052EE0F /* CommentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentViewController.h; sourceTree = "<group>"; };
+		BA2009C91A6F90A60052EE0F /* CommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentViewController.m; sourceTree = "<group>"; };
+		BA2009CA1A6F90A60052EE0F /* CommentViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CommentViewController.xib; sourceTree = "<group>"; };
+		BA2009CD1A6F923B0052EE0F /* CommentCollectionDelegator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCollectionDelegator.h; sourceTree = "<group>"; };
+		BA2009CE1A6F923B0052EE0F /* CommentCollectionDelegator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCollectionDelegator.m; sourceTree = "<group>"; };
+		BA2009D01A6F9B2F0052EE0F /* CommentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentModel.h; sourceTree = "<group>"; };
+		BA2009D11A6F9B2F0052EE0F /* CommentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentModel.m; sourceTree = "<group>"; };
 		BA6BC70D1A635FE400DA033C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BA6BC70E1A635FE400DA033C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BA6BC7151A63606700DA033C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -383,6 +399,8 @@
 				BA6BC72A1A63628800DA033C /* ActivityModel.m */,
 				BAD723391A64FC9300FB4645 /* UserModel.h */,
 				BAD7233A1A64FC9300FB4645 /* UserModel.m */,
+				BA2009D01A6F9B2F0052EE0F /* CommentModel.h */,
+				BA2009D11A6F9B2F0052EE0F /* CommentModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -469,6 +487,12 @@
 				BAB11C801A668C80007FDE38 /* InviteActivityDetailViewController.h */,
 				BAB11C811A668C80007FDE38 /* InviteActivityDetailViewController.m */,
 				BAB11C821A668C80007FDE38 /* InviteActivityDetailViewController.xib */,
+				BA2009C31A6F84320052EE0F /* UserCreatedActivityViewController.h */,
+				BA2009C41A6F84320052EE0F /* UserCreatedActivityViewController.m */,
+				BA2009C51A6F84320052EE0F /* UserCreatedActivityViewController.xib */,
+				BA2009C81A6F90A60052EE0F /* CommentViewController.h */,
+				BA2009C91A6F90A60052EE0F /* CommentViewController.m */,
+				BA2009CA1A6F90A60052EE0F /* CommentViewController.xib */,
 			);
 			name = ActivityDetail;
 			sourceTree = "<group>";
@@ -482,6 +506,8 @@
 				7E415BF71A680C3C0025E5FB /* InviteTableDelegator.m */,
 				BAEBBE1E1A6E1BAF00020978 /* UsersCollectionDelegator.h */,
 				BAEBBE1F1A6E1BAF00020978 /* UsersCollectionDelegator.m */,
+				BA2009CD1A6F923B0052EE0F /* CommentCollectionDelegator.h */,
+				BA2009CE1A6F923B0052EE0F /* CommentCollectionDelegator.m */,
 			);
 			name = CollectionDelegator;
 			sourceTree = "<group>";
@@ -697,6 +723,7 @@
 				BAB8109C1A63A85D00142DDA /* CompletePersonalInfoViewController.xib in Resources */,
 				BAB11C8E1A679C9A007FDE38 /* FollowingViewController.xib in Resources */,
 				BAB810971A639D1900142DDA /* ForgetPasswordViewController.xib in Resources */,
+				BA2009C71A6F84320052EE0F /* UserCreatedActivityViewController.xib in Resources */,
 				BA6BC7261A63627B00DA033C /* LoginViewController.xib in Resources */,
 				BAD65A781A5FA89200987B06 /* Main.storyboard in Resources */,
 				7E2F43121A6D428A00971789 /* PersonalProfileViewController.xib in Resources */,
@@ -704,6 +731,7 @@
 				BAB11CAE1A6CE032007FDE38 /* UserProfileCard.xib in Resources */,
 				BAB11C981A67A28B007FDE38 /* FollowerViewController.xib in Resources */,
 				BAB11C931A679CE7007FDE38 /* MyActivitiesViewController.xib in Resources */,
+				BA2009CC1A6F90A60052EE0F /* CommentViewController.xib in Resources */,
 				BAB810A41A63C1B400142DDA /* UserCreatActivityDescriptionView.xib in Resources */,
 				7E415BF21A66CABA0025E5FB /* InviteViewController.xib in Resources */,
 				BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */,
@@ -776,8 +804,10 @@
 				BAB11CB11A6CFDC5007FDE38 /* UIView+frame.m in Sources */,
 				BAD723241A64BF5100FB4645 /* NSDate+Helpers.m in Sources */,
 				BAB11C921A679CE7007FDE38 /* MyActivitiesViewController.m in Sources */,
+				BA2009CF1A6F923B0052EE0F /* CommentCollectionDelegator.m in Sources */,
 				BA6BC7341A63644500DA033C /* AbstractViewController.m in Sources */,
 				BA03556D1A660E0400252F99 /* ValidateInviteCodeParameter.m in Sources */,
+				BA2009C61A6F84320052EE0F /* UserCreatedActivityViewController.m in Sources */,
 				BA6BC72B1A63628800DA033C /* ActivityModel.m in Sources */,
 				BAD7233B1A64FC9300FB4645 /* UserModel.m in Sources */,
 				BA6BC7271A63627B00DA033C /* SuggestedActivityViewController.m in Sources */,
@@ -808,6 +838,7 @@
 				BAEBBE231A6E22E200020978 /* UserCell.m in Sources */,
 				BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */,
 				7E415BF51A6808160025E5FB /* CreateInvitationParameter.m in Sources */,
+				BA2009CB1A6F90A60052EE0F /* CommentViewController.m in Sources */,
 				BA6BC7241A63627B00DA033C /* ActivityIntroductViewController.m in Sources */,
 				BAB11CA11A690E6F007FDE38 /* UIImage+color.m in Sources */,
 				BAD7232C1A64D3DF00FB4645 /* ServerPolicyViewController.m in Sources */,
@@ -815,6 +846,7 @@
 				BAB11C881A675B0E007FDE38 /* MyViewController.m in Sources */,
 				BAB11C971A67A28B007FDE38 /* FollowerViewController.m in Sources */,
 				7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */,
+				BA2009D21A6F9B2F0052EE0F /* CommentModel.m in Sources */,
 				BA0355701A66196100252F99 /* RegisterParameter.m in Sources */,
 				7E415BF81A680C3C0025E5FB /* InviteTableDelegator.m in Sources */,
 				7E415BF11A66CABA0025E5FB /* InviteViewController.m in Sources */,

@@ -66,9 +66,15 @@
     [self.activityVC.view setFrame:restFrame];
     [self.followingVC.view setFrame:restFrame];
     [self.followerVC.view setFrame:restFrame];
+    [self addChildViewController:self.followerVC];
     [self.view addSubview:self.followerVC.view];
+    [self.followerVC didMoveToParentViewController:self];
+    [self addChildViewController:self.followingVC];
     [self.view addSubview:self.followingVC.view];
+    [self.followingVC didMoveToParentViewController:self];
+    [self addChildViewController:self.activityVC];
     [self.view addSubview:self.activityVC.view];
+    [self.activityVC didMoveToParentViewController:self];
     
     [card setActivityTouched:^{
         LOG_EXPR(@"activity vc");
