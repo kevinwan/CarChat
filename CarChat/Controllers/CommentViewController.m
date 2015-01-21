@@ -7,7 +7,7 @@
 //
 
 #import "CommentViewController.h"
-#import "CommentCollectionDelegator.h"
+#import "CollectionDelegator.h"
 #import <UIImageView+WebCache.h>
 #import "CommentModel.h"
 
@@ -17,7 +17,7 @@ static NSString * const commentIDentifier = @"commentCellIdentifier";
 
 @property (nonatomic, copy) NSString * activityId;
 @property (weak, nonatomic) IBOutlet UITableView *commentTable;
-@property (nonatomic, strong) CommentCollectionDelegator *tableDelegator;
+@property (nonatomic, strong) CollectionDelegator *tableDelegator;
 @property (nonatomic, strong) NSMutableArray *comments;
 
 @end
@@ -50,8 +50,8 @@ static NSString * const commentIDentifier = @"commentCellIdentifier";
 #pragma mark - Internal Helps
 - (void)setupTableDelegator
 {
-    self.tableDelegator = [[CommentCollectionDelegator alloc]initWithItems:self.comments  cellIdentifier:commentIDentifier];
-    [self.tableDelegator setConfigBLock:^(CommentModel * item, UITableViewCell * cell) {
+    self.tableDelegator = [[CollectionDelegator alloc]initWithItems:self.comments andCellIdentifier:commentIDentifier];
+    [self.tableDelegator setConfigBlock:^(CommentModel * item, UITableViewCell * cell) {
         [cell.imageView sd_setImageWithURL:[NSURL URLWithString:item.user.avatar]];
         cell.textLabel.text = item.content;
     }];

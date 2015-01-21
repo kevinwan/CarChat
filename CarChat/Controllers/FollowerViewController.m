@@ -7,6 +7,7 @@
 //
 
 #import "FollowerViewController.h"
+#import "UserModel.h"
 #import "UsersCollectionDelegator.h"
 #import "UserCell.h"
 #import <UIImageView+WebCache.h>
@@ -17,7 +18,7 @@ static NSString * const followerCellIdentifier = @"followerCell";
 @property (nonatomic, copy) NSString * userId;
 @property (weak, nonatomic) IBOutlet UITableView *followerTable;
 @property (nonatomic, strong) NSMutableArray * followerUsers;
-@property (nonatomic, strong) UsersCollectionDelegator * followerDelegator;
+@property (nonatomic, strong) CollectionDelegator * followerDelegator;
 @end
 
 @implementation FollowerViewController
@@ -50,7 +51,8 @@ static NSString * const followerCellIdentifier = @"followerCell";
 #pragma mark - Internal Helper
 - (void)setupDelegator
 {
-    self.followerDelegator = [[UsersCollectionDelegator alloc]initWithUsers:self.followerUsers cellIdentifier:followerCellIdentifier];
+    self.followerDelegator = [[UsersCollectionDelegator alloc]initWithItems:self.followerUsers andCellIdentifier:followerCellIdentifier];
+    self.followerDelegator.cellClass = [UserCell class];
     [self.followerTable setDelegate:self.followerDelegator];
     [self.followerTable setDataSource:self.followerDelegator];
     

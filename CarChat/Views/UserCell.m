@@ -14,7 +14,7 @@ const CGFloat UserCellHeight = 66.f;
 @implementation UserCell
 
 #pragma mark - Lifecycle
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     if (self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier]) {
         

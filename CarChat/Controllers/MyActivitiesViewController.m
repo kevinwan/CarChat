@@ -42,7 +42,9 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
 #pragma mark - Internal Helper
 - (void)setupTableViewDelegator
 {
-    self.tableDelegator = [[ActivitiesCollectionDelegator alloc]initWithActivities:self.activityItems cellIdentifier:activityCeleIdentifier andCellStyle:ActivityCellStyleUserCreated];
+    self.tableDelegator = [[ActivitiesCollectionDelegator alloc]initWithItems:self.activityItems andCellIdentifier:activityCeleIdentifier];
+    [self.tableDelegator setCellClass:[ActivityCell class]];
+    [self.tableDelegator setStyle:ActivityCellStyleUserCreated];
     [self.tableDelegator setConfigBlock:^(ActivityModel * activity, ActivityCell * cell) {
         [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.poster]];
         cell.name.text = activity.name;

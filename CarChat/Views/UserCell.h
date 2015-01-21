@@ -12,7 +12,7 @@ extern const CGFloat UserCellHeight;
 
 @interface UserCell : UITableViewCell
 
-- (instancetype)initWithReuseIdentifier:(NSString *)reuseIdentifier;
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
 @property (nonatomic, readonly) UIImageView * avatar;
 @property (nonatomic, readonly) UILabel * name;

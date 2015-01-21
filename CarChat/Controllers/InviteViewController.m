@@ -8,8 +8,8 @@
 
 #import "InviteViewController.h"
 #import "CreateInvitationParameter.h"
-#import "InviteTableDelegator.h"
 #import <MessageUI/MessageUI.h>
+#import "CollectionDelegator.h"
 
 static NSString * const cellIdentifier = @"inviteCell";
 static NSString * const InviteItemWXTimeLine = @"微信朋友圈";
@@ -22,7 +22,7 @@ static NSString * const InviteItemEMAIL = @"邮件";
 @property (nonatomic, strong) ActivityModel *activity;
 @property (nonatomic, strong) NSString * inviteCode;
 @property (weak, nonatomic) IBOutlet UITableView *inviteTableView;
-@property (nonatomic, strong) InviteTableDelegator * inviteTableDelegator;
+@property (nonatomic, strong) CollectionDelegator * inviteTableDelegator;
 @property (nonatomic, strong) NSArray * inviteItems;
 
 @end
@@ -55,7 +55,8 @@ static NSString * const InviteItemEMAIL = @"邮件";
     
     
     self.inviteItems = @[InviteItemWXTimeLine, InviteItemWXChat, InviteItemSMS, InviteItemEMAIL];
-    self.inviteTableDelegator = [[InviteTableDelegator alloc]initWithItems:self.inviteItems cellIdentifier:cellIdentifier];
+    
+    self.inviteTableDelegator = [[CollectionDelegator alloc]initWithItems:self.inviteItems andCellIdentifier:cellIdentifier];
     [self.inviteTableDelegator setConfigBlock: ^(NSString * item, UITableViewCell * cell) {
         cell.textLabel.text = item;
     }];
@@ -74,8 +75,8 @@ static NSString * const InviteItemEMAIL = @"邮件";
             [weakref iniviteViaEmail];
         }
     }];
-    [self.inviteTableView setDelegate:(id<UITableViewDelegate>)self.inviteTableDelegator];
-    [self.inviteTableView setDataSource:(id<UITableViewDataSource>)self.inviteTableDelegator];
+    [self.inviteTableView setDelegate:self.inviteTableDelegator];
+    [self.inviteTableView setDataSource:self.inviteTableDelegator];
 }
 
 - (void)viewDidAppear:(BOOL)animated
