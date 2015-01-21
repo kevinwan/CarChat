@@ -53,7 +53,12 @@
         imagePicker.maximumNumberOfSelectionVideo = 0;
         [_weakRef presentViewController:imagePicker animated:YES completion:nil];
         CFRunLoopRun();
-        return [UIImage imageWithCGImage: _weakRef.asset.defaultRepresentation.fullResolutionImage];
+        if (_weakRef.asset) {
+            return [UIImage imageWithCGImage: _weakRef.asset.defaultRepresentation.fullResolutionImage];
+        }
+        else {
+            return _weakRef.contentView.avatarButton.currentBackgroundImage;
+        }
     }];
     [self.contentView setCertifyBlock: ^(void) {
         [ControllerCoordinator goNextFrom:_weakRef whitTag:MyEditProfileUploadCertifyButtonTag andContext:_weakRef.user.identifier];
