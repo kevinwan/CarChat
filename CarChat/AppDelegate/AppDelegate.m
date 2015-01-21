@@ -29,18 +29,6 @@ static const NSInteger MyNavItemTag = 2;
     _window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     UITabBarController * rootTabbar = [[UITabBarController alloc]init];
     // item 1 - suggest
-//    UINavigationController * suggestNav = [[UINavigationController alloc]initWithRootViewController:[[SuggestedActivityViewController alloc]init]];
-//    UITabBarItem * suggestNavItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemTopRated tag:SuggestNavItemTag];
-//    suggestNav.tabBarItem = suggestNavItem;
-    
-    // item 2 - my
-//    UINavigationController * myNav = [[UINavigationController alloc]initWithRootViewController:[[MyViewController alloc]init]];
-//    UITabBarItem * myNavItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemContacts tag:MyNavItemTag];
-//    myNav.tabBarItem = myNavItem;
-//    [rootTabbar setViewControllers:@[suggestNav, myNav]];
-//    [rootTabbar setSelectedIndex:0];
-    
-    // item 1 - suggest
     SuggestedActivityViewController * suggestVC = [[SuggestedActivityViewController alloc]init];
     suggestVC.title = @"推荐";
     suggestVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemTopRated tag:SuggestNavItemTag];
@@ -54,7 +42,7 @@ static const NSInteger MyNavItemTag = 2;
     
     UINavigationController * rootNav = [[UINavigationController alloc]initWithRootViewController:rootTabbar];
     [_window setRootViewController:rootNav];
-//    _window.rootViewController = rootTabbar;
+
     [_window makeKeyAndVisible];
     return YES;
 }
@@ -110,7 +98,7 @@ static const NSInteger MyNavItemTag = 2;
                  [self showInviteWithActivity:act];
              }];
         
-        [alert showInfo:_window.rootViewController
+        [alert showInfo:((UINavigationController *)_window.rootViewController).viewControllers[0]
                   title:@"收到一个活动邀请"
                subTitle:@"点击查看了解详情"
        closeButtonTitle:@"忽略"
