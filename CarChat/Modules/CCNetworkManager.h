@@ -74,7 +74,7 @@ extern NSString * const ApiCreateActivity ;
 /**
  *  根据活动创建邀请码
  */
-extern NSString * const ApiCreateInviteCode ;
+extern NSString * const ApiCreateInvitation ;
 /**
  *  邀请用户
  */

@@ -7,7 +7,7 @@
 //
 
 #import "InviteViewController.h"
-#import "CreateInviteCodeParameter.h"
+#import "CreateInvitationParameter.h"
 #import "InviteTableDelegator.h"
 #import <MessageUI/MessageUI.h>
 
@@ -40,7 +40,7 @@ static NSString * const InviteItemEMAIL = @"邮件";
 
 - (void)dealloc
 {
-    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiCreateInviteCode];
+    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiCreateInvitation];
 }
 
 #pragma mark - View Lifecycle
@@ -51,7 +51,7 @@ static NSString * const InviteItemEMAIL = @"邮件";
     [self setLeftNavigationBarItem:@"关闭"
                             target:self
                          andAction:@selector(close)];
-    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiCreateInviteCode];
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiCreateInvitation];
     
     
     self.inviteItems = @[InviteItemWXTimeLine, InviteItemWXChat, InviteItemSMS, InviteItemEMAIL];
@@ -85,7 +85,7 @@ static NSString * const InviteItemEMAIL = @"邮件";
     // 没有邀请码，要去服务器创建一个邀请码
     if (!self.inviteCode) {
         [self showLoading:nil];
-        CreateInviteCodeParameter * parameter = (CreateInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiCreateInviteCode];
+        CreateInvitationParameter * parameter = (CreateInvitationParameter *)[ParameterFactory parameterWithApi:ApiCreateInvitation];
         parameter.activityIdentifier = self.activity.identifier;
         [[CCNetworkManager defaultManager] requestWithParameter:parameter];
     }

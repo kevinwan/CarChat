@@ -16,7 +16,7 @@
 		7E415BEC1A66B2ED0025E5FB /* CreateActivityParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BEB1A66B2ED0025E5FB /* CreateActivityParameter.m */; };
 		7E415BF11A66CABA0025E5FB /* InviteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BEF1A66CABA0025E5FB /* InviteViewController.m */; };
 		7E415BF21A66CABA0025E5FB /* InviteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E415BF01A66CABA0025E5FB /* InviteViewController.xib */; };
-		7E415BF51A6808160025E5FB /* CreateInviteCodeParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BF41A6808160025E5FB /* CreateInviteCodeParameter.m */; };
+		7E415BF51A6808160025E5FB /* CreateInvitationParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BF41A6808160025E5FB /* CreateInvitationParameter.m */; };
 		7E415BF81A680C3C0025E5FB /* InviteTableDelegator.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E415BF71A680C3C0025E5FB /* InviteTableDelegator.m */; };
 		7EF16D361A63FED00008B16F /* CCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF16D351A63FED00008B16F /* CCNetworkManager.m */; };
 		7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A0171A641ED70022DBCE /* ABCParameter.m */; };
@@ -113,8 +113,8 @@
 		7E415BEE1A66CABA0025E5FB /* InviteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteViewController.h; sourceTree = "<group>"; };
 		7E415BEF1A66CABA0025E5FB /* InviteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteViewController.m; sourceTree = "<group>"; };
 		7E415BF01A66CABA0025E5FB /* InviteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InviteViewController.xib; sourceTree = "<group>"; };
-		7E415BF31A6808160025E5FB /* CreateInviteCodeParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateInviteCodeParameter.h; sourceTree = "<group>"; };
-		7E415BF41A6808160025E5FB /* CreateInviteCodeParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateInviteCodeParameter.m; sourceTree = "<group>"; };
+		7E415BF31A6808160025E5FB /* CreateInvitationParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateInvitationParameter.h; sourceTree = "<group>"; };
+		7E415BF41A6808160025E5FB /* CreateInvitationParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateInvitationParameter.m; sourceTree = "<group>"; };
 		7E415BF61A680C3C0025E5FB /* InviteTableDelegator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InviteTableDelegator.h; sourceTree = "<group>"; };
 		7E415BF71A680C3C0025E5FB /* InviteTableDelegator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InviteTableDelegator.m; sourceTree = "<group>"; };
 		7EF16D341A63FED00008B16F /* CCNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCNetworkManager.h; sourceTree = "<group>"; };
@@ -327,8 +327,8 @@
 				BAB11C7E1A6670FB007FDE38 /* GetActivityWithInviteCodeParameter.m */,
 				7E415BEA1A66B2ED0025E5FB /* CreateActivityParameter.h */,
 				7E415BEB1A66B2ED0025E5FB /* CreateActivityParameter.m */,
-				7E415BF31A6808160025E5FB /* CreateInviteCodeParameter.h */,
-				7E415BF41A6808160025E5FB /* CreateInviteCodeParameter.m */,
+				7E415BF31A6808160025E5FB /* CreateInvitationParameter.h */,
+				7E415BF41A6808160025E5FB /* CreateInvitationParameter.m */,
 			);
 			name = requestParameter;
 			sourceTree = "<group>";
@@ -807,7 +807,7 @@
 				BAB11CAC1A6CE021007FDE38 /* UserProfileCard.m in Sources */,
 				BAEBBE231A6E22E200020978 /* UserCell.m in Sources */,
 				BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */,
-				7E415BF51A6808160025E5FB /* CreateInviteCodeParameter.m in Sources */,
+				7E415BF51A6808160025E5FB /* CreateInvitationParameter.m in Sources */,
 				BA6BC7241A63627B00DA033C /* ActivityIntroductViewController.m in Sources */,
 				BAB11CA11A690E6F007FDE38 /* UIImage+color.m in Sources */,
 				BAD7232C1A64D3DF00FB4645 /* ServerPolicyViewController.m in Sources */,

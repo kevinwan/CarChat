@@ -8,7 +8,7 @@
 
 #import "ABCParameter.h"
 
-@interface CreateInviteCodeParameter : ABCParameter
+@interface CreateInvitationParameter : ABCParameter
 
 @property (nonatomic, strong) NSString * activityIdentifier;
 

@@ -6,9 +6,9 @@
 //  Copyright (c) 2015年 GongPingJia. All rights reserved.
 //
 
-#import "CreateInviteCodeParameter.h"
+#import "CreateInvitationParameter.h"
 
-@implementation CreateInviteCodeParameter
+@implementation CreateInvitationParameter
 
 - (NSDictionary *)toDic
 {
