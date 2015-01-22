@@ -62,8 +62,9 @@ static NSString * const followerCellIdentifier = @"followerCell";
         cell.genderIcon.image = user.genderImage;
         [cell.certifyIcon sd_setImageWithURL:[NSURL URLWithString:user.avatar]];
     }];
+    __weak typeof(self) weakRef = self;
     [self.followerDelegator setSelectingBlock:^(UserModel * user) {
-        // TODO: 进入用户主页
+        [ControllerCoordinator goNextFrom:weakRef whitTag:MyFollowerCellTag andContext:user.identifier];
     }];
 
 }

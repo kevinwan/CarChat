@@ -33,6 +33,8 @@
 		BA2009D21A6F9B2F0052EE0F /* CommentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009D11A6F9B2F0052EE0F /* CommentModel.m */; };
 		BA2009D51A6FA5150052EE0F /* CollectionDelegator.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009D41A6FA5150052EE0F /* CollectionDelegator.m */; };
 		BA2009D81A6FB49D0052EE0F /* UsersCollectionDelegator.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009D71A6FB49D0052EE0F /* UsersCollectionDelegator.m */; };
+		BA2009DC1A70D7060052EE0F /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009DA1A70D7060052EE0F /* UserDetailViewController.m */; };
+		BA2009DD1A70D7060052EE0F /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2009DB1A70D7060052EE0F /* UserDetailViewController.xib */; };
 		BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC70E1A635FE400DA033C /* AppDelegate.m */; };
 		BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC7161A63606700DA033C /* RegisterViewController.m */; };
 		BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6BC71A1A63607F00DA033C /* RegisterViewController.xib */; };
@@ -152,6 +154,9 @@
 		BA2009D41A6FA5150052EE0F /* CollectionDelegator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionDelegator.m; sourceTree = "<group>"; };
 		BA2009D61A6FB49D0052EE0F /* UsersCollectionDelegator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersCollectionDelegator.h; sourceTree = "<group>"; };
 		BA2009D71A6FB49D0052EE0F /* UsersCollectionDelegator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersCollectionDelegator.m; sourceTree = "<group>"; };
+		BA2009D91A70D7060052EE0F /* UserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailViewController.h; sourceTree = "<group>"; };
+		BA2009DA1A70D7060052EE0F /* UserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailViewController.m; sourceTree = "<group>"; };
+		BA2009DB1A70D7060052EE0F /* UserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailViewController.xib; sourceTree = "<group>"; };
 		BA6BC70D1A635FE400DA033C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BA6BC70E1A635FE400DA033C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BA6BC7151A63606700DA033C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -303,6 +308,9 @@
 				BAB11C8F1A679CE7007FDE38 /* MyActivitiesViewController.h */,
 				BAB11C901A679CE7007FDE38 /* MyActivitiesViewController.m */,
 				BAB11C911A679CE7007FDE38 /* MyActivitiesViewController.xib */,
+				BA2009D91A70D7060052EE0F /* UserDetailViewController.h */,
+				BA2009DA1A70D7060052EE0F /* UserDetailViewController.m */,
+				BA2009DB1A70D7060052EE0F /* UserDetailViewController.xib */,
 			);
 			name = My;
 			sourceTree = "<group>";
@@ -730,6 +738,7 @@
 				BAB810A41A63C1B400142DDA /* UserCreatActivityDescriptionView.xib in Resources */,
 				7E415BF21A66CABA0025E5FB /* InviteViewController.xib in Resources */,
 				BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */,
+				BA2009DD1A70D7060052EE0F /* UserDetailViewController.xib in Resources */,
 				BAB8109E1A63B84700142DDA /* ActivityIntroductViewController.xib in Resources */,
 				BA6BC7281A63627B00DA033C /* SuggestedActivityViewController.xib in Resources */,
 				BAD65A7D1A5FA89200987B06 /* LaunchScreen.xib in Resources */,
@@ -788,6 +797,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA2009DC1A70D7060052EE0F /* UserDetailViewController.m in Sources */,
 				BA0355761A6638B100252F99 /* ResetPasswordParameter.m in Sources */,
 				BAD723261A64BF5100FB4645 /* NSUserDefaults+Helpers.m in Sources */,
 				BA6BC73C1A63651600DA033C /* UIView+HUD.m in Sources */,

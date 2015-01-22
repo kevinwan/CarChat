@@ -57,7 +57,7 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
     }];
     __weak typeof(self) weakRef = self;
     [self.tableDelegator setSelectingBlock:^(ActivityModel *activity) {
-        [ControllerCoordinator goNextFrom:weakRef whitTag:MyActivitiesCellTag andContext:activity];
+        [ControllerCoordinator goNextFrom:weakRef whitTag:MyActivityCellTag andContext:activity];
     }];
     
     [self.activityTable setDelegate:self.tableDelegator];

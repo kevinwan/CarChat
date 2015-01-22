@@ -74,15 +74,15 @@ extern const NSInteger InviteDetailIgnoreButonItemTag;
  */
 extern const NSInteger InviteDetailJoinButtonItemTag;
 /**
- *  在我的页面，点击我的活动
+ *  在我的页面，点击我的活动列表Cell
  */
 extern const NSInteger MyActivityCellTag;
 /**
- *  在我的页面，点击Following
+ *  在我的页面，点击Following列表Cell
  */
 extern const NSInteger MyFollowingCellTag;
 /**
- *  在我的页面，点击Follower
+ *  在我的页面，点击Follower列表Cell
  */
 extern const NSInteger MyFollowerCellTag;
 /**
@@ -93,10 +93,6 @@ extern const NSInteger MyEditProfileTag;
  *  在编辑资料页面，点击上传车主认证材料
  */
 extern const NSInteger MyEditProfileUploadCertifyButtonTag;
-/**
- *  在我的页面，点击活动cell
- */
-extern const NSInteger MyActivitiesCellTag;
 
 @interface ControllerCoordinator : NSObject
 

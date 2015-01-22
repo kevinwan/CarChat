@@ -22,6 +22,7 @@
 #import "PersonalProfileViewController.h"
 #import "UploadCertifyProfileViewController.h"
 #import "UserCreatedActivityViewController.h"
+#import "UserDetailViewController.h"
 
 const NSInteger ShowLoginFromSomeWhereTag = 1;
 const NSInteger RegisterRegisterButtonTag = 101;
@@ -44,7 +45,6 @@ const NSInteger MyFollowingCellTag = 501;
 const NSInteger MyFollowerCellTag = 502;
 const NSInteger MyEditProfileTag = 503;
 const NSInteger MyEditProfileUploadCertifyButtonTag = 504;
-const NSInteger MyActivitiesCellTag = 505;
 
 @implementation ControllerCoordinator
 
@@ -184,23 +184,17 @@ const NSInteger MyActivitiesCellTag = 505;
             break;
         case MyActivityCellTag:
         {
-            MyActivitiesViewController * myActivity = [[MyActivitiesViewController alloc]init];
-            [vc.navigationController pushViewController:myActivity
-                                               animated:YES];
+            [vc.navigationController pushViewController:[[UserCreatedActivityViewController alloc]initWithActivity:(ActivityModel *)context] animated:YES];
         }
             break;
         case MyFollowerCellTag:
         {
-            FollowerViewController * following = [[FollowerViewController alloc]init];
-            [vc.navigationController pushViewController:following
-                                               animated:YES];
+            [vc.navigationController pushViewController:[[UserDetailViewController alloc]initWithUserId:(NSString *)context] animated:YES];
         }
             break;
         case MyFollowingCellTag:
         {
-            FollowingViewController * follower = [[FollowingViewController alloc]init];
-            [vc.navigationController pushViewController:follower
-                                               animated:YES];
+            [vc.navigationController pushViewController:[[UserDetailViewController alloc]initWithUserId:(NSString *)context] animated:YES];
         }
             break;
         case MyEditProfileTag:
@@ -214,11 +208,6 @@ const NSInteger MyActivitiesCellTag = 505;
         {
             UploadCertifyProfileViewController *uploadVC = [[UploadCertifyProfileViewController alloc]initWithUserId:(NSString *)context];
             [vc.navigationController pushViewController:uploadVC animated:YES];
-        }
-            break;
-        case MyActivitiesCellTag:
-        {
-            [vc.navigationController pushViewController:[[UserCreatedActivityViewController alloc]initWithActivity:(ActivityModel *)context] animated:YES];
         }
             break;
         default:
