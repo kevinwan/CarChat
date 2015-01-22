@@ -22,4 +22,9 @@ typedef NS_ENUM(NSInteger, PayType) {
     PayTypeBoysDutch = 3
 };
 
+typedef NS_OPTIONS(NSInteger, Relationship) {
+    RelationshipFollowing = 1<<1,
+    RelationshipFollower = 1<<2,
+};
+
 #endif

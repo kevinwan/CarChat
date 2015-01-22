@@ -9,15 +9,17 @@
 #import "UserProfileCard.h"
 #import "UIView+square2Round.h"
 #import <UIImageView+WebCache.h>
+#import "Common.h"
 
 @interface UserProfileCard ()
-@property (strong, nonatomic) IBOutlet UIImageView *avatarView;
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *genderView;
-@property (strong, nonatomic) IBOutlet UIImageView *certifyView;
-@property (strong, nonatomic) IBOutlet UIButton *activityNumButton;
-@property (strong, nonatomic) IBOutlet UIButton *followingNumButton;
-@property (strong, nonatomic) IBOutlet UIButton *followerNumButton;
+@property (strong, nonatomic)  UIImageView *avatarView;
+@property (strong, nonatomic)  UILabel *nameLabel;
+@property (strong, nonatomic)  UIImageView *genderView;
+@property (strong, nonatomic)  UIImageView *certifyView;
+@property (strong, nonatomic)  UIButton *activityNumButton;
+@property (strong, nonatomic)  UIButton *followingNumButton;
+@property (strong, nonatomic)  UIButton *followerNumButton;
+@property (strong, nonatomic) UIButton *relationshipButton;
 
 @end
 
@@ -124,9 +126,39 @@
     [self.activityNumButton setTitle:user.countOfActvity forState:UIControlStateNormal];
     [self.followingNumButton setTitle:user.countOfFollowing forState:UIControlStateNormal];
     [self.followerNumButton setTitle:user.countOfFollower forState:UIControlStateNormal];
+//    [self configButtonWithRelationship:user.relationship];
+    // TODO: replace the logic
+    [self configButtonWithRelationship:(size_t)self%0xf * 2];
 }
 
 #pragma mark - User Interaction
+- (void)configButtonWithRelationship:(Relationship)relationship
+{
+    if (relationship == 0) {
+        return;
+    }
+    
+    if (!self.relationshipButton) {
+        self.relationshipButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [self.relationshipButton setFrame:CGRectMake(126.f, 38.f, 46.f, 20.f)];
+        [self.relationshipButton.titleLabel setFont:[UIFont boldSystemFontOfSize:12.f]];
+        [self.relationshipButton setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
+        [self.relationshipButton addTarget:self action:@selector(touchRelationshipButton:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.relationshipButton];
+    }
+    
+    if (relationship & RelationshipFollowing) {
+        [self.relationshipButton setBackgroundColor:[UIColor greenColor]];
+        [self.relationshipButton setTitle:@"已关注" forState:UIControlStateNormal];
+    }
+    else {
+        [self.relationshipButton setBackgroundColor:[UIColor yellowColor]];
+        [self.relationshipButton setTitle:@"关注" forState:UIControlStateNormal];
+    }
+    
+    
+}
+
 - (IBAction)touchActivity:(id)sender {
     if (self.activityTouched) {
         self.activityTouched();
@@ -142,6 +174,12 @@
 - (IBAction)touchFollower:(id)sender {
     if (self.followerTouched) {
         self.followerTouched();
+    }
+}
+
+- (void)touchRelationshipButton:(id)sender {
+    if (self.relationshipTouched) {
+        self.relationshipTouched();
     }
 }
 @end

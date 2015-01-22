@@ -40,4 +40,7 @@ typedef void(^SelectingBlock)(id item);
 @property (nonatomic, weak) Class cellClass;
 @property (nonatomic, copy) ConfigBLock configBlock;
 @property (nonatomic, copy) SelectingBlock selectingBlock;
+
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath;
+
 @end

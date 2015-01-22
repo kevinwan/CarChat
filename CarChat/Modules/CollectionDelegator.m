@@ -37,14 +37,14 @@
         cell = [(UITableViewCell *)[self.cellClass alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
     }
     
-    self.configBlock(self.items[indexPath.row], cell);
+    self.configBlock([self itemAtIndexPath:indexPath], cell);
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.selectingBlock(self.items[indexPath.row]);
+    self.selectingBlock([self itemAtIndexPath:indexPath]);
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -55,6 +55,12 @@
         return [UITableViewCell class];
     }
     return _cellClass;
+}
+
+#pragma mark - Public APIs
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.items[indexPath.row];
 }
 
 @end

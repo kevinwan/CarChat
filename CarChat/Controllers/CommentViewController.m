@@ -7,9 +7,10 @@
 //
 
 #import "CommentViewController.h"
-#import "CollectionDelegator.h"
+#import "CommentCollectionDelegator.h"
 #import <UIImageView+WebCache.h>
 #import "CommentModel.h"
+#import "CommentCell.h"
 
 static NSString * const commentIDentifier = @"commentCellIdentifier";
 
@@ -17,7 +18,7 @@ static NSString * const commentIDentifier = @"commentCellIdentifier";
 
 @property (nonatomic, copy) NSString * activityId;
 @property (weak, nonatomic) IBOutlet UITableView *commentTable;
-@property (nonatomic, strong) CollectionDelegator *tableDelegator;
+@property (nonatomic, strong) CommentCollectionDelegator *tableDelegator;
 @property (nonatomic, strong) NSMutableArray *comments;
 
 @end
@@ -50,12 +51,16 @@ static NSString * const commentIDentifier = @"commentCellIdentifier";
 #pragma mark - Internal Helps
 - (void)setupTableDelegator
 {
-    self.tableDelegator = [[CollectionDelegator alloc]initWithItems:self.comments andCellIdentifier:commentIDentifier];
-    [self.tableDelegator setConfigBlock:^(CommentModel * item, UITableViewCell * cell) {
-        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:item.user.avatar]];
-        cell.textLabel.text = item.content;
+    self.tableDelegator = [[CommentCollectionDelegator alloc]initWithItems:self.comments andCellIdentifier:commentIDentifier];
+    [self.tableDelegator setCellClass:[CommentCell class]];
+    [self.tableDelegator setConfigBlock:^(CommentModel * item, CommentCell * cell) {
+        [cell.avatar sd_setImageWithURL:[NSURL URLWithString:item.user.avatar]];
+        cell.name.text = item.user.nickName;
+        cell.genderIcon.image = item.user.genderImage;
+        [cell.certifyIcon sd_setImageWithURL:[NSURL URLWithString:item.user.avatar]];
+        cell.contentLabel.text = item.content;
     }];
-    [self.tableDelegator setSelectingBlock:^(id item) {
+    [self.tableDelegator setSelectingBlock:^(CommentModel * item) {
         // TODO: 选中评论。。。
     }];
     [self.commentTable setDelegate:self.tableDelegator];
@@ -66,7 +71,7 @@ static NSString * const commentIDentifier = @"commentCellIdentifier";
 {
     for (int i = 0; i < 10; i ++) {
         CommentModel *comment = [CommentModel new];
-        comment.content = [NSString stringWithFormat:@"八心八箭，只卖%d%d%d",i,i,i];
+        comment.content = [NSString stringWithFormat:@"八心八箭，只卖%d%d%d,快点来抢哦，我是🐒总😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢",i,i,i];
         comment.user = [UserModel new];
         comment.user.nickName = [NSString stringWithFormat:@"嫖娼公知%d",i];
         comment.user.avatar = @"http://a.hiphotos.baidu.com/image/pic/item/0dd7912397dda1444d5bd369b0b7d0a20df4869f.jpg";
