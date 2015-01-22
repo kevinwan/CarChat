@@ -53,8 +53,8 @@
     [self setupPersonalInfo];
     
     UserProfileCard * card = [UserProfileCard view];
+    [card setFrame:CGRectMake(0.f, 64.f, card.width, card.height)];
     [card layoutWithUser:self.i];
-    card.y += 64.f;
     [self.view addSubview:card];
     
     self.activityVC = [[MyActivitiesViewController alloc]init];

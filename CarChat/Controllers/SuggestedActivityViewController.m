@@ -30,25 +30,7 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     
     [self __createActivitiesForDevelop];
     
-    
-    self.tableDelegator = [[ActivitiesCollectionDelegator alloc]initWithItems:self.activities andCellIdentifier:activityCellIdentifier];
-    self.tableDelegator.cellClass = [ActivityCell class];
-    self.tableDelegator.style = ActivityCellStyleSuggest;
-    [self.tableDelegator setConfigBlock:^(ActivityModel * activity, ActivityCell * cell) {
-        [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.poster]];
-        cell.name.text = activity.name;
-        cell.cost.text = [NSString stringWithFormat:@"费用:%@",activity.cost];
-        cell.toplimit.text = [NSString stringWithFormat:@"人数:%@",activity.toplimit];
-    }];
-    __weak typeof(self) weakRef = self;
-    [self.tableDelegator setSelectingBlock: ^(ActivityModel * activity) {
-        __strong typeof(self) strongRef = weakRef;
-        [ControllerCoordinator goNextFrom:strongRef
-                                  whitTag:SuggestActivitiesSelectItem
-                               andContext:activity];
-    }];
-    [self.suggestionTableView setDataSource:self.tableDelegator];
-    [self.suggestionTableView setDelegate:self.tableDelegator];
+    [self setupDelegator];
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
                                             forApi:ApiGetSuggestActivities];
@@ -85,6 +67,27 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
 }
 
 #pragma mark - Internal Helper
+- (void)setupDelegator
+{
+    self.tableDelegator = [[ActivitiesCollectionDelegator alloc]initWithItems:self.activities andCellIdentifier:activityCellIdentifier];
+    self.tableDelegator.cellClass = [ActivityCell class];
+    self.tableDelegator.style = ActivityCellStyleSuggest;
+    [self.tableDelegator setConfigBlock:^(ActivityModel * activity, ActivityCell * cell) {
+        [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.poster]];
+        cell.name.text = activity.name;
+        cell.cost.text = [NSString stringWithFormat:@"费用:%@",activity.cost];
+        cell.toplimit.text = [NSString stringWithFormat:@"人数:%@",activity.toplimit];
+    }];
+    __weak typeof(self) weakRef = self;
+    [self.tableDelegator setSelectingBlock: ^(ActivityModel * activity) {
+        __strong typeof(self) strongRef = weakRef;
+        [ControllerCoordinator goNextFrom:strongRef
+                                  whitTag:SuggestActivitiesSelectItem
+                               andContext:activity];
+    }];
+    [self.suggestionTableView setDataSource:self.tableDelegator];
+    [self.suggestionTableView setDelegate:self.tableDelegator];
+}
 
 - (void)__createActivitiesForDevelop
 {

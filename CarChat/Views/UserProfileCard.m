@@ -11,22 +11,92 @@
 #import <UIImageView+WebCache.h>
 
 @interface UserProfileCard ()
-@property (weak, nonatomic) IBOutlet UIImageView *avatarView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *genderView;
-@property (weak, nonatomic) IBOutlet UIImageView *certifyView;
-@property (weak, nonatomic) IBOutlet UIButton *activityNumButton;
-@property (weak, nonatomic) IBOutlet UIButton *followingNumButton;
-@property (weak, nonatomic) IBOutlet UIButton *followerNumButton;
+@property (strong, nonatomic) IBOutlet UIImageView *avatarView;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *genderView;
+@property (strong, nonatomic) IBOutlet UIImageView *certifyView;
+@property (strong, nonatomic) IBOutlet UIButton *activityNumButton;
+@property (strong, nonatomic) IBOutlet UIButton *followingNumButton;
+@property (strong, nonatomic) IBOutlet UIButton *followerNumButton;
 
 @end
 
 @implementation UserProfileCard
 
 #pragma mark - Lifecycle
+- (instancetype)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame]) {
+        self.avatarView = [[UIImageView alloc]initWithFrame:CGRectMake(10.f, 10.f, 50.f, 50.f)];
+        [self addSubview:self.avatarView];
+        
+        self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(68.f, 10.f, 244.f, 20.f)];
+        [self.nameLabel setFont:[UIFont systemFontOfSize:14.f]];
+        [self addSubview:self.nameLabel];
+        
+        self.genderView = [[UIImageView alloc]initWithFrame:CGRectMake(68.f, 38.f, 20.f, 20.f)];
+        [self addSubview:self.genderView];
+        
+        self.certifyView = [[UIImageView alloc]initWithFrame:CGRectMake(96.f, 38.f, 20.f, 20.f)];
+        [self addSubview:self.certifyView];
+        
+        UILabel * staticLB = [[UILabel alloc]initWithFrame:CGRectMake(32.f, 105.f, 42.f, 20.f)];
+        [staticLB setText:@"活动"];
+        [staticLB setFont:[UIFont systemFontOfSize:12.f]];
+        [staticLB setTextAlignment:NSTextAlignmentCenter];
+        [self addSubview:staticLB];
+        
+        staticLB = [[UILabel alloc]initWithFrame:CGRectMake(127.f, 105.f, 67.f, 20.f)];
+        [staticLB setText:@"关注"];
+        [staticLB setFont:[UIFont systemFontOfSize:12.f]];
+        [staticLB setTextAlignment:NSTextAlignmentCenter];
+        [self addSubview:staticLB];
+        
+        staticLB = [[UILabel alloc]initWithFrame:CGRectMake(235.f, 105.f, 64.f, 20.f)];
+        [staticLB setText:@"听众"];
+        [staticLB setFont:[UIFont systemFontOfSize:12.f]];
+        [staticLB setTextAlignment:NSTextAlignmentCenter];
+        [self addSubview:staticLB];
+        
+        staticLB = [[UILabel alloc]initWithFrame:CGRectMake(106.f, 75.f, 1.f, 50.f)];
+        [staticLB setBackgroundColor:[UIColor darkGrayColor]];
+        [self addSubview:staticLB];
+        
+        staticLB = [[UILabel alloc]initWithFrame:CGRectMake(213.f, 75.f, 1.f, 50.f)];
+        [staticLB setBackgroundColor:[UIColor darkGrayColor]];
+        [self addSubview:staticLB];
+        
+        self.activityNumButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [self.activityNumButton setFrame:CGRectMake(3.f, 74.f, 100.f, 51.f)];
+        [self.activityNumButton setTitle:@"0" forState:UIControlStateNormal];
+        [self.activityNumButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16.f]];
+        [self.activityNumButton setTitleEdgeInsets:UIEdgeInsetsMake(-10.f, 0, 0, 0)];
+        [self.activityNumButton addTarget:self action:@selector(touchActivity:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.activityNumButton];
+        
+        self.followingNumButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [self.followingNumButton setFrame:CGRectMake(110.f, 74.f, 100.f, 51.f)];
+        [self.followingNumButton setTitle:@"0" forState:UIControlStateNormal];
+        [self.followingNumButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16.f]];
+        [self.followingNumButton setTitleEdgeInsets:UIEdgeInsetsMake(-10.f, 0, 0, 0)];
+        [self.followingNumButton addTarget:self action:@selector(touchFollowing:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.followingNumButton];
+        
+        self.followerNumButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [self.followerNumButton setFrame:CGRectMake(217.f, 74.f, 100.f, 51.f)];
+        [self.followerNumButton setTitle:@"0" forState:UIControlStateNormal];
+        [self.followerNumButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16.f]];
+        [self.followerNumButton setTitleEdgeInsets:UIEdgeInsetsMake(-10.f, 0, 0, 0)];
+        [self.followerNumButton addTarget:self action:@selector(touchFollower:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.followerNumButton];
+    }
+    
+    return self;
+}
+
 + (instancetype)view
 {
-    return [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil][0];
+    return [[[self class]alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, 136.f)];
 }
 
 - (void)awakeFromNib
