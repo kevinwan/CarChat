@@ -8,10 +8,16 @@
 
 #import "UserDetailViewController.h"
 #import "UserModel.h"
+#import "FollowingViewController.h"
+#import "FollowerViewController.h"
+#import "UserActivitiesViewController.h"
 
 @interface UserDetailViewController ()
 
 @property (nonatomic, copy) NSString * userId;
+@property (nonatomic, strong) UserActivitiesViewController * activityVC;
+@property (nonatomic, strong) FollowingViewController * followingVC;
+@property (nonatomic, strong) FollowerViewController * followerVC;
 
 @end
 

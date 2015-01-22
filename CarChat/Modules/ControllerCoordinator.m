@@ -16,7 +16,7 @@
 #import "InviteActivityDetailViewController.h"
 #import "InviteViewController.h"
 #import "AppDelegate.h"
-#import "MyActivitiesViewController.h"
+#import "UserActivitiesViewController.h"
 #import "FollowingViewController.h"
 #import "FollowerViewController.h"
 #import "PersonalProfileViewController.h"

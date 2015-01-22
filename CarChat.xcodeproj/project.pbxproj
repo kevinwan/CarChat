@@ -56,8 +56,8 @@
 		BAB11C891A675B0E007FDE38 /* MyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C871A675B0E007FDE38 /* MyViewController.xib */; };
 		BAB11C8D1A679C9A007FDE38 /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C8B1A679C9A007FDE38 /* FollowingViewController.m */; };
 		BAB11C8E1A679C9A007FDE38 /* FollowingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C8C1A679C9A007FDE38 /* FollowingViewController.xib */; };
-		BAB11C921A679CE7007FDE38 /* MyActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C901A679CE7007FDE38 /* MyActivitiesViewController.m */; };
-		BAB11C931A679CE7007FDE38 /* MyActivitiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C911A679CE7007FDE38 /* MyActivitiesViewController.xib */; };
+		BAB11C921A679CE7007FDE38 /* UserActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C901A679CE7007FDE38 /* UserActivitiesViewController.m */; };
+		BAB11C931A679CE7007FDE38 /* UserActivitiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C911A679CE7007FDE38 /* UserActivitiesViewController.xib */; };
 		BAB11C971A67A28B007FDE38 /* FollowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C951A67A28B007FDE38 /* FollowerViewController.m */; };
 		BAB11C981A67A28B007FDE38 /* FollowerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C961A67A28B007FDE38 /* FollowerViewController.xib */; };
 		BAB11C9C1A68EED6007FDE38 /* UserCreatedActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C9A1A68EED6007FDE38 /* UserCreatedActivityCell.m */; };
@@ -193,9 +193,9 @@
 		BAB11C8A1A679C9A007FDE38 /* FollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingViewController.h; sourceTree = "<group>"; };
 		BAB11C8B1A679C9A007FDE38 /* FollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingViewController.m; sourceTree = "<group>"; };
 		BAB11C8C1A679C9A007FDE38 /* FollowingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowingViewController.xib; sourceTree = "<group>"; };
-		BAB11C8F1A679CE7007FDE38 /* MyActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyActivitiesViewController.h; sourceTree = "<group>"; };
-		BAB11C901A679CE7007FDE38 /* MyActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyActivitiesViewController.m; sourceTree = "<group>"; };
-		BAB11C911A679CE7007FDE38 /* MyActivitiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyActivitiesViewController.xib; sourceTree = "<group>"; };
+		BAB11C8F1A679CE7007FDE38 /* UserActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserActivitiesViewController.h; sourceTree = "<group>"; };
+		BAB11C901A679CE7007FDE38 /* UserActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserActivitiesViewController.m; sourceTree = "<group>"; };
+		BAB11C911A679CE7007FDE38 /* UserActivitiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserActivitiesViewController.xib; sourceTree = "<group>"; };
 		BAB11C941A67A28B007FDE38 /* FollowerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowerViewController.h; sourceTree = "<group>"; };
 		BAB11C951A67A28B007FDE38 /* FollowerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowerViewController.m; sourceTree = "<group>"; };
 		BAB11C961A67A28B007FDE38 /* FollowerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowerViewController.xib; sourceTree = "<group>"; };
@@ -305,9 +305,9 @@
 				BAB11C941A67A28B007FDE38 /* FollowerViewController.h */,
 				BAB11C951A67A28B007FDE38 /* FollowerViewController.m */,
 				BAB11C961A67A28B007FDE38 /* FollowerViewController.xib */,
-				BAB11C8F1A679CE7007FDE38 /* MyActivitiesViewController.h */,
-				BAB11C901A679CE7007FDE38 /* MyActivitiesViewController.m */,
-				BAB11C911A679CE7007FDE38 /* MyActivitiesViewController.xib */,
+				BAB11C8F1A679CE7007FDE38 /* UserActivitiesViewController.h */,
+				BAB11C901A679CE7007FDE38 /* UserActivitiesViewController.m */,
+				BAB11C911A679CE7007FDE38 /* UserActivitiesViewController.xib */,
 				BA2009D91A70D7060052EE0F /* UserDetailViewController.h */,
 				BA2009DA1A70D7060052EE0F /* UserDetailViewController.m */,
 				BA2009DB1A70D7060052EE0F /* UserDetailViewController.xib */,
@@ -733,7 +733,7 @@
 				BAD723381A64FAA300FB4645 /* PersonalInfoView.xib in Resources */,
 				BAB11CAE1A6CE032007FDE38 /* UserProfileCard.xib in Resources */,
 				BAB11C981A67A28B007FDE38 /* FollowerViewController.xib in Resources */,
-				BAB11C931A679CE7007FDE38 /* MyActivitiesViewController.xib in Resources */,
+				BAB11C931A679CE7007FDE38 /* UserActivitiesViewController.xib in Resources */,
 				BA2009CC1A6F90A60052EE0F /* CommentViewController.xib in Resources */,
 				BAB810A41A63C1B400142DDA /* UserCreatActivityDescriptionView.xib in Resources */,
 				7E415BF21A66CABA0025E5FB /* InviteViewController.xib in Resources */,
@@ -808,7 +808,7 @@
 				BAD723281A64BF5100FB4645 /* UIImage+Gif.m in Sources */,
 				BAB11CB11A6CFDC5007FDE38 /* UIView+frame.m in Sources */,
 				BAD723241A64BF5100FB4645 /* NSDate+Helpers.m in Sources */,
-				BAB11C921A679CE7007FDE38 /* MyActivitiesViewController.m in Sources */,
+				BAB11C921A679CE7007FDE38 /* UserActivitiesViewController.m in Sources */,
 				BA6BC7341A63644500DA033C /* AbstractViewController.m in Sources */,
 				BA03556D1A660E0400252F99 /* ValidateInviteCodeParameter.m in Sources */,
 				BA2009C61A6F84320052EE0F /* UserCreatedActivityViewController.m in Sources */,

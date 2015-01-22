@@ -10,14 +10,14 @@
 #import "UserModel.h"
 #import "UserProfileCard.h"
 #import "UIView+frame.h"
-#import "MyActivitiesViewController.h"
+#import "UserActivitiesViewController.h"
 #import "FollowingViewController.h"
 #import "FollowerViewController.h"
 
 @interface MyViewController ()
 
 @property (nonatomic, strong) UserModel *i;
-@property (nonatomic, strong) MyActivitiesViewController * activityVC;
+@property (nonatomic, strong) UserActivitiesViewController * activityVC;
 @property (nonatomic, strong) FollowingViewController * followingVC;
 @property (nonatomic, strong) FollowerViewController * followerVC;
 
@@ -57,7 +57,7 @@
     [card layoutWithUser:self.i];
     [self.view addSubview:card];
     
-    self.activityVC = [[MyActivitiesViewController alloc]init];
+    self.activityVC = [[UserActivitiesViewController alloc]init];
     self.followingVC = [[FollowingViewController alloc]initWithUserId:self.i.identifier];
     self.followerVC = [[FollowerViewController alloc]initWithUserId:self.i.identifier];
     CGRect restFrame = self.view.bounds;

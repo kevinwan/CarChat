@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 GongPingJia. All rights reserved.
 //
 
-#import "MyActivitiesViewController.h"
+#import "UserActivitiesViewController.h"
 #import "ActivitiesCollectionDelegator.h"
 #import "ActivityCell.h"
 #import "ActivityModel.h"
@@ -14,20 +14,18 @@
 
 static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
 
-@interface MyActivitiesViewController ()
+@interface UserActivitiesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *activityTable;
 @property (nonatomic, strong) ActivitiesCollectionDelegator * tableDelegator;
 @property (nonatomic, strong) NSMutableArray * activityItems;
 
 @end
 
-@implementation MyActivitiesViewController
+@implementation UserActivitiesViewController
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.navigationItem.title = @"我的活动";
     
     self.activityItems = [NSMutableArray array];
     [self __createTestData];

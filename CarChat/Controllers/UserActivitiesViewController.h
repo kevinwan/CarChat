@@ -8,6 +8,6 @@
 
 #import "AbstractViewController.h"
 
-@interface MyActivitiesViewController : AbstractViewController
+@interface UserActivitiesViewController : AbstractViewController
 
 @end
