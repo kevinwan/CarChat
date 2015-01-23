@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 0
 
+// AVOSCloud
+#define COCOAPODS_POD_AVAILABLE_AVOSCloud
+#define COCOAPODS_VERSION_MAJOR_AVOSCloud 2
+#define COCOAPODS_VERSION_MINOR_AVOSCloud 6
+#define COCOAPODS_VERSION_PATCH_AVOSCloud 10
+
 // IQKeyboardManager
 #define COCOAPODS_POD_AVAILABLE_IQKeyboardManager
 // This library does not follow semantic-versioning,
@@ -59,7 +65,7 @@
 #define COCOAPODS_POD_AVAILABLE_JSONModel
 #define COCOAPODS_VERSION_MAJOR_JSONModel 1
 #define COCOAPODS_VERSION_MINOR_JSONModel 0
-#define COCOAPODS_VERSION_PATCH_JSONModel 1
+#define COCOAPODS_VERSION_PATCH_JSONModel 2
 
 // LOG_EXPR
 #define COCOAPODS_POD_AVAILABLE_LOG_EXPR
@@ -82,8 +88,8 @@
 // SCLAlertView-Objective-C
 #define COCOAPODS_POD_AVAILABLE_SCLAlertView_Objective_C
 #define COCOAPODS_VERSION_MAJOR_SCLAlertView_Objective_C 0
-#define COCOAPODS_VERSION_MINOR_SCLAlertView_Objective_C 3
-#define COCOAPODS_VERSION_PATCH_SCLAlertView_Objective_C 8
+#define COCOAPODS_VERSION_MINOR_SCLAlertView_Objective_C 5
+#define COCOAPODS_VERSION_PATCH_SCLAlertView_Objective_C 0
 
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
@@ -107,5 +113,5 @@
 #define COCOAPODS_POD_AVAILABLE_UzysAssetsPickerController
 #define COCOAPODS_VERSION_MAJOR_UzysAssetsPickerController 0
 #define COCOAPODS_VERSION_MINOR_UzysAssetsPickerController 9
-#define COCOAPODS_VERSION_PATCH_UzysAssetsPickerController 4
+#define COCOAPODS_VERSION_PATCH_UzysAssetsPickerController 5
 

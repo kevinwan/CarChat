@@ -37,10 +37,17 @@ blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 @property (nonatomic, strong) UIImageView *backgroundView;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 @property (nonatomic, strong) UITapGestureRecognizer *gestureRecognizer;
+@property (nonatomic, strong) NSString *titleFontFamily;
+@property (nonatomic, strong) NSString *bodyTextFontFamily;
+@property (nonatomic, strong) NSString *buttonsFontFamily;
+@property (nonatomic, strong) UIViewController *rootViewController;
 @property (nonatomic, copy) DismissBlock dismissBlock;
 @property (nonatomic) BOOL canAddObservers;
 @property (nonatomic) BOOL keyboardIsVisible;
 @property (nonatomic) CGFloat backgroundOpacity;
+@property (nonatomic) CGFloat titleFontSize;
+@property (nonatomic) CGFloat bodyFontSize;
+@property (nonatomic) CGFloat buttonsFontSize;
 
 @end
 
@@ -58,10 +65,6 @@ CGFloat kTextHeight;
 
 // Subtitle
 CGFloat kSubTitleHeight;
-
-// Font
-NSString *kDefaultFont = @"HelveticaNeue";
-NSString *kButtonFont = @"HelveticaNeue-Bold";
 
 // Timer
 NSTimer *durationTimer;
@@ -97,6 +100,14 @@ NSTimer *durationTimer;
         _hideAnimationType = FadeOut;
         _showAnimationType = SlideInFromTop;
         _backgroundType = Shadow;
+        
+        // Font
+        _titleFontFamily = @"HelveticaNeue";
+        _bodyTextFontFamily = @"HelveticaNeue";
+        _buttonsFontFamily = @"HelveticaNeue-Bold";
+        _titleFontSize = 20.0f;
+        _bodyFontSize = 14.0f;
+        _buttonsFontSize = 14.0f;
 
         // Init
         _labelTitle = [[UILabel alloc] init];
@@ -134,13 +145,15 @@ NSTimer *durationTimer;
         // Title
         _labelTitle.numberOfLines = 1;
         _labelTitle.textAlignment = NSTextAlignmentCenter;
-        _labelTitle.font = [UIFont fontWithName:kDefaultFont size:20.0f];
+        _labelTitle.font = [UIFont fontWithName:_titleFontFamily size:_titleFontSize];
+        _labelTitle.frame = CGRectMake(12.0f, (kCircleHeight / 2) + 4.0f, kWindowWidth - 24.0f, 40.0f);
         
         // View text
         _viewText.editable = NO;
         _viewText.allowsEditingTextAttributes = YES;
         _viewText.textAlignment = NSTextAlignmentCenter;
-        _viewText.font = [UIFont fontWithName:kDefaultFont size:14.0f];
+        _viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
+        _viewText.frame = CGRectMake(12.0f, 70.0f, kWindowWidth - 24.0f, kTextHeight);        
         
         if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0"))
         {
@@ -178,13 +191,26 @@ NSTimer *durationTimer;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
 }
 
+#pragma mark - Modal Validation
+
+- (BOOL)isModal
+{
+    return (_rootViewController != nil && _rootViewController.presentingViewController);
+}
+
 #pragma mark - View Cycle
 
--(void)viewWillLayoutSubviews
+- (void)viewWillLayoutSubviews
 {
     [super viewWillLayoutSubviews];
     
-    CGSize sz = [UIScreen mainScreen].bounds.size;
+    CGSize sz = [self mainScreenFrame].size;
+    
+    // Check if the rootViewController is modal, if so we need to get the modal size not the main screen size
+    if([self isModal])
+    {
+        sz = _rootViewController.view.frame.size;
+    }
     
     if (SYSTEM_VERSION_LESS_THAN(@"8.0"))
     {
@@ -222,31 +248,23 @@ NSTimer *durationTimer;
     _circleView.layer.cornerRadius = self.circleView.frame.size.height / 2;
     _circleIconImageView.frame = CGRectMake(kCircleHeight / 2 - kCircleIconHeight / 2, kCircleHeight / 2 - kCircleIconHeight / 2, kCircleIconHeight, kCircleIconHeight);
     _activityIndicatorView.frame =CGRectMake(kCircleHeight / 2 - kActivityIndicatorHeight / 2, kCircleHeight / 2 - kActivityIndicatorHeight / 2, kActivityIndicatorHeight, kActivityIndicatorHeight);
-
-    _labelTitle.frame = CGRectMake(12.0f, kCircleHeight / 2 + 12.0f, kWindowWidth - 24.0f, 40.0f);
-    _viewText.frame = CGRectMake(12.0f, 74.0f, kWindowWidth - 24.0f, kTextHeight);
     
-    // Title is nil, we can move the body message to center
-    if(_labelTitle.text == nil)
-    {
-        _viewText.frame = CGRectMake(12.0f, kCircleHeight, kWindowWidth - 24.0f, kTextHeight);
-    }
-        
     // Text fields
-    CGFloat y = 74.0f + kTextHeight + 14.0f;
+    CGFloat y = (_labelTitle.text == nil) ? (kCircleHeight - 20.0f) : 74.0f;
+    y += kTextHeight + 14.0f;
     for (UITextField *textField in _inputs)
     {
         textField.frame = CGRectMake(12.0f, y, kWindowWidth - 24.0f, 30.0f);
-        textField.layer.cornerRadius = 3;
+        textField.layer.cornerRadius = 3.0f;
         y += 40.0f;
     }
     
     // Buttons
     for (SCLButton *btn in _buttons)
     {
-        btn.frame = CGRectMake(12.0f, y, kWindowWidth - 24, 35.0f);
-        btn.layer.cornerRadius = 3;
-        y += 45.0;
+        btn.frame = CGRectMake(12.0f, y, kWindowWidth - 24.0f, 35.0f);
+        btn.layer.cornerRadius = 3.0f;
+        y += 45.0f;
     }
 }
 
@@ -282,6 +300,28 @@ NSTimer *durationTimer;
     }
 }
 
+#pragma mark - Custom Fonts
+
+- (void)setTitleFontFamily:(NSString *)titleFontFamily withSize:(CGFloat)size
+{
+    self.titleFontFamily = titleFontFamily;
+    self.titleFontSize = size;
+    self.labelTitle.font = [UIFont fontWithName:_titleFontFamily size:_titleFontSize];
+}
+
+- (void)setBodyTextFontFamily:(NSString *)bodyTextFontFamily withSize:(CGFloat)size
+{
+    self.bodyTextFontFamily = bodyTextFontFamily;
+    self.bodyFontSize = size;
+    self.viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
+}
+
+- (void)setButtonsTextFontFamily:(NSString *)buttonsFontFamily withSize:(CGFloat)size
+{
+    self.buttonsFontFamily = buttonsFontFamily;
+    self.buttonsFontSize = size;
+}
+
 #pragma mark - Sound
 
 - (void)setSoundURL:(NSURL *)soundURL
@@ -305,14 +345,14 @@ NSTimer *durationTimer;
     [self addObservers];
     
     // Update view height
-    kWindowHeight += 40.0;
+    kWindowHeight += 40.0f;
     
     // Add text field
     UITextField *txt = [[UITextField alloc] init];
     txt.delegate = self;
     txt.returnKeyType = UIReturnKeyDone;
     txt.borderStyle = UITextBorderStyleRoundedRect;
-    txt.font = [UIFont fontWithName:kDefaultFont size:14.0f];
+    txt.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
     txt.autocapitalizationType = UITextAutocapitalizationTypeWords;
     txt.clearButtonMode = UITextFieldViewModeWhileEditing;
     txt.layer.masksToBounds = YES;
@@ -370,6 +410,8 @@ NSTimer *durationTimer;
 
 -(void)keyboardDidHide:(NSNotification *)notification
 {
+    if(!_keyboardIsVisible) return;
+
     [UIView animateWithDuration:0.2f animations:^{
         CGRect f = self.view.frame;
         f.origin.y += KEYBOARD_HEIGHT + PREDICTION_BAR_HEIGHT;
@@ -383,13 +425,13 @@ NSTimer *durationTimer;
 - (SCLButton *)addButton:(NSString *)title
 {
     // Update view height
-    kWindowHeight += 45.0;
+    kWindowHeight += 45.0f;
     
     // Add button
     SCLButton *btn = [[SCLButton alloc] init];
     btn.layer.masksToBounds = YES;
     [btn setTitle:title forState:UIControlStateNormal];
-    btn.titleLabel.font = [UIFont fontWithName:kButtonFont size:14.0f];
+    btn.titleLabel.font = [UIFont fontWithName:_buttonsFontFamily size:_buttonsFontSize];
 
     [_contentView addSubview:btn];
     [_buttons addObject:btn];
@@ -471,18 +513,18 @@ NSTimer *durationTimer;
 
 -(SCLAlertViewResponder *)showTitle:(UIViewController *)vc image:(UIImage *)image color:(UIColor *)color title:(NSString *)title subTitle:(NSString *)subTitle duration:(NSTimeInterval)duration completeText:(NSString *)completeText style:(SCLAlertViewStyle)style
 {
-    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    _rootViewController = vc;
     
-    self.view.alpha = 0;
+    self.view.alpha = 0.0f;
     
     [self setBackground];
     
-    _backgroundView.frame = vc.view.bounds;
+    self.backgroundView.frame = vc.view.bounds;
     
     // Add subviews
-    [window addSubview:_backgroundView];
-    [window addSubview:self.view];
-    [vc addChildViewController:self];
+    [_rootViewController addChildViewController:self];
+    [_rootViewController.view addSubview:_backgroundView];
+    [_rootViewController.view addSubview:self.view];
 
     // Alert color/icon
     UIColor *viewColor;
@@ -528,7 +570,7 @@ NSTimer *durationTimer;
         case Custom:
             viewColor = color;
             iconImage = image;
-            kCircleIconHeight = kCircleIconHeight * 2;
+            kCircleIconHeight = kCircleIconHeight * 2.0f;
             break;
     }
 
@@ -536,6 +578,15 @@ NSTimer *durationTimer;
     if([title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]].length > 0)
     {
         self.labelTitle.text = title;
+    }
+    else
+    {
+        // Title is nil, we can move the body message to center and remove it from superView
+        kWindowHeight -= _labelTitle.frame.size.height;
+        [_labelTitle removeFromSuperview];
+        
+        // Move up
+        _viewText.frame = CGRectMake(12.0f, kCircleHeight - 20, kWindowWidth - 24.0f, kTextHeight);
     }
 
     // Subtitle
@@ -549,6 +600,7 @@ NSTimer *durationTimer;
         else
         {
             _viewText.attributedText = self.attributedFormatBlock(subTitle);
+            self.viewText.font = [UIFont fontWithName:_bodyTextFontFamily size:_bodyFontSize];
         }
         
         // Adjust text view size, if necessary
@@ -573,7 +625,7 @@ NSTimer *durationTimer;
         {
             NSAttributedString *str =[[NSAttributedString alloc] initWithString:subTitle attributes:attr];
             CGRect r = [str boundingRectWithSize:sz options:NSStringDrawingUsesLineFragmentOrigin context:nil];
-            CGFloat ht = ceil(r.size.height) + 10;
+            CGFloat ht = ceil(r.size.height) + 10.0f;
             if (ht < kTextHeight)
             {
                 kWindowHeight -= (kTextHeight - ht);
@@ -583,6 +635,16 @@ NSTimer *durationTimer;
                 kTextHeight = ht;
             }
         }
+    }
+    else
+    {
+        // Subtitle is nil, we can move the title to center and remove it from superView
+        kTextHeight = 0.0f;
+        kWindowHeight -= _viewText.frame.size.height;
+        [_viewText removeFromSuperview];
+        
+        // Move up
+        _labelTitle.frame = CGRectMake(12.0f, 37.0f, kWindowWidth - 24.0f, 40.0f);
     }
     
     // Play sound, if necessary
@@ -604,15 +666,17 @@ NSTimer *durationTimer;
         [self addDoneButtonWithTitle:completeText];
     }
 
-    // Alert view colour and images
+    // Alert view color and images
     self.circleView.backgroundColor = viewColor;
     
-    if (style == Waiting) {
+    if (style == Waiting)
+    {
         [self.activityIndicatorView startAnimating];
-    } else {
+    }
+    else
+    {
         self.circleIconImageView.image  = iconImage;
     }
-    
     
     for (UITextField *textField in _inputs)
     {
@@ -953,7 +1017,7 @@ NSTimer *durationTimer;
         
         //To Frame
         CGRect frame = self.backgroundView.frame;
-        frame.origin.y = 0;
+        frame.origin.y = 0.0f;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
@@ -976,7 +1040,7 @@ NSTimer *durationTimer;
         
         //To Frame
         CGRect frame = self.backgroundView.frame;
-        frame.origin.y = 0;
+        frame.origin.y = 0.0f;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
@@ -999,7 +1063,7 @@ NSTimer *durationTimer;
         
         //To Frame
         CGRect frame = self.backgroundView.frame;
-        frame.origin.x = 0;
+        frame.origin.x = 0.0f;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
@@ -1022,7 +1086,7 @@ NSTimer *durationTimer;
         
         //To Frame
         CGRect frame = self.backgroundView.frame;
-        frame.origin.x = 0;
+        frame.origin.x = 0.0f;
         self.view.frame = frame;
         
         self.view.alpha = 1.0f;
