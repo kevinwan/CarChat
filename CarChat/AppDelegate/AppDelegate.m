@@ -25,8 +25,14 @@ static const NSInteger MyNavItemTag = 2;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    // for AVOS
+    [AVOSCloud setApplicationId:@"1x7a2rcepv9k4yrn8qmfq31gk3bqf33c663zkq88c88z9eqr"
+                      clientKey:@"yxgmlhkjhs88ulxs3b8gsw54o1mzxl93ya78dqy92lvrhf61"];
+    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetActivityWithInviteCode];
     
+    // build MAIN UI
     _window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     UITabBarController * rootTabbar = [[UITabBarController alloc]init];
     // item 1 - suggest
@@ -111,6 +117,7 @@ static const NSInteger MyNavItemTag = 2;
 }
 
 #pragma mark - Internal Helper
+
 - (void)showInviteWithActivity:(ActivityModel *)activity
 {
     [ControllerCoordinator goNextFrom:self.window.rootViewController
