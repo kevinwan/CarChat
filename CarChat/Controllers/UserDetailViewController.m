@@ -39,8 +39,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    __weak typeof(self) wearkRef = self;
     [self showTip:@"loading..." whenDone:^{
-        [self setupContentView];
+        [wearkRef setupContentView];
     }];
 }
 
@@ -77,17 +78,21 @@
     [self.view addSubview:self.activityVC.view];
     [self.activityVC didMoveToParentViewController:self];
     
+    __weak typeof(self) weakRef = self;
     [card setActivityTouched:^{
         LOG_EXPR(@"activity vc");
-        [self.view bringSubviewToFront:self.activityVC.view];
+        [weakRef.view bringSubviewToFront:weakRef.activityVC.view];
     }];
     [card setFollowingTouched:^{
         LOG_EXPR(@"following vc");
-        [self.view bringSubviewToFront:self.followingVC.view];
+        [weakRef.view bringSubviewToFront:weakRef.followingVC.view];
     }];
     [card setFollowerTouched:^{
         LOG_EXPR(@"follower vc");
-        [self.view bringSubviewToFront:self.followerVC.view];
+        [weakRef.view bringSubviewToFront:weakRef.followerVC.view];
+    }];
+    [card setRelationshipTouched:^{
+        // TODO: follow sb or unfollow sb
     }];
 }
 

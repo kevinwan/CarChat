@@ -11,6 +11,7 @@
 #import "MyViewController.h"
 #import <SCLAlertView.h>
 #import "ActivityModel.h"
+#import "TestViewController.h"
 
 static const NSInteger SuggestNavItemTag = 1;
 static const NSInteger MyNavItemTag = 2;
@@ -42,6 +43,9 @@ static const NSInteger MyNavItemTag = 2;
     
     UINavigationController * rootNav = [[UINavigationController alloc]initWithRootViewController:rootTabbar];
     [_window setRootViewController:rootNav];
+
+    // for test
+//    [_window setRootViewController:[[TestViewController alloc]init]];
 
     [_window makeKeyAndVisible];
     return YES;

@@ -10,4 +10,6 @@
 
 @interface UserActivitiesViewController : AbstractViewController
 
+- (instancetype)initWithUserId:(NSString *)userId;
+
 @end

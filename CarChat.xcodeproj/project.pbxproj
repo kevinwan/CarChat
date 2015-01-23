@@ -37,6 +37,8 @@
 		BA2009D81A6FB49D0052EE0F /* UsersCollectionDelegator.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009D71A6FB49D0052EE0F /* UsersCollectionDelegator.m */; };
 		BA2009DC1A70D7060052EE0F /* UserDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009DA1A70D7060052EE0F /* UserDetailViewController.m */; };
 		BA2009DD1A70D7060052EE0F /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2009DB1A70D7060052EE0F /* UserDetailViewController.xib */; };
+		BA2009E41A71E0A40052EE0F /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009E21A71E0A40052EE0F /* TestViewController.m */; };
+		BA2009E51A71E0A40052EE0F /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2009E31A71E0A40052EE0F /* TestViewController.xib */; };
 		BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC70E1A635FE400DA033C /* AppDelegate.m */; };
 		BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC7161A63606700DA033C /* RegisterViewController.m */; };
 		BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6BC71A1A63607F00DA033C /* RegisterViewController.xib */; };
@@ -163,6 +165,9 @@
 		BA2009D91A70D7060052EE0F /* UserDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDetailViewController.h; sourceTree = "<group>"; };
 		BA2009DA1A70D7060052EE0F /* UserDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDetailViewController.m; sourceTree = "<group>"; };
 		BA2009DB1A70D7060052EE0F /* UserDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailViewController.xib; sourceTree = "<group>"; };
+		BA2009E11A71E0A40052EE0F /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		BA2009E21A71E0A40052EE0F /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		BA2009E31A71E0A40052EE0F /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
 		BA6BC70D1A635FE400DA033C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BA6BC70E1A635FE400DA033C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BA6BC7151A63606700DA033C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -374,6 +379,9 @@
 			children = (
 				BA6BC70D1A635FE400DA033C /* AppDelegate.h */,
 				BA6BC70E1A635FE400DA033C /* AppDelegate.m */,
+				BA2009E11A71E0A40052EE0F /* TestViewController.h */,
+				BA2009E21A71E0A40052EE0F /* TestViewController.m */,
+				BA2009E31A71E0A40052EE0F /* TestViewController.xib */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -736,6 +744,7 @@
 				BAB8109C1A63A85D00142DDA /* CompletePersonalInfoViewController.xib in Resources */,
 				BAB11C8E1A679C9A007FDE38 /* FollowingViewController.xib in Resources */,
 				BAB810971A639D1900142DDA /* ForgetPasswordViewController.xib in Resources */,
+				BA2009E51A71E0A40052EE0F /* TestViewController.xib in Resources */,
 				BA2009C71A6F84320052EE0F /* UserCreatedActivityViewController.xib in Resources */,
 				BA6BC7261A63627B00DA033C /* LoginViewController.xib in Resources */,
 				BAD65A781A5FA89200987B06 /* Main.storyboard in Resources */,
@@ -842,6 +851,7 @@
 				BAB810A21A63C1A100142DDA /* UserCreatActivityDescriptionView.m in Sources */,
 				BA6BC7251A63627B00DA033C /* LoginViewController.m in Sources */,
 				BAB11CA91A69FE5B007FDE38 /* ActivityCell.m in Sources */,
+				BA2009E41A71E0A40052EE0F /* TestViewController.m in Sources */,
 				BAB11C7C1A6667C4007FDE38 /* CCStatusManager.m in Sources */,
 				BA2009D51A6FA5150052EE0F /* CollectionDelegator.m in Sources */,
 				7E415BEC1A66B2ED0025E5FB /* CreateActivityParameter.m in Sources */,

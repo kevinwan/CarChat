@@ -96,7 +96,7 @@ const NSInteger MyEditProfileUploadCertifyButtonTag = 504;
             }
             LoginViewController * login = [[LoginViewController alloc] init];
             UINavigationController * loginNav = [[UINavigationController alloc]initWithRootViewController:login];
-            [vc presentViewController:loginNav
+            [currentContainer presentViewController:loginNav
                              animated:YES
                            completion:nil];
         }

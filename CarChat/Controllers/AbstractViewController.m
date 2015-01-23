@@ -95,4 +95,10 @@
     [currentModalController dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - Debug Helper
+- (void)dealloc
+{
+    NSLog(@"%s",__PRETTY_FUNCTION__);
+}
+
 @end

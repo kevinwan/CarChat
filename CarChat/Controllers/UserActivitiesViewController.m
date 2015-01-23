@@ -15,6 +15,7 @@
 static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
 
 @interface UserActivitiesViewController ()
+@property (nonatomic, copy) NSString * userId;
 @property (weak, nonatomic) IBOutlet UITableView *activityTable;
 @property (nonatomic, strong) ActivitiesCollectionDelegator * tableDelegator;
 @property (nonatomic, strong) NSMutableArray * activityItems;
@@ -22,6 +23,15 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
 @end
 
 @implementation UserActivitiesViewController
+
+#pragma mark - Lifecycle
+- (instancetype)initWithUserId:(NSString *)userId
+{
+    if (self = [super init]) {
+        self.userId = userId;
+    }
+    return self;
+}
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {

@@ -54,7 +54,7 @@
 	}
     
 	NSString *s = [[NSString alloc] initWithCharacters:buffer length:length];
-    buffer = nil;
+    free(buffer);
 	return s;
 }
 
