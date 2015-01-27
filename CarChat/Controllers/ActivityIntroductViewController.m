@@ -8,6 +8,7 @@
 
 #import "ActivityIntroductViewController.h"
 #import "ActivityEditView.h"
+#import "CCStatusManager.h"
 
 @interface ActivityIntroductViewController ()
 
@@ -109,9 +110,14 @@
 #pragma mark - User Interaction
 - (void)createAndEditTheActivity
 {
-    [ControllerCoordinator goNextFrom:self
-                              whitTag:ShowLoginFromSomeWhereTag
-                           andContext:nil];
+    if ([CCStatusManager isLoged]) {
+        [self animateEditingView];
+    }
+    else {
+        [ControllerCoordinator goNextFrom:self
+                                  whitTag:ShowLoginFromSomeWhereTag
+                               andContext:nil];
+    }
 }
 
 - (void)create

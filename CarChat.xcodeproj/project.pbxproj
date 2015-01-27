@@ -39,6 +39,8 @@
 		BA2009DD1A70D7060052EE0F /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2009DB1A70D7060052EE0F /* UserDetailViewController.xib */; };
 		BA2009E41A71E0A40052EE0F /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009E21A71E0A40052EE0F /* TestViewController.m */; };
 		BA2009E51A71E0A40052EE0F /* TestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA2009E31A71E0A40052EE0F /* TestViewController.xib */; };
+		BA2009E81A7770F20052EE0F /* ValidateVerifyCodeParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009E71A7770F20052EE0F /* ValidateVerifyCodeParameter.m */; };
+		BA2009EB1A778BFF0052EE0F /* SetPersonalInfoParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA2009EA1A778BFF0052EE0F /* SetPersonalInfoParameter.m */; };
 		BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC70E1A635FE400DA033C /* AppDelegate.m */; };
 		BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC7161A63606700DA033C /* RegisterViewController.m */; };
 		BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6BC71A1A63607F00DA033C /* RegisterViewController.xib */; };
@@ -168,6 +170,10 @@
 		BA2009E11A71E0A40052EE0F /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		BA2009E21A71E0A40052EE0F /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		BA2009E31A71E0A40052EE0F /* TestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestViewController.xib; sourceTree = "<group>"; };
+		BA2009E61A7770F20052EE0F /* ValidateVerifyCodeParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidateVerifyCodeParameter.h; sourceTree = "<group>"; };
+		BA2009E71A7770F20052EE0F /* ValidateVerifyCodeParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ValidateVerifyCodeParameter.m; sourceTree = "<group>"; };
+		BA2009E91A778BFF0052EE0F /* SetPersonalInfoParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPersonalInfoParameter.h; sourceTree = "<group>"; };
+		BA2009EA1A778BFF0052EE0F /* SetPersonalInfoParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPersonalInfoParameter.m; sourceTree = "<group>"; };
 		BA6BC70D1A635FE400DA033C /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BA6BC70E1A635FE400DA033C /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BA6BC7151A63606700DA033C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
@@ -351,8 +357,12 @@
 				BA03556C1A660E0400252F99 /* ValidateInviteCodeParameter.m */,
 				BA03556E1A66196100252F99 /* RegisterParameter.h */,
 				BA03556F1A66196100252F99 /* RegisterParameter.m */,
+				BA2009E91A778BFF0052EE0F /* SetPersonalInfoParameter.h */,
+				BA2009EA1A778BFF0052EE0F /* SetPersonalInfoParameter.m */,
 				BA0355711A661C7500252F99 /* GetVerifySMSParameter.h */,
 				BA0355721A661C7500252F99 /* GetVerifySMSParameter.m */,
+				BA2009E61A7770F20052EE0F /* ValidateVerifyCodeParameter.h */,
+				BA2009E71A7770F20052EE0F /* ValidateVerifyCodeParameter.m */,
 				BA0355741A6638B100252F99 /* ResetPasswordParameter.h */,
 				BA0355751A6638B100252F99 /* ResetPasswordParameter.m */,
 				BAB11C7D1A6670FB007FDE38 /* GetActivityWithInviteCodeParameter.h */,
@@ -827,6 +837,7 @@
 				BAD723281A64BF5100FB4645 /* UIImage+Gif.m in Sources */,
 				BAB11CB11A6CFDC5007FDE38 /* UIView+frame.m in Sources */,
 				BAD723241A64BF5100FB4645 /* NSDate+Helpers.m in Sources */,
+				BA2009E81A7770F20052EE0F /* ValidateVerifyCodeParameter.m in Sources */,
 				BAB11C921A679CE7007FDE38 /* UserActivitiesViewController.m in Sources */,
 				BA6BC7341A63644500DA033C /* AbstractViewController.m in Sources */,
 				BA03556D1A660E0400252F99 /* ValidateInviteCodeParameter.m in Sources */,
@@ -854,6 +865,7 @@
 				BA2009E41A71E0A40052EE0F /* TestViewController.m in Sources */,
 				BAB11C7C1A6667C4007FDE38 /* CCStatusManager.m in Sources */,
 				BA2009D51A6FA5150052EE0F /* CollectionDelegator.m in Sources */,
+				BA2009EB1A778BFF0052EE0F /* SetPersonalInfoParameter.m in Sources */,
 				7E415BEC1A66B2ED0025E5FB /* CreateActivityParameter.m in Sources */,
 				BAD723271A64BF5100FB4645 /* UIColor+Helper.m in Sources */,
 				BAB8109B1A63A85D00142DDA /* CompletePersonalInfoViewController.m in Sources */,

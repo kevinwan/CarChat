@@ -13,7 +13,6 @@
 - (NSDictionary *)toDic
 {
     return @{@"phone":self.phone,
-             @"verifyCode":self.verifyCode,
              @"password":self.pwd};
 }
 

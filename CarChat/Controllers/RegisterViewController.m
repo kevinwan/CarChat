@@ -11,6 +11,7 @@
 #import "RegisterParameter.h"
 #import "GetVerifySMSParameter.h"
 #import "CCStatusManager.h"
+#import "ValidateVerifyCodeParameter.h"
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumber;
@@ -36,6 +37,7 @@
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
                                             forApi:ApiRegister];
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetVerifySMS];
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiValidateVerifyCode];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,6 +52,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:nil];
     [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiRegister];
     [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiGetVerifySMS];
+    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiValidateVerifyCode];
 }
 
 #pragma mark - CCNetworkResponse
@@ -58,6 +61,7 @@
     [self hideHud];
     if (response.error) {
         // fail
+        [self showTip:response.error.localizedDescription];
     }
     else {
         // successful
@@ -72,6 +76,11 @@
         else if (api == ApiGetVerifySMS) {
             [self showTip:@"获取验证码成功"];
         }
+        else if (api == ApiValidateVerifyCode) {
+            // 验证码正确
+            // TODO: 重构验证验证码的逻辑，合并到module注册方法里
+            [self registerAfterValidatePhoneSuccess];
+        }
         
     }
 }
@@ -85,31 +94,35 @@
 #pragma mark - User Interaction
 - (IBAction)getVerifyCode:(id)sender
 {
-    if ([self.phoneNumber.text isMobileNumber]) {
-        [self showLoading:nil];
-        GetVerifySMSParameter * parameter = (GetVerifySMSParameter *)[ParameterFactory parameterWithApi:ApiGetVerifySMS];
-        [parameter setPhone:self.phoneNumber.text];
-        [[CCNetworkManager defaultManager] requestWithParameter:parameter];
-    }
-    else {
+    if (![self.phoneNumber.text isMobileNumber]) {
         [self showTip:@"请检查手机号码"];
+        return;
     }
+    
+    [self showLoading:nil];
+    GetVerifySMSParameter * parameter = (GetVerifySMSParameter *)[ParameterFactory parameterWithApi:ApiGetVerifySMS];
+    [parameter setPhone:self.phoneNumber.text];
+    [[CCNetworkManager defaultManager] requestWithParameter:parameter];
 }
 
 - (IBAction)registerAction:(id)sender
 {
+    if (![self.phoneNumber.text isMobileNumber]) {
+        [self showTip:@"请检查手机号码"];
+        return;
+    }
+    
     if (!self.acceptServerPolicy) {
         [self showTip:@"请阅读并同意服务条款"];
         return;
     }
     
-    [self showLoading:@"正在注册"];
+    [self showLoading:@"正在验证手机"];
     
-    RegisterParameter * reg = (RegisterParameter *)[ParameterFactory parameterWithApi:ApiRegister];
-    [reg setPhone:self.phoneNumber.text];
-    [reg setVerifyCode:self.verifyCode.text];
-    [reg setPwd:self.password.text];
-    [[CCNetworkManager defaultManager] requestWithParameter:reg];
+    ValidateVerifyCodeParameter * par = (ValidateVerifyCodeParameter *)[ParameterFactory parameterWithApi:ApiValidateVerifyCode];
+    par.verifyCode = self.verifyCode.text;
+    par.phone = self.phoneNumber.text;
+    [[CCNetworkManager defaultManager] requestWithParameter:par];
 }
 
 - (IBAction)checkIAgreePolicy:(UIButton *)sender
@@ -138,4 +151,14 @@
 {
     return ![self.phoneNumber.text isBlank] && ![self.verifyCode.text isBlank] && ![self.password.text isBlank];
 }
+
+- (void)registerAfterValidatePhoneSuccess
+{
+    [self showLoading:@"正在注册"];
+    RegisterParameter * reg = (RegisterParameter *)[ParameterFactory parameterWithApi:ApiRegister];
+    [reg setPhone:self.phoneNumber.text];
+    [reg setPwd:self.password.text];
+    [[CCNetworkManager defaultManager] requestWithParameter:reg];
+}
+
 @end

@@ -13,7 +13,7 @@
 /**
  *  活动model
  */
-@interface ActivityModel : NSObject
+@interface ActivityModel : NSObject <NSCopying>
 /**
  *  id
  */

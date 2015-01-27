@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "Common.h"
 
-@interface UserModel : NSObject
+@interface UserModel : NSObject <NSCopying>
 
 @property (nonatomic, copy) NSString * identifier;
 @property (nonatomic, copy) NSString * phone;

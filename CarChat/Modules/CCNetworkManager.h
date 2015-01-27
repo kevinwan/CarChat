@@ -36,6 +36,10 @@ extern NSString * const ApiResetPassword ;
  */
 extern NSString * const ApiGetVerifySMS ;
 /**
+ *  验证验证码
+ */
+extern NSString * const ApiValidateVerifyCode;
+/**
  *  设置个人信息
  */
 extern NSString * const ApiSetPersonalInfo ;

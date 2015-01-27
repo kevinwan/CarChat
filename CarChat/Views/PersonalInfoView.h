@@ -10,7 +10,7 @@
 #import "userModel.h"
 
 typedef NS_ENUM(NSInteger, PersonalInfoViewStyle) {
-    PersonalInfoViewStyleNormal = 0,    // 只有头像、昵称、性别、年龄
+    PersonalInfoViewStyleNormal = 0,    // 只有头像、昵称、性别、年龄、城市
     PersonalInfoViewStyleAdvance    // 比normal多了上传认证车主功能
 };
 
@@ -21,8 +21,9 @@ typedef void(^CertifyTouchBlock)(void);
 
 @property (weak, nonatomic) IBOutlet UIButton *avatarButton;
 @property (weak, nonatomic) IBOutlet UITextField *nickNameField;
-@property (weak, nonatomic) IBOutlet UITextField *genderField;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *genderControl;
 @property (weak, nonatomic) IBOutlet UITextField *ageField;
+@property (weak, nonatomic) IBOutlet UITextField *cityField;
 
 + (instancetype)viewWithStyle:(PersonalInfoViewStyle)style;
 

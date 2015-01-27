@@ -80,4 +80,20 @@ static NSString * const boyAA = @"男士AA";
     }
 }
 
+#pragma mark - NSCopying
+- (instancetype)copyWithZone:(NSZone *)zone
+{
+    ActivityModel * model = [[ActivityModel alloc]init];
+    model.name = [self.name copyWithZone:zone];
+    model.poster = [self.poster copyWithZone:zone];
+    model.posterData = [self.posterData copyWithZone:zone];
+    model.destination = [self.destination copyWithZone:zone];
+    model.date = [self.date copyWithZone:zone];
+    model.toplimit = [self.toplimit copyWithZone:zone];
+    model.payType = self.payType;
+    model.cost = [self.cost copyWithZone:zone];
+    model.owner = [self.owner copyWithZone:zone];
+    return model;
+}
+
 @end

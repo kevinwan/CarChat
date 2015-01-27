@@ -28,6 +28,26 @@
     }
 }
 
+#pragma mark - NSCopying
+- (instancetype)copyWithZone:(NSZone *)zone
+{
+    UserModel *model = [[UserModel alloc]init];
+    model.phone = [self.phone copyWithZone:zone];
+    model.nickName = [self.nickName copyWithZone:zone];
+    model.age = [self.age copyWithZone:zone];
+    model.avatar = [self.avatar copyWithZone:zone];
+    model.certifications = [self.certifications copyWithZone:zone];
+    model.gender = self.gender;
+    model.city = [self.city copyWithZone:zone];
+    model.countOfActvity = [self.countOfActvity copyWithZone:zone];
+    model.countOfFollower = [self.countOfFollower copyWithZone:zone];
+    model.countOfFollowing = [self.countOfFollowing copyWithZone:zone];
+    model.relationship = self.relationship;
+    model.certifyStatus = self.certifyStatus;
+    
+    return model;
+}
+
 @end
 
 @implementation UserModel (icons)

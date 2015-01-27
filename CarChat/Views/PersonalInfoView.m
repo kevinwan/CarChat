@@ -33,19 +33,24 @@
     [super awakeFromNib];
     
     [self.avatarButton makeRoundIfIsSquare];
-    
 }
 
 #pragma mark - User Interaction
 - (IBAction)avatarButtonTapped:(id)sender
 {
+    if (self.pickBlock == NULL) {
+        return;
+    }
+    
     [self.avatarButton setBackgroundImage:self.pickBlock() forState:UIControlStateNormal];
 }
 
 - (IBAction)certifyButtonTapped:(id)sender {
+    if (self.certifyBlock == NULL) {
+        return;
+    }
     self.certifyBlock();
 }
-
 
 #pragma mark - Public Apis
 - (void)setUser:(UserModel *)user
@@ -53,15 +58,9 @@
     if (user) {
         [self.avatarButton sd_setBackgroundImageWithURL:[NSURL URLWithString:user.avatar] forState:UIControlStateNormal];
         self.nickNameField.text = user.nickName;
-        NSString * genderStr = @"";
-        if (user.gender == GenderMale) {
-            genderStr = @"男";
-        }
-        else if (user.gender == GenderFemale) {
-            genderStr = @"女";
-        }
-        self.genderField.text = genderStr;
+        [self.genderControl setSelectedSegmentIndex:user.gender-1];;
         self.ageField.text = user.age;
+        self.cityField.text = user.city;
     }
 }
 
@@ -69,8 +68,9 @@
 {
     [self.avatarButton setEnabled:editable];
     [self.nickNameField setEnabled:editable];
-    [self.genderField setEnabled:editable];
+    [self.genderControl setEnabled:editable];
     [self.ageField setEnabled:editable];
+    [self.cityField setEnabled:editable];
 }
 
 @end

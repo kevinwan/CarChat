@@ -8,6 +8,7 @@
 
 
 #import "CCStatusManager.h"
+#import <AVOSCloud/AVOSCloud.h>
 
 @implementation CCStatusManager
 
@@ -19,6 +20,11 @@
         instance = [[[self class] alloc]init];
     });
     return instance;
+}
+
++ (BOOL)isLoged
+{
+    return [AVUser currentUser] != nil;
 }
 
 @end

@@ -11,7 +11,6 @@
 @interface RegisterParameter : ABCParameter
 
 @property (nonatomic, strong) NSString * phone;
-@property (nonatomic, strong) NSString * verifyCode;
 @property (nonatomic, strong) NSString * pwd;
 
 @end
