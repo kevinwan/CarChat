@@ -10,11 +10,16 @@
 #import <AFNetworking/AFNetworking.h>
 #import "ConcreteResponseObject.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "ActivityModel.h"
 #import "GetVerifySMSParameter.h"
 #import "ValidateVerifyCodeParameter.h"
 #import "ValidateInviteCodeParameter.h"
 #import "RegisterParameter.h"
 #import "SetPersonalInfoParameter.h"
+#import "CreateActivityParameter.h"
+#import "GetSuggestActivitiesParameter.h"
+#import "LoginParameter.h"
+// TODO: 整理一下*Parameter.h
 
 const NSString * const ResponseUserInfoParameterKey = @"parameter";
 
@@ -118,8 +123,21 @@ NSString * const ApiGetParticipants = @"GetParticipants";
 }
 
 #pragma mark - Concrete Request Methods
-- (void)Login:(ABCParameter *)parameter
+- (void)Login:(LoginParameter *)parameter
 {
+    
+    [AVUser logInWithUsernameInBackground:parameter.phone
+                                 password:parameter.pwd
+                                    block:
+     ^(AVUser *user, NSError *error) {
+         ConcreteResponseObject * resp =
+         [ConcreteResponseObject responseObjectWithApi:parameter.api
+                                                object:nil
+                                   andRequestParameter:parameter];
+         [resp setError:error];
+         [[NSNotificationCenter defaultCenter] postNotification:resp];
+     }
+     ];
 }
 
 - (void)Register:(RegisterParameter *)parameter
@@ -127,6 +145,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     AVUser * user = [AVUser user];
     user.username = parameter.phone;
     user.password = parameter.pwd;
+    user.mobilePhoneNumber = parameter.phone;
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
         [resp setError:error];
@@ -142,6 +161,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
 
 - (void)GetActivityWithInviteCode:(ABCParameter *)parameter
 {
+    
 }
 
 - (void)ResetPassword:(ABCParameter *)parameter
@@ -194,8 +214,29 @@ NSString * const ApiGetParticipants = @"GetParticipants";
 {
 }
 
-- (void)GetSuggestActivities:(ABCParameter *)parameter
+- (void)GetSuggestActivities:(GetSuggestActivitiesParameter *)parameter
 {
+    AVQuery * q = [AVQuery queryWithClassName:@"SuggestActivity"];
+    [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSMutableArray * activityList = nil;
+        if (!error && objects.count > 0) {
+            activityList = [NSMutableArray arrayWithCapacity:objects.count];
+            [objects enumerateObjectsUsingBlock:^(AVObject * act, NSUInteger idx, BOOL *stop) {
+                ActivityModel * model = [[ActivityModel alloc]init];
+                model.identifier = act.objectId;
+                model.date = [act objectForKey:@"date"];
+                model.destination = [act objectForKey:@"destination"];
+                model.cost = [act objectForKey:@"cost"];
+                model.name = [act objectForKey:@"name"];
+                model.posterUrl = [(AVFile *)[act objectForKey:@"poster"] url];
+                model.toplimit = [act objectForKey:@"toplimit"];
+                [activityList addObject:model];
+            }];
+        }
+        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:activityList andRequestParameter:parameter];
+        [resp setError:error];
+        [[NSNotificationCenter defaultCenter] postNotification:resp];
+    }];
 }
 
 - (void)GetUserActivities:(ABCParameter *)parameter
@@ -214,8 +255,35 @@ NSString * const ApiGetParticipants = @"GetParticipants";
 {
 }
 
-- (void)CreateActivity:(ABCParameter *)parameter
+- (void)CreateActivity:(CreateActivityParameter *)parameter
 {
+    // 先保存图片
+    AVFile * poster = [AVFile fileWithName:@"poster.jpg" data:UIImageJPEGRepresentation(parameter.poster, .2)];
+    [poster saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        // 保存图片成功之后保存活动数据
+        if (succeeded) {
+            // 活动基础数据
+            AVObject * activity = [AVObject objectWithClassName:NSStringFromClass([ActivityModel class])];
+            [parameter.toDic enumerateKeysAndObjectsUsingBlock:^(NSString * key, NSString * obj, BOOL *stop) {
+                [activity setObject:obj forKey:key];
+            }];
+            // 活动图片(已保存为avfile)
+            [activity setObject:poster forKey:@"poster"];
+            // 发起人信息
+            [activity setObject:[AVUser currentUser] forKey:@"owner"];
+            [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
+                resp.error = error;
+                [[NSNotificationCenter defaultCenter] postNotification:resp];
+            }];
+        }
+        // 保存图片失败返回失败
+        else {
+            ConcreteResponseObject * failedResp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
+            failedResp.error = error;
+            [[NSNotificationCenter defaultCenter] postNotification:failedResp];
+        }
+    }];
 }
 
 - (void)CreateInvitation:(ABCParameter *)parameter

@@ -66,7 +66,6 @@
 		BAB11C931A679CE7007FDE38 /* UserActivitiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C911A679CE7007FDE38 /* UserActivitiesViewController.xib */; };
 		BAB11C971A67A28B007FDE38 /* FollowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C951A67A28B007FDE38 /* FollowerViewController.m */; };
 		BAB11C981A67A28B007FDE38 /* FollowerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C961A67A28B007FDE38 /* FollowerViewController.xib */; };
-		BAB11C9C1A68EED6007FDE38 /* UserCreatedActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C9A1A68EED6007FDE38 /* UserCreatedActivityCell.m */; };
 		BAB11CA11A690E6F007FDE38 /* UIImage+color.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11CA01A690E6F007FDE38 /* UIImage+color.m */; };
 		BAB11CA41A6910E9007FDE38 /* UIView+square2Round.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11CA31A6910E9007FDE38 /* UIView+square2Round.m */; };
 		BAB11CA91A69FE5B007FDE38 /* ActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11CA81A69FE5B007FDE38 /* ActivityCell.m */; };
@@ -96,6 +95,7 @@
 		BAD723361A64FA6900FB4645 /* PersonalInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD723351A64FA6900FB4645 /* PersonalInfoView.m */; };
 		BAD723381A64FAA300FB4645 /* PersonalInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAD723371A64FAA300FB4645 /* PersonalInfoView.xib */; };
 		BAD7233B1A64FC9300FB4645 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD7233A1A64FC9300FB4645 /* UserModel.m */; };
+		BADD16CF1A78C174004AE9FC /* GetSuggestActivitiesParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BADD16CE1A78C174004AE9FC /* GetSuggestActivitiesParameter.m */; };
 		BAEBBE231A6E22E200020978 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEBBE221A6E22E200020978 /* UserCell.m */; };
 		D8A7439E174DC2430CFB553D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12FB037F979C42EA46571C1A /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -216,8 +216,6 @@
 		BAB11C941A67A28B007FDE38 /* FollowerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowerViewController.h; sourceTree = "<group>"; };
 		BAB11C951A67A28B007FDE38 /* FollowerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowerViewController.m; sourceTree = "<group>"; };
 		BAB11C961A67A28B007FDE38 /* FollowerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowerViewController.xib; sourceTree = "<group>"; };
-		BAB11C991A68EED6007FDE38 /* UserCreatedActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCreatedActivityCell.h; sourceTree = "<group>"; };
-		BAB11C9A1A68EED6007FDE38 /* UserCreatedActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCreatedActivityCell.m; sourceTree = "<group>"; };
 		BAB11C9E1A68F7A1007FDE38 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		BAB11C9F1A690E6F007FDE38 /* UIImage+color.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+color.h"; sourceTree = "<group>"; };
 		BAB11CA01A690E6F007FDE38 /* UIImage+color.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+color.m"; sourceTree = "<group>"; };
@@ -269,6 +267,8 @@
 		BAD723371A64FAA300FB4645 /* PersonalInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonalInfoView.xib; sourceTree = "<group>"; };
 		BAD723391A64FC9300FB4645 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		BAD7233A1A64FC9300FB4645 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		BADD16CD1A78C174004AE9FC /* GetSuggestActivitiesParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetSuggestActivitiesParameter.h; sourceTree = "<group>"; };
+		BADD16CE1A78C174004AE9FC /* GetSuggestActivitiesParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetSuggestActivitiesParameter.m; sourceTree = "<group>"; };
 		BAEBBE211A6E22E200020978 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
 		BAEBBE221A6E22E200020978 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		D0739C1B0EA98A7CE326B445 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -349,6 +349,8 @@
 			children = (
 				7EF6A0161A641ED70022DBCE /* ABCParameter.h */,
 				7EF6A0171A641ED70022DBCE /* ABCParameter.m */,
+				BADD16CD1A78C174004AE9FC /* GetSuggestActivitiesParameter.h */,
+				BADD16CE1A78C174004AE9FC /* GetSuggestActivitiesParameter.m */,
 				BA0355681A660AAB00252F99 /* ParameterFactory.h */,
 				BA0355691A660AAB00252F99 /* ParameterFactory.m */,
 				7EF6A0191A641FEC0022DBCE /* LoginParameter.h */,
@@ -634,8 +636,6 @@
 				7E415BE51A6589430025E5FB /* ActivityEditView.h */,
 				7E415BE61A6589430025E5FB /* ActivityEditView.m */,
 				7E415BE81A65895E0025E5FB /* ActivityEditView.xib */,
-				BAB11C991A68EED6007FDE38 /* UserCreatedActivityCell.h */,
-				BAB11C9A1A68EED6007FDE38 /* UserCreatedActivityCell.m */,
 				BAB11CA71A69FE5B007FDE38 /* ActivityCell.h */,
 				BAB11CA81A69FE5B007FDE38 /* ActivityCell.m */,
 			);
@@ -857,7 +857,6 @@
 				7EF16D361A63FED00008B16F /* CCNetworkManager.m in Sources */,
 				BA0355801A66502200252F99 /* ConcreteResponseObject.m in Sources */,
 				BAD723361A64FA6900FB4645 /* PersonalInfoView.m in Sources */,
-				BAB11C9C1A68EED6007FDE38 /* UserCreatedActivityCell.m in Sources */,
 				BAD65A721A5FA89200987B06 /* CarChat.xcdatamodeld in Sources */,
 				BAB810A21A63C1A100142DDA /* UserCreatActivityDescriptionView.m in Sources */,
 				BA6BC7251A63627B00DA033C /* LoginViewController.m in Sources */,
@@ -876,6 +875,7 @@
 				BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */,
 				7E415BF51A6808160025E5FB /* CreateInvitationParameter.m in Sources */,
 				BA2009CB1A6F90A60052EE0F /* CommentViewController.m in Sources */,
+				BADD16CF1A78C174004AE9FC /* GetSuggestActivitiesParameter.m in Sources */,
 				BA6BC7241A63627B00DA033C /* ActivityIntroductViewController.m in Sources */,
 				BAB11CA11A690E6F007FDE38 /* UIImage+color.m in Sources */,
 				BAD7232C1A64D3DF00FB4645 /* ServerPolicyViewController.m in Sources */,

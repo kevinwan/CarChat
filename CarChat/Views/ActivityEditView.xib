@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <objects>
@@ -10,9 +11,13 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="xwa-Ac-Gbr">
+                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="xwa-Ac-Gbr">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <gestureRecognizers/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="vZ6-dK-KhG" appends="YES" id="rRb-Q0-csN"/>
+                    </connections>
                 </imageView>
                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="interactive" id="vrs-sc-vOl" customClass="RPFloatingPlaceholderTextView">
                     <rect key="frame" x="10" y="195" width="300" height="36"/>
@@ -21,17 +26,17 @@
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="日期" adjustsFontSizeToFit="NO" minimumFontSize="14" id="1ld-F5-HYZ" customClass="RPFloatingPlaceholderTextField">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="目的地" adjustsFontSizeToFit="NO" minimumFontSize="14" id="sfd-sq-rmi" customClass="RPFloatingPlaceholderTextField">
                     <rect key="frame" x="10" y="246" width="300" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.85232981926750895" green="1" blue="0.4103660944649774" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.85232981929999996" green="1" blue="0.4103660945" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="目的地" adjustsFontSizeToFit="NO" minimumFontSize="14" id="sfd-sq-rmi" customClass="RPFloatingPlaceholderTextField">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="日期" adjustsFontSizeToFit="NO" minimumFontSize="14" id="1ld-F5-HYZ" customClass="RPFloatingPlaceholderTextField">
                     <rect key="frame" x="10" y="279" width="300" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.85232981929999996" green="1" blue="0.4103660945" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.85232981926750895" green="1" blue="0.4103660944649774" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
@@ -42,13 +47,18 @@
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="费用分摊" adjustsFontSizeToFit="NO" minimumFontSize="14" id="MNs-1C-ZPx" customClass="RPFloatingPlaceholderTextField">
-                    <rect key="frame" x="10" y="345" width="300" height="30"/>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="0jq-qC-n18">
+                    <rect key="frame" x="10" y="345" width="300" height="29"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.85232981929999996" green="1" blue="0.4103660945" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
+                    <segments>
+                        <segment title="AA"/>
+                        <segment title="男士AA"/>
+                        <segment title="土豪请客"/>
+                    </segments>
+                    <connections>
+                        <action selector="choosePayType:" destination="iN0-l3-epB" eventType="valueChanged" id="mBv-6G-XEV"/>
+                    </connections>
+                </segmentedControl>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="每人支出" adjustsFontSizeToFit="NO" minimumFontSize="14" id="URj-St-SgI" customClass="RPFloatingPlaceholderTextField">
                     <rect key="frame" x="10" y="378" width="300" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -64,12 +74,17 @@
                 <outlet property="date" destination="1ld-F5-HYZ" id="EYh-a7-4SZ"/>
                 <outlet property="destiny" destination="sfd-sq-rmi" id="BE8-Xn-l8I"/>
                 <outlet property="name" destination="vrs-sc-vOl" id="cKH-Kd-ndw"/>
-                <outlet property="payType" destination="MNs-1C-ZPx" id="kPK-Gz-52M"/>
+                <outlet property="payType" destination="0jq-qC-n18" id="jil-zW-PSg"/>
                 <outlet property="posterView" destination="xwa-Ac-Gbr" id="sap-Bq-MSj"/>
                 <outlet property="toplimit" destination="ykm-JF-oMB" id="b18-Ir-DV8"/>
             </connections>
             <point key="canvasLocation" x="432" y="393"/>
         </view>
+        <tapGestureRecognizer id="vZ6-dK-KhG">
+            <connections>
+                <action selector="selectPoster:" destination="iN0-l3-epB" id="b9f-He-0ih"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

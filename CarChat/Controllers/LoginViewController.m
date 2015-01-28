@@ -68,17 +68,17 @@
 #pragma mark - User Interaction
 - (IBAction)loginButtonTapped:(id)sender
 {
-//    if ([self isPhoneNumberValid]) {
-        [self showLoading:@"正在登录"];
-        
-        LoginParameter * parameter = (LoginParameter *)[ParameterFactory parameterWithApi:ApiLogin];
-        parameter.phone = self.phoneNumber.text;
-        parameter.pwd = self.password.text;
-        [[CCNetworkManager defaultManager] requestWithParameter:parameter];
-//    }
-//    else {
-//        [self showTip:@"请输入正确的手机号码"];
-//    }
+    if (![self isPhoneNumberValid]) {
+        [self showTip:@"请输入正确的手机号码"];
+        return;
+    }
+    
+    [self showLoading:@"正在登录"];
+    
+    LoginParameter * parameter = (LoginParameter *)[ParameterFactory parameterWithApi:ApiLogin];
+    parameter.phone = self.phoneNumber.text;
+    parameter.pwd = self.password.text;
+    [[CCNetworkManager defaultManager] requestWithParameter:parameter];
 }
 
 - (IBAction)forgetPWDButtonTapped:(id)sender
@@ -117,6 +117,7 @@
     
     if (response.error != nil) {
         // failed
+        [self showTip:response.error.localizedDescription];
     }
     else {
         // successful
@@ -138,8 +139,6 @@
                                           whitTag:LoginRegisterButtonTag
                                        andContext:nil];
             }];
-        }
-        else {
         }
     }
 }

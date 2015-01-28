@@ -10,6 +10,7 @@
 #import "ActivitiesCollectionDelegator.h"
 #import "ActivityModel.h"
 #import <UIImageView+WebCache.h>
+#import "GetSuggestActivitiesParameter.h"
 
 static NSString * const activityCellIdentifier = @"activityCellIdentifier";
 
@@ -28,12 +29,12 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"推荐活动";
     
-    [self __createActivitiesForDevelop];
-    
     [self setupDelegator];
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
                                             forApi:ApiGetSuggestActivities];
+    
+    [self requestSuggestActivities];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -42,6 +43,14 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
 }
 
 #pragma mark - Lifecycle
+- (instancetype)init
+{
+    if (self = [super init]) {
+        self.activities = [NSMutableArray array];
+    }
+    return self;
+}
+
 - (void)dealloc
 {
     [[CCNetworkManager defaultManager] removeObserver:self
@@ -51,17 +60,17 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
 #pragma mark - CCNetworkResponse
 - (void)didGetResponseNotification:(ConcreteResponseObject *)response
 {
+    [self hideHud];
     if (response.error) {
         // failed
+        [self showTip:response.error.localizedDescription];
     }
     else {
         // success
         NSString * api = response.api;
         if (api == ApiGetSuggestActivities) {
-            // TODO:
-        }
-        else {
-            
+            [self.activities addObjectsFromArray:(NSArray *)response.object];
+            [self.suggestionTableView reloadData];
         }
     }
 }
@@ -73,7 +82,8 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     self.tableDelegator.cellClass = [ActivityCell class];
     self.tableDelegator.style = ActivityCellStyleSuggest;
     [self.tableDelegator setConfigBlock:^(ActivityModel * activity, ActivityCell * cell) {
-        [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.poster]];
+        [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
+#warning replace image here
         cell.name.text = activity.name;
         cell.cost.text = [NSString stringWithFormat:@"费用:%@",activity.cost];
         cell.toplimit.text = [NSString stringWithFormat:@"人数:%@",activity.toplimit];
@@ -89,35 +99,11 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     [self.suggestionTableView setDelegate:self.tableDelegator];
 }
 
-- (void)__createActivitiesForDevelop
+- (void)requestSuggestActivities
 {
-    self.activities = [NSMutableArray array];
-    NSArray * posters = @[@"http://pic3.bbzhi.com/youxibizhi/jipinfeiche114/jingxuan_yxjx_214782_18.jpg",
-                          @"http://f.hiphotos.baidu.com/zhidao/pic/item/c8177f3e6709c93d0d1704f39d3df8dcd00054c8.jpg",
-                          @"http://pic3.bbzhi.com/youxibizhi/zhengdangfangwei2/jingxuan_yxjx_277739_18.jpg",
-                          @"http://pic1a.nipic.com/2008-10-23/2008102323598475_2.jpg",
-                          @"http://img2.niutuku.com/desk/1208/1524/ntk-1524-42510.jpg",
-                          @"http://f.hiphotos.baidu.com/zhidao/pic/item/c8177f3e6709c93d0d1704f39d3df8dcd00054c8.jpg",
-                          @"http://pic3.bbzhi.com/youxibizhi/zhengdangfangwei2/jingxuan_yxjx_277739_18.jpg",
-                          @"http://pic1a.nipic.com/2008-10-23/2008102323598475_2.jpg",
-                          @"http://img2.niutuku.com/desk/1208/1524/ntk-1524-42510.jpg",
-                          @"http://img.pconline.com.cn/images/upload/upc/tx/auto5/1102/16/c1/6758855_6758855_1297853768203.jpg"];
-    for (int i = 0; i < 10; i++) {
-        ActivityModel * activity = [ActivityModel new];
-        activity.name = [NSString stringWithFormat:@"去钓鱼，上次我钓了%d条鱼，称了一下，%d斤！！！哎呀，还不够行数？",i,i*3];
-        activity.destination = [NSString stringWithFormat:@"destination %d",i];
-        activity.date = [NSString stringWithFormat:@"%@",[NSDate date]];
-        activity.toplimit = [NSString stringWithFormat:@"%d",i];
-        activity.poster = posters[i];
-        activity.owner = [UserModel new];
-        activity.owner.avatar = @"http://b.hiphotos.baidu.com/image/pic/item/ca1349540923dd5427f5bd1dd309b3de9d8248c4.jpg";
-        activity.owner.nickName = @"红烧肉";
-        activity.owner.gender = (Gender)i%2;
-        activity.payType = PayTypeSBTreat;
-        activity.cost = [NSString stringWithFormat:@"%d0$/person",i];
-        [self.activities addObject:activity];
-    }
+    [self showLoading:@""];
+    GetSuggestActivitiesParameter * par = (GetSuggestActivitiesParameter *)[ParameterFactory parameterWithApi:ApiGetSuggestActivities];
+    [[CCNetworkManager defaultManager] requestWithParameter:par];
 }
-
 
 @end

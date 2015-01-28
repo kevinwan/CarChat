@@ -30,7 +30,9 @@
 
 - (void)setModel:(ActivityModel *)activity
 {
-    [self.poster sd_setImageWithURL:[NSURL URLWithString:activity.poster]];
+#warning relpace image here
+//    [self.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
+    [self.poster setImage:activity.posterImage];
     [self.nameLabel setText:activity.name];
     [self.starterAvtar sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatar]];
     [self.starterGender setBackgroundColor:[UIColor redColor]];

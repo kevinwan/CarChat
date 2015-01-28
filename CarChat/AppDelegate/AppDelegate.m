@@ -12,6 +12,7 @@
 #import <SCLAlertView.h>
 #import "ActivityModel.h"
 #import "TestViewController.h"
+#import "CCStatusManager.h"
 
 static const NSInteger SuggestNavItemTag = 1;
 static const NSInteger MyNavItemTag = 2;
@@ -39,13 +40,13 @@ static const NSInteger MyNavItemTag = 2;
     SuggestedActivityViewController * suggestVC = [[SuggestedActivityViewController alloc]init];
     suggestVC.title = @"推荐";
     suggestVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemTopRated tag:SuggestNavItemTag];
-    
     // item 2 - my
     MyViewController *myVC = [[MyViewController alloc]init];
     myVC.title = @"我的";
     myVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemContacts tag:MyNavItemTag];
     [rootTabbar setViewControllers:@[suggestVC, myVC]];
     [rootTabbar setSelectedIndex:0];
+    [rootTabbar setDelegate:(id<UITabBarControllerDelegate>)self];
     
     UINavigationController * rootNav = [[UINavigationController alloc]initWithRootViewController:rootTabbar];
     [_window setRootViewController:rootNav];
@@ -83,6 +84,23 @@ static const NSInteger MyNavItemTag = 2;
 //    [self saveContext];
 }
 
+#pragma mark - UITabBarControllerDelegate 判断是否登录
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController
+{
+    if ([tabBarController.viewControllers indexOfObject:viewController] != 1) {
+        return YES;
+    }
+    
+    // "MY" view controller
+    if ([CCStatusManager isLoged]) {
+        return YES;
+    }
+    else {
+        [ControllerCoordinator goNextFrom:self.window.rootViewController whitTag:ShowLoginFromSomeWhereTag andContext:nil];
+        return NO;
+    }
+}
+
 #pragma mark - CCNetworkResponse
 - (void)didGetResponseNotification:(ConcreteResponseObject *)response
 {
@@ -100,7 +118,8 @@ static const NSInteger MyNavItemTag = 2;
                  act.date = @"2015年2月14日";
                  act.toplimit = @"12";
                  act.cost = @"50$/人";
-                 act.poster = @"http://f.hiphotos.baidu.com/image/pic/item/11385343fbf2b2119695ec50c98065380cd78e70.jpg";
+//                 act.posterUrl = @"http://f.hiphotos.baidu.com/image/pic/item/11385343fbf2b2119695ec50c98065380cd78e70.jpg";
+#warning relpace image here
                  act.owner.avatar = @"http://f.hiphotos.baidu.com/image/pic/item/fd039245d688d43f5a0f54f37f1ed21b0ef43b09.jpg";
                  act.owner.nickName = @"范爷";
                  act.owner.gender = GenderFemale;

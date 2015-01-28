@@ -20,7 +20,7 @@
 @property (nonatomic, copy) NSString * toplimit;
 @property (nonatomic, assign) PayType payType;
 @property (nonatomic, copy) NSString * cost;
-@property (nonatomic, retain) NSData * poster;
+@property (nonatomic, retain) UIImage * poster;
 @property (nonatomic, copy) NSString * posterUrl;
 
 @end

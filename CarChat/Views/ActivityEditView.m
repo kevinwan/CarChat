@@ -8,17 +8,10 @@
 
 #import "ActivityEditView.h"
 #import <UIImageView+WebCache.h>
-#import <RPFloatingPlaceholderTextView.h>
-#import <RPFloatingPlaceholderTextField.h>
+#import "NSString+Helpers.h"
 
 @interface ActivityEditView ()
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
-@property (weak, nonatomic) IBOutlet RPFloatingPlaceholderTextView *name;
-@property (weak, nonatomic) IBOutlet RPFloatingPlaceholderTextField *date;
-@property (weak, nonatomic) IBOutlet RPFloatingPlaceholderTextField *destiny;
-@property (weak, nonatomic) IBOutlet RPFloatingPlaceholderTextField *toplimit;
-@property (weak, nonatomic) IBOutlet RPFloatingPlaceholderTextField *payType;
-@property (weak, nonatomic) IBOutlet RPFloatingPlaceholderTextField *cost;
 
 /**
  *  用户选择的图片文件。如果用户自己选择了图片，创建model时就用这个。
@@ -45,28 +38,38 @@
 - (void)layoutWithActivity:(ActivityModel *)activity
 {
     [self.name setPlaceholder:@"活动名称"];
-    if (activity.posterData) {
-        UIImage * posterImage = [UIImage imageWithData:activity.posterData];
+    if (activity.posterImage) {
+        UIImage * posterImage = activity.posterImage;
         [self.posterView setImage:posterImage];
         self.userChoosedPoster = posterImage;
         self.originPosterUrl = nil;
     }
     else  {
-        [self.posterView sd_setImageWithURL:[NSURL URLWithString:activity.poster]];
-        self.originPosterUrl = activity.poster;
+        [self.posterView sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
+        self.originPosterUrl = activity.posterUrl;
         self.userChoosedPoster = nil;
     }
     self.name.text = activity.name;
-    self.cost.text = activity.cost;
-    self.date.text = activity.date;
     self.destiny.text = activity.destination;
+    self.date.text = activity.date;
+    [self.date setHidden:!activity.date || [activity.date isBlank]];
     self.toplimit.text = activity.toplimit;
-    self.payType.text = [ActivityModel stringFromPayType:activity.payType];
+    [self.toplimit setHidden:!activity.toplimit || [activity.toplimit isBlank]];
+//    [self.payType setSelectedSegmentIndex:activity.payType];
+    [self.payType setHidden:activity.payType == 0];
     self.cost.text = activity.cost;
+    [self.cost setHidden:!activity.cost || [activity.cost isBlank]];
 }
 
 - (void)beginEdit
 {
+    [UIView animateWithDuration:.2f animations:^{
+        [self.date setHidden:NO];
+        [self.destiny setHidden:NO];
+        [self.toplimit setHidden:NO];
+        [self.payType setHidden:NO];
+        [self.cost setHidden:NO];
+    }];
     [self.name becomeFirstResponder];
 }
 
@@ -77,16 +80,33 @@
     model.destination = self.destiny.text;
     model.date = self.date.text;
     model.toplimit = self.toplimit.text;
-    model.payType = [ActivityModel payTypeFromString:self.payType.text];
+    model.payType = self.payType.selectedSegmentIndex + 1;
     model.cost = self.cost.text;
-    if (self.userChoosedPoster != nil) {
-        model.posterData = UIImageJPEGRepresentation(self.userChoosedPoster, .5);
-    }
-    else {
-        model.poster = self.originPosterUrl;
-    }
+    model.posterImage = self.posterView.image;
     
     return model;
 }
+
+#pragma mark - User Interaction
+- (IBAction)selectPoster:(id)sender {
+    if (self.choosePosterBlock) {
+        UIImage * posterImage = self.choosePosterBlock();
+        if (posterImage) {
+            [self.posterView setImage:posterImage];
+            [self.posterView setNeedsDisplay];
+        }
+    }
+}
+- (IBAction)choosePayType:(UISegmentedControl *)sender {
+    if (sender.selectedSegmentIndex == 2) {
+        [self.cost setEnabled:NO];
+        [self.cost setHidden:YES];
+    }
+    else {
+        [self.cost setEnabled:YES];
+        [self.cost setHidden:NO];
+    }
+}
+
 
 @end

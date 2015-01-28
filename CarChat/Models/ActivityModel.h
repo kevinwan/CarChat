@@ -17,31 +17,31 @@
 /**
  *  id
  */
-@property (nonatomic, strong) NSString * identifier;
+@property (nonatomic, copy) NSString * identifier;
 /**
  *  活动名称
  */
-@property (nonatomic, strong) NSString * name;
+@property (nonatomic, copy) NSString * name;
 /**
  *  活动图片地址
  */
-@property (nonatomic, strong) NSString * poster;
+@property (nonatomic, copy) NSString * posterUrl;
 /**
  *  活动图片数据
  */
-@property (nonatomic, strong) NSData * posterData;
+@property (nonatomic, strong) UIImage * posterImage;
 /**
  *  目的地
  */
-@property (nonatomic, strong) NSString * destination;
+@property (nonatomic, copy) NSString * destination;
 /**
  *  活动日期
  */
-@property (nonatomic, strong) NSString * date;
+@property (nonatomic, copy) NSString * date;
 /**
  *  人数上限
  */
-@property (nonatomic, strong) NSString * toplimit;
+@property (nonatomic, copy) NSString * toplimit;
 /**
  *  费用分配
  */
@@ -49,7 +49,7 @@
 /**
  *  人均花费
  */
-@property (nonatomic, strong) NSString * cost;
+@property (nonatomic, copy) NSString * cost;
 /**
  *  创建人信息
  */

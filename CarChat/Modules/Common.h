@@ -17,9 +17,9 @@ typedef NS_ENUM(NSInteger, Gender) {
 };
 
 typedef NS_ENUM(NSInteger, PayType) {
-    PayTypeSBTreat = 1,
-    PayTypeEverybodyDutch = 2,
-    PayTypeBoysDutch = 3
+    PayTypeEverybodyDutch = 1,
+    PayTypeBoysDutch = 2,
+    PayTypeSBTreat = 3,
 };
 
 typedef NS_OPTIONS(NSInteger, Relationship) {

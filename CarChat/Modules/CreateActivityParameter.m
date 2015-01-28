@@ -17,9 +17,7 @@
              @"date":self.date,
              @"toplimit":self.toplimit,
              @"payType":@(self.payType),
-             @"cost":self.cost,
-             @"poster":self.poster,
-             @"posterUrl":self.posterUrl};
+             @"cost":self.cost};
 }
 
 @end

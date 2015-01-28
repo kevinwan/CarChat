@@ -9,6 +9,8 @@
 #import "ActivityIntroductViewController.h"
 #import "ActivityEditView.h"
 #import "CCStatusManager.h"
+#import <UzysAssetsPickerController.h>
+#import "NSString+Helpers.h"
 
 @interface ActivityIntroductViewController ()
 
@@ -17,6 +19,8 @@
 @property (nonatomic, strong) ActivityEditView * editView;
 @property (nonatomic, strong) UIBarButtonItem * leftItemStore;
 @property (nonatomic, strong) UIBarButtonItem * rightItemStore;
+
+@property (nonatomic, strong) ALAsset * asset;
 
 @property (nonatomic, assign) BOOL showEditingAnimatedAfterLogin;
 
@@ -52,9 +56,7 @@
                              target:self
                           andAction:@selector(createAndEditTheActivity)];
     
-    self.editView = [ActivityEditView view];
-    [self.editView layoutWithActivity:self.activity];
-    [self.view addSubview:self.editView];
+    [self setupEditView];
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
                                             forApi:ApiLogin];
@@ -85,6 +87,7 @@
     
     if (response.error) {
         // failed
+        [self showTip:response.error.localizedDescription];
     }
     else {
         // successful
@@ -96,9 +99,9 @@
         else if (api == ApiCreateActivity) {
             // 创建成功
             [self showTip:@"创建成功"];
-            // TODO: 把创建成功返回的id，赋值给createdActivity
-            self.createdActivity = [ActivityModel ActivityWithParameter:(CreateActivityParameter *)response.parameter];
-            [self.editView layoutWithActivity:self.createdActivity];
+//            // TODO: 把创建成功返回的id，赋值给createdActivity
+//            self.createdActivity = [ActivityModel ActivityWithParameter:(CreateActivityParameter *)response.parameter];
+//            [self.editView layoutWithActivity:self.createdActivity];
             [self.editView setUserInteractionEnabled:NO];
             [self setLeftNavigationBarItem:@"关闭" target:self andAction:@selector(close) animated:YES];
             [self setRightNavigationBarItem:@"邀请" target:self andAction:@selector(invite) animated:YES];
@@ -106,6 +109,23 @@
     }
 }
 
+#pragma mark - UzysAssetsPickerControllerDelegate
+- (void)UzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
+{
+    LOG_EXPR(assets);
+    self.asset = assets[0];
+    CFRunLoopStop(CFRunLoopGetCurrent());
+}
+
+- (void)UzysAssetsPickerControllerDidCancel:(UzysAssetsPickerController *)picker
+{
+    CFRunLoopStop(CFRunLoopGetCurrent());
+}
+
+- (void)UzysAssetsPickerControllerDidExceedMaximumNumberOfSelection:(UzysAssetsPickerController *)picker
+{
+    return;
+}
 
 #pragma mark - User Interaction
 - (void)createAndEditTheActivity
@@ -122,13 +142,18 @@
 
 - (void)create
 {
+    if (![self isAllFieldTexted]) {
+        [self showTip:@"请完善活动信息"];
+        return;
+    }
+    
     [self.editView endEditing:YES];
     [self.editView setUserInteractionEnabled:NO];
     
     // 调用接口，创建活动
     CreateActivityParameter * parameter = [[self.editView generateActivity] parameter];
     
-    [self showLoading:nil];
+    [self showLoading:@"正在创建"];
     [[CCNetworkManager defaultManager] requestWithParameter:parameter];
 }
 
@@ -155,6 +180,24 @@
 }
 
 #pragma mark - Internal Helper
+- (void)setupEditView
+{
+    self.editView = [ActivityEditView view];
+    [self.editView layoutWithActivity:self.activity];
+    __weak typeof(self) _weakRef = self;
+    [self.editView setChoosePosterBlock:^ UIImage *{
+        UzysAssetsPickerController * imagePicker = [[UzysAssetsPickerController alloc]init];
+        imagePicker.assetsFilter = [ALAssetsFilter allPhotos];
+        imagePicker.delegate = (id<UzysAssetsPickerControllerDelegate>)_weakRef;
+        imagePicker.maximumNumberOfSelectionPhoto = 1;
+        imagePicker.maximumNumberOfSelectionVideo = 0;
+        [_weakRef presentViewController:imagePicker animated:YES completion:nil];
+        CFRunLoopRun();
+        return [UIImage imageWithCGImage: _weakRef.asset.defaultRepresentation.fullResolutionImage];
+    }];
+    [self.view addSubview:self.editView];
+}
+
 - (void)animateEditingView
 {
     self.showEditingAnimatedAfterLogin = NO;
@@ -168,6 +211,18 @@
     
     self.leftItemStore = self.navigationItem.leftBarButtonItem;
     [self setLeftNavigationBarItem:@"取消" target:self andAction:@selector(giveUp) animated:YES];
+}
+
+- (BOOL)isAllFieldTexted
+{
+    return
+    ![self.editView.name.text isBlank] &&
+    ![self.editView.date.text isBlank] &&
+    ![self.editView.destiny.text isBlank] &&
+    ![self.editView.toplimit.text isBlank] &&
+    (self.editView.payType.selectedSegmentIndex == 2 || // 付费类型是土豪请客
+     (self.editView.payType.selectedSegmentIndex != 2 && ![self.editView.cost.text isBlank]));  // 付费类型不是土豪请客，并且填写了每人承担费用
+    
 }
 
 @end

@@ -11,8 +11,8 @@
 #import "ActivityModel.h"
 
 typedef NS_ENUM(NSInteger, ActivityCellStyle) {
-    ActivityCellStyleSuggest = 1,   // 推荐活动cell，包含poster、name、cost、toplimit
-    ActivityCellStyleUserCreated    // 用户活动cell，除了推荐活动的cell元素之外，还有avatar,nickName,genderIcon,certifyIcon
+    ActivityCellStyleSuggest = 1,   // 推荐活动cell，包含poster、name
+    ActivityCellStyleUserCreated    // 用户活动cell，除了推荐活动的cell元素之外，还有avatar,nickName,genderIcon,certifyIcon、cost、toplimit
 };
 
 extern CGFloat const ActivityCellStyleSuggestHeight;

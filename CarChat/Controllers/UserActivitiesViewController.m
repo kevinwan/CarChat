@@ -54,7 +54,9 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
     [self.tableDelegator setCellClass:[ActivityCell class]];
     [self.tableDelegator setStyle:ActivityCellStyleUserCreated];
     [self.tableDelegator setConfigBlock:^(ActivityModel * activity, ActivityCell * cell) {
-        [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.poster]];
+//        [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
+#warning replace image here
+        [cell.poster setImage:activity.posterImage];
         cell.name.text = activity.name;
         cell.cost.text = [NSString stringWithFormat:@"费用:%@",activity.cost];
         cell.toplimit.text = [NSString stringWithFormat:@"人数:%@",activity.toplimit];
@@ -90,7 +92,8 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
         activity.destination = [NSString stringWithFormat:@"destination %d",i];
         activity.date = [NSString stringWithFormat:@"%@",[NSDate date]];
         activity.toplimit = [NSString stringWithFormat:@"%d",i];
-        activity.poster = posters[i];
+//        activity.posterUrl = posters[i];
+#warning replace image here
         activity.owner = [UserModel new];
         activity.owner.avatar = @"http://b.hiphotos.baidu.com/image/pic/item/ca1349540923dd5427f5bd1dd309b3de9d8248c4.jpg";
         activity.owner.nickName = @"红烧带鱼";

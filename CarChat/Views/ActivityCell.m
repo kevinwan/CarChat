@@ -9,8 +9,8 @@
 #import "ActivityCell.h"
 #import "UIView+square2Round.h"
 
-CGFloat const ActivityCellStyleSuggestHeight = 233.f;
-CGFloat const ActivityCellStyleUserCreatedHeight = 298.f;
+CGFloat const ActivityCellStyleSuggestHeight = 217.f;
+CGFloat const ActivityCellStyleUserCreatedHeight = 314.f;
 
 @interface ActivityCell ()
 
@@ -36,17 +36,18 @@ CGFloat const ActivityCellStyleUserCreatedHeight = 298.f;
         [_name setBackgroundColor:[UIColor colorWithRed:0.701 green:0.999 blue:1.000 alpha:1.000]];
         [self.contentView addSubview:_name];
         
-        _cost = [[UILabel alloc]initWithFrame:CGRectZero];
-        [_cost setFont:[UIFont systemFontOfSize:14]];
-        [_cost setBackgroundColor:[UIColor colorWithRed:0.968 green:1.000 blue:0.750 alpha:1.000]];
-        [self.contentView addSubview:_cost];
-        
-        _toplimit = [[UILabel alloc]initWithFrame:CGRectZero];
-        [_toplimit setFont:[UIFont systemFontOfSize:14]];
-        [_toplimit setBackgroundColor:[UIColor colorWithRed:1.000 green:0.879 blue:0.851 alpha:1.000]];
-        [self.contentView addSubview:_toplimit];
-        
         if (self.style == ActivityCellStyleUserCreated) {
+            
+            _cost = [[UILabel alloc]initWithFrame:CGRectZero];
+            [_cost setFont:[UIFont systemFontOfSize:14]];
+            [_cost setBackgroundColor:[UIColor colorWithRed:0.968 green:1.000 blue:0.750 alpha:1.000]];
+            [self.contentView addSubview:_cost];
+            
+            _toplimit = [[UILabel alloc]initWithFrame:CGRectZero];
+            [_toplimit setFont:[UIFont systemFontOfSize:14]];
+            [_toplimit setBackgroundColor:[UIColor colorWithRed:1.000 green:0.879 blue:0.851 alpha:1.000]];
+            [self.contentView addSubview:_toplimit];
+            
             _avatar = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, 50.f, 50.f)];
             [_avatar makeRoundIfIsSquare];
             [self.contentView addSubview:_avatar];
@@ -84,9 +85,9 @@ CGFloat const ActivityCellStyleUserCreatedHeight = 298.f;
     
     [self.poster setFrame:CGRectMake(0.f, 0.f, cellSize.width, 180.f)];
     [self.name setFrame:CGRectMake(0.f, 180.f, cellSize.width, 36.f)];
-    [self.cost setFrame:CGRectMake(0.f, 216.f, cellSize.width/2, 16.f)];
-    [self.toplimit setFrame:CGRectMake(cellSize.width/2, 216.f, cellSize.width/2, 16.f)];
     if (self.style == ActivityCellStyleUserCreated) {
+        [self.cost setFrame:CGRectMake(0.f, 216.f, cellSize.width/2, 16.f)];
+        [self.toplimit setFrame:CGRectMake(cellSize.width/2, 216.f, cellSize.width/2, 16.f)];
         [self.avatar setFrame:CGRectMake(8.f, 240.f, 50.f, 50.f)];
         [self.genderIcon setFrame:CGRectMake(66.f, 240.f, 20.f, 20.f)];
         [self.certifyIcon setFrame:CGRectMake(94.f, 240.f, 20.f, 20.f)];

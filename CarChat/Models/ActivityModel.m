@@ -23,8 +23,8 @@ static NSString * const boyAA = @"男士AA";
     parameter.toplimit = self.toplimit;
     parameter.payType = self.payType;
     parameter.cost = self.cost;
-    parameter.poster = self.posterData;
-    parameter.posterUrl = self.poster;
+    parameter.poster = self.posterImage;
+//    parameter.posterUrl = self.posterUrl;
     return parameter;
 }
 
@@ -37,8 +37,8 @@ static NSString * const boyAA = @"男士AA";
     model.toplimit = parameter.toplimit;
     model.payType = parameter.payType;
     model.cost = parameter.cost;
-    model.posterData = parameter.poster;
-    model.poster = parameter.posterUrl;
+    model.posterImage = parameter.poster;
+    model.posterUrl = parameter.posterUrl;
     return model;
 }
 
@@ -85,8 +85,8 @@ static NSString * const boyAA = @"男士AA";
 {
     ActivityModel * model = [[ActivityModel alloc]init];
     model.name = [self.name copyWithZone:zone];
-    model.poster = [self.poster copyWithZone:zone];
-    model.posterData = [self.posterData copyWithZone:zone];
+    model.posterUrl = [self.posterUrl copyWithZone:zone];
+    model.posterImage = [UIImage imageWithCGImage:[self.posterImage CGImage]];
     model.destination = [self.destination copyWithZone:zone];
     model.date = [self.date copyWithZone:zone];
     model.toplimit = [self.toplimit copyWithZone:zone];
