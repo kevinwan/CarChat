@@ -9,6 +9,7 @@
 
 #import "CCStatusManager.h"
 #import <AVOSCloud/AVOSCloud.h>
+#import "Common.h"
 
 @implementation CCStatusManager
 
@@ -22,9 +23,20 @@
     return instance;
 }
 
++ (NSString *)currentUserId
+{
+    return [AVUser currentUser].objectId;
+}
+
 + (BOOL)isLoged
 {
     return [AVUser currentUser] != nil;
+}
+
++ (BOOL)isVerifyed
+{
+    AVUser * current = [AVUser currentUser];
+    return [[current objectForKey:@"certifyStatus"] integerValue] == CertifyStatusVerifyed;
 }
 
 @end

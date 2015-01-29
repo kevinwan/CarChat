@@ -99,6 +99,7 @@
 }
 - (IBAction)choosePayType:(UISegmentedControl *)sender {
     if (sender.selectedSegmentIndex == 2) {
+        self.cost.text = nil;
         [self.cost setEnabled:NO];
         [self.cost setHidden:YES];
     }

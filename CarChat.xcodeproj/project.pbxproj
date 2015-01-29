@@ -96,6 +96,13 @@
 		BAD723381A64FAA300FB4645 /* PersonalInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAD723371A64FAA300FB4645 /* PersonalInfoView.xib */; };
 		BAD7233B1A64FC9300FB4645 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BAD7233A1A64FC9300FB4645 /* UserModel.m */; };
 		BADD16CF1A78C174004AE9FC /* GetSuggestActivitiesParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BADD16CE1A78C174004AE9FC /* GetSuggestActivitiesParameter.m */; };
+		BADD16D21A7A05FE004AE9FC /* GetUserInfoParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BADD16D11A7A05FE004AE9FC /* GetUserInfoParameter.m */; };
+		BADD16D51A7A1785004AE9FC /* GetUserActivitiesParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BADD16D41A7A1785004AE9FC /* GetUserActivitiesParameter.m */; };
+		BADD16D81A7A17DD004AE9FC /* GetFollowingParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BADD16D71A7A17DD004AE9FC /* GetFollowingParameter.m */; };
+		BADD16DB1A7A17EF004AE9FC /* GetFollowersParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BADD16DA1A7A17EF004AE9FC /* GetFollowersParameter.m */; };
+		BADD16DE1A7A253A004AE9FC /* FollowUserParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BADD16DD1A7A253A004AE9FC /* FollowUserParameter.m */; };
+		BADD16E11A7A2547004AE9FC /* UnfollowUserParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BADD16E01A7A2547004AE9FC /* UnfollowUserParameter.m */; };
+		BADD16E41A7A2B3C004AE9FC /* UserModel+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = BADD16E31A7A2B3C004AE9FC /* UserModel+helper.m */; };
 		BAEBBE231A6E22E200020978 /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BAEBBE221A6E22E200020978 /* UserCell.m */; };
 		D8A7439E174DC2430CFB553D /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 12FB037F979C42EA46571C1A /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -269,6 +276,20 @@
 		BAD7233A1A64FC9300FB4645 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
 		BADD16CD1A78C174004AE9FC /* GetSuggestActivitiesParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetSuggestActivitiesParameter.h; sourceTree = "<group>"; };
 		BADD16CE1A78C174004AE9FC /* GetSuggestActivitiesParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetSuggestActivitiesParameter.m; sourceTree = "<group>"; };
+		BADD16D01A7A05FE004AE9FC /* GetUserInfoParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetUserInfoParameter.h; sourceTree = "<group>"; };
+		BADD16D11A7A05FE004AE9FC /* GetUserInfoParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetUserInfoParameter.m; sourceTree = "<group>"; };
+		BADD16D31A7A1785004AE9FC /* GetUserActivitiesParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetUserActivitiesParameter.h; sourceTree = "<group>"; };
+		BADD16D41A7A1785004AE9FC /* GetUserActivitiesParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetUserActivitiesParameter.m; sourceTree = "<group>"; };
+		BADD16D61A7A17DD004AE9FC /* GetFollowingParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetFollowingParameter.h; sourceTree = "<group>"; };
+		BADD16D71A7A17DD004AE9FC /* GetFollowingParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetFollowingParameter.m; sourceTree = "<group>"; };
+		BADD16D91A7A17EF004AE9FC /* GetFollowersParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetFollowersParameter.h; sourceTree = "<group>"; };
+		BADD16DA1A7A17EF004AE9FC /* GetFollowersParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetFollowersParameter.m; sourceTree = "<group>"; };
+		BADD16DC1A7A253A004AE9FC /* FollowUserParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowUserParameter.h; sourceTree = "<group>"; };
+		BADD16DD1A7A253A004AE9FC /* FollowUserParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowUserParameter.m; sourceTree = "<group>"; };
+		BADD16DF1A7A2547004AE9FC /* UnfollowUserParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnfollowUserParameter.h; sourceTree = "<group>"; };
+		BADD16E01A7A2547004AE9FC /* UnfollowUserParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnfollowUserParameter.m; sourceTree = "<group>"; };
+		BADD16E21A7A2B3C004AE9FC /* UserModel+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UserModel+helper.h"; sourceTree = "<group>"; };
+		BADD16E31A7A2B3C004AE9FC /* UserModel+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UserModel+helper.m"; sourceTree = "<group>"; };
 		BAEBBE211A6E22E200020978 /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
 		BAEBBE221A6E22E200020978 /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
 		D0739C1B0EA98A7CE326B445 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -361,6 +382,8 @@
 				BA03556F1A66196100252F99 /* RegisterParameter.m */,
 				BA2009E91A778BFF0052EE0F /* SetPersonalInfoParameter.h */,
 				BA2009EA1A778BFF0052EE0F /* SetPersonalInfoParameter.m */,
+				BADD16D01A7A05FE004AE9FC /* GetUserInfoParameter.h */,
+				BADD16D11A7A05FE004AE9FC /* GetUserInfoParameter.m */,
 				BA0355711A661C7500252F99 /* GetVerifySMSParameter.h */,
 				BA0355721A661C7500252F99 /* GetVerifySMSParameter.m */,
 				BA2009E61A7770F20052EE0F /* ValidateVerifyCodeParameter.h */,
@@ -373,6 +396,16 @@
 				7E415BEB1A66B2ED0025E5FB /* CreateActivityParameter.m */,
 				7E415BF31A6808160025E5FB /* CreateInvitationParameter.h */,
 				7E415BF41A6808160025E5FB /* CreateInvitationParameter.m */,
+				BADD16D31A7A1785004AE9FC /* GetUserActivitiesParameter.h */,
+				BADD16D41A7A1785004AE9FC /* GetUserActivitiesParameter.m */,
+				BADD16D61A7A17DD004AE9FC /* GetFollowingParameter.h */,
+				BADD16D71A7A17DD004AE9FC /* GetFollowingParameter.m */,
+				BADD16D91A7A17EF004AE9FC /* GetFollowersParameter.h */,
+				BADD16DA1A7A17EF004AE9FC /* GetFollowersParameter.m */,
+				BADD16DC1A7A253A004AE9FC /* FollowUserParameter.h */,
+				BADD16DD1A7A253A004AE9FC /* FollowUserParameter.m */,
+				BADD16DF1A7A2547004AE9FC /* UnfollowUserParameter.h */,
+				BADD16E01A7A2547004AE9FC /* UnfollowUserParameter.m */,
 			);
 			name = requestParameter;
 			sourceTree = "<group>";
@@ -430,6 +463,8 @@
 				BA6BC72A1A63628800DA033C /* ActivityModel.m */,
 				BAD723391A64FC9300FB4645 /* UserModel.h */,
 				BAD7233A1A64FC9300FB4645 /* UserModel.m */,
+				BADD16E21A7A2B3C004AE9FC /* UserModel+helper.h */,
+				BADD16E31A7A2B3C004AE9FC /* UserModel+helper.m */,
 				BA2009D01A6F9B2F0052EE0F /* CommentModel.h */,
 				BA2009D11A6F9B2F0052EE0F /* CommentModel.m */,
 			);
@@ -439,11 +474,11 @@
 		BA6BC7121A63603E00DA033C /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				BAB11C791A666793007FDE38 /* CollectionDelegator */,
 				BA6BC72E1A63629400DA033C /* ControllerCoordinator.h */,
 				BA6BC72F1A63629400DA033C /* ControllerCoordinator.m */,
 				BAB11C7A1A6667C4007FDE38 /* CCStatusManager.h */,
 				BAB11C7B1A6667C4007FDE38 /* CCStatusManager.m */,
+				BAB11C791A666793007FDE38 /* CollectionDelegator */,
 				7EF6A0141A641E510022DBCE /* Networking */,
 				BAB11C9E1A68F7A1007FDE38 /* Common.h */,
 			);
@@ -851,13 +886,18 @@
 				7E2F43111A6D428A00971789 /* PersonalProfileViewController.m in Sources */,
 				BAB11C7F1A6670FB007FDE38 /* GetActivityWithInviteCodeParameter.m in Sources */,
 				7EF6A01B1A641FEC0022DBCE /* LoginParameter.m in Sources */,
+				BADD16DB1A7A17EF004AE9FC /* GetFollowersParameter.m in Sources */,
 				7E2F43161A6D46B800971789 /* UploadCertifyProfileViewController.m in Sources */,
 				BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */,
+				BADD16D51A7A1785004AE9FC /* GetUserActivitiesParameter.m in Sources */,
 				BA03556A1A660AAB00252F99 /* ParameterFactory.m in Sources */,
 				7EF16D361A63FED00008B16F /* CCNetworkManager.m in Sources */,
+				BADD16DE1A7A253A004AE9FC /* FollowUserParameter.m in Sources */,
+				BADD16D21A7A05FE004AE9FC /* GetUserInfoParameter.m in Sources */,
 				BA0355801A66502200252F99 /* ConcreteResponseObject.m in Sources */,
 				BAD723361A64FA6900FB4645 /* PersonalInfoView.m in Sources */,
 				BAD65A721A5FA89200987B06 /* CarChat.xcdatamodeld in Sources */,
+				BADD16D81A7A17DD004AE9FC /* GetFollowingParameter.m in Sources */,
 				BAB810A21A63C1A100142DDA /* UserCreatActivityDescriptionView.m in Sources */,
 				BA6BC7251A63627B00DA033C /* LoginViewController.m in Sources */,
 				BAB11CA91A69FE5B007FDE38 /* ActivityCell.m in Sources */,
@@ -871,6 +911,7 @@
 				BAD65A6C1A5FA89200987B06 /* main.m in Sources */,
 				BAB11CAC1A6CE021007FDE38 /* UserProfileCard.m in Sources */,
 				BAEBBE231A6E22E200020978 /* UserCell.m in Sources */,
+				BADD16E41A7A2B3C004AE9FC /* UserModel+helper.m in Sources */,
 				7E2F431D1A714E2A00971789 /* CommentCell.m in Sources */,
 				BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */,
 				7E415BF51A6808160025E5FB /* CreateInvitationParameter.m in Sources */,
@@ -889,6 +930,7 @@
 				BA0355701A66196100252F99 /* RegisterParameter.m in Sources */,
 				7E415BF11A66CABA0025E5FB /* InviteViewController.m in Sources */,
 				BAD723251A64BF5100FB4645 /* NSString+Helpers.m in Sources */,
+				BADD16E11A7A2547004AE9FC /* UnfollowUserParameter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

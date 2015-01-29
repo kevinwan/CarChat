@@ -15,19 +15,15 @@
 @property (nonatomic, copy) NSString * phone;
 @property (nonatomic, copy) NSString * nickName;
 @property (nonatomic, copy) NSString * age;
-@property (nonatomic, copy) NSString * avatar;
-@property (nonatomic, strong) NSArray * certifications;
+@property (nonatomic, copy) NSString * avatarUrl;
 @property (nonatomic, assign) Gender gender;
 @property (nonatomic, readonly) NSString * genderString;
 @property (nonatomic, copy) NSString * city;
 @property (nonatomic, copy) NSString * countOfActvity;
 @property (nonatomic, copy) NSString * countOfFollowing;
 @property (nonatomic, copy) NSString * countOfFollower;
-@property (nonatomic, assign) NSInteger relationship;
+@property (nonatomic, assign) NSInteger relationship;   // TODO: AVOS上写逻辑处理
 @property (nonatomic, assign) NSInteger certifyStatus;
+@property (nonatomic, strong) NSArray * certifications; // TODO: ?
 
-@end
-
-@interface UserModel (icons)
-- (UIImage *)genderImage;
 @end

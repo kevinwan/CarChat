@@ -13,11 +13,19 @@
 #import "UserActivitiesViewController.h"
 #import "UserProfileCard.h"
 #import "UIView+frame.h"
+#import "GetUserInfoParameter.h"
 
 @interface UserDetailViewController ()
 
-@property (nonatomic, copy) NSString * userId;
-@property (nonatomic, strong) UserModel * user;
+@property (nonatomic, copy) NSString * userId; // 传入参数
+/*
+                                   经     \\
+                                   过     //
+                                   查     \\
+                                   寻     //
+                                          V
+*/
+@property (nonatomic, strong) UserModel * user; // 查询到的user对象
 @property (nonatomic, strong) UserActivitiesViewController * activityVC;
 @property (nonatomic, strong) FollowingViewController * followingVC;
 @property (nonatomic, strong) FollowerViewController * followerVC;
@@ -35,14 +43,18 @@
     return self;
 }
 
+- (void)dealloc
+{
+    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiGetUserInfo];
+}
+
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    __weak typeof(self) wearkRef = self;
-    [self showTip:@"loading..." whenDone:^{
-        [wearkRef setupContentView];
-    }];
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetUserInfo];
+    
+    [self requestUserInfo];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,18 +62,34 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - CCNetworkResponse
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response
+{
+    [self hideHud];
+    if (response.error) {
+        // 出错
+        [self showTip:response.error.localizedDescription];
+    }
+    else {
+        // 成功
+        self.user = response.object;
+        [self setupContentView];
+    }
+}
+
 #pragma mark - Internal Helper
 - (void)setupContentView
 {
-    [self setupPersonalInfo];
-    
     UserProfileCard * card = [UserProfileCard view];
     [card layoutWithUser:self.user];
     [self.view addSubview:card];
+    [card setRelationshipTouched:^{
+        // TODO: follow sb or unfollow sb
+    }];
     
-    self.activityVC = [[UserActivitiesViewController alloc]init];
-    self.followingVC = [[FollowingViewController alloc]initWithUserId:self.user.identifier];
-    self.followerVC = [[FollowerViewController alloc]initWithUserId:self.user.identifier];
+    self.activityVC = [[UserActivitiesViewController alloc]initWithUserId:self.userId];
+    self.followingVC = [[FollowingViewController alloc]initWithUserId:self.userId];
+    self.followerVC = [[FollowerViewController alloc]initWithUserId:self.userId];
     CGRect restFrame = self.view.bounds;
     restFrame.origin.y = card.y + card.height;
     restFrame.size.height = restFrame.size.height - card.y - card.height;
@@ -80,35 +108,22 @@
     
     __weak typeof(self) weakRef = self;
     [card setActivityTouched:^{
-        LOG_EXPR(@"activity vc");
         [weakRef.view bringSubviewToFront:weakRef.activityVC.view];
     }];
     [card setFollowingTouched:^{
-        LOG_EXPR(@"following vc");
         [weakRef.view bringSubviewToFront:weakRef.followingVC.view];
     }];
     [card setFollowerTouched:^{
-        LOG_EXPR(@"follower vc");
         [weakRef.view bringSubviewToFront:weakRef.followerVC.view];
     }];
-    [card setRelationshipTouched:^{
-        // TODO: follow sb or unfollow sb
-    }];
 }
 
-- (void)setupPersonalInfo
+- (void)requestUserInfo
 {
-    self.user = [[UserModel alloc]init];
-    self.user.phone = @"13515125483";
-    self.user.nickName = @"格格巫";
-    self.user.age = @"28";
-    self.user.avatar = @"http://b.hiphotos.baidu.com/image/pic/item/810a19d8bc3eb135eae45086a51ea8d3fd1f44e8.jpg";
-    self.user.gender = GenderMale;
-    self.user.city = @"南京";
-    self.user.countOfActvity = @"20";
-    self.user.countOfFollowing = @"5";
-    self.user.countOfFollower = @"1000000000";
+    [self showLoading:@""];
+    GetUserInfoParameter * p = (GetUserInfoParameter *)[ParameterFactory parameterWithApi:ApiGetUserInfo];
+    p.userIdentifier = self.userId;
+    [[CCNetworkManager defaultManager] requestWithParameter:p];
 }
-
 
 @end

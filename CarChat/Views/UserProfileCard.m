@@ -118,16 +118,20 @@
 
 - (void)layoutWithUser:(UserModel *)user
 {
-    [self.avatarView sd_setImageWithURL:[NSURL URLWithString:user.avatar]];
+    [self.avatarView sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
     self.nameLabel.text = user.nickName;
     self.genderView.image = [user genderImage];
     [self.certifyView setBackgroundColor:[UIColor yellowColor]];
     
-    [self.activityNumButton setTitle:user.countOfActvity forState:UIControlStateNormal];
-    [self.followingNumButton setTitle:user.countOfFollowing forState:UIControlStateNormal];
-    [self.followerNumButton setTitle:user.countOfFollower forState:UIControlStateNormal];
+    NSString * countOfActivity = user.countOfActvity ? : @"0";
+    NSString * countOfFollowing = user.countOfFollowing ? : @"0";
+    NSString * countOfFollower = user.countOfFollower ? : @"0";
+    
+    [self.activityNumButton setTitle:countOfActivity forState:UIControlStateNormal];
+    [self.followingNumButton setTitle:countOfFollowing forState:UIControlStateNormal];
+    [self.followerNumButton setTitle:countOfFollower forState:UIControlStateNormal];
 //    [self configButtonWithRelationship:user.relationship];
-    // TODO: replace the logic
+    // TODO: 获取真实关系后设置关注按钮，去掉假数据表示的按钮
     [self configButtonWithRelationship:(size_t)self%0xf * 2];
 }
 

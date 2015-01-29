@@ -10,6 +10,7 @@
 #import "UserModel.h"
 #import "UIView+frame.h"
 #import "UserDetailViewController.h"
+#import "CCStatusManager.h"
 
 @interface MyViewController ()
 
@@ -42,7 +43,7 @@
 #pragma mark - Internal Helper
 -(void)setupContentView
 {
-    self.detailVC = [[UserDetailViewController alloc]initWithUserId:@""];
+    self.detailVC = [[UserDetailViewController alloc]initWithUserId:[CCStatusManager currentUserId]];
     [self.detailVC.view setFrame:self.view.bounds];
     self.detailVC.view.y += 64.f;
     self.detailVC.view.height -= 64.f;

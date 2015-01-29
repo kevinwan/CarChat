@@ -11,6 +11,7 @@
 #import "UsersCollectionDelegator.h"
 #import "UserCell.h"
 #import <UIImageView+WebCache.h>
+#import "GetFollowersParameter.h"
 
 static NSString * const followerCellIdentifier = @"followerCell";
 
@@ -33,19 +34,39 @@ static NSString * const followerCellIdentifier = @"followerCell";
     return nil;
 }
 
+- (void)dealloc
+{
+    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiGetFollowers];
+}
+
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navigationItem.title = @"关注我的";
-    
-    [self setupFollowerData];
     [self setupDelegator];
+    
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetFollowers];
+    
+    [self requestFollowers];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - CCNetworkResponse
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response
+{
+    [self hideHud];
+    
+    if (response.error) {
+        [self showTip:response.error.localizedDescription];
+    }
+    else {
+        [self.followerUsers addObjectsFromArray:response.object];
+        [self.followerTable reloadData];
+    }
 }
 
 #pragma mark - Internal Helper
@@ -57,10 +78,10 @@ static NSString * const followerCellIdentifier = @"followerCell";
     [self.followerTable setDataSource:self.followerDelegator];
     
     [self.followerDelegator setConfigBlock:^(UserModel * user, UserCell * cell) {
-        [cell.avatar sd_setImageWithURL:[NSURL URLWithString:user.avatar]];
+        [cell.avatar sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
         cell.name.text = user.nickName;
         cell.genderIcon.image = user.genderImage;
-        [cell.certifyIcon sd_setImageWithURL:[NSURL URLWithString:user.avatar]];
+        [cell.certifyIcon sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
     }];
     __weak typeof(self) weakRef = self;
     [self.followerDelegator setSelectingBlock:^(UserModel * user) {
@@ -69,21 +90,14 @@ static NSString * const followerCellIdentifier = @"followerCell";
 
 }
 
-- (void)setupFollowerData
+- (void)requestFollowers
 {
-    for (int i = 0; i < 10; i++) {
-        UserModel *user = [[UserModel alloc]init];
-        user.phone = @"13515125483";
-        user.nickName = [NSString stringWithFormat:@"脑残僵尸NO.%d",i];
-        user.age = @"3?";
-        user.avatar = @"http://c.hiphotos.baidu.com/image/pic/item/b2de9c82d158ccbfdea2743c1ad8bc3eb135419e.jpg";
-        user.gender = i%2 + 1;
-        user.city = @"深圳";
-        user.countOfActvity = [@(5*i) stringValue];
-        user.countOfFollowing = @"两千四百万";
-        user.countOfFollower = @"150";
-        [self.followerUsers addObject:user];
-    }
+    [self showLoading:@""];
+    
+    GetFollowersParameter * p = (GetFollowersParameter *)[ParameterFactory parameterWithApi:ApiGetFollowers];
+    p.userIdentifier = self.userId;
+    
+    [[CCNetworkManager defaultManager] requestWithParameter:p];
 }
 
 @end

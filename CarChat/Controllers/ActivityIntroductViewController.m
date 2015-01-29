@@ -99,9 +99,8 @@
         else if (api == ApiCreateActivity) {
             // 创建成功
             [self showTip:@"创建成功"];
-//            // TODO: 把创建成功返回的id，赋值给createdActivity
-//            self.createdActivity = [ActivityModel ActivityWithParameter:(CreateActivityParameter *)response.parameter];
-//            [self.editView layoutWithActivity:self.createdActivity];
+            self.createdActivity = [ActivityModel ActivityWithParameter:(CreateActivityParameter *)response.parameter];
+            self.createdActivity.identifier = response.object;
             [self.editView setUserInteractionEnabled:NO];
             [self setLeftNavigationBarItem:@"关闭" target:self andAction:@selector(close) animated:YES];
             [self setRightNavigationBarItem:@"邀请" target:self andAction:@selector(invite) animated:YES];
@@ -174,6 +173,11 @@
 
 - (void)invite
 {
+    if (![CCStatusManager isVerifyed]) {
+        UIAlertView * a = [[UIAlertView alloc]initWithTitle:@"抱歉" message:@"只有认证车主才能发送邀请" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [a show];
+        return;
+    }
     [ControllerCoordinator goNextFrom:self
                               whitTag:CreatedActivityInviteButtonItemTag
                            andContext:self.createdActivity];

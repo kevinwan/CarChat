@@ -27,4 +27,10 @@ typedef NS_OPTIONS(NSInteger, Relationship) {
     RelationshipFollower = 1<<2,
 };
 
+typedef NS_ENUM(NSInteger, CertifyStatus) {
+    CertifyStatusUnverifyed = 1,
+    CertifyStatusVerifying = 2,
+    CertifyStatusVerifyed = 3
+};
+
 #endif

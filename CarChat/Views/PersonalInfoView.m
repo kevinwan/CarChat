@@ -56,7 +56,7 @@
 - (void)setUser:(UserModel *)user
 {
     if (user) {
-        [self.avatarButton sd_setBackgroundImageWithURL:[NSURL URLWithString:user.avatar] forState:UIControlStateNormal];
+        [self.avatarButton sd_setBackgroundImageWithURL:[NSURL URLWithString:user.avatarUrl] forState:UIControlStateNormal];
         self.nickNameField.text = user.nickName;
         [self.genderControl setSelectedSegmentIndex:user.gender-1];;
         self.ageField.text = user.age;

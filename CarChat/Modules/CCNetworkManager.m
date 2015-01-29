@@ -11,6 +11,7 @@
 #import "ConcreteResponseObject.h"
 #import <AVOSCloud/AVOSCloud.h>
 #import "ActivityModel.h"
+#import "UserModel+helper.h"
 #import "GetVerifySMSParameter.h"
 #import "ValidateVerifyCodeParameter.h"
 #import "ValidateInviteCodeParameter.h"
@@ -19,6 +20,12 @@
 #import "CreateActivityParameter.h"
 #import "GetSuggestActivitiesParameter.h"
 #import "LoginParameter.h"
+#import "GetUserInfoParameter.h"
+#import "GetUserActivitiesParameter.h"
+#import "GetFollowingParameter.h"
+#import "GetFollowersParameter.h"
+#import "FollowUserParameter.h"
+#import "UnfollowUserParameter.h"
 // TODO: 整理一下*Parameter.h
 
 const NSString * const ResponseUserInfoParameterKey = @"parameter";
@@ -89,7 +96,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     SEL apiSelector = NSSelectorFromString([api stringByAppendingString:@":"]);
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Warc-performSelector-leaks"
-    NSAssert([self respondsToSelector:apiSelector], @"api 方法已实现");
+    NSAssert([self respondsToSelector:apiSelector], @"api 方法未实现");
     [self performSelector:apiSelector withObject:parameter];
 #pragma clang diagnostic pop
 
@@ -145,7 +152,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     AVUser * user = [AVUser user];
     user.username = parameter.phone;
     user.password = parameter.pwd;
-    user.mobilePhoneNumber = parameter.phone;
+    [user setObject:@"1" forKey:@"certifyStatus"];
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
         [resp setError:error];
@@ -206,8 +213,20 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     }];
 }
 
-- (void)GetUserInfo:(ABCParameter *)parameter
+- (void)GetUserInfo:(GetUserInfoParameter *)parameter
 {
+    AVQuery * q = [AVUser query];
+    [q whereKey:@"objectId" equalTo:parameter.userIdentifier];
+    [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        UserModel * user = nil;
+        if (error == nil && objects.count > 0) {
+            AVUser * queryResult = objects[0];
+            user = [UserModel userFromAVUser:queryResult];
+        }
+        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:user andRequestParameter:parameter];
+        [resp setError:error];
+        [[NSNotificationCenter defaultCenter] postNotification:resp];
+    }];
 }
 
 - (void)SubmitCertificationProfile:(ABCParameter *)parameter
@@ -239,8 +258,9 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     }];
 }
 
-- (void)GetUserActivities:(ABCParameter *)parameter
+- (void)GetUserActivities:(GetUserActivitiesParameter *)parameter
 {
+    
 }
 
 - (void)GetActivitiesDetail:(ABCParameter *)parameter
@@ -271,8 +291,10 @@ NSString * const ApiGetParticipants = @"GetParticipants";
             [activity setObject:poster forKey:@"poster"];
             // 发起人信息
             [activity setObject:[AVUser currentUser] forKey:@"owner"];
+            __weak typeof(activity) weakRef = activity;
             [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
+                __strong typeof(weakRef) strongRef = weakRef;
+                ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:strongRef.objectId andRequestParameter:parameter];
                 resp.error = error;
                 [[NSNotificationCenter defaultCenter] postNotification:resp];
             }];
@@ -302,20 +324,58 @@ NSString * const ApiGetParticipants = @"GetParticipants";
 {
 }
 
-- (void)FollowUser:(ABCParameter *)parameter
+- (void)FollowUser:(FollowUserParameter *)parameter
 {
+    [[AVUser currentUser] follow:parameter.userIdentifier andCallback:^(BOOL succeeded, NSError *error) {
+        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
+        [resp setError:error];
+        [[NSNotificationCenter defaultCenter] postNotification:resp];
+    }];
 }
 
-- (void)UnfollowUser:(ABCParameter *)parameter
+- (void)UnfollowUser:(UnfollowUserParameter *)parameter
 {
+    [[AVUser currentUser] unfollow:parameter.userIdentifier andCallback:^(BOOL succeeded, NSError *error) {
+        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
+        [resp setError:error];
+        [[NSNotificationCenter defaultCenter] postNotification:resp];
+    }];
 }
 
-- (void)GetFollowing:(ABCParameter *)parameter
+- (void)GetFollowing:(GetFollowingParameter *)parameter
 {
+    AVQuery * q = [AVUser followeeQuery:parameter.userIdentifier];
+    [q includeKey:@"followee"];
+    [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSMutableArray * results = nil;
+        if (error == nil && results.count > 0) {
+            results = [NSMutableArray array];
+            for (AVUser * user in objects) {
+                [results addObject:[UserModel userFromAVUser:user]];
+            }
+        }
+        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:results andRequestParameter:parameter];
+        [resp setError:error];
+        [[NSNotificationCenter defaultCenter] postNotification:resp];
+    }];
 }
 
-- (void)GetFollowers:(ABCParameter *)parameter
+- (void)GetFollowers:(GetFollowersParameter *)parameter
 {
+    AVQuery * q = [AVUser followerQuery:parameter.userIdentifier];
+    [q includeKey:@"follower"];
+    [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSMutableArray * results = nil;
+        if (error == nil && results.count > 0) {
+            results = [NSMutableArray array];
+            for (AVUser * user in objects) {
+                [results addObject:[UserModel userFromAVUser:user]];
+            }
+        }
+        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:results andRequestParameter:parameter];
+        [resp setError:error];
+        [[NSNotificationCenter defaultCenter] postNotification:resp];
+    }];
 }
 
 - (void)GetParticipants:(ABCParameter *)parameter

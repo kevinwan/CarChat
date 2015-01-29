@@ -54,10 +54,10 @@ static NSString * const commentIDentifier = @"commentCellIdentifier";
     self.tableDelegator = [[CommentCollectionDelegator alloc]initWithItems:self.comments andCellIdentifier:commentIDentifier];
     [self.tableDelegator setCellClass:[CommentCell class]];
     [self.tableDelegator setConfigBlock:^(CommentModel * item, CommentCell * cell) {
-        [cell.avatar sd_setImageWithURL:[NSURL URLWithString:item.user.avatar]];
+        [cell.avatar sd_setImageWithURL:[NSURL URLWithString:item.user.avatarUrl]];
         cell.name.text = item.user.nickName;
         cell.genderIcon.image = item.user.genderImage;
-        [cell.certifyIcon sd_setImageWithURL:[NSURL URLWithString:item.user.avatar]];
+        [cell.certifyIcon sd_setImageWithURL:[NSURL URLWithString:item.user.avatarUrl]];
         cell.contentLabel.text = item.content;
     }];
     [self.tableDelegator setSelectingBlock:^(CommentModel * item) {
@@ -74,7 +74,7 @@ static NSString * const commentIDentifier = @"commentCellIdentifier";
         comment.content = [NSString stringWithFormat:@"八心八箭，只卖%d%d%d,快点来抢哦，我是🐒总😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢",i,i,i];
         comment.user = [UserModel new];
         comment.user.nickName = [NSString stringWithFormat:@"嫖娼公知%d",i];
-        comment.user.avatar = @"http://a.hiphotos.baidu.com/image/pic/item/0dd7912397dda1444d5bd369b0b7d0a20df4869f.jpg";
+        comment.user.avatarUrl = @"http://a.hiphotos.baidu.com/image/pic/item/0dd7912397dda1444d5bd369b0b7d0a20df4869f.jpg";
         comment.user.gender = GenderMale;
         [self.comments addObject:comment];
     }

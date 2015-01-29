@@ -56,9 +56,9 @@ extern NSString * const ApiSubmitCertificationProfile ;
  */
 extern NSString * const ApiGetSuggestActivities ;
 /**
- *  获取我的活动列表
+ *  获取用户活动列表
  */
-extern NSString * const ApiGetMyActivities ;
+extern NSString * const ApiGetUserActivities ;
 /**
  *  获取活动详情
  */

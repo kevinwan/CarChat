@@ -7,7 +7,6 @@
 //
 
 #import "UserModel.h"
-#import "UIImage+color.h"
 
 @implementation UserModel
 
@@ -18,10 +17,10 @@
             return @"";
             break;
         case GenderMale:
-            return @"Male";
+            return @"男";
             break;
         case GenderFemale:
-            return @"Female";
+            return @"女";
             break;
         default:
             break;
@@ -35,7 +34,7 @@
     model.phone = [self.phone copyWithZone:zone];
     model.nickName = [self.nickName copyWithZone:zone];
     model.age = [self.age copyWithZone:zone];
-    model.avatar = [self.avatar copyWithZone:zone];
+    model.avatarUrl = [self.avatarUrl copyWithZone:zone];
     model.certifications = [self.certifications copyWithZone:zone];
     model.gender = self.gender;
     model.city = [self.city copyWithZone:zone];
@@ -46,15 +45,6 @@
     model.certifyStatus = self.certifyStatus;
     
     return model;
-}
-
-@end
-
-@implementation UserModel (icons)
-
-- (UIImage *)genderImage
-{
-    return [[UIImage imageWithColor:self.gender == GenderMale ? [UIColor  blueColor] : [UIColor  redColor]] stretchableImageWithLeftCapWidth:1 topCapHeight:1];
 }
 
 @end
