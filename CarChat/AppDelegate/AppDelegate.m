@@ -13,6 +13,8 @@
 #import "ActivityModel.h"
 #import "TestViewController.h"
 #import "CCStatusManager.h"
+// for test
+//#import "GetActivityWithInviteCodeParameter.h"
 
 static const NSInteger SuggestNavItemTag = 1;
 static const NSInteger MyNavItemTag = 2;
@@ -53,6 +55,9 @@ static const NSInteger MyNavItemTag = 2;
 
     // for test
 //    [_window setRootViewController:[[TestViewController alloc]init]];
+//    GetActivityWithInviteCodeParameter * p = (GetActivityWithInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiGetActivityWithInviteCode];
+//    p.inviteCode = @"a4a668";
+//    [[CCNetworkManager defaultManager] requestWithParameter:p];
 
     [_window makeKeyAndVisible];
     return YES;
@@ -112,19 +117,8 @@ static const NSInteger MyNavItemTag = 2;
         SCLAlertView *alert = [[SCLAlertView alloc] init];
         [alert addButton:@"查看"
              actionBlock:^(void) {
-                 ActivityModel * act = [[ActivityModel alloc]init];
-                 act.name = @"栖霞山看枫叶";
-                 act.destination = @"栖霞山";
-                 act.date = @"2015年2月14日";
-                 act.toplimit = @"12";
-                 act.cost = @"50$/人";
-//                 act.posterUrl = @"http://f.hiphotos.baidu.com/image/pic/item/11385343fbf2b2119695ec50c98065380cd78e70.jpg";
-#warning relpace image here
-                 act.owner.avatarUrl = @"http://f.hiphotos.baidu.com/image/pic/item/fd039245d688d43f5a0f54f37f1ed21b0ef43b09.jpg";
-                 act.owner.nickName = @"范爷";
-                 act.owner.gender = GenderFemale;
-                 
-                 [self showInviteWithActivity:act];
+                 ActivityModel * inviteIn = response.object;
+                 [self showInviteWithActivity:inviteIn];
              }];
         
         [alert showInfo:((UINavigationController *)_window.rootViewController).viewControllers[0]

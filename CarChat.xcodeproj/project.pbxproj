@@ -22,6 +22,7 @@
 		7EF16D361A63FED00008B16F /* CCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF16D351A63FED00008B16F /* CCNetworkManager.m */; };
 		7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A0171A641ED70022DBCE /* ABCParameter.m */; };
 		7EF6A01B1A641FEC0022DBCE /* LoginParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A01A1A641FEC0022DBCE /* LoginParameter.m */; };
+		A50367791A7BD3D300CACE08 /* ActivityModel+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = A50367781A7BD3D300CACE08 /* ActivityModel+Helper.m */; };
 		BA03556A1A660AAB00252F99 /* ParameterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0355691A660AAB00252F99 /* ParameterFactory.m */; };
 		BA03556D1A660E0400252F99 /* ValidateInviteCodeParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03556C1A660E0400252F99 /* ValidateInviteCodeParameter.m */; };
 		BA0355701A66196100252F99 /* RegisterParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03556F1A66196100252F99 /* RegisterParameter.m */; };
@@ -147,6 +148,8 @@
 		7EF6A0191A641FEC0022DBCE /* LoginParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginParameter.h; sourceTree = "<group>"; };
 		7EF6A01A1A641FEC0022DBCE /* LoginParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginParameter.m; sourceTree = "<group>"; };
 		91A1C4A7F3479EED06C580E1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A50367771A7BD3D300CACE08 /* ActivityModel+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ActivityModel+Helper.h"; sourceTree = "<group>"; };
+		A50367781A7BD3D300CACE08 /* ActivityModel+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ActivityModel+Helper.m"; sourceTree = "<group>"; };
 		BA0355681A660AAB00252F99 /* ParameterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterFactory.h; sourceTree = "<group>"; };
 		BA0355691A660AAB00252F99 /* ParameterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParameterFactory.m; sourceTree = "<group>"; };
 		BA03556B1A660E0400252F99 /* ValidateInviteCodeParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidateInviteCodeParameter.h; sourceTree = "<group>"; };
@@ -461,6 +464,8 @@
 			children = (
 				BA6BC7291A63628800DA033C /* ActivityModel.h */,
 				BA6BC72A1A63628800DA033C /* ActivityModel.m */,
+				A50367771A7BD3D300CACE08 /* ActivityModel+Helper.h */,
+				A50367781A7BD3D300CACE08 /* ActivityModel+Helper.m */,
 				BAD723391A64FC9300FB4645 /* UserModel.h */,
 				BAD7233A1A64FC9300FB4645 /* UserModel.m */,
 				BADD16E21A7A2B3C004AE9FC /* UserModel+helper.h */,
@@ -872,6 +877,7 @@
 				BAD723281A64BF5100FB4645 /* UIImage+Gif.m in Sources */,
 				BAB11CB11A6CFDC5007FDE38 /* UIView+frame.m in Sources */,
 				BAD723241A64BF5100FB4645 /* NSDate+Helpers.m in Sources */,
+				A50367791A7BD3D300CACE08 /* ActivityModel+Helper.m in Sources */,
 				BA2009E81A7770F20052EE0F /* ValidateVerifyCodeParameter.m in Sources */,
 				BAB11C921A679CE7007FDE38 /* UserActivitiesViewController.m in Sources */,
 				BA6BC7341A63644500DA033C /* AbstractViewController.m in Sources */,

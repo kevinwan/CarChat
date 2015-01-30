@@ -27,6 +27,8 @@
 #import "FollowUserParameter.h"
 #import "UnfollowUserParameter.h"
 #import "CreateInvitationParameter.h"
+#import "GetActivityWithInviteCodeParameter.h"
+#import "ActivityModel+Helper.h"
 // TODO: 整理一下*Parameter.h
 
 const NSString * const ResponseUserInfoParameterKey = @"parameter";
@@ -153,7 +155,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     AVUser * user = [AVUser user];
     user.username = parameter.phone;
     user.password = parameter.pwd;
-    [user setObject:@"1" forKey:@"certifyStatus"];
+    [user setObject:@1 forKey:@"certifyStatus"];
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
         [resp setError:error];
@@ -163,13 +165,33 @@ NSString * const ApiGetParticipants = @"GetParticipants";
 
 - (void)ValidateInviteCode:(ValidateInviteCodeParameter *)parameter
 {
-    ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:@{} andRequestParameter:parameter];
-    [[NSNotificationCenter defaultCenter] postNotification:resp];
+    AVQuery * q = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
+    [q whereKey:@"invitationCode" equalTo:parameter.inviteCode];
+    [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSAssert(objects.count <= 1, @"一个邀请码不能对应多个活动");
+        BOOL valid = objects.count > 0;
+        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:@(valid) andRequestParameter:parameter];
+        [resp setError:error];
+        [[NSNotificationCenter defaultCenter] postNotification:resp];
+    }];
 }
 
-- (void)GetActivityWithInviteCode:(ABCParameter *)parameter
+- (void)GetActivityWithInviteCode:(GetActivityWithInviteCodeParameter *)parameter
 {
-    
+    AVQuery * q = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
+    [q whereKey:@"invitationCode" equalTo:parameter.inviteCode];
+    [q includeKey:@"owner"];
+    [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSAssert(objects.count == 1, @"邀请码对应的对象必须唯一");
+        ActivityModel * activity = nil;
+        if (objects.count > 0 && error == nil) {
+            AVObject * object = objects[0];
+            activity = [ActivityModel activityFromAVObject:object];
+        }
+        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:activity andRequestParameter:parameter];
+        [resp setError:error];
+        [[NSNotificationCenter defaultCenter] postNotification:resp];
+    }];
 }
 
 - (void)ResetPassword:(ABCParameter *)parameter
@@ -315,11 +337,11 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     [query getObjectInBackgroundWithId:parameter.activityIdentifier block:^(AVObject *object, NSError *error) {
         if (error == nil) {
             NSAssert([[(AVObject *)[object objectForKey:@"owner"] objectId] isEqualToString:[AVUser currentUser].objectId], @"应该是当前用户创建的活动");
-            NSAssert([object objectForKey:@"InvitationCode"] == nil, @"活动应该没有邀请码");
+            NSAssert([object objectForKey:@"invitationCode"] == nil, @"活动应该没有邀请码");
             
             NSString * invitationCode = [object.objectId substringWithRange:NSMakeRange(object.objectId.length - 6, 6)];
             
-            [object setObject:invitationCode forKey:@"InvitationCode"];
+            [object setObject:invitationCode forKey:@"invitationCode"];
             [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:invitationCode andRequestParameter:parameter];
                 [resp setError:error];

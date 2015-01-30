@@ -11,6 +11,7 @@
 #import "CCStatusManager.h"
 #import <UzysAssetsPickerController.h>
 #import "NSString+Helpers.h"
+#import "ActivityModel+Helper.h"
 
 @interface ActivityIntroductViewController ()
 

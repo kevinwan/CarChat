@@ -30,8 +30,7 @@
 
 - (void)setModel:(ActivityModel *)activity
 {
-#warning relpace image here
-//    [self.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
+    [self.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
     [self.poster setImage:activity.posterImage];
     [self.nameLabel setText:activity.name];
     [self.starterAvtar sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatarUrl]];

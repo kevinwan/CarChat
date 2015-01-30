@@ -131,14 +131,24 @@
             }];
         }
         else if (api == ApiValidateInviteCode) {
-            // 验证成功
-            ValidateInviteCodeParameter * parameter = (ValidateInviteCodeParameter *)response.parameter;
-            [[CCStatusManager defaultManager] setVerifyedInviteCode:parameter.inviteCode];
-            [self showTip:@"验证成功" whenDone:^{
-                [ControllerCoordinator goNextFrom:self
-                                          whitTag:LoginRegisterButtonTag
-                                       andContext:nil];
-            }];
+            // 验证
+            BOOL validatePass = [response.object boolValue];
+            if (validatePass) {
+                // 验证通过
+                ValidateInviteCodeParameter * parameter = (ValidateInviteCodeParameter *)response.parameter;
+                [[CCStatusManager defaultManager] setVerifyedInviteCode:parameter.inviteCode];
+                [self showTip:@"验证成功" whenDone:^{
+                    [ControllerCoordinator goNextFrom:self
+                                              whitTag:LoginRegisterButtonTag
+                                           andContext:nil];
+                }];
+            }
+            else {
+                // 验证不通过
+                [self showTip:@"验证码无效" whenDone: ^{
+                    [self goRegister];
+                }];
+            }
         }
     }
 }

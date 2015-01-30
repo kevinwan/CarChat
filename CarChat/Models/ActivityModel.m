@@ -14,34 +14,6 @@ static NSString * const boyAA = @"男士AA";
 
 @implementation ActivityModel
 
-- (CreateActivityParameter *)parameter
-{
-    CreateActivityParameter *parameter = (CreateActivityParameter *)[ParameterFactory parameterWithApi:ApiCreateActivity];
-    parameter.name = self.name;
-    parameter.destination = self.destination;
-    parameter.date = self.date;
-    parameter.toplimit = self.toplimit;
-    parameter.payType = self.payType;
-    parameter.cost = self.cost;
-    parameter.poster = self.posterImage;
-//    parameter.posterUrl = self.posterUrl;
-    return parameter;
-}
-
-+ (instancetype)ActivityWithParameter:(CreateActivityParameter *)parameter
-{
-    ActivityModel * model = [ActivityModel new];
-    model.name = parameter.name;
-    model.destination = parameter.destination;
-    model.date = parameter.date;
-    model.toplimit = parameter.toplimit;
-    model.payType = parameter.payType;
-    model.cost = parameter.cost;
-    model.posterImage = parameter.poster;
-    model.posterUrl = parameter.posterUrl;
-    return model;
-}
-
 + (NSString *)stringFromPayType:(PayType)type
 {
     if (type == 0) {

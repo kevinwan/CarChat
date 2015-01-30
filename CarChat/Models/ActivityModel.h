@@ -59,8 +59,6 @@
  */
 @property (nonatomic, copy) NSString * invitationCode;
 
-- (CreateActivityParameter *)parameter;
-+ (instancetype)ActivityWithParameter:(CreateActivityParameter *)parameter;
 
 + (NSString *)stringFromPayType:(PayType)type;
 + (PayType)payTypeFromString:(NSString *)string;
