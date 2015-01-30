@@ -8,6 +8,7 @@
 
 #import "FollowingViewController.h"
 #import "UserModel.h"
+#import "UserModel+helper.h"
 #import "UserCell.h"
 #import "UsersCollectionDelegator.h"
 #import <UIImageView+WebCache.h>

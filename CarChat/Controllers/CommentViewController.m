@@ -11,6 +11,7 @@
 #import <UIImageView+WebCache.h>
 #import "CommentModel.h"
 #import "CommentCell.h"
+#import "UserModel+helper.h"
 
 static NSString * const commentIDentifier = @"commentCellIdentifier";
 

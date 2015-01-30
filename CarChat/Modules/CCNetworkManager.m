@@ -26,6 +26,7 @@
 #import "GetFollowersParameter.h"
 #import "FollowUserParameter.h"
 #import "UnfollowUserParameter.h"
+#import "CreateInvitationParameter.h"
 // TODO: 整理一下*Parameter.h
 
 const NSString * const ResponseUserInfoParameterKey = @"parameter";
@@ -308,8 +309,29 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     }];
 }
 
-- (void)CreateInvitation:(ABCParameter *)parameter
+- (void)CreateInvitation:(CreateInvitationParameter *)parameter
 {
+    AVQuery * query = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
+    [query getObjectInBackgroundWithId:parameter.activityIdentifier block:^(AVObject *object, NSError *error) {
+        if (error == nil) {
+            NSAssert([[(AVObject *)[object objectForKey:@"owner"] objectId] isEqualToString:[AVUser currentUser].objectId], @"应该是当前用户创建的活动");
+            NSAssert([object objectForKey:@"InvitationCode"] == nil, @"活动应该没有邀请码");
+            
+            NSString * invitationCode = [object.objectId substringWithRange:NSMakeRange(object.objectId.length - 6, 6)];
+            
+            [object setObject:invitationCode forKey:@"InvitationCode"];
+            [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:invitationCode andRequestParameter:parameter];
+                [resp setError:error];
+                [[NSNotificationCenter defaultCenter] postNotification:resp];
+            }];
+        }
+        else {
+            ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
+            [resp setError:error];
+            [[NSNotificationCenter defaultCenter] postNotification:resp];
+        }
+    }];
 }
 
 - (void)InviteUsers:(ABCParameter *)parameter

@@ -12,6 +12,7 @@
 #import "ActivityModel.h"
 #import <UIImageView+WebCache.h>
 #import "GetUserActivitiesParameter.h"
+#import "UserModel+helper.h"
 
 static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
 

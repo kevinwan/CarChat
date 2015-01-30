@@ -10,6 +10,7 @@
 #import "UserModel.h"
 #import "UsersCollectionDelegator.h"
 #import "UserCell.h"
+#import "UserModel+helper.h"
 #import <UIImageView+WebCache.h>
 #import "GetFollowersParameter.h"
 

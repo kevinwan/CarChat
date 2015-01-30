@@ -54,6 +54,10 @@
  *  创建人信息
  */
 @property (nonatomic, strong) UserModel * owner;
+/**
+ *  邀请码
+ */
+@property (nonatomic, copy) NSString * invitationCode;
 
 - (CreateActivityParameter *)parameter;
 + (instancetype)ActivityWithParameter:(CreateActivityParameter *)parameter;

@@ -12,15 +12,17 @@
 #import "CollectionDelegator.h"
 
 static NSString * const cellIdentifier = @"inviteCell";
+
 static NSString * const InviteItemWXTimeLine = @"微信朋友圈";
 static NSString * const InviteItemWXChat = @"微信好友";
 static NSString * const InviteItemSMS = @"短信";
 static NSString * const InviteItemEMAIL = @"邮件";
+static NSString * const InviteItemFollowing = @"我关注的人";
+static NSString * const InviteItemFollower = @"关注我的人";
 
 @interface InviteViewController () <MFMessageComposeViewControllerDelegate, MFMailComposeViewControllerDelegate>
 
 @property (nonatomic, strong) ActivityModel *activity;
-@property (nonatomic, strong) NSString * inviteCode;
 @property (weak, nonatomic) IBOutlet UITableView *inviteTableView;
 @property (nonatomic, strong) CollectionDelegator * inviteTableDelegator;
 @property (nonatomic, strong) NSArray * inviteItems;
@@ -54,41 +56,17 @@ static NSString * const InviteItemEMAIL = @"邮件";
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiCreateInvitation];
     
     
-    self.inviteItems = @[InviteItemWXTimeLine, InviteItemWXChat, InviteItemSMS, InviteItemEMAIL];
+    self.inviteItems = @[InviteItemWXTimeLine,
+                         InviteItemWXChat,
+                         InviteItemFollowing,
+                         InviteItemFollower,
+                         InviteItemSMS,
+                         InviteItemEMAIL];
     
-    self.inviteTableDelegator = [[CollectionDelegator alloc]initWithItems:self.inviteItems andCellIdentifier:cellIdentifier];
-    [self.inviteTableDelegator setConfigBlock: ^(NSString * item, UITableViewCell * cell) {
-        cell.textLabel.text = item;
-    }];
-    __weak typeof(self) weakref = self;
-    [self.inviteTableDelegator setSelectingBlock: ^(NSString * item) {
-        if (item == InviteItemWXTimeLine) {
-            [weakref inviteViaWXTimeLine];
-        }
-        else if (item == InviteItemWXChat) {
-            [weakref inviteViaWXChat];
-        }
-        else if (item == InviteItemSMS) {
-            [weakref inviteViaSMS];
-        }
-        else {
-            [weakref iniviteViaEmail];
-        }
-    }];
-    [self.inviteTableView setDelegate:self.inviteTableDelegator];
-    [self.inviteTableView setDataSource:self.inviteTableDelegator];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
+    [self setupDelegator];
     
-    // 没有邀请码，要去服务器创建一个邀请码
-    if (!self.inviteCode) {
-        [self showLoading:nil];
-        CreateInvitationParameter * parameter = (CreateInvitationParameter *)[ParameterFactory parameterWithApi:ApiCreateInvitation];
-        parameter.activityIdentifier = self.activity.identifier;
-        [[CCNetworkManager defaultManager] requestWithParameter:parameter];
+    if (!self.activity.invitationCode) {
+        [self requestInvitationCode];
     }
 }
 
@@ -103,10 +81,12 @@ static NSString * const InviteItemEMAIL = @"邮件";
     [self hideHud];
     if (response.error) {
         // failed
+        [self showTip:response.error.localizedDescription];
+        // TODO: 创建/获取邀请码失败，应该做点什么。。。。。。
     }
     else {
         // successed
-        self.inviteCode = response.object;
+        self.activity.invitationCode = response.object;
     }
 }
 
@@ -139,7 +119,6 @@ static NSString * const InviteItemEMAIL = @"邮件";
                            andContext:nil];
 }
 
-#pragma mark - Internal Helper
 - (void)inviteViaWXTimeLine
 {
     
@@ -157,7 +136,7 @@ static NSString * const InviteItemEMAIL = @"邮件";
         MFMessageComposeViewController * smsSender = [[MFMessageComposeViewController alloc] init];
         smsSender.messageComposeDelegate= self;
         // TODO: 编辑分享内容
-        smsSender.body = self.inviteCode;
+        smsSender.body = self.activity.invitationCode;
         [self presentViewController:smsSender animated:YES completion:nil];
     }
     else
@@ -178,7 +157,7 @@ static NSString * const InviteItemEMAIL = @"邮件";
         [mailSender setMailComposeDelegate:self];
         // TODO: 编辑邮件内容
         [mailSender setSubject:self.activity.name];
-        [mailSender setMessageBody:self.inviteCode isHTML:NO];
+        [mailSender setMessageBody:self.activity.invitationCode isHTML:NO];
         [self.navigationController presentViewController:mailSender animated:YES completion:nil];
     }
     else
@@ -190,6 +169,39 @@ static NSString * const InviteItemEMAIL = @"邮件";
                                               otherButtonTitles:nil];
         [alert show];
     }
+}
+
+#pragma mark - Internal Helper
+- (void)setupDelegator
+{
+    self.inviteTableDelegator = [[CollectionDelegator alloc]initWithItems:self.inviteItems andCellIdentifier:cellIdentifier];
+    [self.inviteTableDelegator setConfigBlock: ^(NSString * item, UITableViewCell * cell) {
+        cell.textLabel.text = item;
+    }];
+    __weak typeof(self) weakref = self;
+    [self.inviteTableDelegator setSelectingBlock: ^(NSString * item) {
+        if (item == InviteItemWXTimeLine) {
+            [weakref inviteViaWXTimeLine];
+        }
+        else if (item == InviteItemWXChat) {
+            [weakref inviteViaWXChat];
+        }
+        else if (item == InviteItemSMS) {
+            [weakref inviteViaSMS];
+        }
+        else {
+            [weakref iniviteViaEmail];
+        }
+    }];
+    [self.inviteTableView setDelegate:self.inviteTableDelegator];
+    [self.inviteTableView setDataSource:self.inviteTableDelegator];
+}
+
+- (void)requestInvitationCode
+{
+    CreateInvitationParameter * par = (CreateInvitationParameter *)[ParameterFactory parameterWithApi:ApiCreateInvitation];
+    [par setActivityIdentifier:self.activity.identifier];
+    [[CCNetworkManager defaultManager] requestWithParameter:par];
 }
 
 @end
