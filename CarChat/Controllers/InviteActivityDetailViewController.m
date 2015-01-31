@@ -8,6 +8,7 @@
 
 #import "InviteActivityDetailViewController.h"
 #import "UserCreatActivityDescriptionView.h"
+#import "ReplyInvitationParameter.h"
 
 @interface InviteActivityDetailViewController ()
 
@@ -31,6 +32,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiReplyInvitation];
+}
+
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,25 +48,52 @@
     UserCreatActivityDescriptionView * view  = [UserCreatActivityDescriptionView view];
     [view setModel:self.activity];
     [self.view addSubview:view];
+    
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiReplyInvitation];
+}
+
+#pragma mark - CCNetworkResponse
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response
+{
+    [self hideHud];
+    
+    if (response.error) {
+        [self showTip:response.error.localizedDescription];
+    }
+    else {
+        // reply invitation success
+        ReplyInvitationParameter * param = (ReplyInvitationParameter *)response.parameter;
+        if (param.accepted) {
+            [ControllerCoordinator goNextFrom:self
+                                      whitTag:InviteDetailJoinButtonItemTag
+                                   andContext:nil];
+        }
+//        else {
+//            [ControllerCoordinator goNextFrom:self
+//                                      whitTag:InviteDetailIgnoreButonItemTag
+//                                   andContext:nil];
+//        }
+    }
 }
 
 #pragma mark - User Interaction
 - (void)ignore
 {
-    // TODO: told server ignore it
-    
-    // then
-    [ControllerCoordinator goNextFrom:self whitTag:InviteDetailIgnoreButonItemTag andContext:nil];
+//    [self showLoading:nil];
+//    ReplyInvitationParameter * p = (ReplyInvitationParameter *)[ParameterFactory parameterWithApi:ApiReplyInvitation];
+//    [p setAccepted:NO];
+//    [[CCNetworkManager defaultManager] requestWithParameter:p];
+    [ControllerCoordinator goNextFrom:self
+                              whitTag:InviteDetailIgnoreButonItemTag
+                           andContext:nil];
 }
 
 - (void)join
 {
-    // TODO: told server join it
-    
-    // then
-    [ControllerCoordinator goNextFrom:self
-                              whitTag:InviteDetailJoinButtonItemTag
-                           andContext:nil];
+    [self showLoading:nil];
+    ReplyInvitationParameter * p = (ReplyInvitationParameter *)[ParameterFactory parameterWithApi:ApiReplyInvitation];
+    [p setAccepted:YES];
+    [[CCNetworkManager defaultManager] requestWithParameter:p];
 }
 
 @end

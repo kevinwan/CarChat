@@ -14,7 +14,7 @@
 #import "TestViewController.h"
 #import "CCStatusManager.h"
 // for test
-//#import "GetActivityWithInviteCodeParameter.h"
+#import "GetActivityWithInviteCodeParameter.h"
 
 static const NSInteger SuggestNavItemTag = 1;
 static const NSInteger MyNavItemTag = 2;
@@ -55,9 +55,9 @@ static const NSInteger MyNavItemTag = 2;
 
     // for test
 //    [_window setRootViewController:[[TestViewController alloc]init]];
-//    GetActivityWithInviteCodeParameter * p = (GetActivityWithInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiGetActivityWithInviteCode];
-//    p.inviteCode = @"a4a668";
-//    [[CCNetworkManager defaultManager] requestWithParameter:p];
+    GetActivityWithInviteCodeParameter * p = (GetActivityWithInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiGetActivityWithInviteCode];
+    p.inviteCode = @"be1327";
+    [[CCNetworkManager defaultManager] requestWithParameter:p];
 
     [_window makeKeyAndVisible];
     return YES;
@@ -114,18 +114,20 @@ static const NSInteger MyNavItemTag = 2;
         // do nothing
     }
     else {
-        SCLAlertView *alert = [[SCLAlertView alloc] init];
-        [alert addButton:@"查看"
-             actionBlock:^(void) {
-                 ActivityModel * inviteIn = response.object;
-                 [self showInviteWithActivity:inviteIn];
-             }];
-        
-        [alert showInfo:((UINavigationController *)_window.rootViewController).viewControllers[0]
-                  title:@"收到一个活动邀请"
-               subTitle:@"点击查看了解详情"
-       closeButtonTitle:@"忽略"
-               duration:.0f];
+        if (response.parameter.api == ApiGetActivityWithInviteCode) {
+            SCLAlertView *alert = [[SCLAlertView alloc] init];
+            [alert addButton:@"查看"
+                 actionBlock:^(void) {
+                     ActivityModel * inviteIn = response.object;
+                     [self showInviteWithActivity:inviteIn];
+                 }];
+            
+            [alert showInfo:((UINavigationController *)_window.rootViewController).viewControllers[0]
+                      title:@"收到一个活动邀请"
+                   subTitle:@"点击查看了解详情"
+           closeButtonTitle:@"忽略"
+                   duration:.0f];
+        }
     }
 }
 

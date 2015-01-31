@@ -29,6 +29,8 @@
 #import "CreateInvitationParameter.h"
 #import "GetActivityWithInviteCodeParameter.h"
 #import "ActivityModel+Helper.h"
+#import "ReplyInvitationParameter.h"
+#import "GetParticipantsParameter.h"
 // TODO: 整理一下*Parameter.h
 
 const NSString * const ResponseUserInfoParameterKey = @"parameter";
@@ -102,34 +104,15 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     NSAssert([self respondsToSelector:apiSelector], @"api 方法未实现");
     [self performSelector:apiSelector withObject:parameter];
 #pragma clang diagnostic pop
-
-#if 0
-    ConcreteResponseObject * responseObj = [ConcreteResponseObject responseObjectWithApi:parameter.api
-                                                                                  object:@{}
-                                                                     andRequestParameter:parameter];
-    [[NSNotificationCenter defaultCenter] postNotification:responseObj];
-    return;
-    
-    [self _requestApi:parameter.api withParameters:parameters];
-#endif
 }
 
 #pragma mark - Internal Helper
-- (void)_requestApi:(NSString *)api withParameters:(ABCParameter *)parameters
+
+- (void)raiseResponseWithObj:(id)obj error:(NSError *)error andRequestParameter:(ABCParameter *)parameter
 {
-//    [self.requestManager GET:api
-//                  parameters:parameters.toDic
-//                     success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                         ConcreteResponseObject * responseObj = [ConcreteResponseObject responseObjectWithApi:parameters.api
-//                                                                                                       object:@{}
-//                                                                                          andRequestParameter:parameters];
-//                         [[NSNotificationCenter defaultCenter] postNotification:responseObj];
-//                     }
-//                     failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                         ConcreteResponseObject * responseObj = [ConcreteResponseObject responseObjectWithApi:parameters.api object:nil andRequestParameter:parameters];
-//                         [responseObj setError:error];
-//                         [[NSNotificationCenter defaultCenter] postNotification:responseObj];
-//                     }];
+    ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:obj andRequestParameter:parameter];
+    [resp setError:error];
+    [[NSNotificationCenter defaultCenter] postNotification:resp];
 }
 
 #pragma mark - Concrete Request Methods
@@ -140,12 +123,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
                                  password:parameter.pwd
                                     block:
      ^(AVUser *user, NSError *error) {
-         ConcreteResponseObject * resp =
-         [ConcreteResponseObject responseObjectWithApi:parameter.api
-                                                object:nil
-                                   andRequestParameter:parameter];
-         [resp setError:error];
-         [[NSNotificationCenter defaultCenter] postNotification:resp];
+         [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
      }
      ];
 }
@@ -157,9 +135,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     user.password = parameter.pwd;
     [user setObject:@1 forKey:@"certifyStatus"];
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
-        [resp setError:error];
-        [[NSNotificationCenter defaultCenter] postNotification:resp];
+        [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
     }];
 }
 
@@ -170,9 +146,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSAssert(objects.count <= 1, @"一个邀请码不能对应多个活动");
         BOOL valid = objects.count > 0;
-        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:@(valid) andRequestParameter:parameter];
-        [resp setError:error];
-        [[NSNotificationCenter defaultCenter] postNotification:resp];
+        [self raiseResponseWithObj:@(valid) error:error andRequestParameter:parameter];
     }];
 }
 
@@ -188,9 +162,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
             AVObject * object = objects[0];
             activity = [ActivityModel activityFromAVObject:object];
         }
-        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:activity andRequestParameter:parameter];
-        [resp setError:error];
-        [[NSNotificationCenter defaultCenter] postNotification:resp];
+        [self raiseResponseWithObj:activity error:error andRequestParameter:parameter];
     }];
 }
 
@@ -201,9 +173,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
 - (void)GetVerifySMS:(GetVerifySMSParameter *)parameter
 {
     [AVOSCloud requestSmsCodeWithPhoneNumber:parameter.phone callback:^(BOOL succeeded, NSError *error) {
-            ConcreteResponseObject * responseObj = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
-            [responseObj setError:error];
-            [[NSNotificationCenter defaultCenter] postNotification:responseObj];
+        [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
     }];
 }
 
@@ -212,9 +182,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     [AVOSCloud verifySmsCode:paramter.verifyCode
            mobilePhoneNumber:paramter.phone
                     callback:^(BOOL succeeded, NSError *error) {
-                        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:paramter.api object:nil andRequestParameter:paramter];
-                        [resp setError:error];
-                        [[NSNotificationCenter defaultCenter] postNotification:resp];
+                        [self raiseResponseWithObj:nil error:error andRequestParameter:paramter];
                     }
      ];
 }
@@ -230,9 +198,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     [currentUser setObject:avatar forKey:@"avatar"];
     
     [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
-        [resp setError:error];
-        [[NSNotificationCenter defaultCenter] postNotification:resp];
+        [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
     }];
 }
 
@@ -246,9 +212,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
             AVUser * queryResult = objects[0];
             user = [UserModel userFromAVUser:queryResult];
         }
-        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:user andRequestParameter:parameter];
-        [resp setError:error];
-        [[NSNotificationCenter defaultCenter] postNotification:resp];
+        [self raiseResponseWithObj:user error:error andRequestParameter:parameter];
     }];
 }
 
@@ -275,15 +239,31 @@ NSString * const ApiGetParticipants = @"GetParticipants";
                 [activityList addObject:model];
             }];
         }
-        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:activityList andRequestParameter:parameter];
-        [resp setError:error];
-        [[NSNotificationCenter defaultCenter] postNotification:resp];
+        [self raiseResponseWithObj:activityList error:error andRequestParameter:parameter];
     }];
 }
 
 - (void)GetUserActivities:(GetUserActivitiesParameter *)parameter
 {
+    AVQuery * queryOwner = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
+    [queryOwner whereKey:@"owner.objectId" equalTo:parameter.userIdentifier];
     
+    AVQuery * queryParticipant = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
+    [queryParticipant whereKey:@"participants.objectId" equalTo:parameter.userIdentifier];
+    
+    AVQuery * q = [AVQuery orQueryWithSubqueries:@[queryOwner, queryParticipant]];
+    [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSMutableArray * results = nil;
+        if (!error && objects.count > 0) {
+            results = [NSMutableArray arrayWithCapacity:objects.count];
+            for (AVObject * avobj in objects) {
+                ActivityModel * model = [ActivityModel activityFromAVObject:avobj];
+                [results addObject:model];
+            }
+        }
+        
+        [self raiseResponseWithObj:results error:error andRequestParameter:parameter];
+    }];
 }
 
 - (void)GetActivitiesDetail:(ABCParameter *)parameter
@@ -317,16 +297,12 @@ NSString * const ApiGetParticipants = @"GetParticipants";
             __weak typeof(activity) weakRef = activity;
             [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 __strong typeof(weakRef) strongRef = weakRef;
-                ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:strongRef.objectId andRequestParameter:parameter];
-                resp.error = error;
-                [[NSNotificationCenter defaultCenter] postNotification:resp];
+                [self raiseResponseWithObj:strongRef error:error andRequestParameter:parameter];
             }];
         }
         // 保存图片失败返回失败
         else {
-            ConcreteResponseObject * failedResp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
-            failedResp.error = error;
-            [[NSNotificationCenter defaultCenter] postNotification:failedResp];
+            [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
         }
     }];
 }
@@ -343,15 +319,11 @@ NSString * const ApiGetParticipants = @"GetParticipants";
             
             [object setObject:invitationCode forKey:@"invitationCode"];
             [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:invitationCode andRequestParameter:parameter];
-                [resp setError:error];
-                [[NSNotificationCenter defaultCenter] postNotification:resp];
+                [self raiseResponseWithObj:invitationCode error:error andRequestParameter:parameter];
             }];
         }
         else {
-            ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
-            [resp setError:error];
-            [[NSNotificationCenter defaultCenter] postNotification:resp];
+            [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
         }
     }];
 }
@@ -360,8 +332,36 @@ NSString * const ApiGetParticipants = @"GetParticipants";
 {
 }
 
-- (void)ReplyInvitation:(ABCParameter *)parameter
+- (void)ReplyInvitation:(ReplyInvitationParameter *)parameter
 {
+    /*
+     1接受
+     2忽略
+     */
+    if (parameter.accepted) {
+        NSString * activityId = parameter.invitedActivityId;
+        
+        AVQuery * q = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
+        [q getObjectInBackgroundWithId:activityId block:^(AVObject *object, NSError *error) {
+            // 获取对应活动，如果获取失败就发送error
+            if (error) {
+                [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+                
+                return ;
+            }
+            // 如果获取成功，设置activity的关联用户
+            AVRelation * participants = [object relationforKey:@"participants"];
+            [participants addObject:[AVUser currentUser]];
+            [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                LOG_EXPR(object);
+                [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+            }];
+        }];
+    }
+    else {
+        // 忽略活动，不必创建关联，直接返回
+        [self raiseResponseWithObj:nil error:nil andRequestParameter:parameter];
+    }
 }
 
 - (void)ChatToUser:(ABCParameter *)parameter
@@ -371,18 +371,14 @@ NSString * const ApiGetParticipants = @"GetParticipants";
 - (void)FollowUser:(FollowUserParameter *)parameter
 {
     [[AVUser currentUser] follow:parameter.userIdentifier andCallback:^(BOOL succeeded, NSError *error) {
-        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
-        [resp setError:error];
-        [[NSNotificationCenter defaultCenter] postNotification:resp];
+        [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
     }];
 }
 
 - (void)UnfollowUser:(UnfollowUserParameter *)parameter
 {
     [[AVUser currentUser] unfollow:parameter.userIdentifier andCallback:^(BOOL succeeded, NSError *error) {
-        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:nil andRequestParameter:parameter];
-        [resp setError:error];
-        [[NSNotificationCenter defaultCenter] postNotification:resp];
+        [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
     }];
 }
 
@@ -398,9 +394,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
                 [results addObject:[UserModel userFromAVUser:user]];
             }
         }
-        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:results andRequestParameter:parameter];
-        [resp setError:error];
-        [[NSNotificationCenter defaultCenter] postNotification:resp];
+        [self raiseResponseWithObj:results error:error andRequestParameter:parameter];
     }];
 }
 
@@ -416,14 +410,33 @@ NSString * const ApiGetParticipants = @"GetParticipants";
                 [results addObject:[UserModel userFromAVUser:user]];
             }
         }
-        ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:results andRequestParameter:parameter];
-        [resp setError:error];
-        [[NSNotificationCenter defaultCenter] postNotification:resp];
+        [self raiseResponseWithObj:results error:error andRequestParameter:parameter];
     }];
 }
 
-- (void)GetParticipants:(ABCParameter *)parameter
+- (void)GetParticipants:(GetParticipantsParameter *)parameter
 {
+    AVQuery * q = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
+    [q getObjectInBackgroundWithId:parameter.activityIdentifier block:^(AVObject *object, NSError *error) {
+        if (error) {
+            [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+            
+            return ;
+        }
+        AVRelation * participants = [object relationforKey:@"participants"];
+        AVQuery * participantsQuery = [participants query];
+        [participantsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+            NSMutableArray * users = nil;
+            if (!error && objects.count > 0) {
+                users = [NSMutableArray arrayWithCapacity:objects.count];
+                for (AVUser * avuser in objects) {
+                    UserModel * user = [UserModel userFromAVUser:avuser];
+                    [users addObject:user];
+                }
+            }
+            [self raiseResponseWithObj:users error:error andRequestParameter:parameter];
+        }];
+    }];
 }
 
 @end

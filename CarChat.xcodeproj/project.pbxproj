@@ -23,6 +23,8 @@
 		7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A0171A641ED70022DBCE /* ABCParameter.m */; };
 		7EF6A01B1A641FEC0022DBCE /* LoginParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7EF6A01A1A641FEC0022DBCE /* LoginParameter.m */; };
 		A50367791A7BD3D300CACE08 /* ActivityModel+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = A50367781A7BD3D300CACE08 /* ActivityModel+Helper.m */; };
+		A503677C1A7CC47A00CACE08 /* ReplyInvitationParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A503677B1A7CC47A00CACE08 /* ReplyInvitationParameter.m */; };
+		A503677F1A7CD90F00CACE08 /* GetParticipantsParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A503677E1A7CD90F00CACE08 /* GetParticipantsParameter.m */; };
 		BA03556A1A660AAB00252F99 /* ParameterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0355691A660AAB00252F99 /* ParameterFactory.m */; };
 		BA03556D1A660E0400252F99 /* ValidateInviteCodeParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03556C1A660E0400252F99 /* ValidateInviteCodeParameter.m */; };
 		BA0355701A66196100252F99 /* RegisterParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03556F1A66196100252F99 /* RegisterParameter.m */; };
@@ -150,6 +152,10 @@
 		91A1C4A7F3479EED06C580E1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		A50367771A7BD3D300CACE08 /* ActivityModel+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ActivityModel+Helper.h"; sourceTree = "<group>"; };
 		A50367781A7BD3D300CACE08 /* ActivityModel+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ActivityModel+Helper.m"; sourceTree = "<group>"; };
+		A503677A1A7CC47A00CACE08 /* ReplyInvitationParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyInvitationParameter.h; sourceTree = "<group>"; };
+		A503677B1A7CC47A00CACE08 /* ReplyInvitationParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyInvitationParameter.m; sourceTree = "<group>"; };
+		A503677D1A7CD90F00CACE08 /* GetParticipantsParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetParticipantsParameter.h; sourceTree = "<group>"; };
+		A503677E1A7CD90F00CACE08 /* GetParticipantsParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetParticipantsParameter.m; sourceTree = "<group>"; };
 		BA0355681A660AAB00252F99 /* ParameterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterFactory.h; sourceTree = "<group>"; };
 		BA0355691A660AAB00252F99 /* ParameterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParameterFactory.m; sourceTree = "<group>"; };
 		BA03556B1A660E0400252F99 /* ValidateInviteCodeParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidateInviteCodeParameter.h; sourceTree = "<group>"; };
@@ -395,6 +401,10 @@
 				BA0355751A6638B100252F99 /* ResetPasswordParameter.m */,
 				BAB11C7D1A6670FB007FDE38 /* GetActivityWithInviteCodeParameter.h */,
 				BAB11C7E1A6670FB007FDE38 /* GetActivityWithInviteCodeParameter.m */,
+				A503677A1A7CC47A00CACE08 /* ReplyInvitationParameter.h */,
+				A503677B1A7CC47A00CACE08 /* ReplyInvitationParameter.m */,
+				A503677D1A7CD90F00CACE08 /* GetParticipantsParameter.h */,
+				A503677E1A7CD90F00CACE08 /* GetParticipantsParameter.m */,
 				7E415BEA1A66B2ED0025E5FB /* CreateActivityParameter.h */,
 				7E415BEB1A66B2ED0025E5FB /* CreateActivityParameter.m */,
 				7E415BF31A6808160025E5FB /* CreateInvitationParameter.h */,
@@ -881,6 +891,7 @@
 				BA2009E81A7770F20052EE0F /* ValidateVerifyCodeParameter.m in Sources */,
 				BAB11C921A679CE7007FDE38 /* UserActivitiesViewController.m in Sources */,
 				BA6BC7341A63644500DA033C /* AbstractViewController.m in Sources */,
+				A503677C1A7CC47A00CACE08 /* ReplyInvitationParameter.m in Sources */,
 				BA03556D1A660E0400252F99 /* ValidateInviteCodeParameter.m in Sources */,
 				BA2009C61A6F84320052EE0F /* UserCreatedActivityViewController.m in Sources */,
 				BA6BC72B1A63628800DA033C /* ActivityModel.m in Sources */,
@@ -906,6 +917,7 @@
 				BADD16D81A7A17DD004AE9FC /* GetFollowingParameter.m in Sources */,
 				BAB810A21A63C1A100142DDA /* UserCreatActivityDescriptionView.m in Sources */,
 				BA6BC7251A63627B00DA033C /* LoginViewController.m in Sources */,
+				A503677F1A7CD90F00CACE08 /* GetParticipantsParameter.m in Sources */,
 				BAB11CA91A69FE5B007FDE38 /* ActivityCell.m in Sources */,
 				BA2009E41A71E0A40052EE0F /* TestViewController.m in Sources */,
 				BAB11C7C1A6667C4007FDE38 /* CCStatusManager.m in Sources */,

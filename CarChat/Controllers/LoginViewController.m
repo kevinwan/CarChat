@@ -107,7 +107,7 @@
              [[CCNetworkManager defaultManager] requestWithParameter:parameter];
          }];
     
-    [alert showInfo:self title:nil subTitle:@"请输入您的邀请码" closeButtonTitle:@"取消" duration:.0f];
+    [alert showInfo:self.navigationController title:@"请输入您的邀请码" subTitle:nil closeButtonTitle:@"取消" duration:.0f];
 }
 
 #pragma mark - CCNetworkResponse
