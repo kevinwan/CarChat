@@ -246,12 +246,13 @@ NSString * const ApiGetParticipants = @"GetParticipants";
 - (void)GetUserActivities:(GetUserActivitiesParameter *)parameter
 {
     AVQuery * queryOwner = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
-    [queryOwner whereKey:@"owner.objectId" equalTo:parameter.userIdentifier];
+    [queryOwner whereKey:@"owner" equalTo:[AVUser objectWithoutDataWithObjectId:parameter.userIdentifier]];
     
     AVQuery * queryParticipant = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
-    [queryParticipant whereKey:@"participants.objectId" equalTo:parameter.userIdentifier];
+    [queryParticipant whereKey:@"participants" equalTo:[AVUser objectWithoutDataWithObjectId:parameter.userIdentifier]];
     
     AVQuery * q = [AVQuery orQueryWithSubqueries:@[queryOwner, queryParticipant]];
+    [q includeKey:@"owner"];
     [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSMutableArray * results = nil;
         if (!error && objects.count > 0) {
