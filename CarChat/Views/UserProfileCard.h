@@ -12,6 +12,8 @@
 
 @interface UserProfileCard : UIView
 
+@property (strong, nonatomic) UIButton *relationshipButton;
+
 + (instancetype)view;
 
 - (void)layoutWithUser:(UserModel *)user;

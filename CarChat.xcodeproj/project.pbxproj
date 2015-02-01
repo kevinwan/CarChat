@@ -25,6 +25,11 @@
 		A50367791A7BD3D300CACE08 /* ActivityModel+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = A50367781A7BD3D300CACE08 /* ActivityModel+Helper.m */; };
 		A503677C1A7CC47A00CACE08 /* ReplyInvitationParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A503677B1A7CC47A00CACE08 /* ReplyInvitationParameter.m */; };
 		A503677F1A7CD90F00CACE08 /* GetParticipantsParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A503677E1A7CD90F00CACE08 /* GetParticipantsParameter.m */; };
+		A5FAA78F1A7E597600C1FD54 /* GetCommentsInActivityParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FAA78E1A7E597600C1FD54 /* GetCommentsInActivityParameter.m */; };
+		A5FAA7921A7E5A7E00C1FD54 /* CommentModel+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FAA7911A7E5A7E00C1FD54 /* CommentModel+helper.m */; };
+		A5FAA7951A7E5C0500C1FD54 /* ReplyActivityParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FAA7941A7E5C0500C1FD54 /* ReplyActivityParameter.m */; };
+		A5FAA7981A7E5F3900C1FD54 /* ReplyActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FAA7971A7E5F3900C1FD54 /* ReplyActivityView.m */; };
+		A5FAA79A1A7E5F4900C1FD54 /* ReplyActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5FAA7991A7E5F4900C1FD54 /* ReplyActivityView.xib */; };
 		BA03556A1A660AAB00252F99 /* ParameterFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = BA0355691A660AAB00252F99 /* ParameterFactory.m */; };
 		BA03556D1A660E0400252F99 /* ValidateInviteCodeParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03556C1A660E0400252F99 /* ValidateInviteCodeParameter.m */; };
 		BA0355701A66196100252F99 /* RegisterParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = BA03556F1A66196100252F99 /* RegisterParameter.m */; };
@@ -156,6 +161,15 @@
 		A503677B1A7CC47A00CACE08 /* ReplyInvitationParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyInvitationParameter.m; sourceTree = "<group>"; };
 		A503677D1A7CD90F00CACE08 /* GetParticipantsParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetParticipantsParameter.h; sourceTree = "<group>"; };
 		A503677E1A7CD90F00CACE08 /* GetParticipantsParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetParticipantsParameter.m; sourceTree = "<group>"; };
+		A5FAA78D1A7E597600C1FD54 /* GetCommentsInActivityParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetCommentsInActivityParameter.h; sourceTree = "<group>"; };
+		A5FAA78E1A7E597600C1FD54 /* GetCommentsInActivityParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetCommentsInActivityParameter.m; sourceTree = "<group>"; };
+		A5FAA7901A7E5A7E00C1FD54 /* CommentModel+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CommentModel+helper.h"; sourceTree = "<group>"; };
+		A5FAA7911A7E5A7E00C1FD54 /* CommentModel+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CommentModel+helper.m"; sourceTree = "<group>"; };
+		A5FAA7931A7E5C0500C1FD54 /* ReplyActivityParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyActivityParameter.h; sourceTree = "<group>"; };
+		A5FAA7941A7E5C0500C1FD54 /* ReplyActivityParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyActivityParameter.m; sourceTree = "<group>"; };
+		A5FAA7961A7E5F3900C1FD54 /* ReplyActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplyActivityView.h; sourceTree = "<group>"; };
+		A5FAA7971A7E5F3900C1FD54 /* ReplyActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyActivityView.m; sourceTree = "<group>"; };
+		A5FAA7991A7E5F4900C1FD54 /* ReplyActivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReplyActivityView.xib; sourceTree = "<group>"; };
 		BA0355681A660AAB00252F99 /* ParameterFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterFactory.h; sourceTree = "<group>"; };
 		BA0355691A660AAB00252F99 /* ParameterFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParameterFactory.m; sourceTree = "<group>"; };
 		BA03556B1A660E0400252F99 /* ValidateInviteCodeParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ValidateInviteCodeParameter.h; sourceTree = "<group>"; };
@@ -411,6 +425,10 @@
 				7E415BF41A6808160025E5FB /* CreateInvitationParameter.m */,
 				BADD16D31A7A1785004AE9FC /* GetUserActivitiesParameter.h */,
 				BADD16D41A7A1785004AE9FC /* GetUserActivitiesParameter.m */,
+				A5FAA7931A7E5C0500C1FD54 /* ReplyActivityParameter.h */,
+				A5FAA7941A7E5C0500C1FD54 /* ReplyActivityParameter.m */,
+				A5FAA78D1A7E597600C1FD54 /* GetCommentsInActivityParameter.h */,
+				A5FAA78E1A7E597600C1FD54 /* GetCommentsInActivityParameter.m */,
 				BADD16D61A7A17DD004AE9FC /* GetFollowingParameter.h */,
 				BADD16D71A7A17DD004AE9FC /* GetFollowingParameter.m */,
 				BADD16D91A7A17EF004AE9FC /* GetFollowersParameter.h */,
@@ -482,6 +500,8 @@
 				BADD16E31A7A2B3C004AE9FC /* UserModel+helper.m */,
 				BA2009D01A6F9B2F0052EE0F /* CommentModel.h */,
 				BA2009D11A6F9B2F0052EE0F /* CommentModel.m */,
+				A5FAA7901A7E5A7E00C1FD54 /* CommentModel+helper.h */,
+				A5FAA7911A7E5A7E00C1FD54 /* CommentModel+helper.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -688,6 +708,9 @@
 				7E415BE81A65895E0025E5FB /* ActivityEditView.xib */,
 				BAB11CA71A69FE5B007FDE38 /* ActivityCell.h */,
 				BAB11CA81A69FE5B007FDE38 /* ActivityCell.m */,
+				A5FAA7961A7E5F3900C1FD54 /* ReplyActivityView.h */,
+				A5FAA7971A7E5F3900C1FD54 /* ReplyActivityView.m */,
+				A5FAA7991A7E5F4900C1FD54 /* ReplyActivityView.xib */,
 			);
 			name = Activity;
 			sourceTree = "<group>";
@@ -825,6 +848,7 @@
 				BAD7232D1A64D3DF00FB4645 /* ServerPolicyViewController.xib in Resources */,
 				BAD65A7A1A5FA89200987B06 /* Images.xcassets in Resources */,
 				7E2F43171A6D46B800971789 /* UploadCertifyProfileViewController.xib in Resources */,
+				A5FAA79A1A7E5F4900C1FD54 /* ReplyActivityView.xib in Resources */,
 				BAB11C841A668C80007FDE38 /* InviteActivityDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -889,6 +913,7 @@
 				BAD723241A64BF5100FB4645 /* NSDate+Helpers.m in Sources */,
 				A50367791A7BD3D300CACE08 /* ActivityModel+Helper.m in Sources */,
 				BA2009E81A7770F20052EE0F /* ValidateVerifyCodeParameter.m in Sources */,
+				A5FAA7951A7E5C0500C1FD54 /* ReplyActivityParameter.m in Sources */,
 				BAB11C921A679CE7007FDE38 /* UserActivitiesViewController.m in Sources */,
 				BA6BC7341A63644500DA033C /* AbstractViewController.m in Sources */,
 				A503677C1A7CC47A00CACE08 /* ReplyInvitationParameter.m in Sources */,
@@ -932,7 +957,9 @@
 				BADD16E41A7A2B3C004AE9FC /* UserModel+helper.m in Sources */,
 				7E2F431D1A714E2A00971789 /* CommentCell.m in Sources */,
 				BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */,
+				A5FAA7981A7E5F3900C1FD54 /* ReplyActivityView.m in Sources */,
 				7E415BF51A6808160025E5FB /* CreateInvitationParameter.m in Sources */,
+				A5FAA7921A7E5A7E00C1FD54 /* CommentModel+helper.m in Sources */,
 				BA2009CB1A6F90A60052EE0F /* CommentViewController.m in Sources */,
 				BADD16CF1A78C174004AE9FC /* GetSuggestActivitiesParameter.m in Sources */,
 				BA6BC7241A63627B00DA033C /* ActivityIntroductViewController.m in Sources */,
@@ -946,6 +973,7 @@
 				7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */,
 				BA2009D21A6F9B2F0052EE0F /* CommentModel.m in Sources */,
 				BA0355701A66196100252F99 /* RegisterParameter.m in Sources */,
+				A5FAA78F1A7E597600C1FD54 /* GetCommentsInActivityParameter.m in Sources */,
 				7E415BF11A66CABA0025E5FB /* InviteViewController.m in Sources */,
 				BAD723251A64BF5100FB4645 /* NSString+Helpers.m in Sources */,
 				BADD16E11A7A2547004AE9FC /* UnfollowUserParameter.m in Sources */,

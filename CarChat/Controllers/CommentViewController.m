@@ -12,6 +12,7 @@
 #import "CommentModel.h"
 #import "CommentCell.h"
 #import "UserModel+helper.h"
+#import "GetCommentsInActivityParameter.h"
 
 static NSString * const commentIDentifier = @"commentCellIdentifier";
 
@@ -36,17 +37,35 @@ static NSString * const commentIDentifier = @"commentCellIdentifier";
     return self;
 }
 
+- (void)dealloc
+{
+    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiGetCommentsInActivity];
+}
+
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setupTableDelegator];
-    [self __createFackComments];
+    
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetCommentsInActivity];
+    
+    [self requestComments];
 }
 
-#pragma mark - User Interaction
-- (IBAction)comment:(id)sender {
-    LOG_EXPR(@"show comment");
+#pragma mark - CCNetworkResponse
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response
+{
+    [self hideHud];
+    
+    if (response.error) {
+        // fail
+        [self showTip:response.error.localizedDescription];
+    }
+    else {
+        [self.comments addObjectsFromArray:response.object];
+        [self.commentTable reloadData];
+    }
 }
 
 #pragma mark - Internal Helps
@@ -68,23 +87,22 @@ static NSString * const commentIDentifier = @"commentCellIdentifier";
     [self.commentTable setDataSource:self.tableDelegator];
 }
 
-- (void)__createFackComments
+- (void)requestComments
 {
-    for (int i = 0; i < 10; i ++) {
-        CommentModel *comment = [CommentModel new];
-        comment.content = [NSString stringWithFormat:@"八心八箭，只卖%d%d%d,快点来抢哦，我是🐒总😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢😢",i,i,i];
-        comment.user = [UserModel new];
-        comment.user.nickName = [NSString stringWithFormat:@"嫖娼公知%d",i];
-        comment.user.avatarUrl = @"http://a.hiphotos.baidu.com/image/pic/item/0dd7912397dda1444d5bd369b0b7d0a20df4869f.jpg";
-        comment.user.gender = GenderMale;
-        [self.comments addObject:comment];
-    }
+    GetCommentsInActivityParameter * p = (GetCommentsInActivityParameter *)[ParameterFactory parameterWithApi:ApiGetCommentsInActivity];
+    p.activityIdentifier = self.activityId;
+    [[CCNetworkManager defaultManager] requestWithParameter:p];
 }
 
 #pragma mark - Public APIs
 - (void)setListHeaderView:(UIView *)headerView
 {
     [self.commentTable setTableHeaderView:headerView];
+}
+
+- (void)setListFooterView:(UIView *)footerView
+{
+    [self.commentTable setTableFooterView:footerView];
 }
 
 @end

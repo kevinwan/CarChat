@@ -14,4 +14,6 @@
 
 - (void)setListHeaderView:(UIView *)headerView;
 
+- (void)setListFooterView:(UIView *)footerView;
+
 @end

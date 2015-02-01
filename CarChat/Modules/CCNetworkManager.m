@@ -31,6 +31,10 @@
 #import "ActivityModel+Helper.h"
 #import "ReplyInvitationParameter.h"
 #import "GetParticipantsParameter.h"
+#import "GetCommentsInActivityParameter.h"
+#import "CommentModel.h"
+#import "CommentModel+helper.h"
+#import "ReplyActivityParameter.h"
 // TODO: 整理一下*Parameter.h
 
 const NSString * const ResponseUserInfoParameterKey = @"parameter";
@@ -267,16 +271,37 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     }];
 }
 
+// 这个接口好像不需要。。。
 - (void)GetActivitiesDetail:(ABCParameter *)parameter
 {
 }
 
-- (void)GetCommentsInActivity:(ABCParameter *)parameter
+- (void)GetCommentsInActivity:(GetCommentsInActivityParameter *)parameter
 {
+    AVQuery * q = [AVQuery queryWithClassName:NSStringFromClass([CommentModel class])];
+    [q whereKey:@"activity" equalTo:[AVObject objectWithoutDataWithObjectId:parameter.activityIdentifier]];
+    [q includeKey:@"user"];
+    [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSMutableArray * results = nil;
+        if (!error && objects.count > 0) {
+            results = [NSMutableArray arrayWithCapacity:objects.count];
+            for (AVObject * avobj in objects) {
+                [results addObject:[CommentModel commentFromAVObject:avobj]];
+            }
+            [self raiseResponseWithObj:results error:error andRequestParameter:parameter];
+        }
+    }];
 }
 
-- (void)ReplyActivity:(ABCParameter *)parameter
+- (void)ReplyActivity:(ReplyActivityParameter *)parameter
 {
+    AVObject * object = [AVObject objectWithClassName:NSStringFromClass([CommentModel class])];
+    [object setObject:[AVObject objectWithoutDataWithObjectId:parameter.activityIdentifier] forKey:@"activity"];
+    [object setObject:[AVUser currentUser] forKey:@"user"];
+    [object setObject:parameter.content forKey:@"content"];
+    [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+    }];
 }
 
 - (void)CreateActivity:(CreateActivityParameter *)parameter

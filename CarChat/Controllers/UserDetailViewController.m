@@ -14,6 +14,7 @@
 #import "UserProfileCard.h"
 #import "UIView+frame.h"
 #import "GetUserInfoParameter.h"
+#import "CCStatusManager.h"
 
 @interface UserDetailViewController ()
 
@@ -82,6 +83,8 @@
 {
     UserProfileCard * card = [UserProfileCard view];
     [card layoutWithUser:self.user];
+    [card.relationshipButton setHidden:[CCStatusManager isCurrentUserId:self.user.identifier]];
+    if ([CCStatusManager currentUserId])
     [self.view addSubview:card];
     [card setRelationshipTouched:^{
         // TODO: follow sb or unfollow sb

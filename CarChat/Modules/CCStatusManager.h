@@ -20,5 +20,6 @@
 + (NSString *)currentUserId;
 + (BOOL)isLoged;
 + (BOOL)isVerifyed;
++ (BOOL)isCurrentUserId:(NSString *)identifier;
 
 @end

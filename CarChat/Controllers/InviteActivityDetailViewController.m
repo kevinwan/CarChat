@@ -68,18 +68,18 @@
                                       whitTag:InviteDetailJoinButtonItemTag
                                    andContext:nil];
         }
-//        else {
-//            [ControllerCoordinator goNextFrom:self
-//                                      whitTag:InviteDetailIgnoreButonItemTag
-//                                   andContext:nil];
-//        }
+        else {
+            [ControllerCoordinator goNextFrom:self
+                                      whitTag:InviteDetailIgnoreButonItemTag
+                                   andContext:nil];
+        }
     }
 }
 
 #pragma mark - User Interaction
 - (void)ignore
 {
-//    [self showLoading:nil];
+    [self showLoading:nil];
 //    ReplyInvitationParameter * p = (ReplyInvitationParameter *)[ParameterFactory parameterWithApi:ApiReplyInvitation];
 //    [p setAccepted:NO];
 //    [[CCNetworkManager defaultManager] requestWithParameter:p];

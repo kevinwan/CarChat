@@ -10,7 +10,7 @@
 #import "UIView+square2Round.h"
 
 CGFloat const ActivityCellStyleSuggestHeight = 217.f;
-CGFloat const ActivityCellStyleUserCreatedHeight = 314.f;
+CGFloat const ActivityCellStyleUserCreatedHeight = 298.f;
 
 @interface ActivityCell ()
 

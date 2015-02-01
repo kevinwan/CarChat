@@ -20,7 +20,6 @@
 @property (strong, nonatomic)  UIButton *activityNumButton;
 @property (strong, nonatomic)  UIButton *followingNumButton;
 @property (strong, nonatomic)  UIButton *followerNumButton;
-@property (strong, nonatomic) UIButton *relationshipButton;
 
 @end
 

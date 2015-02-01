@@ -39,4 +39,9 @@
     return [[current objectForKey:@"certifyStatus"] integerValue] == CertifyStatusVerifyed;
 }
 
++ (BOOL)isCurrentUserId:(NSString *)identifier
+{
+    return [[[AVUser currentUser] objectId] isEqualToString:identifier];
+}
+
 @end
