@@ -17,9 +17,4 @@
 
 @property (nonatomic, copy) NSString * verifyedInviteCode;
 
-+ (NSString *)currentUserId;
-+ (BOOL)isLoged;
-+ (BOOL)isVerifyed;
-+ (BOOL)isCurrentUserId:(NSString *)identifier;
-
 @end

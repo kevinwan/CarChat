@@ -92,6 +92,7 @@
 {
     [self showLoading:nil];
     ReplyInvitationParameter * p = (ReplyInvitationParameter *)[ParameterFactory parameterWithApi:ApiReplyInvitation];
+    p.invitedActivityId = self.activity.identifier;
     [p setAccepted:YES];
     [[CCNetworkManager defaultManager] requestWithParameter:p];
 }

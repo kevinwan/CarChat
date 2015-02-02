@@ -15,4 +15,21 @@
 
 + (instancetype)userFromAVUser:(AVUser *)avuser;
 
+// 用户是否被当前用户关注
++ (BOOL)userIsCurrentUserFollowee:(UserModel *)user;
+// 用户是否关注当前用户
++ (BOOL)userIsCurrentUserFollower:(UserModel *)user;
+// 用户是否是当前用户
++ (BOOL)isCurrentUser:(UserModel *)user;
+
+
+// 当前登陆用户的id
++ (NSString *)currentUserId;
+// 是否已登陆
++ (BOOL)isLoged;
+// 用户是否已验证
++ (BOOL)isCurrentUserVerifyed;
+// 是否是当前登陆用户的id
++ (BOOL)isCurrentUserId:(NSString *)identifier;
+
 @end

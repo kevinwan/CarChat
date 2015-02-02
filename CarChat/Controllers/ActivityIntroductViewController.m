@@ -11,6 +11,7 @@
 #import "CCStatusManager.h"
 #import <UzysAssetsPickerController.h>
 #import "NSString+Helpers.h"
+#import "UserModel+helper.h"
 #import "ActivityModel+Helper.h"
 
 @interface ActivityIntroductViewController ()
@@ -100,8 +101,7 @@
         else if (api == ApiCreateActivity) {
             // 创建成功
             [self showTip:@"创建成功"];
-            self.createdActivity = [ActivityModel ActivityWithParameter:(CreateActivityParameter *)response.parameter];
-            self.createdActivity.identifier = response.object;
+            self.createdActivity = response.object;
             [self.editView setUserInteractionEnabled:NO];
             [self setLeftNavigationBarItem:@"关闭" target:self andAction:@selector(close) animated:YES];
             [self setRightNavigationBarItem:@"邀请" target:self andAction:@selector(invite) animated:YES];
@@ -130,7 +130,7 @@
 #pragma mark - User Interaction
 - (void)createAndEditTheActivity
 {
-    if ([CCStatusManager isLoged]) {
+    if ([UserModel isLoged]) {
         [self animateEditingView];
     }
     else {
@@ -174,7 +174,7 @@
 
 - (void)invite
 {
-    if (![CCStatusManager isVerifyed]) {
+    if (![UserModel isCurrentUserVerifyed]) {
         UIAlertView * a = [[UIAlertView alloc]initWithTitle:@"抱歉" message:@"只有认证车主才能发送邀请" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [a show];
         return;

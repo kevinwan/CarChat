@@ -7,9 +7,12 @@
 //
 
 #import "AbstractViewController.h"
+#import "UserModel.h"
 
 @interface UserDetailViewController : AbstractViewController
 
 - (instancetype)initWithUserId:(NSString *)userId;
+
+- (UserModel *)user;    // 暴露给外部，用来访问当前detail中展示的user
 
 @end

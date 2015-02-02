@@ -118,7 +118,7 @@
     par.age = self.contentView.ageField.text;
     par.city = self.contentView.cityField.text;
     par.gender = self.contentView.genderControl.selectedSegmentIndex + 1;
-    par.avatar = UIImageJPEGRepresentation(self.contentView.avatarButton.currentBackgroundImage, .5);
+    par.avatar = UIImageJPEGRepresentation(self.contentView.avatarButton.currentBackgroundImage, .1);
     [[CCNetworkManager defaultManager] requestWithParameter:par];
 }
 

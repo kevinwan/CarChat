@@ -9,6 +9,7 @@
 #import "PersonalProfileViewController.h"
 #import "PersonalInfoView.h"
 #import <UzysAssetsPickerController.h>
+#import "SetPersonalInfoParameter.h"
 
 @interface PersonalProfileViewController ()
 
@@ -30,6 +31,11 @@
         return self;
     }
     return nil;
+}
+
+- (void)dealloc
+{
+    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiSetPersonalInfo];
 }
 
 #pragma mark - View Lifecycle
@@ -64,11 +70,30 @@
         [ControllerCoordinator goNextFrom:_weakRef whitTag:MyEditProfileUploadCertifyButtonTag andContext:_weakRef.user.identifier];
     }];
     [self.view addSubview:self.contentView];
+    
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiSetPersonalInfo];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - CCNetworkResponse
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response
+{
+    [self hideHud];
+    
+    if (response.error) {
+        [self showTip:response.error.localizedDescription];
+    }
+    else {
+        [self showTip:@"保存成功" whenDone: ^{
+            [self close];
+            
+            // TODO: 更新“我”页面
+        }];
+    }
 }
 
 #pragma mark - UzysAssetsPickerControllerDelegate
@@ -99,7 +124,18 @@
 - (void)save
 {
     [self showLoading:@"正在保存"];
-    // TODO: network request
+    SetPersonalInfoParameter * par = (SetPersonalInfoParameter *)[ParameterFactory parameterWithApi:ApiSetPersonalInfo];
+    par.nickName = self.contentView.nickNameField.text;
+    par.age = self.contentView.ageField.text;
+    par.city = self.contentView.cityField.text;
+    par.gender = self.contentView.genderControl.selectedSegmentIndex + 1;
+    if (self.asset) {
+        par.avatar = UIImageJPEGRepresentation(self.contentView.avatarButton.currentBackgroundImage, .1);
+    }
+    else {
+        par.avatar = UIImageJPEGRepresentation(self.contentView.avatarButton.currentBackgroundImage, 1);
+    }
+    [[CCNetworkManager defaultManager] requestWithParameter:par];
 }
 
 @end

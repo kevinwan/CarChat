@@ -45,4 +45,39 @@
 //    user.certifications = ...
     return user;
 }
+
++ (BOOL)isCurrentUser:(UserModel *)user
+{
+    return [self isCurrentUserId:user.identifier];
+}
+
++ (BOOL)userIsCurrentUserFollowee:(UserModel *)user
+{
+    return (user.relationship & RelationshipFollowing) != 0;
+}
+
++ (BOOL)userIsCurrentUserFollower:(UserModel *)user
+{
+    return (user.relationship & RelationshipFollower) != 0;
+}
+
++ (NSString *)currentUserId
+{
+    return [AVUser currentUser].objectId;
+}
++ (BOOL)isLoged
+{
+    return [AVUser currentUser] != nil;
+}
+
++ (BOOL)isCurrentUserVerifyed
+{
+    AVUser * current = [AVUser currentUser];
+    return [[current objectForKey:@"certifyStatus"] integerValue] == CertifyStatusVerifyed;
+}
+
++ (BOOL)isCurrentUserId:(NSString *)identifier
+{
+    return [[[AVUser currentUser] objectId] isEqualToString:identifier];
+}
 @end

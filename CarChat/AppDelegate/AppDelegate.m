@@ -13,6 +13,7 @@
 #import "ActivityModel.h"
 #import "TestViewController.h"
 #import "CCStatusManager.h"
+#import "UserModel+helper.h"
 // for test
 #import "GetActivityWithInviteCodeParameter.h"
 
@@ -32,6 +33,7 @@ static const NSInteger MyNavItemTag = 2;
     [AVOSCloud setApplicationId:@"1x7a2rcepv9k4yrn8qmfq31gk3bqf33c663zkq88c88z9eqr"
                       clientKey:@"yxgmlhkjhs88ulxs3b8gsw54o1mzxl93ya78dqy92lvrhf61"];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+//    setenv("LOG_CURL", "YES", 0);
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetActivityWithInviteCode];
     
@@ -97,7 +99,7 @@ static const NSInteger MyNavItemTag = 2;
     }
     
     // "MY" view controller
-    if ([CCStatusManager isLoged]) {
+    if ([UserModel isLoged]) {
         return YES;
     }
     else {

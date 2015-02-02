@@ -31,7 +31,8 @@
 {
     [super viewDidAppear:animated];
     
-    if (self.tabBarController) {
+    if (self.tabBarController &&
+        self.tabBarController == self.parentViewController){
         if ([self.view.window isKeyWindow] && self.view.window.windowLevel == UIWindowLevelNormal) {
             self.tabBarController.navigationItem.title = self.navigationItem.title;
             self.tabBarController.navigationItem.rightBarButtonItem

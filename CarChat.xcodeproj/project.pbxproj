@@ -360,6 +360,9 @@
 				7E415BEE1A66CABA0025E5FB /* InviteViewController.h */,
 				7E415BEF1A66CABA0025E5FB /* InviteViewController.m */,
 				7E415BF01A66CABA0025E5FB /* InviteViewController.xib */,
+				BA2009D91A70D7060052EE0F /* UserDetailViewController.h */,
+				BA2009DA1A70D7060052EE0F /* UserDetailViewController.m */,
+				BA2009DB1A70D7060052EE0F /* UserDetailViewController.xib */,
 				BAB11C8A1A679C9A007FDE38 /* FollowingViewController.h */,
 				BAB11C8B1A679C9A007FDE38 /* FollowingViewController.m */,
 				BAB11C8C1A679C9A007FDE38 /* FollowingViewController.xib */,
@@ -369,9 +372,6 @@
 				BAB11C8F1A679CE7007FDE38 /* UserActivitiesViewController.h */,
 				BAB11C901A679CE7007FDE38 /* UserActivitiesViewController.m */,
 				BAB11C911A679CE7007FDE38 /* UserActivitiesViewController.xib */,
-				BA2009D91A70D7060052EE0F /* UserDetailViewController.h */,
-				BA2009DA1A70D7060052EE0F /* UserDetailViewController.m */,
-				BA2009DB1A70D7060052EE0F /* UserDetailViewController.xib */,
 			);
 			name = My;
 			sourceTree = "<group>";

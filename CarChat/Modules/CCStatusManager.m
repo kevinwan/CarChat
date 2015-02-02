@@ -23,25 +23,7 @@
     return instance;
 }
 
-+ (NSString *)currentUserId
-{
-    return [AVUser currentUser].objectId;
-}
 
-+ (BOOL)isLoged
-{
-    return [AVUser currentUser] != nil;
-}
 
-+ (BOOL)isVerifyed
-{
-    AVUser * current = [AVUser currentUser];
-    return [[current objectForKey:@"certifyStatus"] integerValue] == CertifyStatusVerifyed;
-}
-
-+ (BOOL)isCurrentUserId:(NSString *)identifier
-{
-    return [[[AVUser currentUser] objectId] isEqualToString:identifier];
-}
 
 @end

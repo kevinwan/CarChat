@@ -11,6 +11,7 @@
 #import "UIView+frame.h"
 #import "UserDetailViewController.h"
 #import "CCStatusManager.h"
+#import "UserModel+helper.h"
 
 @interface MyViewController ()
 
@@ -25,7 +26,7 @@
     [super viewDidLoad];
 
     self.navigationItem.title = @"我";
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemOrganize target:self action:@selector(slapMe)]];
+    [self setRightNavigationBarItem:@"设置" target:self andAction:@selector(slapMe)];
     
     [self setupContentView];
 }
@@ -37,13 +38,15 @@
 
 #pragma mark - User Interaction
 - (void)slapMe {
-//    [ControllerCoordinator goNextFrom:self whitTag:MyEditProfileTag andContext:self.i];
+    [ControllerCoordinator goNextFrom:self
+                              whitTag:MyEditProfileTag
+                           andContext:self.detailVC.user];
 }
 
 #pragma mark - Internal Helper
 -(void)setupContentView
 {
-    self.detailVC = [[UserDetailViewController alloc]initWithUserId:[CCStatusManager currentUserId]];
+    self.detailVC = [[UserDetailViewController alloc]initWithUserId:[UserModel currentUserId]];
     [self.detailVC.view setFrame:self.view.bounds];
     self.detailVC.view.y += 64.f;
     self.detailVC.view.height -= 64.f;

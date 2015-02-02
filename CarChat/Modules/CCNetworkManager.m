@@ -137,6 +137,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     AVUser * user = [AVUser user];
     user.username = parameter.phone;
     user.password = parameter.pwd;
+    user.mobilePhoneNumber = parameter.phone;
     [user setObject:@1 forKey:@"certifyStatus"];
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
@@ -323,7 +324,7 @@ NSString * const ApiGetParticipants = @"GetParticipants";
             __weak typeof(activity) weakRef = activity;
             [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 __strong typeof(weakRef) strongRef = weakRef;
-                [self raiseResponseWithObj:strongRef error:error andRequestParameter:parameter];
+                [self raiseResponseWithObj:[ActivityModel activityFromAVObject:strongRef] error:error andRequestParameter:parameter];
             }];
         }
         // 保存图片失败返回失败
