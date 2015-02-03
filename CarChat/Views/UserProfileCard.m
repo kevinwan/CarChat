@@ -9,7 +9,6 @@
 #import "UserProfileCard.h"
 #import "UIView+square2Round.h"
 #import <UIImageView+WebCache.h>
-#import "Common.h"
 #import "UserModel+helper.h"
 
 @interface UserProfileCard ()

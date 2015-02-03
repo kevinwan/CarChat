@@ -7,7 +7,6 @@
 //
 
 #import "ABCParameter.h"
-#import "Common.h"
 
 /**
  *  创建活动接口参数

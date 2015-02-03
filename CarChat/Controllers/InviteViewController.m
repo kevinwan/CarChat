@@ -10,6 +10,7 @@
 #import "CreateInvitationParameter.h"
 #import <MessageUI/MessageUI.h>
 #import "CollectionDelegator.h"
+#import "AppDelegate.h"
 
 static NSString * const cellIdentifier = @"inviteCell";
 
@@ -121,12 +122,14 @@ static NSString * const InviteItemFollower = @"关注我的人";
 
 - (void)inviteViaWXTimeLine
 {
-    
+    AppDelegate * d = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [d sendInviteCodeToWX:self.activity.invitationCode via:SendingInvitationViaWXTimeLine];
 }
 
-- (void)inviteViaWXChat
+- (void)inviteViaWXSession
 {
-    
+    AppDelegate * d = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    [d sendInviteCodeToWX:self.activity.invitationCode via:SendingInvitationViaWXSession];
 }
 
 - (void)inviteViaSMS
@@ -184,7 +187,7 @@ static NSString * const InviteItemFollower = @"关注我的人";
             [weakref inviteViaWXTimeLine];
         }
         else if (item == InviteItemWXChat) {
-            [weakref inviteViaWXChat];
+            [weakref inviteViaWXSession];
         }
         else if (item == InviteItemSMS) {
             [weakref inviteViaSMS];

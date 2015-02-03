@@ -9,7 +9,6 @@
 
 #import "CCStatusManager.h"
 #import <AVOSCloud/AVOSCloud.h>
-#import "Common.h"
 
 @implementation CCStatusManager
 

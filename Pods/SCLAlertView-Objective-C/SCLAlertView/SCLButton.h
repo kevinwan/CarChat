@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 AnyKey Entertainment. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface SCLButton : UIButton
 
@@ -55,9 +55,9 @@ typedef NS_ENUM(NSInteger, SCLActionType)
  */
 @property (nonatomic, copy) ButtonFormatBlock buttonFormatBlock;
 
-/** TODO
+/** Set SCLButton color.
  *
- * TODO
+ * Set SCLButton color.
  */
 @property (nonatomic, strong) UIColor *defaultBackgroundColor;
 

@@ -33,4 +33,12 @@ typedef NS_ENUM(NSInteger, CertifyStatus) {
     CertifyStatusVerifyed = 3
 };
 
+typedef NS_ENUM(NSInteger, SendingInvitationVia) {
+    SendingInvitationViaSMS = 1,
+    SendingInvitationViaEmail,
+    SendingInvitationViaWXSession,
+    SendingInvitationViaWXTimeLine,
+    SendingInvitationViaInApp
+};
+
 #endif

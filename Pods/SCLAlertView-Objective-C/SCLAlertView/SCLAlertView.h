@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 AnyKey Entertainment. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "SCLButton.h"
 
 typedef NSAttributedString* (^SCLAttributedFormatBlock)(NSString *value);
@@ -67,7 +67,8 @@ typedef NS_ENUM(NSInteger, SCLAlertViewShowAnimation)
 typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 {
     Shadow,
-    Blur
+    Blur,
+    Transparent    
 };
 
 /** Title Label
@@ -135,6 +136,19 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
  */
 @property (nonatomic) SCLAlertViewBackground backgroundType;
 
+/** Set custom color to SCLAlertView.
+ *
+ * SCLAlertView custom color.
+ * (Buttons, top circle and borders)
+ */
+@property (nonatomic, strong) UIColor *customViewColor;
+
+/** Set custom color to SCLAlertView background.
+ *
+ * SCLAlertView background custom color.
+ */
+@property (nonatomic, strong) UIColor *backgroundViewColor;
+
 /** Warns that alerts is gone
  *
  * Warns that alerts is gone using block
@@ -161,9 +175,10 @@ typedef NS_ENUM(NSInteger, SCLAlertViewBackground)
 
 /** Set SubTitle Height
  *
+ * @deprecated Deprecated since 0.5.2+ .
  * @param value Height of scrollable subtitle text field.
  */
-- (void)setSubTitleHeight:(CGFloat)value;
+- (void)setSubTitleHeight:(CGFloat)value __deprecated;
 
 /** Set Title font family and size
  *

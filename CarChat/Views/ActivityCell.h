@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Common.h"
 #import "ActivityModel.h"
 
 typedef NS_ENUM(NSInteger, ActivityCellStyle) {

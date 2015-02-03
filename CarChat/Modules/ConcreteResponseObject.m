@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 
 const char * notifyKeyError = "respError";
+const NSString * const ResponseUserInfoParameterKey = @"parameter";
 
 @implementation NSNotification (ResponseObject)
 

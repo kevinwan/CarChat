@@ -89,7 +89,7 @@
 #define COCOAPODS_POD_AVAILABLE_SCLAlertView_Objective_C
 #define COCOAPODS_VERSION_MAJOR_SCLAlertView_Objective_C 0
 #define COCOAPODS_VERSION_MINOR_SCLAlertView_Objective_C 5
-#define COCOAPODS_VERSION_PATCH_SCLAlertView_Objective_C 0
+#define COCOAPODS_VERSION_PATCH_SCLAlertView_Objective_C 3
 
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage

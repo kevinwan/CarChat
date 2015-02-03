@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Common.h"
 
 @interface UserModel : NSObject <NSCopying>
 

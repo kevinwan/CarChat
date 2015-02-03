@@ -16,6 +16,10 @@
 #import "UserModel+helper.h"
 // for test
 #import "GetActivityWithInviteCodeParameter.h"
+#import "WXApi.h"
+#import "WXApiObject.h"
+
+NSString * const WXAppKey = @"wxe489a68ecb5f378f";
 
 static const NSInteger SuggestNavItemTag = 1;
 static const NSInteger MyNavItemTag = 2;
@@ -34,6 +38,9 @@ static const NSInteger MyNavItemTag = 2;
                       clientKey:@"yxgmlhkjhs88ulxs3b8gsw54o1mzxl93ya78dqy92lvrhf61"];
     [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 //    setenv("LOG_CURL", "YES", 0);
+    
+    // for WeChat
+    [WXApi registerApp:WXAppKey withDescription:@"车聊"];
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetActivityWithInviteCode];
     
@@ -57,9 +64,9 @@ static const NSInteger MyNavItemTag = 2;
 
     // for test
 //    [_window setRootViewController:[[TestViewController alloc]init]];
-    GetActivityWithInviteCodeParameter * p = (GetActivityWithInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiGetActivityWithInviteCode];
-    p.inviteCode = @"be1327";
-    [[CCNetworkManager defaultManager] requestWithParameter:p];
+//    GetActivityWithInviteCodeParameter * p = (GetActivityWithInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiGetActivityWithInviteCode];
+//    p.inviteCode = @"be1327";
+//    [[CCNetworkManager defaultManager] requestWithParameter:p];
 
     [_window makeKeyAndVisible];
     return YES;
@@ -89,6 +96,50 @@ static const NSInteger MyNavItemTag = 2;
     [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiGetActivityWithInviteCode];
     
 //    [self saveContext];
+}
+
+#pragma mark - WXApiDelegate
+-(void) onResp:(BaseResp*)resp
+{
+    if ([resp isKindOfClass:[SendMessageToWXResp class]]) {
+        //
+        NSString * resultMessage = resp.errCode == 0 ? @"发送成功" : @"发送失败";
+        UIAlertView * av = [[UIAlertView alloc]initWithTitle:@"微信" message:resultMessage delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [av show];
+    }
+}
+
+#pragma mark - WX method
+- (void)sendInviteCodeToWX:(NSString *)code via:(SendingInvitationVia)wxType
+{
+    SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
+    req.text = [NSString stringWithFormat:@"我在“车聊”{{url}}创建了一个活动，邀请码是%@,等你来加入哟",code];
+    req.bText = YES;
+    if (wxType == SendingInvitationViaWXTimeLine) {
+        req.scene = WXSceneTimeline;
+    }
+    else if (wxType == SendingInvitationViaWXSession) {
+        req.scene = WXSceneSession;
+    }
+    
+    [WXApi sendReq:req];
+}
+
+#pragma mark - Overwrite For WX
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    LOG_EXPR(application);
+    LOG_EXPR(url);
+    return  [WXApi handleOpenURL:url delegate:self];
+}
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    LOG_EXPR(application);
+    LOG_EXPR(url);
+    LOG_EXPR(sourceApplication);
+    LOG_EXPR(annotation);
+    return  [WXApi handleOpenURL:url delegate:self];
 }
 
 #pragma mark - UITabBarControllerDelegate 判断是否登录

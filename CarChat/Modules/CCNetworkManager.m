@@ -37,8 +37,6 @@
 #import "ReplyActivityParameter.h"
 // TODO: 整理一下*Parameter.h
 
-const NSString * const ResponseUserInfoParameterKey = @"parameter";
-
 static NSString * const baseUrl = @"http://www.baidu.com/";
 
 NSString * const ApiLogin = @"Login";
@@ -199,12 +197,24 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     [currentUser setObject:parameter.age forKey:@"age"];
     [currentUser setObject:parameter.city forKey:@"city"];
     [currentUser setObject:@(parameter.gender) forKey:@"gender"];
-    AVFile * avatar = [AVFile fileWithName:@"avatar.jpg" data:parameter.avatar];
-    [currentUser setObject:avatar forKey:@"avatar"];
     
-    [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
-    }];
+    if (parameter.avatar) {
+        AVFile * avatar = [AVFile fileWithName:@"avatar.jpg" data:parameter.avatar];
+        [avatar saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [currentUser setObject:avatar forKey:@"avatar"];
+                
+                [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+                }];
+            }
+        }];
+    }
+    else {
+        [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+        }];
+    }
 }
 
 - (void)GetUserInfo:(GetUserInfoParameter *)parameter

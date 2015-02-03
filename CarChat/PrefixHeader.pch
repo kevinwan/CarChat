@@ -18,5 +18,6 @@
 #import "CCNetworkManager.h"
 #import "CCNetworkResponse.h"
 #import "ParameterFactory.h"
+#import "Common.h"
 
 #endif
