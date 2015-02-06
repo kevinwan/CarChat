@@ -14,10 +14,12 @@
 #import "TestViewController.h"
 #import "CCStatusManager.h"
 #import "UserModel+helper.h"
-// for test
-#import "GetActivityWithInviteCodeParameter.h"
 #import "WXApi.h"
 #import "WXApiObject.h"
+// for test
+//#import "GetActivityWithInviteCodeParameter.h"
+//#import "FollowUserParameter.h"
+//#import "UnfollowUserParameter.h"
 
 NSString * const WXAppKey = @"wxe489a68ecb5f378f";
 
@@ -63,9 +65,15 @@ static const NSInteger MyNavItemTag = 2;
     [_window setRootViewController:rootNav];
 
     // for test
+    // 测试对象释放
 //    [_window setRootViewController:[[TestViewController alloc]init]];
+    // 测试邀请码对应的活动
 //    GetActivityWithInviteCodeParameter * p = (GetActivityWithInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiGetActivityWithInviteCode];
 //    p.inviteCode = @"be1327";
+//    [[CCNetworkManager defaultManager] requestWithParameter:p];
+    // 测试关注sb
+//    FollowUserParameter * p = (FollowUserParameter *)[ParameterFactory parameterWithApi:ApiFollowUser];
+//    [p setUserIdentifier:@"54cf2fdee4b0294adba658ae"];
 //    [[CCNetworkManager defaultManager] requestWithParameter:p];
 
     [_window makeKeyAndVisible];

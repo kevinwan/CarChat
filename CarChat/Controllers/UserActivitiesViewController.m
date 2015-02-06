@@ -79,7 +79,7 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
     [self.tableDelegator setStyle:ActivityCellStyleUserCreated];
     [self.tableDelegator setConfigBlock:^(ActivityModel * activity, ActivityCell * cell) {
         [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
-        [cell.poster setImage:activity.posterImage];
+        [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
         cell.name.text = activity.name;
         cell.cost.text = [NSString stringWithFormat:@"费用:%@",activity.cost];
         cell.toplimit.text = [NSString stringWithFormat:@"人数:%@",activity.toplimit];

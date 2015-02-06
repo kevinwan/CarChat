@@ -104,7 +104,9 @@ NSString * const ApiGetParticipants = @"GetParticipants";
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Warc-performSelector-leaks"
     NSAssert([self respondsToSelector:apiSelector], @"api 方法未实现");
-    [self performSelector:apiSelector withObject:parameter];
+    dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
+        [self performSelector:apiSelector withObject:parameter];
+    });
 #pragma clang diagnostic pop
 }
 
@@ -114,7 +116,10 @@ NSString * const ApiGetParticipants = @"GetParticipants";
 {
     ConcreteResponseObject * resp = [ConcreteResponseObject responseObjectWithApi:parameter.api object:obj andRequestParameter:parameter];
     [resp setError:error];
-    [[NSNotificationCenter defaultCenter] postNotification:resp];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotification:resp];
+    });
+    
 }
 
 #pragma mark - Concrete Request Methods
@@ -407,16 +412,79 @@ NSString * const ApiGetParticipants = @"GetParticipants";
 
 - (void)FollowUser:(FollowUserParameter *)parameter
 {
-    [[AVUser currentUser] follow:parameter.userIdentifier andCallback:^(BOOL succeeded, NSError *error) {
-        [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+    AVUser * current = [AVUser currentUser];
+    AVUser * targetUser = [AVUser objectWithoutDataWithClassName:@"_User" objectId:parameter.userIdentifier];
+    if (!targetUser) {
+        [self raiseResponseWithObj:nil error:[NSError errorWithDomain:@"" code:-1 userInfo:nil] andRequestParameter:parameter];
+        return;
+    }
+    // 获取对方用户成功
+    [current follow:parameter.userIdentifier andCallback:^(BOOL succeeded, NSError *error) {
+        
+        if (!succeeded) {
+            [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+        }
+        
+        // follow操作成功
+        [current incrementKey:@"countOfFollowing" byAmount:@(1)];
+        [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!succeeded) {
+                [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+                return ;
+            }
+            
+            // 当前用户countOfFOllowing ＋＋ 成功
+            [targetUser incrementKey:@"countOfFollower" byAmount:@(1)];
+            [targetUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!succeeded) {
+                    [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+                    return ;
+                }
+                
+                // 目标用户countOfFollower＋＋成功
+                [self raiseResponseWithObj:nil error:nil andRequestParameter:parameter];
+            }];
+        }];
     }];
 }
 
 - (void)UnfollowUser:(UnfollowUserParameter *)parameter
 {
-    [[AVUser currentUser] unfollow:parameter.userIdentifier andCallback:^(BOOL succeeded, NSError *error) {
-        [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
-    }];
+    AVUser * current = [AVUser currentUser];
+    AVUser * targetUser = [AVUser objectWithoutDataWithClassName:@"_User" objectId:parameter.userIdentifier];
+    if (!targetUser) {
+        [self raiseResponseWithObj:nil error:[NSError errorWithDomain:@"" code:-1 userInfo:nil] andRequestParameter:parameter];
+        return;
+    }
+    // 获取对方用户成功
+    [current unfollow:parameter.userIdentifier
+          andCallback:^(BOOL succeeded, NSError *error) {
+              
+              if (!succeeded) {
+                  [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+              }
+              
+              // follow操作成功
+              [current incrementKey:@"countOfFollowing" byAmount:@(-1)];
+              [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                  if (!succeeded) {
+                      [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+                      return ;
+                  }
+                  
+                  // 当前用户countOfFOllowing －－ 成功
+                  [targetUser incrementKey:@"countOfFollower" byAmount:@(-1)];
+                  [targetUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                      if (!succeeded) {
+                          [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+                          return ;
+                      }
+                      
+                      // 目标用户countOfFollower－－成功
+                      [self raiseResponseWithObj:nil error:nil andRequestParameter:parameter];
+                  }];
+              }];
+          }];
 }
 
 - (void)GetFollowing:(GetFollowingParameter *)parameter
