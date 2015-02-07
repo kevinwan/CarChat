@@ -7,7 +7,6 @@
 //
 
 #import "InviteViewController.h"
-#import "CreateInvitationParameter.h"
 #import <MessageUI/MessageUI.h>
 #import "CollectionDelegator.h"
 #import "AppDelegate.h"
@@ -43,7 +42,6 @@ static NSString * const InviteItemFollower = @"关注我的人";
 
 - (void)dealloc
 {
-    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiCreateInvitation];
 }
 
 #pragma mark - View Lifecycle
@@ -54,7 +52,6 @@ static NSString * const InviteItemFollower = @"关注我的人";
     [self setLeftNavigationBarItem:@"关闭"
                             target:self
                          andAction:@selector(close)];
-    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiCreateInvitation];
     
     
     self.inviteItems = @[InviteItemWXTimeLine,
@@ -65,30 +62,11 @@ static NSString * const InviteItemFollower = @"关注我的人";
                          InviteItemEMAIL];
     
     [self setupDelegator];
-    
-    if (!self.activity.invitationCode) {
-        [self requestInvitationCode];
-    }
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark - CCNetworkResponse
-- (void)didGetResponseNotification:(ConcreteResponseObject *)response
-{
-    [self hideHud];
-    if (response.error) {
-        // failed
-        [self showTip:response.error.localizedDescription];
-        // TODO: 创建/获取邀请码失败，应该做点什么。。。。。。
-    }
-    else {
-        // successed
-        self.activity.invitationCode = response.object;
-    }
 }
 
 #pragma mark - MFMessageComposeViewControllerDelegate
@@ -200,11 +178,5 @@ static NSString * const InviteItemFollower = @"关注我的人";
     [self.inviteTableView setDataSource:self.inviteTableDelegator];
 }
 
-- (void)requestInvitationCode
-{
-    CreateInvitationParameter * par = (CreateInvitationParameter *)[ParameterFactory parameterWithApi:ApiCreateInvitation];
-    [par setActivityIdentifier:self.activity.identifier];
-    [[CCNetworkManager defaultManager] requestWithParameter:par];
-}
 
 @end

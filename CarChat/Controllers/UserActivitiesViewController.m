@@ -11,7 +11,7 @@
 #import "ActivityCell.h"
 #import "ActivityModel.h"
 #import <UIImageView+WebCache.h>
-#import "GetUserActivitiesParameter.h"
+#import "GetUserJoiningActivitiesParameter.h"
 #import "UserModel+helper.h"
 
 static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
@@ -38,7 +38,7 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
 
 - (void)dealloc
 {
-    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiGetUserActivities];
+    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiGetUserJoiningActivities];
 }
 
 #pragma mark - View Lifecycle
@@ -47,7 +47,7 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
 
     [self setupTableViewDelegator];
     
-    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetUserActivities];
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetUserJoiningActivities];
     
     [self requestActivities];
 }
@@ -100,7 +100,7 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
 - (void)requestActivities
 {
     [self showLoading:@""];
-    GetUserActivitiesParameter * p = (GetUserActivitiesParameter *)[ParameterFactory parameterWithApi:ApiGetUserActivities];
+    GetUserJoiningActivitiesParameter * p = (GetUserJoiningActivitiesParameter *)[ParameterFactory parameterWithApi:ApiGetUserJoiningActivities];
     [p setUserIdentifier:self.userId];
     [[CCNetworkManager defaultManager] requestWithParameter:p];
 }

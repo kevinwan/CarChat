@@ -8,7 +8,7 @@
 
 #import "ABCParameter.h"
 
-@interface GetUserActivitiesParameter : ABCParameter
+@interface GetUserJoiningActivitiesParameter : ABCParameter
 
 @property (nonatomic, copy) NSString * userIdentifier;
 

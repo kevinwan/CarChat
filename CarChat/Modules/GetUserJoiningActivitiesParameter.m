@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 GongPingJia. All rights reserved.
 //
 
-#import "GetUserActivitiesParameter.h"
+#import "GetUserJoiningActivitiesParameter.h"
 
-@implementation GetUserActivitiesParameter
+@implementation GetUserJoiningActivitiesParameter
 
 @end

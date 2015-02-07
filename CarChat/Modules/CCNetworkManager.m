@@ -21,12 +21,12 @@
 #import "GetSuggestActivitiesParameter.h"
 #import "LoginParameter.h"
 #import "GetUserInfoParameter.h"
-#import "GetUserActivitiesParameter.h"
+#import "GetUserJoiningActivitiesParameter.h"
+#import "GetUserOwningActivitiesParameter.h"
 #import "GetFollowingParameter.h"
 #import "GetFollowersParameter.h"
 #import "FollowUserParameter.h"
 #import "UnfollowUserParameter.h"
-#import "CreateInvitationParameter.h"
 #import "GetActivityWithInviteCodeParameter.h"
 #import "ActivityModel+Helper.h"
 #import "ReplyInvitationParameter.h"
@@ -39,31 +39,58 @@
 
 static NSString * const baseUrl = @"http://www.baidu.com/";
 
+// 2.登录
 NSString * const ApiLogin = @"Login";
+// 3.注册
 NSString * const ApiRegister = @"Register";
+// 5.验证邀请码
 NSString * const ApiValidateInviteCode = @"ValidateInviteCode";
+// 6.获取验证码关联的活动
 NSString * const ApiGetActivityWithInviteCode = @"GetActivityWithInviteCode";
+// 4.重置密码
 NSString * const ApiResetPassword = @"ResetPassword";
+// 1.获取短信验证码
 NSString * const ApiGetVerifySMS = @"GetVerifySMS";
+// #.LeanCloud专用
 NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
+// 7.设置个人信息
 NSString * const ApiSetPersonalInfo = @"SetPersonalInfo";
+// 8.获取用户信息
 NSString * const ApiGetUserInfo = @"GetUserInfo";
+// 9.提交认证车主材料
 NSString * const ApiSubmitCertificationProfile = @"SubmitCertificationProfile";
+// 10.获取推荐活动
 NSString * const ApiGetSuggestActivities = @"GetSuggestActivities";
-NSString * const ApiGetUserActivities = @"GetUserActivities";
+// 11.获取用户参加的活动
+NSString * const ApiGetUserJoiningActivities = @"GetUserJoiningActivities";
+// 12.获取用户创建的活动
+NSString * const ApiGetUserOwningActivities = @"GetUserOwningActivities";
+// 16.获取活动详情
 NSString * const ApiGetActivitiesDetail = @"GetActivitiesDetail";
+// 13.获取活动评论
 NSString * const ApiGetCommentsInActivity = @"GetCommentsInActivity";
+// 14.评论活动
 NSString * const ApiReplyActivity = @"ReplyActivity";
+// 15.创建活动
 NSString * const ApiCreateActivity = @"CreateActivity";
-NSString * const ApiCreateInvitation = @"CreateInvitation";
+// 17.邀请（应用内的）朋友加入
 NSString * const ApiInviteUsers = @"InviteUsers";
+// 18.回复邀请
 NSString * const ApiReplyInvitation = @"ReplyInvitation";
+// 19.聊天
 NSString * const ApiChatToUser = @"ChatToUser";
+// 20.关注
 NSString * const ApiFollowUser = @"FollowUser";
+// 21.取关
 NSString * const ApiUnfollowUser = @"UnfollowUser";
+// 22.获取关注列表
 NSString * const ApiGetFollowing = @"GetFollowing";
+// 23.获取被关注列表
 NSString * const ApiGetFollowers = @"GetFollowers";
+// 24.获取活动中的用户
 NSString * const ApiGetParticipants = @"GetParticipants";
+// 25.上传照片
+NSString * const ApiUploadPhotos = @"UploadPhotos";
 
 
 @interface CCNetworkManager ()
@@ -263,17 +290,13 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     }];
 }
 
-- (void)GetUserActivities:(GetUserActivitiesParameter *)parameter
+- (void)GetUserJoiningActivities:(GetUserJoiningActivitiesParameter *)parameter
 {
-    AVQuery * queryOwner = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
-    [queryOwner whereKey:@"owner" equalTo:[AVUser objectWithoutDataWithObjectId:parameter.userIdentifier]];
-    
     AVQuery * queryParticipant = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
     [queryParticipant whereKey:@"participants" equalTo:[AVUser objectWithoutDataWithObjectId:parameter.userIdentifier]];
-    
-    AVQuery * q = [AVQuery orQueryWithSubqueries:@[queryOwner, queryParticipant]];
-    [q includeKey:@"owner"];
-    [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+
+    [queryParticipant includeKey:@"owner"];
+    [queryParticipant findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSMutableArray * results = nil;
         if (!error && objects.count > 0) {
             results = [NSMutableArray arrayWithCapacity:objects.count];
@@ -287,9 +310,30 @@ NSString * const ApiGetParticipants = @"GetParticipants";
     }];
 }
 
-// 这个接口好像不需要。。。
+- (void)GetUserOwningActivities:(GetUserOwningActivitiesParameter *)parameter
+{
+    
+    AVQuery * queryOwner = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
+    [queryOwner whereKey:@"owner" equalTo:[AVUser objectWithoutDataWithObjectId:parameter.userIdentifier]];
+    
+    [queryOwner includeKey:@"owner"];
+    [queryOwner findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSMutableArray * results = nil;
+        if (!error && objects.count > 0) {
+            results = [NSMutableArray arrayWithCapacity:objects.count];
+            for (AVObject * avobj in objects) {
+                ActivityModel * model = [ActivityModel activityFromAVObject:avobj];
+                [results addObject:model];
+            }
+        }
+        
+        [self raiseResponseWithObj:results error:error andRequestParameter:parameter];
+    }];
+}
+
 - (void)GetActivitiesDetail:(ABCParameter *)parameter
 {
+    
 }
 
 - (void)GetCommentsInActivity:(GetCommentsInActivityParameter *)parameter
@@ -343,27 +387,6 @@ NSString * const ApiGetParticipants = @"GetParticipants";
             }];
         }
         // 保存图片失败返回失败
-        else {
-            [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
-        }
-    }];
-}
-
-- (void)CreateInvitation:(CreateInvitationParameter *)parameter
-{
-    AVQuery * query = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
-    [query getObjectInBackgroundWithId:parameter.activityIdentifier block:^(AVObject *object, NSError *error) {
-        if (error == nil) {
-            NSAssert([[(AVObject *)[object objectForKey:@"owner"] objectId] isEqualToString:[AVUser currentUser].objectId], @"应该是当前用户创建的活动");
-            NSAssert([object objectForKey:@"invitationCode"] == nil, @"活动应该没有邀请码");
-            
-            NSString * invitationCode = [object.objectId substringWithRange:NSMakeRange(object.objectId.length - 6, 6)];
-            
-            [object setObject:invitationCode forKey:@"invitationCode"];
-            [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                [self raiseResponseWithObj:invitationCode error:error andRequestParameter:parameter];
-            }];
-        }
         else {
             [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
         }
@@ -542,6 +565,11 @@ NSString * const ApiGetParticipants = @"GetParticipants";
             [self raiseResponseWithObj:users error:error andRequestParameter:parameter];
         }];
     }];
+}
+
+- (void)UploadPhotos:(ABCParameter *)parameter
+{
+    
 }
 
 @end

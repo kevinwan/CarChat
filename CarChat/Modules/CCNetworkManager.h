@@ -56,9 +56,13 @@ extern NSString * const ApiSubmitCertificationProfile ;
  */
 extern NSString * const ApiGetSuggestActivities ;
 /**
- *  获取用户活动列表
+ *  获取用户加入的活动列表
  */
-extern NSString * const ApiGetUserActivities ;
+extern NSString * const ApiGetUserJoiningActivities ;
+/**
+ *  获取用户创建的活动列表
+ */
+extern NSString * const ApiGetUserOwningActivities;
 /**
  *  获取活动详情
  */
@@ -75,10 +79,6 @@ extern NSString * const ApiReplyActivity ;
  *  创建活动
  */
 extern NSString * const ApiCreateActivity ;
-/**
- *  根据活动创建邀请码
- */
-extern NSString * const ApiCreateInvitation ;
 /**
  *  邀请用户
  */
@@ -111,6 +111,10 @@ extern NSString * const ApiGetFollowers ;
  *  获取某个活动下所有成员
  */
 extern NSString * const ApiGetParticipants;
+/**
+ *  上传照片到相册
+ */
+extern NSString * const ApiUploadPhotos;
 
 
 @interface CCNetworkManager : NSObject
