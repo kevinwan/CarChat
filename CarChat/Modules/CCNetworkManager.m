@@ -270,24 +270,23 @@ NSString * const ApiUploadPhotos = @"UploadPhotos";
 - (void)GetSuggestActivities:(GetSuggestActivitiesParameter *)parameter
 {
     AVQuery * q = [AVQuery queryWithClassName:@"SuggestActivity"];
-    [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        NSMutableArray * activityList = nil;
-        if (!error && objects.count > 0) {
-            activityList = [NSMutableArray arrayWithCapacity:objects.count];
-            [objects enumerateObjectsUsingBlock:^(AVObject * act, NSUInteger idx, BOOL *stop) {
-                ActivityModel * model = [[ActivityModel alloc]init];
-                model.identifier = act.objectId;
-                model.date = [act objectForKey:@"date"];
-                model.destination = [act objectForKey:@"destination"];
-                model.cost = [act objectForKey:@"cost"];
-                model.name = [act objectForKey:@"name"];
-                model.posterUrl = [(AVFile *)[act objectForKey:@"poster"] url];
-                model.toplimit = [act objectForKey:@"toplimit"];
-                [activityList addObject:model];
-            }];
-        }
-        [self raiseResponseWithObj:activityList error:error andRequestParameter:parameter];
-    }];
+    [q findObjectsInBackgroundWithBlock:
+     ^(NSArray *objects, NSError *error) {
+         NSMutableArray * activityList = nil;
+         if (!error && objects.count > 0) {
+             activityList = [NSMutableArray arrayWithCapacity:objects.count];
+             [objects enumerateObjectsUsingBlock:
+              ^(AVObject * act, NSUInteger idx, BOOL *stop) {
+                  ActivityModel * model = [ActivityModel activityFromAVObject:act];
+                  [activityList addObject:model];
+              }
+              ];
+         }
+         [self raiseResponseWithObj:activityList
+                              error:error
+                andRequestParameter:parameter];
+     }
+     ];
 }
 
 - (void)GetUserJoiningActivities:(GetUserJoiningActivitiesParameter *)parameter

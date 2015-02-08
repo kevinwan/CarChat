@@ -15,7 +15,8 @@
 
 @property (nonatomic, copy) NSString * name;
 @property (nonatomic, copy) NSString * destination;
-@property (nonatomic, copy) NSString * date;
+@property (nonatomic, copy) NSString * fromDate;
+@property (nonatomic, copy) NSString * toDate;
 @property (nonatomic, copy) NSString * toplimit;
 @property (nonatomic, assign) PayType payType;
 @property (nonatomic, copy) NSString * cost;

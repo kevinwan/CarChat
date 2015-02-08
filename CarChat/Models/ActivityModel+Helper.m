@@ -20,12 +20,19 @@
     model.name = [avobject objectForKey:@"name"];
     model.posterUrl = [(AVFile *)[avobject objectForKey:@"poster"] url];
     model.destination = [avobject objectForKey:@"destination"];
-    model.date = [avobject objectForKey:@"date"];
+    model.fromDate = [avobject objectForKey:@"fromDate"];
+    model.toDate = [avobject objectForKey:@"toDate"];
     model.toplimit = [avobject objectForKey:@"toplimit"];
     model.payType = [[avobject objectForKey:@"payType"] integerValue];
     model.cost = [avobject objectForKey:@"cost"];
     model.invitationCode = [avobject objectForKey:@"invitationCode"];
     model.owner = [UserModel userFromAVUser:[avobject objectForKey:@"owner"]];
+    model.createDate = [NSDateFormatter localizedStringFromDate:avobject.createdAt
+                                                      dateStyle:NSDateFormatterShortStyle
+                                                      timeStyle:NSDateFormatterNoStyle];
+    model.updateDate = [NSDateFormatter localizedStringFromDate:avobject.updatedAt
+                                                      dateStyle:NSDateFormatterShortStyle
+                                                      timeStyle:NSDateFormatterNoStyle];
     return model;
 }
 
@@ -34,7 +41,8 @@
     CreateActivityParameter *parameter = (CreateActivityParameter *)[ParameterFactory parameterWithApi:ApiCreateActivity];
     parameter.name = self.name;
     parameter.destination = self.destination;
-    parameter.date = self.date;
+    parameter.fromDate = self.fromDate;
+    parameter.toDate = self.toDate;
     parameter.toplimit = self.toplimit;
     parameter.payType = self.payType;
     parameter.cost = self.cost;
@@ -43,17 +51,18 @@
     return parameter;
 }
 
-+ (instancetype)ActivityWithParameter:(CreateActivityParameter *)parameter
-{
-    ActivityModel * model = [ActivityModel new];
-    model.name = parameter.name;
-    model.destination = parameter.destination;
-    model.date = parameter.date;
-    model.toplimit = parameter.toplimit;
-    model.payType = parameter.payType;
-    model.cost = parameter.cost;
-    model.posterImage = parameter.poster;
-    model.posterUrl = parameter.posterUrl;
-    return model;
-}
+//+ (instancetype)ActivityWithParameter:(CreateActivityParameter *)parameter
+//{
+//    ActivityModel * model = [ActivityModel new];
+//    model.name = parameter.name;
+//    model.destination = parameter.destination;
+//    model.fromDate = parameter.fromDate;
+//    
+//    model.toplimit = parameter.toplimit;
+//    model.payType = parameter.payType;
+//    model.cost = parameter.cost;
+//    model.posterImage = parameter.poster;
+//    model.posterUrl = parameter.posterUrl;
+//    return model;
+//}
 @end

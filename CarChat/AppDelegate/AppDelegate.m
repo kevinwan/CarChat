@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "SuggestedActivityViewController.h"
+#import "MainActivitiesViewController.h"
 #import "MyViewController.h"
 #import <SCLAlertView.h>
 #import "ActivityModel.h"
@@ -50,7 +50,7 @@ static const NSInteger MyNavItemTag = 2;
     _window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     UITabBarController * rootTabbar = [[UITabBarController alloc]init];
     // item 1 - suggest
-    SuggestedActivityViewController * suggestVC = [[SuggestedActivityViewController alloc]init];
+    MainActivitiesViewController * suggestVC = [[MainActivitiesViewController alloc]init];
     suggestVC.title = @"推荐";
     suggestVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemTopRated tag:SuggestNavItemTag];
     // item 2 - my

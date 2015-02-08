@@ -23,6 +23,7 @@
 #import "UploadCertifyProfileViewController.h"
 #import "UserCreatedActivityViewController.h"
 #import "UserDetailViewController.h"
+#import "EditActivityViewController.h"
 
 const NSInteger ShowLoginFromSomeWhereTag = 1;
 const NSInteger RegisterRegisterButtonTag = 101;
@@ -37,6 +38,7 @@ const NSInteger CreatedActivityCloseButtonItemTag = 301;
 const NSInteger CreatedActivityInviteButtonItemTag = 302;
 const NSInteger InviteCloseButtonItemTag = 303;
 const NSInteger InviteInviteButtonItemTag = 304;
+const NSInteger kFromMainActivitiesVCCreateButtonTag = 305;
 const NSInteger ShowInviteDetailFromSomeWhereTag = 400;
 const NSInteger InviteDetailIgnoreButonItemTag = 401;
 const NSInteger InviteDetailJoinButtonItemTag = 402;
@@ -180,6 +182,11 @@ const NSInteger MyEditProfileUploadCertifyButtonTag = 504;
         {
             [vc.navigationController dismissViewControllerAnimated:YES
                                                         completion:nil];
+        }
+            break;
+        case kFromMainActivitiesVCCreateButtonTag:
+        {
+            [vc.navigationController pushViewController:[[EditActivityViewController alloc]init] animated:YES];
         }
             break;
         case MyActivityCellTag:

@@ -15,6 +15,6 @@
 + (instancetype)activityFromAVObject:(AVObject *)avobject;
 
 - (CreateActivityParameter *)parameter;
-+ (instancetype)ActivityWithParameter:(CreateActivityParameter *)parameter;
+//+ (instancetype)ActivityWithParameter:(CreateActivityParameter *)parameter;
 
 @end

@@ -37,7 +37,8 @@
 /**
  *  活动日期
  */
-@property (nonatomic, copy) NSString * date;
+@property (nonatomic, copy) NSString * fromDate;
+@property (nonatomic, copy) NSString * toDate;
 /**
  *  人数上限
  */
@@ -58,6 +59,14 @@
  *  邀请码
  */
 @property (nonatomic, copy) NSString * invitationCode;
+/**
+ *  创建时间
+ */
+@property (nonatomic, copy) NSString * createDate;
+/**
+ *  更新时间
+ */
+@property (nonatomic, copy) NSString * updateDate;
 
 
 + (NSString *)stringFromPayType:(PayType)type;

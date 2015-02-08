@@ -30,6 +30,8 @@
 		A58BCEAC1A8680AF00C2300B /* InviteUsersParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEAB1A8680AF00C2300B /* InviteUsersParameter.m */; };
 		A58BCEAF1A8680DD00C2300B /* ChatToUserParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEAE1A8680DD00C2300B /* ChatToUserParameter.m */; };
 		A58BCEB21A86810F00C2300B /* UploadPhotosParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEB11A86810F00C2300B /* UploadPhotosParameter.m */; };
+		A58BCEB61A87A99600C2300B /* EditActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEB41A87A99600C2300B /* EditActivityViewController.m */; };
+		A58BCEB71A87A99600C2300B /* EditActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A58BCEB51A87A99600C2300B /* EditActivityViewController.xib */; };
 		A5D126A41A8119FF000DE04D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D126A01A8119E3000DE04D /* libWeChatSDK.a */; };
 		A5D126A81A8120C9000DE04D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D126A71A8120C9000DE04D /* libz.dylib */; };
 		A5D126AA1A8120D2000DE04D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D126A91A8120D2000DE04D /* libsqlite3.0.dylib */; };
@@ -64,8 +66,8 @@
 		BA6BC7241A63627B00DA033C /* ActivityIntroductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC71D1A63627B00DA033C /* ActivityIntroductViewController.m */; };
 		BA6BC7251A63627B00DA033C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC71F1A63627B00DA033C /* LoginViewController.m */; };
 		BA6BC7261A63627B00DA033C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6BC7201A63627B00DA033C /* LoginViewController.xib */; };
-		BA6BC7271A63627B00DA033C /* SuggestedActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC7221A63627B00DA033C /* SuggestedActivityViewController.m */; };
-		BA6BC7281A63627B00DA033C /* SuggestedActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6BC7231A63627B00DA033C /* SuggestedActivityViewController.xib */; };
+		BA6BC7271A63627B00DA033C /* MainActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC7221A63627B00DA033C /* MainActivitiesViewController.m */; };
+		BA6BC7281A63627B00DA033C /* MainActivitiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6BC7231A63627B00DA033C /* MainActivitiesViewController.xib */; };
 		BA6BC72B1A63628800DA033C /* ActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC72A1A63628800DA033C /* ActivityModel.m */; };
 		BA6BC7301A63629400DA033C /* ActivitiesCollectionDelegator.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC72D1A63629400DA033C /* ActivitiesCollectionDelegator.m */; };
 		BA6BC7311A63629400DA033C /* ControllerCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC72F1A63629400DA033C /* ControllerCoordinator.m */; };
@@ -179,6 +181,9 @@
 		A58BCEAE1A8680DD00C2300B /* ChatToUserParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatToUserParameter.m; sourceTree = "<group>"; };
 		A58BCEB01A86810F00C2300B /* UploadPhotosParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadPhotosParameter.h; sourceTree = "<group>"; };
 		A58BCEB11A86810F00C2300B /* UploadPhotosParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadPhotosParameter.m; sourceTree = "<group>"; };
+		A58BCEB31A87A99600C2300B /* EditActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditActivityViewController.h; sourceTree = "<group>"; };
+		A58BCEB41A87A99600C2300B /* EditActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditActivityViewController.m; sourceTree = "<group>"; };
+		A58BCEB51A87A99600C2300B /* EditActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditActivityViewController.xib; sourceTree = "<group>"; };
 		A5D126A01A8119E3000DE04D /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		A5D126A11A8119E3000DE04D /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		A5D126A21A8119E3000DE04D /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -238,9 +243,9 @@
 		BA6BC71E1A63627B00DA033C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BA6BC71F1A63627B00DA033C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BA6BC7201A63627B00DA033C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		BA6BC7211A63627B00DA033C /* SuggestedActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuggestedActivityViewController.h; sourceTree = "<group>"; };
-		BA6BC7221A63627B00DA033C /* SuggestedActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuggestedActivityViewController.m; sourceTree = "<group>"; };
-		BA6BC7231A63627B00DA033C /* SuggestedActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SuggestedActivityViewController.xib; sourceTree = "<group>"; };
+		BA6BC7211A63627B00DA033C /* MainActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainActivitiesViewController.h; sourceTree = "<group>"; };
+		BA6BC7221A63627B00DA033C /* MainActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainActivitiesViewController.m; sourceTree = "<group>"; };
+		BA6BC7231A63627B00DA033C /* MainActivitiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainActivitiesViewController.xib; sourceTree = "<group>"; };
 		BA6BC7291A63628800DA033C /* ActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityModel.h; sourceTree = "<group>"; };
 		BA6BC72A1A63628800DA033C /* ActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityModel.m; sourceTree = "<group>"; };
 		BA6BC72C1A63629400DA033C /* ActivitiesCollectionDelegator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivitiesCollectionDelegator.h; sourceTree = "<group>"; };
@@ -574,7 +579,7 @@
 			isa = PBXGroup;
 			children = (
 				7E415BED1A66C4B20025E5FB /* My */,
-				BA6BC73F1A63718700DA033C /* SuggestActivity */,
+				BA6BC73F1A63718700DA033C /* MainActivities */,
 				BA6BC7401A63719700DA033C /* ActivityDetail */,
 				BA6BC73E1A63717500DA033C /* Login */,
 				BA6BC73D1A63716700DA033C /* Register */,
@@ -619,14 +624,14 @@
 			name = Login;
 			sourceTree = "<group>";
 		};
-		BA6BC73F1A63718700DA033C /* SuggestActivity */ = {
+		BA6BC73F1A63718700DA033C /* MainActivities */ = {
 			isa = PBXGroup;
 			children = (
-				BA6BC7211A63627B00DA033C /* SuggestedActivityViewController.h */,
-				BA6BC7221A63627B00DA033C /* SuggestedActivityViewController.m */,
-				BA6BC7231A63627B00DA033C /* SuggestedActivityViewController.xib */,
+				BA6BC7211A63627B00DA033C /* MainActivitiesViewController.h */,
+				BA6BC7221A63627B00DA033C /* MainActivitiesViewController.m */,
+				BA6BC7231A63627B00DA033C /* MainActivitiesViewController.xib */,
 			);
-			name = SuggestActivity;
+			name = MainActivities;
 			sourceTree = "<group>";
 		};
 		BA6BC7401A63719700DA033C /* ActivityDetail */ = {
@@ -644,6 +649,9 @@
 				BA2009C81A6F90A60052EE0F /* CommentViewController.h */,
 				BA2009C91A6F90A60052EE0F /* CommentViewController.m */,
 				BA2009CA1A6F90A60052EE0F /* CommentViewController.xib */,
+				A58BCEB31A87A99600C2300B /* EditActivityViewController.h */,
+				A58BCEB41A87A99600C2300B /* EditActivityViewController.m */,
+				A58BCEB51A87A99600C2300B /* EditActivityViewController.xib */,
 			);
 			name = ActivityDetail;
 			sourceTree = "<group>";
@@ -875,6 +883,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BAB11C891A675B0E007FDE38 /* MyViewController.xib in Resources */,
+				A58BCEB71A87A99600C2300B /* EditActivityViewController.xib in Resources */,
 				BAB8109C1A63A85D00142DDA /* CompletePersonalInfoViewController.xib in Resources */,
 				BAB11C8E1A679C9A007FDE38 /* FollowingViewController.xib in Resources */,
 				BAB810971A639D1900142DDA /* ForgetPasswordViewController.xib in Resources */,
@@ -893,7 +902,7 @@
 				BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */,
 				BA2009DD1A70D7060052EE0F /* UserDetailViewController.xib in Resources */,
 				BAB8109E1A63B84700142DDA /* ActivityIntroductViewController.xib in Resources */,
-				BA6BC7281A63627B00DA033C /* SuggestedActivityViewController.xib in Resources */,
+				BA6BC7281A63627B00DA033C /* MainActivitiesViewController.xib in Resources */,
 				BAD65A7D1A5FA89200987B06 /* LaunchScreen.xib in Resources */,
 				7E415BE91A65895E0025E5FB /* ActivityEditView.xib in Resources */,
 				BAD7232D1A64D3DF00FB4645 /* ServerPolicyViewController.xib in Resources */,
@@ -975,7 +984,7 @@
 				BA2009C61A6F84320052EE0F /* UserCreatedActivityViewController.m in Sources */,
 				BA6BC72B1A63628800DA033C /* ActivityModel.m in Sources */,
 				BAD7233B1A64FC9300FB4645 /* UserModel.m in Sources */,
-				BA6BC7271A63627B00DA033C /* SuggestedActivityViewController.m in Sources */,
+				BA6BC7271A63627B00DA033C /* MainActivitiesViewController.m in Sources */,
 				BAB11CA41A6910E9007FDE38 /* UIView+square2Round.m in Sources */,
 				BAB810961A639D1900142DDA /* ForgetPasswordViewController.m in Sources */,
 				7E415BE71A6589430025E5FB /* ActivityEditView.m in Sources */,
@@ -1025,6 +1034,7 @@
 				BAB11C881A675B0E007FDE38 /* MyViewController.m in Sources */,
 				BAB11C971A67A28B007FDE38 /* FollowerViewController.m in Sources */,
 				BA2009D81A6FB49D0052EE0F /* UsersCollectionDelegator.m in Sources */,
+				A58BCEB61A87A99600C2300B /* EditActivityViewController.m in Sources */,
 				7E2F431A1A714DA300971789 /* CommentCollectionDelegator.m in Sources */,
 				7EF6A0181A641ED70022DBCE /* ABCParameter.m in Sources */,
 				BA2009D21A6F9B2F0052EE0F /* CommentModel.m in Sources */,

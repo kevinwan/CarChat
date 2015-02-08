@@ -32,6 +32,7 @@
 {
     UserModel *model = [[UserModel alloc]init];
     model.phone = [self.phone copyWithZone:zone];
+    model.userLevel = self.userLevel;
     model.nickName = [self.nickName copyWithZone:zone];
     model.age = [self.age copyWithZone:zone];
     model.avatarUrl = [self.avatarUrl copyWithZone:zone];

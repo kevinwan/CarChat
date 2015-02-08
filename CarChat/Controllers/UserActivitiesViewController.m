@@ -79,14 +79,10 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
     [self.tableDelegator setStyle:ActivityCellStyleUserCreated];
     [self.tableDelegator setConfigBlock:^(ActivityModel * activity, ActivityCell * cell) {
         [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
-        [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
         cell.name.text = activity.name;
-        cell.cost.text = [NSString stringWithFormat:@"费用:%@",activity.cost];
-        cell.toplimit.text = [NSString stringWithFormat:@"人数:%@",activity.toplimit];
-        [cell.avatar sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatarUrl]];
-        cell.nickName.text = activity.owner.nickName;
-        cell.genderIcon.image = [activity.owner genderImage];
-        [cell.certifyIcon sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatarUrl]];
+        [cell.ownerAvatar sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatarUrl]];
+        [cell.period setText:[NSString stringWithFormat:@"活动时间: %@ - %@", activity.fromDate, activity.toDate]];
+        [cell.createdDate setText:activity.createDate];
     }];
     __weak typeof(self) weakRef = self;
     [self.tableDelegator setSelectingBlock:^(ActivityModel *activity) {

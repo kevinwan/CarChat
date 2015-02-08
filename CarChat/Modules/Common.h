@@ -9,6 +9,15 @@
 #ifndef CarChat_Common_h
 #define CarChat_Common_h
 
+typedef NS_ENUM(NSInteger, UserLevel) {
+    UserLevelUnRegistered = 0,
+    UserLevelResigtered = 1,
+    UserLevelInfoCompleted = 2,
+    UserLevelUnCertifyed = 3,
+    UserLevelCertifyed = 4,
+    UserLevelOfficial = 98,
+    UserLevelRoot = 99
+};
 
 typedef NS_ENUM(NSInteger, Gender) {
     GenderUnknow = 0,

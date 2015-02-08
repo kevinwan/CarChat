@@ -10,8 +10,8 @@
 #import "ActivityModel.h"
 
 typedef NS_ENUM(NSInteger, ActivityCellStyle) {
-    ActivityCellStyleSuggest = 1,   // 推荐活动cell，包含poster、name
-    ActivityCellStyleUserCreated    // 用户活动cell，除了推荐活动的cell元素之外，还有avatar,nickName,genderIcon,certifyIcon、cost、toplimit
+    ActivityCellStyleSuggest = 1,   // 推荐活动cell, 用户创建的多了官方icon
+    ActivityCellStyleUserCreated    // 用户活动cell
 };
 
 extern CGFloat const ActivityCellStyleSuggestHeight;
@@ -22,12 +22,9 @@ extern CGFloat const ActivityCellStyleUserCreatedHeight;
 - (instancetype)initWithActivityCellStyle:(ActivityCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier;
 
 @property (nonatomic, readonly) UIImageView * poster;
+@property (nonatomic, readonly) UIImageView * ownerAvatar;
 @property (nonatomic, readonly) UILabel * name;
-@property (nonatomic, readonly) UILabel * cost;
-@property (nonatomic, readonly) UILabel * toplimit;
+@property (nonatomic, readonly) UILabel * period;   // 开始&结束时间
+@property (nonatomic, readonly) UILabel * createdDate;  // 活动创建时间
 
-@property (nonatomic, readonly) UIImageView * avatar;
-@property (nonatomic, readonly) UILabel * nickName;
-@property (nonatomic, readonly) UIImageView * genderIcon;
-@property (nonatomic, readonly) UIImageView * certifyIcon;
 @end

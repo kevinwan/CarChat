@@ -1,33 +1,35 @@
 //
-//  SuggestedActivityViewController.m
+//  MainActivitiesViewController.m
 //  CarChatLocal
 //
 //  Created by 赵佳 on 15/1/11.
 //  Copyright (c) 2015年 GongPingJia. All rights reserved.
 //
 
-#import "SuggestedActivityViewController.h"
+#import "MainActivitiesViewController.h"
 #import "ActivitiesCollectionDelegator.h"
 #import "ActivityModel.h"
 #import <UIImageView+WebCache.h>
 #import "GetSuggestActivitiesParameter.h"
+#import "EditActivityViewController.h"
 
 static NSString * const activityCellIdentifier = @"activityCellIdentifier";
 
-@interface SuggestedActivityViewController ()
+@interface MainActivitiesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *suggestionTableView;
 @property (nonatomic, strong) NSMutableArray * activities;
 @property (nonatomic, strong) ActivitiesCollectionDelegator * tableDelegator;
 
 @end
 
-@implementation SuggestedActivityViewController
+@implementation MainActivitiesViewController
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.title = @"推荐活动";
+    self.navigationItem.title = @"活动";
+    [self setRightNavigationBarItem:@"创建" target:self andAction:@selector(gotoCreate)];
     
     [self setupDelegator];
     
@@ -75,6 +77,14 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     }
 }
 
+#pragma mark - User Interaction
+- (void)gotoCreate
+{
+    [ControllerCoordinator goNextFrom:self
+                              whitTag:kFromMainActivitiesVCCreateButtonTag
+                           andContext:nil];
+}
+
 #pragma mark - Internal Helper
 - (void)setupDelegator
 {
@@ -84,8 +94,9 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
     [self.tableDelegator setConfigBlock:^(ActivityModel * activity, ActivityCell * cell) {
         [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
         cell.name.text = activity.name;
-        cell.cost.text = [NSString stringWithFormat:@"费用:%@",activity.cost];
-        cell.toplimit.text = [NSString stringWithFormat:@"人数:%@",activity.toplimit];
+        [cell.ownerAvatar sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatarUrl]];
+        [cell.period setText:[NSString stringWithFormat:@"活动时间: %@ - %@", activity.fromDate, activity.toDate]];
+        [cell.createdDate setText:activity.createDate];
     }];
     __weak typeof(self) weakRef = self;
     [self.tableDelegator setSelectingBlock: ^(ActivityModel * activity) {

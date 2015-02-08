@@ -74,6 +74,10 @@ extern const NSInteger InviteDetailIgnoreButonItemTag;
  */
 extern const NSInteger InviteDetailJoinButtonItemTag;
 /**
+ *  从主页面点击创建活动
+ */
+extern const NSInteger kFromMainActivitiesVCCreateButtonTag;
+/**
  *  在我的页面，点击我的活动列表Cell
  */
 extern const NSInteger MyActivityCellTag;

@@ -11,6 +11,7 @@
 @interface UserModel : NSObject <NSCopying>
 
 @property (nonatomic, copy) NSString * identifier;
+@property (nonatomic, assign) UserLevel userLevel;
 @property (nonatomic, copy) NSString * phone;
 @property (nonatomic, copy) NSString * nickName;
 @property (nonatomic, copy) NSString * age;

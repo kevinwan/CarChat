@@ -51,8 +51,8 @@
     }
     self.name.text = activity.name;
     self.destiny.text = activity.destination;
-    self.date.text = activity.date;
-    [self.date setHidden:!activity.date || [activity.date isBlank]];
+//    self.date.text = activity.date;
+//    [self.date setHidden:!activity.date || [activity.date isBlank]];
     self.toplimit.text = activity.toplimit;
     [self.toplimit setHidden:!activity.toplimit || [activity.toplimit isBlank]];
 //    [self.payType setSelectedSegmentIndex:activity.payType];
@@ -78,7 +78,8 @@
     ActivityModel * model = [[ActivityModel alloc]init];
     model.name = self.name.text;
     model.destination = self.destiny.text;
-    model.date = self.date.text;
+#warning fix here
+//    model.date = self.date.text;
     model.toplimit = self.toplimit.text;
     model.payType = self.payType.selectedSegmentIndex + 1;
     model.cost = self.cost.text;

@@ -60,11 +60,14 @@ static NSString * const boyAA = @"男士AA";
     model.posterUrl = [self.posterUrl copyWithZone:zone];
     model.posterImage = [UIImage imageWithCGImage:[self.posterImage CGImage]];
     model.destination = [self.destination copyWithZone:zone];
-    model.date = [self.date copyWithZone:zone];
+    model.fromDate = [self.fromDate copyWithZone:zone];
+    model.toDate = [self.toDate copyWithZone:zone];
     model.toplimit = [self.toplimit copyWithZone:zone];
     model.payType = self.payType;
     model.cost = [self.cost copyWithZone:zone];
     model.owner = [self.owner copyWithZone:zone];
+    model.createDate = [self.createDate copyWithZone:zone];
+    model.updateDate = [self.updateDate copyWithZone:zone];
     return model;
 }
 
