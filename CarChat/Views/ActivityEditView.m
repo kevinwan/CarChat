@@ -34,7 +34,6 @@
 {
     ActivityEditView * view = [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil  options:nil][0];
     [view setupTextFiledsInputView];
-    [view setupTextFieldsInputAccessoryView];
     return view;
 }
 
@@ -90,27 +89,59 @@
     }
 }
 
+- (void)datePickerValueChanged:(UIDatePicker *)picker
+{
+    if ([self.fromDate isFirstResponder]) {
+        self.fromDate.text = [NSDateFormatter localizedStringFromDate:[_datePicker date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+    }
+    else if ([self.toDate isFirstResponder]) {
+        self.toDate.text = [NSDateFormatter localizedStringFromDate:[_datePicker date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+    }
+}
+
 #pragma mark - Internal Helper
 - (void)setupTextFiledsInputView
 {
     if (!_datePicker) {
         _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0.f, 0.f, 320.f, 200.f)];
+        [_datePicker setMinimumDate:[NSDate date]];
         [_datePicker setDatePickerMode:UIDatePickerModeDate];
+        [_datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
     }
     [self.fromDate setInputView:_datePicker];
     [self.toDate setInputView:_datePicker];
     
     if (!_payPicker) {
-        _payPicker = [[UIPickerView alloc]initWithFrame:CGRectMake(0.f, 0.f, 320.f, 160.f)];
+        _payPicker = [[UIPickerView alloc]initWithFrame:CGRectMake(0.f, 0.f, 320.f, 200.f)];
         [_payPicker setDelegate:(id<UIPickerViewDelegate>)self];
         [_payPicker setDataSource:(id<UIPickerViewDataSource>)self];
     }
     [self.payType setInputView:_payPicker];
 }
 
-- (void)setupTextFieldsInputAccessoryView
+#pragma mark - UITextFieldDelegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    
+    if (textField == self.fromDate) {
+        NSString * startDateText = [NSDateFormatter localizedStringFromDate:[_datePicker date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+        self.fromDate.text = startDateText;
+        self.toDate.text = startDateText;
+    }
+    else if (textField == self.payType) {
+        PayType type = 1;   // 默认AA
+        if (![self.payType.text isBlank]) {
+            NSString * payTypeText = self.payType.text;
+            type = [ActivityModel payTypeFromString:payTypeText];
+            [_payPicker selectRow:type - 1 inComponent:0 animated:NO];
+        }
+        else {
+            self.payType.text = [ActivityModel textFromPayType:type];
+        }
+        
+    }
+    else {
+        return;
+    }
 }
 
 #pragma mark - UIPickerViewDelegate & UIPickerViewDataSource
@@ -127,6 +158,12 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
     return [ActivityModel textFromPayType:row+1];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    NSInteger selected = [_payPicker selectedRowInComponent:0];
+    self.payType.text = [ActivityModel textFromPayType:selected + 1];
 }
 
 @end

@@ -42,7 +42,6 @@
     if (_activity) {
         [v layoutWithActivity:_activity];
     }
-    [v setFrame:self.navigationController.view.bounds];
     __weak typeof(self) _weakRef = self;
     [v setChoosePosterBlock:^ UIImage *{
         UzysAssetsPickerController * imagePicker = [[UzysAssetsPickerController alloc]init];
