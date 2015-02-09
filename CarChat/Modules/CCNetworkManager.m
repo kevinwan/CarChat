@@ -51,7 +51,7 @@ NSString * const ApiGetActivityWithInviteCode = @"GetActivityWithInviteCode";
 NSString * const ApiResetPassword = @"ResetPassword";
 // 1.获取短信验证码
 NSString * const ApiGetVerifySMS = @"GetVerifySMS";
-// #.LeanCloud专用
+// #.LeanCloud用来验证短信验证码的接口
 NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
 // 7.设置个人信息
 NSString * const ApiSetPersonalInfo = @"SetPersonalInfo";
@@ -269,7 +269,10 @@ NSString * const ApiUploadPhotos = @"UploadPhotos";
 
 - (void)GetSuggestActivities:(GetSuggestActivitiesParameter *)parameter
 {
-    AVQuery * q = [AVQuery queryWithClassName:@"SuggestActivity"];
+    AVQuery * userQuery = [AVUser query];
+    [userQuery whereKey:@"userLevel" equalTo:@(UserLevelOfficial)]; // 找到官方用户
+    AVQuery * q = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
+    [q whereKey:@"owner" matchesQuery:userQuery];   // 找到官方用户创建的活动
     [q findObjectsInBackgroundWithBlock:
      ^(NSArray *objects, NSError *error) {
          NSMutableArray * activityList = nil;

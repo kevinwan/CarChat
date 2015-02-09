@@ -220,13 +220,13 @@
 
 - (BOOL)isAllFieldTexted
 {
-    return
-    ![self.editView.name.text isBlank] &&
-    ![self.editView.date.text isBlank] &&
-    ![self.editView.destiny.text isBlank] &&
-    ![self.editView.toplimit.text isBlank] &&
-    (self.editView.payType.selectedSegmentIndex == 2 || // 付费类型是土豪请客
-     (self.editView.payType.selectedSegmentIndex != 2 && ![self.editView.cost.text isBlank]));  // 付费类型不是土豪请客，并且填写了每人承担费用
+    return YES;
+//    ![self.editView.name.text isBlank] &&
+//    ![self.editView..text isBlank] &&
+//    ![self.editView.destiny.text isBlank] &&
+//    ![self.editView.toplimit.text isBlank] &&
+//    (self.editView.payType.selectedSegmentIndex == 2 || // 付费类型是土豪请客
+//     (self.editView.payType.selectedSegmentIndex != 2 && ![self.editView.cost.text isBlank]));  // 付费类型不是土豪请客，并且填写了每人承担费用
     
 }
 

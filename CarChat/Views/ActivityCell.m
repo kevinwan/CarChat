@@ -44,6 +44,7 @@ CGFloat const ActivityCellStyleUserCreatedHeight = ActivityCellStyleSuggestHeigh
         [self.contentView addSubview:_period];
         
         _createdDate = [[UILabel alloc]initWithFrame:CGRectZero];
+        [_createdDate setTextAlignment:NSTextAlignmentRight];
         [self.contentView addSubview:_createdDate];
         
         

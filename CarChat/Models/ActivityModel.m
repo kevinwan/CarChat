@@ -14,25 +14,9 @@ static NSString * const boyAA = @"男士AA";
 
 @implementation ActivityModel
 
-+ (NSString *)stringFromPayType:(PayType)type
+- (NSString *)payTypeText
 {
-    if (type == 0) {
-        return nil;
-    }
-    switch (type) {
-        case PayTypeSBTreat:
-            return sbtreat;
-            break;
-        case PayTypeEverybodyDutch:
-            return aa;
-            break;
-        case PayTypeBoysDutch:
-            return boyAA;
-            break;
-        default:
-            return nil;
-            break;
-    }
+    return [[self class] textFromPayType:self.payType];
 }
 
 + (PayType)payTypeFromString:(NSString *)string
@@ -52,10 +36,29 @@ static NSString * const boyAA = @"男士AA";
     }
 }
 
++ (NSString *)textFromPayType:(PayType)type
+{
+    switch (type) {
+        case PayTypeSBTreat:
+            return sbtreat;
+            break;
+        case PayTypeEverybodyDutch:
+            return aa;
+            break;
+        case PayTypeBoysDutch:
+            return boyAA;
+            break;
+        default:
+            return nil;
+            break;
+    }
+}
+
 #pragma mark - NSCopying
 - (instancetype)copyWithZone:(NSZone *)zone
 {
     ActivityModel * model = [[ActivityModel alloc]init];
+    model.identifier = [self.identifier copyWithZone:zone];
     model.name = [self.name copyWithZone:zone];
     model.posterUrl = [self.posterUrl copyWithZone:zone];
     model.posterImage = [UIImage imageWithCGImage:[self.posterImage CGImage]];
@@ -68,6 +71,8 @@ static NSString * const boyAA = @"男士AA";
     model.owner = [self.owner copyWithZone:zone];
     model.createDate = [self.createDate copyWithZone:zone];
     model.updateDate = [self.updateDate copyWithZone:zone];
+    model.invitationCode = [self.invitationCode copyWithZone:zone];
+    model.notice = [self.notice copyWithZone:zone];
     return model;
 }
 

@@ -47,10 +47,15 @@
  *  费用分配
  */
 @property (nonatomic, assign) PayType payType;
+@property (nonatomic, readonly) NSString * payTypeText;
 /**
  *  人均花费
  */
 @property (nonatomic, copy) NSString * cost;
+/**
+ *  关于活动的通知
+ */
+@property (nonatomic, copy) NSString * notice;
 /**
  *  创建人信息
  */
@@ -69,7 +74,7 @@
 @property (nonatomic, copy) NSString * updateDate;
 
 
-+ (NSString *)stringFromPayType:(PayType)type;
 + (PayType)payTypeFromString:(NSString *)string;
++ (NSString *)textFromPayType:(PayType)type;
 
 @end

@@ -22,5 +22,6 @@
 @property (nonatomic, copy) NSString * cost;
 @property (nonatomic, retain) UIImage * poster;
 @property (nonatomic, copy) NSString * posterUrl;
+@property (nonatomic, copy) NSString * notice;
 
 @end

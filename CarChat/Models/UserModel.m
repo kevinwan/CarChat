@@ -31,6 +31,7 @@
 - (instancetype)copyWithZone:(NSZone *)zone
 {
     UserModel *model = [[UserModel alloc]init];
+    model.identifier = [self.identifier copyWithZone:zone];
     model.phone = [self.phone copyWithZone:zone];
     model.userLevel = self.userLevel;
     model.nickName = [self.nickName copyWithZone:zone];

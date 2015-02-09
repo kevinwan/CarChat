@@ -33,6 +33,7 @@
     model.updateDate = [NSDateFormatter localizedStringFromDate:avobject.updatedAt
                                                       dateStyle:NSDateFormatterShortStyle
                                                       timeStyle:NSDateFormatterNoStyle];
+    model.notice = [avobject objectForKey:@"notice"];
     return model;
 }
 
@@ -48,6 +49,7 @@
     parameter.cost = self.cost;
     parameter.poster = self.posterImage;
     parameter.posterUrl = self.posterUrl;
+    parameter.notice = self.notice;
     return parameter;
 }
 
