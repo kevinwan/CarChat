@@ -11,7 +11,6 @@
 #import "RegisterViewController.h"
 #import "ForgetPasswordViewController.h"
 #import "CompletePersonalInfoViewController.h"
-#import "ActivityIntroductViewController.h"
 #import "ServerPolicyViewController.h"
 #import "InviteActivityDetailViewController.h"
 #import "InviteViewController.h"
@@ -132,9 +131,7 @@ const NSInteger MyEditProfileUploadCertifyButtonTag = 504;
             break;
         case SuggestActivitiesSelectItem:
         {
-            ActivityIntroductViewController * detail = [[ActivityIntroductViewController alloc]initWithActivity:( ActivityModel *)context];
-            [vc.navigationController pushViewController:detail
-                                               animated:YES];
+#warning fix here
         }
             break;
         case CreatedActivityCloseButtonItemTag:

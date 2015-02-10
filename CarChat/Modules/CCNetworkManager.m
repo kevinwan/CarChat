@@ -149,6 +149,51 @@ NSString * const ApiUploadPhotos = @"UploadPhotos";
     
 }
 
+- (NSString *)randomStringAtLength:(NSInteger)length
+{
+    char *__r = (char *)malloc(length + 1);
+    
+    if (__r == 0)
+    {
+        return nil;
+    }
+    
+    srand(time(NULL) + rand());    //初始化随机数的种子
+    
+    int i;
+    for (i = 0; i  < length; i++)
+    {
+        int r = 0;
+        while (!((r >= 48 && r <= 57)
+               || (r >= 65 && r <= 90)
+               || (r >= 97 && r <= 122))) {
+            r = rand() % 128;
+        }
+        __r[i] = (char)r;      //控制得到的随机数为可显示字符
+    }
+    
+    __r[i] = 0;
+    
+    NSString * str = [NSString stringWithUTF8String:__r];
+    
+    free(__r);
+    
+    return str;
+}
+
+- (NSString *)getUnusedInviteCode
+{
+    NSString * randomCode = nil;
+    AVQuery * query = nil;
+    do {
+        randomCode = [self randomStringAtLength:6];
+        query = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
+        [query whereKey:@"invitationCode" equalTo:randomCode];
+    } while ([query countObjects] != 0);
+    
+    return randomCode;
+}
+
 #pragma mark - Concrete Request Methods
 - (void)Login:(LoginParameter *)parameter
 {
@@ -368,6 +413,8 @@ NSString * const ApiUploadPhotos = @"UploadPhotos";
 
 - (void)CreateActivity:(CreateActivityParameter *)parameter
 {
+    // 创建邀请码
+    NSString * invitationCode = [self getUnusedInviteCode];
     // 先保存图片
     AVFile * poster = [AVFile fileWithName:@"poster.jpg" data:UIImageJPEGRepresentation(parameter.poster, .2)];
     [poster saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -382,6 +429,8 @@ NSString * const ApiUploadPhotos = @"UploadPhotos";
             [activity setObject:poster forKey:@"poster"];
             // 发起人信息
             [activity setObject:[AVUser currentUser] forKey:@"owner"];
+            // 邀请码
+            [activity setObject:invitationCode forKey:@"invitationCode"];
             __weak typeof(activity) weakRef = activity;
             [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 __strong typeof(weakRef) strongRef = weakRef;

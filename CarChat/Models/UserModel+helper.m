@@ -61,6 +61,11 @@
     return (user.relationship & RelationshipFollower) != 0;
 }
 
+
++ (BOOL)userLogined
+{
+    return [AVUser currentUser] != nil;
+}
 + (NSString *)currentUserId
 {
     return [AVUser currentUser].objectId;

@@ -63,7 +63,6 @@
 		BA6BC70F1A635FE400DA033C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC70E1A635FE400DA033C /* AppDelegate.m */; };
 		BA6BC7181A63606700DA033C /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC7161A63606700DA033C /* RegisterViewController.m */; };
 		BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6BC71A1A63607F00DA033C /* RegisterViewController.xib */; };
-		BA6BC7241A63627B00DA033C /* ActivityIntroductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC71D1A63627B00DA033C /* ActivityIntroductViewController.m */; };
 		BA6BC7251A63627B00DA033C /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC71F1A63627B00DA033C /* LoginViewController.m */; };
 		BA6BC7261A63627B00DA033C /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA6BC7201A63627B00DA033C /* LoginViewController.xib */; };
 		BA6BC7271A63627B00DA033C /* MainActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BA6BC7221A63627B00DA033C /* MainActivitiesViewController.m */; };
@@ -95,7 +94,6 @@
 		BAB810971A639D1900142DDA /* ForgetPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB810951A639D1900142DDA /* ForgetPasswordViewController.xib */; };
 		BAB8109B1A63A85D00142DDA /* CompletePersonalInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB810991A63A85D00142DDA /* CompletePersonalInfoViewController.m */; };
 		BAB8109C1A63A85D00142DDA /* CompletePersonalInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB8109A1A63A85D00142DDA /* CompletePersonalInfoViewController.xib */; };
-		BAB8109E1A63B84700142DDA /* ActivityIntroductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB8109D1A63B84700142DDA /* ActivityIntroductViewController.xib */; };
 		BAB810A21A63C1A100142DDA /* UserCreatActivityDescriptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB810A11A63C1A100142DDA /* UserCreatActivityDescriptionView.m */; };
 		BAB810A41A63C1B400142DDA /* UserCreatActivityDescriptionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB810A31A63C1B400142DDA /* UserCreatActivityDescriptionView.xib */; };
 		BAD65A6C1A5FA89200987B06 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = BAD65A6B1A5FA89200987B06 /* main.mm */; };
@@ -238,8 +236,6 @@
 		BA6BC7151A63606700DA033C /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		BA6BC7161A63606700DA033C /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		BA6BC71A1A63607F00DA033C /* RegisterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
-		BA6BC71C1A63627B00DA033C /* ActivityIntroductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIntroductViewController.h; sourceTree = "<group>"; };
-		BA6BC71D1A63627B00DA033C /* ActivityIntroductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIntroductViewController.m; sourceTree = "<group>"; };
 		BA6BC71E1A63627B00DA033C /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		BA6BC71F1A63627B00DA033C /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		BA6BC7201A63627B00DA033C /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
@@ -294,7 +290,6 @@
 		BAB810981A63A85D00142DDA /* CompletePersonalInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletePersonalInfoViewController.h; sourceTree = "<group>"; };
 		BAB810991A63A85D00142DDA /* CompletePersonalInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletePersonalInfoViewController.m; sourceTree = "<group>"; };
 		BAB8109A1A63A85D00142DDA /* CompletePersonalInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompletePersonalInfoViewController.xib; sourceTree = "<group>"; };
-		BAB8109D1A63B84700142DDA /* ActivityIntroductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityIntroductViewController.xib; sourceTree = "<group>"; };
 		BAB810A01A63C1A100142DDA /* UserCreatActivityDescriptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCreatActivityDescriptionView.h; sourceTree = "<group>"; };
 		BAB810A11A63C1A100142DDA /* UserCreatActivityDescriptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCreatActivityDescriptionView.m; sourceTree = "<group>"; };
 		BAB810A31A63C1B400142DDA /* UserCreatActivityDescriptionView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserCreatActivityDescriptionView.xib; sourceTree = "<group>"; };
@@ -637,9 +632,6 @@
 		BA6BC7401A63719700DA033C /* ActivityDetail */ = {
 			isa = PBXGroup;
 			children = (
-				BA6BC71C1A63627B00DA033C /* ActivityIntroductViewController.h */,
-				BA6BC71D1A63627B00DA033C /* ActivityIntroductViewController.m */,
-				BAB8109D1A63B84700142DDA /* ActivityIntroductViewController.xib */,
 				BAB11C801A668C80007FDE38 /* InviteActivityDetailViewController.h */,
 				BAB11C811A668C80007FDE38 /* InviteActivityDetailViewController.m */,
 				BAB11C821A668C80007FDE38 /* InviteActivityDetailViewController.xib */,
@@ -901,7 +893,6 @@
 				7E415BF21A66CABA0025E5FB /* InviteViewController.xib in Resources */,
 				BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */,
 				BA2009DD1A70D7060052EE0F /* UserDetailViewController.xib in Resources */,
-				BAB8109E1A63B84700142DDA /* ActivityIntroductViewController.xib in Resources */,
 				BA6BC7281A63627B00DA033C /* MainActivitiesViewController.xib in Resources */,
 				BAD65A7D1A5FA89200987B06 /* LaunchScreen.xib in Resources */,
 				7E415BE91A65895E0025E5FB /* ActivityEditView.xib in Resources */,
@@ -1027,7 +1018,6 @@
 				A58BCEAC1A8680AF00C2300B /* InviteUsersParameter.m in Sources */,
 				BA2009CB1A6F90A60052EE0F /* CommentViewController.m in Sources */,
 				BADD16CF1A78C174004AE9FC /* GetSuggestActivitiesParameter.m in Sources */,
-				BA6BC7241A63627B00DA033C /* ActivityIntroductViewController.m in Sources */,
 				BAB11CA11A690E6F007FDE38 /* UIImage+color.m in Sources */,
 				BAD7232C1A64D3DF00FB4645 /* ServerPolicyViewController.m in Sources */,
 				BAB11C831A668C80007FDE38 /* InviteActivityDetailViewController.m in Sources */,

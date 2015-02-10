@@ -9,8 +9,14 @@
 #import "EditActivityViewController.h"
 #import "ActivityEditView.h"
 #import <UzysAssetsPickerController.h>
+#import "UIView+frame.h"
+#import "UserModel+helper.h"
+#import "CreateActivityParameter.h"
+#import "ActivityModel+Helper.h"
 
 @interface EditActivityViewController ()
+
+@property (nonatomic, strong) UIButton * saveAndInviteButton;
 
 @property (nonatomic, strong) ActivityModel * activity;
 
@@ -31,7 +37,15 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    // Dispose of any resources that can .ble recreated.
+}
+
+- (void)dealloc
+{
+    [self.view removeObserver:self
+                   forKeyPath:@"isAllFieldFilled"];
+    [[CCNetworkManager defaultManager] removeObserver:self
+                                               forApi:ApiCreateActivity];
 }
 
 #pragma mark - View Lifycycle
@@ -49,11 +63,32 @@
         imagePicker.delegate = (id<UzysAssetsPickerControllerDelegate>)_weakRef;
         imagePicker.maximumNumberOfSelectionPhoto = 1;
         imagePicker.maximumNumberOfSelectionVideo = 0;
-        [_weakRef presentViewController:imagePicker animated:YES completion:nil];
+        [_weakRef presentViewController:imagePicker
+                               animated:YES
+                             completion:nil];
         CFRunLoopRun();
         return [UIImage imageWithCGImage: _weakRef.asset.defaultRepresentation.fullResolutionImage];
     }];
     self.view = v;
+    
+    [v addObserver:self
+        forKeyPath:@"isAllFieldFilled"
+           options:NSKeyValueObservingOptionNew
+           context:nil];
+    
+    _saveAndInviteButton = [UIButton buttonWithType:UIButtonTypeSystem];
+    [_saveAndInviteButton setFrame:
+     CGRectMake(0.f,
+                self.view.frame.size.height - 40.f,
+                self.view.frame.size.width,
+                40.f)];
+    [_saveAndInviteButton setTitle:@"保存并邀请"
+                   forState:UIControlStateNormal];
+    [_saveAndInviteButton addTarget:self
+                      action:@selector(checkIfLoginThenSave)
+            forControlEvents:UIControlEventTouchUpInside];
+    [_saveAndInviteButton setEnabled:[v isAllFieldFilled].boolValue];
+    [self.view addSubview:_saveAndInviteButton];
 }
 
 - (void)viewDidLoad {
@@ -66,7 +101,31 @@
         self.navigationItem.title = @"编辑活动";
     }
     
-    
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
+                                            forApi:ApiCreateActivity];
+}
+
+#pragma mark - CCNetworkResponse
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response
+{
+    [self hideHud];
+    if (response.error) {
+        [self showTip:response.error.localizedDescription];
+    }
+    else {
+        // 创建完成，发出邀请
+        [self sendInvitationWithCode:@"code"];
+    }
+}
+
+#pragma mark - Observation
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context
+{
+    BOOL buttonEnable = [change[@"new"] boolValue];
+    [self.saveAndInviteButton setEnabled:buttonEnable];
 }
 
 #pragma mark - UzysAssetsPickerControllerDelegate
@@ -86,4 +145,32 @@
 {
     return;
 }
+
+#pragma mark - User Interaction
+- (void)checkIfLoginThenSave
+{
+    if ([UserModel userLogined]) {
+        // 已经登录，发送创建和邀请请求
+        [self saveAndInvite];
+    }
+    else {
+        // 未登录，登录之
+        [ControllerCoordinator goNextFrom:self
+                                  whitTag:ShowLoginFromSomeWhereTag
+                               andContext:nil];
+    }
+}
+
+- (void)saveAndInvite
+{
+    [self showLoading:@"正在创建"];
+    CreateActivityParameter * parameter = [[(ActivityEditView *)self.view generateActivity] parameter];
+    [[CCNetworkManager defaultManager] requestWithParameter:parameter];
+}
+
+- (void)sendInvitationWithCode:(NSString *)code
+{
+    
+}
+
 @end

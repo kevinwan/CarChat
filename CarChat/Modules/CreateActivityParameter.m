@@ -12,13 +12,15 @@
 
 - (NSDictionary *)toDic
 {
-    return nil;
-//  @{@"name":self.name,
-//             @"destination":self.destination,
-//             @"date":self.date,
-//             @"toplimit":self.toplimit,
-//             @"payType":@(self.payType),
-//             @"cost":self.cost};
+    return
+    @{@"name":self.name,
+      @"destination":self.destination,
+      @"fromDate":self.fromDate,
+      @"toDate":self.toDate,
+//      @"toplimit":self.toplimit,
+      @"payType":@(self.payType),
+//      @"cost":self.cost,
+      @"notice":self.notice};
 }
 
 @end

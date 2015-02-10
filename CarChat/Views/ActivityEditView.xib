@@ -50,7 +50,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
-                        <outlet property="delegate" destination="z5k-KG-1Dg" id="I89-fd-IYE"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="QRG-0Y-pO2"/>
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="支付方式" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="14" id="7Xw-0V-nN3">
@@ -60,7 +60,7 @@
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
-                        <outlet property="delegate" destination="z5k-KG-1Dg" id="4tQ-cF-ka5"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="iYd-gJ-yne"/>
                     </connections>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="注意事项，比如天气、交通" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="14" id="Vri-Xm-YsZ">

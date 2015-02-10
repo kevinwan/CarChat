@@ -38,7 +38,8 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
 
 - (void)dealloc
 {
-    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiGetUserJoiningActivities];
+    [[CCNetworkManager defaultManager] removeObserver:self
+                                               forApi:ApiGetUserJoiningActivities];
 }
 
 #pragma mark - View Lifecycle
@@ -47,7 +48,8 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
 
     [self setupTableViewDelegator];
     
-    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetUserJoiningActivities];
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
+                                            forApi:ApiGetUserJoiningActivities];
     
     [self requestActivities];
 }

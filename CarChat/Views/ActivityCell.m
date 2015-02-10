@@ -15,6 +15,7 @@ CGFloat const ActivityCellStyleUserCreatedHeight = ActivityCellStyleSuggestHeigh
 @interface ActivityCell ()
 
 @property (nonatomic, assign) ActivityCellStyle style;
+@property (nonatomic, strong) UILabel * officalIdicator;
 
 @end
 
@@ -41,17 +42,19 @@ CGFloat const ActivityCellStyleUserCreatedHeight = ActivityCellStyleSuggestHeigh
         [self.contentView addSubview:_ownerAvatar];
         
         _period = [[UILabel alloc]initWithFrame:CGRectZero];
+        [_period setFont:[UIFont systemFontOfSize:14.f]];
         [self.contentView addSubview:_period];
         
         _createdDate = [[UILabel alloc]initWithFrame:CGRectZero];
         [_createdDate setTextAlignment:NSTextAlignmentRight];
         [self.contentView addSubview:_createdDate];
+        [_createdDate setHidden:YES];
         
         
         if (self.style == ActivityCellStyleSuggest) {
-            UILabel * offical = [[UILabel alloc]initWithFrame:CGRectMake(0.f, 0.f, 30.f, 18.f)];
-            [offical setTextColor:[UIColor purpleColor]];
-            [_name addSubview:offical];
+//            _officalIdicator = [[UILabel alloc]initWithFrame:CGRectMake(0.f, 0.f, 30.f, 18.f)];
+//            [_officalIdicator setBackgroundColor:[UIColor purpleColor]];
+//            [_name addSubview:_officalIdicator];
             
         }
         
@@ -77,9 +80,6 @@ CGFloat const ActivityCellStyleUserCreatedHeight = ActivityCellStyleSuggestHeigh
                 0.f,
                 cellSize.width,
                 180.f)];
-//    [self.ownerAvatar setCenter:
-//     CGPointMake(self.poster.frame.size.width / 2,
-//                 self.poster.frame.size.height - self.ownerAvatar.frame.size.height / 2)];
     [self.ownerAvatar setFrame:CGRectMake(135.f, 130.f, 50.f, 50.f)];
     [self.name setFrame:
      CGRectMake(0.f,
@@ -96,6 +96,8 @@ CGFloat const ActivityCellStyleUserCreatedHeight = ActivityCellStyleSuggestHeigh
                 216.f,
                 100.f,
                 16.f)];
+//    [self.officalIdicator setHidden:
+//     (self.style == ActivityCellStyleUserCreated)];
 }
 
 #pragma mark - Public Api

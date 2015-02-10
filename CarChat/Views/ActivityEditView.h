@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UITextField * payType;
 @property (weak, nonatomic) IBOutlet UITextField * tip;
 
+@property (nonatomic, readonly) NSNumber * isAllFieldFilled;    // for observer
+
 + (instancetype)view;
 
 - (void)layoutWithActivity:(ActivityModel *)activity;

@@ -32,9 +32,22 @@
 #pragma mark - Lifecycle
 + (instancetype)view
 {
-    ActivityEditView * view = [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil  options:nil][0];
+    ActivityEditView * view = [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class])
+                                                           owner:nil
+                                                         options:nil][0];
     [view setupTextFiledsInputView];
+    [[NSNotificationCenter defaultCenter] addObserver:view
+                                             selector:@selector(checkIfAllFieldTexted)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:nil];
     return view;
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UITextFieldTextDidChangeNotification
+                                                  object:nil];
 }
 
 #pragma mark - Public Apis
@@ -92,10 +105,14 @@
 - (void)datePickerValueChanged:(UIDatePicker *)picker
 {
     if ([self.fromDate isFirstResponder]) {
-        self.fromDate.text = [NSDateFormatter localizedStringFromDate:[_datePicker date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+        self.fromDate.text = [NSDateFormatter localizedStringFromDate:[_datePicker date]
+                                                            dateStyle:NSDateFormatterShortStyle
+                                                            timeStyle:NSDateFormatterNoStyle];
     }
     else if ([self.toDate isFirstResponder]) {
-        self.toDate.text = [NSDateFormatter localizedStringFromDate:[_datePicker date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+        self.toDate.text = [NSDateFormatter localizedStringFromDate:[_datePicker date]
+                                                          dateStyle:NSDateFormatterShortStyle
+                                                          timeStyle:NSDateFormatterNoStyle];
     }
 }
 
@@ -106,7 +123,9 @@
         _datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0.f, 0.f, 320.f, 200.f)];
         [_datePicker setMinimumDate:[NSDate date]];
         [_datePicker setDatePickerMode:UIDatePickerModeDate];
-        [_datePicker addTarget:self action:@selector(datePickerValueChanged:) forControlEvents:UIControlEventValueChanged];
+        [_datePicker addTarget:self
+                        action:@selector(datePickerValueChanged:)
+              forControlEvents:UIControlEventValueChanged];
     }
     [self.fromDate setInputView:_datePicker];
     [self.toDate setInputView:_datePicker];
@@ -122,13 +141,15 @@
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (textField == self.fromDate) {
-        NSString * startDateText = [NSDateFormatter localizedStringFromDate:[_datePicker date] dateStyle:NSDateFormatterShortStyle timeStyle:NSDateFormatterNoStyle];
+    if (textField == self.fromDate || textField == self.toDate) {
+        NSString * startDateText = [NSDateFormatter localizedStringFromDate:[_datePicker date]
+                                                                  dateStyle:NSDateFormatterShortStyle
+                                                                  timeStyle:NSDateFormatterNoStyle];
         self.fromDate.text = startDateText;
         self.toDate.text = startDateText;
     }
     else if (textField == self.payType) {
-        PayType type = 1;   // 默认AA
+        PayType type = PayTypeEverybodyDutch;   // 默认AA
         if (![self.payType.text isBlank]) {
             NSString * payTypeText = self.payType.text;
             type = [ActivityModel payTypeFromString:payTypeText];
@@ -142,6 +163,20 @@
     else {
         return;
     }
+}
+
+#pragma mark - UITextFieldNotification
+- (void)checkIfAllFieldTexted
+{
+    [self willChangeValueForKey:@"isAllFieldFilled"];
+    _isAllFieldFilled =
+    @(![self.name.text isBlank]
+    && ![self.destiny.text isBlank]
+    && ![self.fromDate.text isBlank]
+    && ![self.toDate.text isBlank]
+    && ![self.payType.text isBlank]
+    && ![self.tip.text isBlank]);
+    [self didChangeValueForKey:@"isAllFieldFilled"];
 }
 
 #pragma mark - UIPickerViewDelegate & UIPickerViewDataSource

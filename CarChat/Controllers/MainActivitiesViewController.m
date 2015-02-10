@@ -90,7 +90,7 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
 {
     self.tableDelegator = [[ActivitiesCollectionDelegator alloc]initWithItems:self.activities andCellIdentifier:activityCellIdentifier];
     self.tableDelegator.cellClass = [ActivityCell class];
-    self.tableDelegator.style = ActivityCellStyleSuggest;
+//    self.tableDelegator.style = ActivityCellStyleSuggest;
     [self.tableDelegator setConfigBlock:^(ActivityModel * activity, ActivityCell * cell) {
         [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
         cell.name.text = activity.name;

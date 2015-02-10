@@ -14,6 +14,7 @@
 #import "TestViewController.h"
 #import "CCStatusManager.h"
 #import "UserModel+helper.h"
+#import "UIImage+color.h"
 #import "WXApi.h"
 #import "WXApiObject.h"
 // for test
@@ -49,14 +50,25 @@ static const NSInteger MyNavItemTag = 2;
     // build MAIN UI
     _window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     UITabBarController * rootTabbar = [[UITabBarController alloc]init];
+    [rootTabbar.tabBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]]];
+    NSDictionary * titleAttr = @{
+                                NSFontAttributeName:[UIFont boldSystemFontOfSize:18.f]
+                                };
+    UIOffset titleOffset = UIOffsetMake(0.f, -12.f);
     // item 1 - suggest
     MainActivitiesViewController * suggestVC = [[MainActivitiesViewController alloc]init];
-    suggestVC.title = @"推荐";
-    suggestVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemTopRated tag:SuggestNavItemTag];
+    suggestVC.title = @"活动";
+    suggestVC.tabBarItem = [[UITabBarItem alloc]initWithTitle:suggestVC.title image:nil tag:SuggestNavItemTag];
+    [suggestVC.tabBarItem setTitleTextAttributes:titleAttr
+                                        forState:UIControlStateNormal];
+    [suggestVC.tabBarItem setTitlePositionAdjustment:titleOffset];
     // item 2 - my
     MyViewController *myVC = [[MyViewController alloc]init];
     myVC.title = @"我的";
-    myVC.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemContacts tag:MyNavItemTag];
+    myVC.tabBarItem = [[UITabBarItem alloc]initWithTitle:myVC.title image:nil tag:MyNavItemTag];
+    [myVC.tabBarItem setTitleTextAttributes:titleAttr
+                                   forState:UIControlStateNormal];
+    [myVC.tabBarItem setTitlePositionAdjustment:titleOffset];
     [rootTabbar setViewControllers:@[suggestVC, myVC]];
     [rootTabbar setSelectedIndex:0];
     [rootTabbar setDelegate:(id<UITabBarControllerDelegate>)self];
