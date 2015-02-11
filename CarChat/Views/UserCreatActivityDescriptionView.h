@@ -15,6 +15,6 @@
 
 - (void)layoutWithModel:(ActivityModel *)activity;
 
-@property (nonatomic, assign) void (^viewParticipantsBlock)();
+@property (nonatomic, copy) void (^viewParticipantsBlock)();
 
 @end

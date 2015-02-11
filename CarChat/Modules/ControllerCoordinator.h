@@ -97,6 +97,10 @@ extern const NSInteger MyEditProfileTag;
  *  在编辑资料页面，点击上传车主认证材料
  */
 extern const NSInteger MyEditProfileUploadCertifyButtonTag;
+/**
+ *  显示活动的参加人
+ */
+extern const NSInteger kShowParticipantsTag;
 
 @interface ControllerCoordinator : NSObject
 

@@ -32,6 +32,8 @@
 		A58BCEB21A86810F00C2300B /* UploadPhotosParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEB11A86810F00C2300B /* UploadPhotosParameter.m */; };
 		A58BCEB61A87A99600C2300B /* EditActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEB41A87A99600C2300B /* EditActivityViewController.m */; };
 		A58BCEB71A87A99600C2300B /* EditActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A58BCEB51A87A99600C2300B /* EditActivityViewController.xib */; };
+		A58BCEBE1A8BB82700C2300B /* ParticipantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEBC1A8BB82700C2300B /* ParticipantsViewController.m */; };
+		A58BCEBF1A8BB82700C2300B /* ParticipantsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A58BCEBD1A8BB82700C2300B /* ParticipantsViewController.xib */; };
 		A5D126A41A8119FF000DE04D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D126A01A8119E3000DE04D /* libWeChatSDK.a */; };
 		A5D126A81A8120C9000DE04D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D126A71A8120C9000DE04D /* libz.dylib */; };
 		A5D126AA1A8120D2000DE04D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D126A91A8120D2000DE04D /* libsqlite3.0.dylib */; };
@@ -180,6 +182,9 @@
 		A58BCEB31A87A99600C2300B /* EditActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditActivityViewController.h; sourceTree = "<group>"; };
 		A58BCEB41A87A99600C2300B /* EditActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditActivityViewController.m; sourceTree = "<group>"; };
 		A58BCEB51A87A99600C2300B /* EditActivityViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EditActivityViewController.xib; sourceTree = "<group>"; };
+		A58BCEBB1A8BB82700C2300B /* ParticipantsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantsViewController.h; sourceTree = "<group>"; };
+		A58BCEBC1A8BB82700C2300B /* ParticipantsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantsViewController.m; sourceTree = "<group>"; };
+		A58BCEBD1A8BB82700C2300B /* ParticipantsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParticipantsViewController.xib; sourceTree = "<group>"; };
 		A5D126A01A8119E3000DE04D /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		A5D126A11A8119E3000DE04D /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		A5D126A21A8119E3000DE04D /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -633,6 +638,9 @@
 				BA2009C31A6F84320052EE0F /* UserCreatedActivityViewController.h */,
 				BA2009C41A6F84320052EE0F /* UserCreatedActivityViewController.m */,
 				BA2009C51A6F84320052EE0F /* UserCreatedActivityViewController.xib */,
+				A58BCEBB1A8BB82700C2300B /* ParticipantsViewController.h */,
+				A58BCEBC1A8BB82700C2300B /* ParticipantsViewController.m */,
+				A58BCEBD1A8BB82700C2300B /* ParticipantsViewController.xib */,
 				BA2009C81A6F90A60052EE0F /* CommentViewController.h */,
 				BA2009C91A6F90A60052EE0F /* CommentViewController.m */,
 				BA2009CA1A6F90A60052EE0F /* CommentViewController.xib */,
@@ -884,6 +892,7 @@
 				BAB810A41A63C1B400142DDA /* UserCreatActivityDescriptionView.xib in Resources */,
 				7E415BF21A66CABA0025E5FB /* InviteViewController.xib in Resources */,
 				BA6BC71B1A63607F00DA033C /* RegisterViewController.xib in Resources */,
+				A58BCEBF1A8BB82700C2300B /* ParticipantsViewController.xib in Resources */,
 				BA2009DD1A70D7060052EE0F /* UserDetailViewController.xib in Resources */,
 				BA6BC7281A63627B00DA033C /* MainActivitiesViewController.xib in Resources */,
 				BAD65A7D1A5FA89200987B06 /* LaunchScreen.xib in Resources */,
@@ -987,6 +996,7 @@
 				BAD65A721A5FA89200987B06 /* CarChat.xcdatamodeld in Sources */,
 				BADD16D81A7A17DD004AE9FC /* GetFollowingParameter.m in Sources */,
 				BAB810A21A63C1A100142DDA /* UserCreatActivityDescriptionView.m in Sources */,
+				A58BCEBE1A8BB82700C2300B /* ParticipantsViewController.m in Sources */,
 				BA6BC7251A63627B00DA033C /* LoginViewController.m in Sources */,
 				A503677F1A7CD90F00CACE08 /* GetParticipantsParameter.m in Sources */,
 				BAB11CA91A69FE5B007FDE38 /* ActivityCell.m in Sources */,

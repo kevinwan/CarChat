@@ -133,7 +133,7 @@ static const NSInteger MyNavItemTag = 2;
 - (void)sendInviteCodeToWX:(NSString *)code via:(SendingInvitationVia)wxType
 {
     SendMessageToWXReq* req = [[SendMessageToWXReq alloc] init];
-    req.text = [NSString stringWithFormat:@"我在“车聊”{{url}}创建了一个活动，邀请码是%@,等你来加入哟",code];
+    req.text = kInviteTextContentWithInviteCode(code);
     req.bText = YES;
     if (wxType == SendingInvitationViaWXTimeLine) {
         req.scene = WXSceneTimeline;

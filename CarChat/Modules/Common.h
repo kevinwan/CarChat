@@ -50,4 +50,5 @@ typedef NS_ENUM(NSInteger, SendingInvitationVia) {
     SendingInvitationViaInApp
 };
 
+#define kInviteTextContentWithInviteCode(x) [NSString stringWithFormat:@"我在“车聊”{{url}}创建了一个活动，邀请码是%@,等你来加入哟",(x)]
 #endif

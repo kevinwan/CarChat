@@ -30,9 +30,8 @@ static NSString * const followerCellIdentifier = @"followerCell";
     if (self = [super init]) {
         self.userId = userId;
         self.followerUsers = [NSMutableArray array];
-        return self;
     }
-    return nil;
+    return self;
 }
 
 - (void)dealloc

@@ -51,8 +51,6 @@ NSString * const ApiGetActivityWithInviteCode = @"GetActivityWithInviteCode";
 NSString * const ApiResetPassword = @"ResetPassword";
 // 1.获取短信验证码
 NSString * const ApiGetVerifySMS = @"GetVerifySMS";
-// #.LeanCloud用来验证短信验证码的接口
-NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
 // 7.设置个人信息
 NSString * const ApiSetPersonalInfo = @"SetPersonalInfo";
 // 8.获取用户信息
@@ -91,6 +89,8 @@ NSString * const ApiGetFollowers = @"GetFollowers";
 NSString * const ApiGetParticipants = @"GetParticipants";
 // 25.上传照片
 NSString * const ApiUploadPhotos = @"UploadPhotos";
+// #.LeanCloud用来验证短信验证码的接口
+NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
 
 
 @interface CCNetworkManager ()
@@ -212,7 +212,7 @@ NSString * const ApiUploadPhotos = @"UploadPhotos";
     AVUser * user = [AVUser user];
     user.username = parameter.phone;
     user.password = parameter.pwd;
-    user.mobilePhoneNumber = parameter.phone;
+//    user.mobilePhoneNumber = parameter.phone;
     [user setObject:@1 forKey:@"certifyStatus"];
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
@@ -262,7 +262,10 @@ NSString * const ApiUploadPhotos = @"UploadPhotos";
     [AVOSCloud verifySmsCode:paramter.verifyCode
            mobilePhoneNumber:paramter.phone
                     callback:^(BOOL succeeded, NSError *error) {
-                        [self raiseResponseWithObj:nil error:error andRequestParameter:paramter];
+                        
+                        [self raiseResponseWithObj:nil
+                                             error:error
+                               andRequestParameter:paramter];
                     }
      ];
 }
@@ -396,13 +399,23 @@ NSString * const ApiUploadPhotos = @"UploadPhotos";
             for (AVObject * avobj in objects) {
                 [results addObject:[CommentModel commentFromAVObject:avobj]];
             }
-            [self raiseResponseWithObj:results error:error andRequestParameter:parameter];
         }
+        [self raiseResponseWithObj:results error:error andRequestParameter:parameter];
     }];
 }
 
 - (void)ReplyActivity:(ReplyActivityParameter *)parameter
 {
+    // 先检查当前用户是否在活动内
+    AVObject * activity = [AVQuery getObjectOfClass:NSStringFromClass([ActivityModel class]) objectId:parameter.activityIdentifier];
+    AVQuery * query = [activity relationforKey:@"participants"].query;
+    [query whereKey:@"objectId" equalTo:[AVUser currentUser].objectId];
+    NSArray * users = [query findObjects];
+    if (users.count == 0 && [[(AVUser *)[activity objectForKey:@"owner"] objectId] isEqualToString:[AVUser currentUser].objectId]) {
+        [self raiseResponseWithObj:nil error:[NSError errorWithDomain:@"无法评论没有参加的活动" code:-1 userInfo:nil] andRequestParameter:parameter];
+        return;
+    }
+    
     AVObject * object = [AVObject objectWithClassName:NSStringFromClass([CommentModel class])];
     [object setObject:[AVObject objectWithoutDataWithObjectId:parameter.activityIdentifier] forKey:@"activity"];
     [object setObject:[AVUser currentUser] forKey:@"user"];
@@ -605,26 +618,20 @@ NSString * const ApiUploadPhotos = @"UploadPhotos";
 
 - (void)GetParticipants:(GetParticipantsParameter *)parameter
 {
-    AVQuery * q = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
-    [q getObjectInBackgroundWithId:parameter.activityIdentifier block:^(AVObject *object, NSError *error) {
-        if (error) {
-            [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
-            
-            return ;
-        }
-        AVRelation * participants = [object relationforKey:@"participants"];
-        AVQuery * participantsQuery = [participants query];
-        [participantsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-            NSMutableArray * users = nil;
-            if (!error && objects.count > 0) {
-                users = [NSMutableArray arrayWithCapacity:objects.count];
-                for (AVUser * avuser in objects) {
-                    UserModel * user = [UserModel userFromAVUser:avuser];
-                    [users addObject:user];
-                }
+    AVObject * activity = [AVQuery getObjectOfClass:NSStringFromClass([ActivityModel class]) objectId:parameter.activityIdentifier];
+    
+    AVRelation * participants = [activity relationforKey:@"participants"];
+    AVQuery * participantsQuery = [participants query];
+    [participantsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        NSMutableArray * users = nil;
+        if (!error && objects.count > 0) {
+            users = [NSMutableArray arrayWithCapacity:objects.count];
+            for (AVUser * avuser in objects) {
+                UserModel * user = [UserModel userFromAVUser:avuser];
+                [users addObject:user];
             }
-            [self raiseResponseWithObj:users error:error andRequestParameter:parameter];
-        }];
+        }
+        [self raiseResponseWithObj:users error:error andRequestParameter:parameter];
     }];
 }
 

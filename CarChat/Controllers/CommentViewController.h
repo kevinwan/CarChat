@@ -16,4 +16,6 @@
 
 - (void)setListFooterView:(UIView *)footerView;
 
+- (void)setInputViewHidden:(BOOL)hidden;
+
 @end

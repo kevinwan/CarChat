@@ -29,6 +29,9 @@
 
 + (instancetype)userFromAVUser:(AVUser *)avuser
 {
+    if (avuser == nil) {
+        return nil;
+    }
     UserModel * user = [[UserModel alloc]init];
     user.identifier = avuser.objectId;
     user.phone = [avuser objectForKey:@"phone"];

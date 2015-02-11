@@ -117,11 +117,16 @@ static CGFloat const kInputViewGrowHeight = 50.f;
     }];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [ControllerCoordinator goNextFrom:self whitTag:ShowLoginFromSomeWhereTag andContext:nil];
+}
 
 #pragma mark - Internal Helps
 - (void)setupTableDelegator
 {
-    self.tableDelegator = [[CommentCollectionDelegator alloc]initWithItems:self.comments andCellIdentifier:commentIDentifier];
+    self.tableDelegator = [[CommentCollectionDelegator alloc]initWithItems:self.comments
+                                                         andCellIdentifier:commentIDentifier];
     [self.tableDelegator setCellClass:[CommentCell class]];
     [self.tableDelegator setConfigBlock:^(CommentModel * item, CommentCell * cell) {
         [cell.avatar sd_setImageWithURL:[NSURL URLWithString:item.user.avatarUrl]];
@@ -145,9 +150,15 @@ static CGFloat const kInputViewGrowHeight = 50.f;
 }
 
 #pragma mark - User Interactions
-
 - (IBAction)leaveACommetn:(id)sender {
     if ([self.inputView.text isBlank]) {
+        return;
+    }
+    
+    if ([UserModel currentUser] == nil) {
+        // 没有登录
+        UIAlertView * a = [[UIAlertView alloc]initWithTitle:@"您还没有登录" message:@"请登录后再评论" delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+        [a show];
         return;
     }
     
@@ -167,6 +178,17 @@ static CGFloat const kInputViewGrowHeight = 50.f;
 - (void)setListFooterView:(UIView *)footerView
 {
     [self.commentTable setTableFooterView:footerView];
+}
+
+- (void)setInputViewHidden:(BOOL)hidden
+{
+    [self.inputBGView setHidden:hidden];
+    if (hidden) {
+        self.commentTable.height = self.inputBGView.y + self.inputBGView.height;
+    }
+    else {
+        self.commentTable.height = self.inputBGView.y;
+    }
 }
 
 @end
