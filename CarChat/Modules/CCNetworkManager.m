@@ -318,6 +318,7 @@ NSString * const ApiUploadPhotos = @"UploadPhotos";
     [userQuery whereKey:@"userLevel" equalTo:@(UserLevelOfficial)]; // 找到官方用户
     AVQuery * q = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
     [q whereKey:@"owner" matchesQuery:userQuery];   // 找到官方用户创建的活动
+    [q includeKey:@"owner"];
     [q findObjectsInBackgroundWithBlock:
      ^(NSArray *objects, NSError *error) {
          NSMutableArray * activityList = nil;
@@ -455,24 +456,33 @@ NSString * const ApiUploadPhotos = @"UploadPhotos";
      2忽略
      */
     if (parameter.accepted) {
-        NSString * activityId = parameter.invitedActivityId;
         
+        NSString * activityId = parameter.invitedActivityId;
         AVQuery * q = [AVQuery queryWithClassName:NSStringFromClass([ActivityModel class])];
         [q getObjectInBackgroundWithId:activityId block:^(AVObject *object, NSError *error) {
-            // 获取对应活动，如果获取失败就发送error
             if (error) {
                 [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
-                
                 return ;
             }
-            // 如果获取成功，设置activity的关联用户
+            
+            // 验重
             AVRelation * participants = [object relationforKey:@"participants"];
+            AVQuery * checkIfReaccept = [participants query];
+            [checkIfReaccept whereKey:@"objectId" equalTo:[UserModel currentUserId]];
+            if ([checkIfReaccept countObjects] > 0) {
+                // 在活动中找到了当前用户，重复加入
+                [self raiseResponseWithObj:nil error:[NSError errorWithDomain:@"请勿重复加入" code:-1 userInfo:nil] andRequestParameter:parameter];
+                return;
+            }
+            
             [participants addObject:[AVUser currentUser]];
+            [object incrementKey:@"countOfParticipants" byAmount:@1];
             [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 LOG_EXPR(object);
                 [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
             }];
         }];
+
     }
     else {
         // 忽略活动，不必创建关联，直接返回

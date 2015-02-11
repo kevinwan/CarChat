@@ -34,6 +34,7 @@
                                                       dateStyle:NSDateFormatterShortStyle
                                                       timeStyle:NSDateFormatterNoStyle];
     model.notice = [avobject objectForKey:@"notice"];
+    model.countOfParticipants = [avobject objectForKey:@"countOfParticipants"];
     return model;
 }
 

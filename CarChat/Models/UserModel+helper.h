@@ -23,8 +23,8 @@
 + (BOOL)isCurrentUser:(UserModel *)user;
 
 
-// 用户是否已经登录
-+ (BOOL)userLogined;
+// 当前正在登录的用户
++ (UserModel *)currentUser;
 // 当前登陆用户的id
 + (NSString *)currentUserId;
 // 是否已登陆

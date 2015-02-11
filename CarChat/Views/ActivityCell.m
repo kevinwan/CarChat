@@ -9,12 +9,13 @@
 #import "ActivityCell.h"
 #import "UIView+square2Round.h"
 
-CGFloat const ActivityCellStyleSuggestHeight = 233.f;
+CGFloat const ActivityCellStyleSuggestHeight = 248.f;
 CGFloat const ActivityCellStyleUserCreatedHeight = ActivityCellStyleSuggestHeight;
 
 @interface ActivityCell ()
 
 @property (nonatomic, assign) ActivityCellStyle style;
+@property (nonatomic, strong) UIView * avatarBg;
 @property (nonatomic, strong) UILabel * officalIdicator;
 
 @end
@@ -34,12 +35,17 @@ CGFloat const ActivityCellStyleUserCreatedHeight = ActivityCellStyleSuggestHeigh
         _name = [[UILabel alloc]initWithFrame:CGRectZero];
         [_name setFont:[UIFont boldSystemFontOfSize:15]];
         [_name setNumberOfLines:99];
-        [_name setBackgroundColor:[UIColor colorWithRed:0.701 green:0.999 blue:1.000 alpha:1.000]];
+//        [_name setBackgroundColor:[UIColor colorWithRed:0.701 green:0.999 blue:1.000 alpha:1.000]];
         [self.contentView addSubview:_name];
         
-        _ownerAvatar = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, 50.f, 50.f)];
+        _avatarBg = [[UIView alloc]initWithFrame:CGRectMake(0.f, 0.f, 50.f, 50.f)];
+        [_avatarBg setBackgroundColor:[UIColor whiteColor]];
+        [_avatarBg makeRoundIfIsSquare];
+        [self.contentView addSubview:_avatarBg];
+        
+        _ownerAvatar = [[UIImageView alloc]initWithFrame:CGRectMake(2.f, 2.f, 46.f, 46.f)];
         [_ownerAvatar makeRoundIfIsSquare];
-        [self.contentView addSubview:_ownerAvatar];
+        [_avatarBg addSubview:_ownerAvatar];
         
         _period = [[UILabel alloc]initWithFrame:CGRectZero];
         [_period setFont:[UIFont systemFontOfSize:14.f]];
@@ -80,20 +86,20 @@ CGFloat const ActivityCellStyleUserCreatedHeight = ActivityCellStyleSuggestHeigh
                 0.f,
                 cellSize.width,
                 180.f)];
-    [self.ownerAvatar setFrame:CGRectMake(135.f, 130.f, 50.f, 50.f)];
+    [self.avatarBg setFrame:CGRectMake(135.f, 145.f, 50.f, 50.f)];
     [self.name setFrame:
      CGRectMake(0.f,
-                180.f,
+                195.f,
                 cellSize.width,
                 36.f)];
     [self.period setFrame:
      CGRectMake(0.f,
-                216.f,
+                231.f,
                 cellSize.width,
                 16.f)];
     [self.createdDate setFrame:
      CGRectMake(220.f,
-                216.f,
+                231.f,
                 100.f,
                 16.f)];
 //    [self.officalIdicator setHidden:

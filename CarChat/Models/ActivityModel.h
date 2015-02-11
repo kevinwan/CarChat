@@ -65,6 +65,10 @@
  */
 @property (nonatomic, copy) NSString * invitationCode;
 /**
+ *  活动的参与人数
+ */
+@property (nonatomic, copy) NSNumber * countOfParticipants;
+/**
  *  创建时间
  */
 @property (nonatomic, copy) NSString * createDate;

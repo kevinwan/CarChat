@@ -88,23 +88,26 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
 #pragma mark - Internal Helper
 - (void)setupDelegator
 {
-    self.tableDelegator = [[ActivitiesCollectionDelegator alloc]initWithItems:self.activities andCellIdentifier:activityCellIdentifier];
+    self.tableDelegator = [[ActivitiesCollectionDelegator alloc]initWithItems:self.activities
+                                                            andCellIdentifier:activityCellIdentifier];
     self.tableDelegator.cellClass = [ActivityCell class];
 //    self.tableDelegator.style = ActivityCellStyleSuggest;
-    [self.tableDelegator setConfigBlock:^(ActivityModel * activity, ActivityCell * cell) {
-        [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
-        cell.name.text = activity.name;
-        [cell.ownerAvatar sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatarUrl]];
-        [cell.period setText:[NSString stringWithFormat:@"活动时间: %@ - %@", activity.fromDate, activity.toDate]];
-        [cell.createdDate setText:activity.createDate];
-    }];
+    [self.tableDelegator setConfigBlock:
+     ^(ActivityModel * activity, ActivityCell * cell) {
+         [cell.poster sd_setImageWithURL:[NSURL URLWithString:activity.posterUrl]];
+         cell.name.text = activity.name;
+         [cell.ownerAvatar sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatarUrl]];
+         [cell.period setText:[NSString stringWithFormat:@"活动时间: %@ - %@", activity.fromDate, activity.toDate]];
+         [cell.createdDate setText:activity.createDate];
+     }];
     __weak typeof(self) weakRef = self;
-    [self.tableDelegator setSelectingBlock: ^(ActivityModel * activity) {
-        __strong typeof(self) strongRef = weakRef;
-        [ControllerCoordinator goNextFrom:strongRef
-                                  whitTag:SuggestActivitiesSelectItem
-                               andContext:activity];
-    }];
+    [self.tableDelegator setSelectingBlock:
+     ^(ActivityModel * activity) {
+         __strong typeof(self) strongRef = weakRef;
+         [ControllerCoordinator goNextFrom:strongRef
+                                   whitTag:SuggestActivitiesSelectItem
+                                andContext:activity];
+     }];
     [self.suggestionTableView setDataSource:self.tableDelegator];
     [self.suggestionTableView setDelegate:self.tableDelegator];
 }

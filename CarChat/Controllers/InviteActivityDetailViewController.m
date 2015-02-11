@@ -46,7 +46,7 @@
     [self setRightNavigationBarItem:@"加入" target:self andAction:@selector(join)];
     
     UserCreatActivityDescriptionView * view  = [UserCreatActivityDescriptionView view];
-    [view setModel:self.activity];
+    [view layoutWithModel:self.activity];
     [self.view addSubview:view];
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiReplyInvitation];

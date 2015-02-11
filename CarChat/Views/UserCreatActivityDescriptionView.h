@@ -13,8 +13,8 @@
 
 + (instancetype)view;
 
-- (void)setModel:(ActivityModel *)activity;
+- (void)layoutWithModel:(ActivityModel *)activity;
 
-@property (nonatomic, assign) BOOL editable;
+@property (nonatomic, assign) void (^viewParticipantsBlock)();
 
 @end

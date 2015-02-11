@@ -13,15 +13,25 @@
 #import "CommentCell.h"
 #import "UserModel+helper.h"
 #import "GetCommentsInActivityParameter.h"
+#import "UIView+frame.h"
+#import "NSString+Helpers.h"
+#import "ReplyActivityParameter.h"
 
 static NSString * const commentIDentifier = @"commentCellIdentifier";
+static CGFloat const kInputViewGrowHeight = 50.f;
 
 @interface CommentViewController ()
 
-@property (nonatomic, copy) NSString * activityId;
+@property (nonatomic, copy) NSString * activityId; // must not nil
+
 @property (weak, nonatomic) IBOutlet UITableView *commentTable;
 @property (nonatomic, strong) CommentCollectionDelegator *tableDelegator;
 @property (nonatomic, strong) NSMutableArray *comments;
+
+
+@property (weak, nonatomic) IBOutlet UIView *inputBGView;
+@property (weak, nonatomic) IBOutlet UITextView *inputView;
+@property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
 @end
 
@@ -40,6 +50,7 @@ static NSString * const commentIDentifier = @"commentCellIdentifier";
 - (void)dealloc
 {
     [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiGetCommentsInActivity];
+    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiReplyActivity];
 }
 
 #pragma mark - View Lifecycle
@@ -49,6 +60,7 @@ static NSString * const commentIDentifier = @"commentCellIdentifier";
     [self setupTableDelegator];
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetCommentsInActivity];
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiReplyActivity];
     
     [self requestComments];
 }
@@ -63,10 +75,48 @@ static NSString * const commentIDentifier = @"commentCellIdentifier";
         [self showTip:response.error.localizedDescription];
     }
     else {
-        [self.comments addObjectsFromArray:response.object];
-        [self.commentTable reloadData];
+        if (response.parameter.api == ApiGetCommentsInActivity) {
+            [self.comments addObjectsFromArray:response.object];
+            [self.commentTable reloadData];
+        }
+        else if (response.parameter.api == ApiReplyActivity) {
+            [self showTip:@"评论成功"];
+            
+            
+            CommentModel *c = [CommentModel new];
+            c.content = self.inputView.text;
+            c.user = [UserModel currentUser];
+            [self.commentTable beginUpdates];
+            [self.commentTable insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:self.comments.count inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.comments addObject:c];
+            [self.commentTable endUpdates];
+            
+            
+            self.inputView.text = nil;
+            [self.inputView resignFirstResponder];
+        }
     }
 }
+
+#pragma mark - UITextViewDelegate
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    [UIView animateWithDuration:.2f animations:^{
+        self.inputBGView.y -= kInputViewGrowHeight;
+        self.inputBGView.height += kInputViewGrowHeight;
+        self.commentTable.height -= kInputViewGrowHeight;
+    }];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    [UIView animateWithDuration:.2f animations:^{
+        self.inputBGView.y += kInputViewGrowHeight;
+        self.inputBGView.height -= kInputViewGrowHeight;
+        self.commentTable.height += kInputViewGrowHeight;
+    }];
+}
+
 
 #pragma mark - Internal Helps
 - (void)setupTableDelegator
@@ -92,6 +142,20 @@ static NSString * const commentIDentifier = @"commentCellIdentifier";
     GetCommentsInActivityParameter * p = (GetCommentsInActivityParameter *)[ParameterFactory parameterWithApi:ApiGetCommentsInActivity];
     p.activityIdentifier = self.activityId;
     [[CCNetworkManager defaultManager] requestWithParameter:p];
+}
+
+#pragma mark - User Interactions
+
+- (IBAction)leaveACommetn:(id)sender {
+    if ([self.inputView.text isBlank]) {
+        return;
+    }
+    
+    [self showLoading:@""];
+    ReplyActivityParameter * r = (ReplyActivityParameter *)[ParameterFactory parameterWithApi:ApiReplyActivity];
+    r.content = self.inputView.text;
+    r.activityIdentifier = self.activityId;
+    [[CCNetworkManager defaultManager] requestWithParameter:r];
 }
 
 #pragma mark - Public APIs

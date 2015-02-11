@@ -62,9 +62,9 @@
 }
 
 
-+ (BOOL)userLogined
++ (UserModel *)currentUser
 {
-    return [AVUser currentUser] != nil;
+    return [self userFromAVUser:[AVUser currentUser]];
 }
 + (NSString *)currentUserId
 {

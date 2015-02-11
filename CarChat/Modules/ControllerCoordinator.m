@@ -131,7 +131,8 @@ const NSInteger MyEditProfileUploadCertifyButtonTag = 504;
             break;
         case SuggestActivitiesSelectItem:
         {
-#warning fix here
+            UserCreatedActivityViewController * detail = [[UserCreatedActivityViewController alloc]initWithActivity:(ActivityModel *)context];
+            [vc.navigationController pushViewController:detail animated:YES];
         }
             break;
         case CreatedActivityCloseButtonItemTag:

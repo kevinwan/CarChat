@@ -149,7 +149,7 @@
 #pragma mark - User Interaction
 - (void)checkIfLoginThenSave
 {
-    if ([UserModel userLogined]) {
+    if ([UserModel currentUser]) {
         // 已经登录，发送创建和邀请请求
         [self saveAndInvite];
     }
