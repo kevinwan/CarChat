@@ -40,10 +40,10 @@
     user.avatarUrl = [(AVFile *)[avuser objectForKey:@"avatar"] url];
     user.gender = [[avuser objectForKey:@"gender"] integerValue];
     user.city = [avuser objectForKey:@"city"];
-    user.countOfActvity = [avuser objectForKey:@"countOfActivity"];
+    user.countOfOwning = [avuser objectForKey:@"countOfOwning"];
+    user.countOfJoining = [avuser objectForKey:@"countOfJoining"];
     user.countOfFollowing = [avuser objectForKey:@"countOfFollowing"];
     user.countOfFollower = [avuser objectForKey:@"countOfFollower"];
-    user.relationship = [[avuser objectForKey:@"relationship"]integerValue];
     user.certifyStatus = [[avuser objectForKey:@"certifyStatus"]integerValue];
 //    user.certifications = ...
     return user;

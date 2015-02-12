@@ -8,8 +8,12 @@
 
 #import "AbstractViewController.h"
 
-@interface UserActivitiesViewController : AbstractViewController
+#warning TODO: 重构这两个列表vc，抽象出父类
+
+@interface UserOwningActivitiesViewController : AbstractViewController
 
 - (instancetype)initWithUserId:(NSString *)userId;
+
+- (void)setTableHeader:(UIView *)header;
 
 @end

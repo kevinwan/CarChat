@@ -34,6 +34,8 @@
 		A58BCEB71A87A99600C2300B /* EditActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A58BCEB51A87A99600C2300B /* EditActivityViewController.xib */; };
 		A58BCEBE1A8BB82700C2300B /* ParticipantsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEBC1A8BB82700C2300B /* ParticipantsViewController.m */; };
 		A58BCEBF1A8BB82700C2300B /* ParticipantsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A58BCEBD1A8BB82700C2300B /* ParticipantsViewController.xib */; };
+		A5D0939D1A8C889000D147CE /* UserJoiningActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D0939B1A8C889000D147CE /* UserJoiningActivitiesViewController.m */; };
+		A5D0939E1A8C889000D147CE /* UserJoiningActivitiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5D0939C1A8C889000D147CE /* UserJoiningActivitiesViewController.xib */; };
 		A5D126A41A8119FF000DE04D /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D126A01A8119E3000DE04D /* libWeChatSDK.a */; };
 		A5D126A81A8120C9000DE04D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D126A71A8120C9000DE04D /* libz.dylib */; };
 		A5D126AA1A8120D2000DE04D /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = A5D126A91A8120D2000DE04D /* libsqlite3.0.dylib */; };
@@ -80,8 +82,8 @@
 		BAB11C891A675B0E007FDE38 /* MyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C871A675B0E007FDE38 /* MyViewController.xib */; };
 		BAB11C8D1A679C9A007FDE38 /* FollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C8B1A679C9A007FDE38 /* FollowingViewController.m */; };
 		BAB11C8E1A679C9A007FDE38 /* FollowingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C8C1A679C9A007FDE38 /* FollowingViewController.xib */; };
-		BAB11C921A679CE7007FDE38 /* UserActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C901A679CE7007FDE38 /* UserActivitiesViewController.m */; };
-		BAB11C931A679CE7007FDE38 /* UserActivitiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C911A679CE7007FDE38 /* UserActivitiesViewController.xib */; };
+		BAB11C921A679CE7007FDE38 /* UserOwningActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C901A679CE7007FDE38 /* UserOwningActivitiesViewController.m */; };
+		BAB11C931A679CE7007FDE38 /* UserOwningActivitiesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C911A679CE7007FDE38 /* UserOwningActivitiesViewController.xib */; };
 		BAB11C971A67A28B007FDE38 /* FollowerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11C951A67A28B007FDE38 /* FollowerViewController.m */; };
 		BAB11C981A67A28B007FDE38 /* FollowerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB11C961A67A28B007FDE38 /* FollowerViewController.xib */; };
 		BAB11CA11A690E6F007FDE38 /* UIImage+color.m in Sources */ = {isa = PBXBuildFile; fileRef = BAB11CA01A690E6F007FDE38 /* UIImage+color.m */; };
@@ -185,6 +187,9 @@
 		A58BCEBB1A8BB82700C2300B /* ParticipantsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParticipantsViewController.h; sourceTree = "<group>"; };
 		A58BCEBC1A8BB82700C2300B /* ParticipantsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ParticipantsViewController.m; sourceTree = "<group>"; };
 		A58BCEBD1A8BB82700C2300B /* ParticipantsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ParticipantsViewController.xib; sourceTree = "<group>"; };
+		A5D0939A1A8C889000D147CE /* UserJoiningActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserJoiningActivitiesViewController.h; sourceTree = "<group>"; };
+		A5D0939B1A8C889000D147CE /* UserJoiningActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserJoiningActivitiesViewController.m; sourceTree = "<group>"; };
+		A5D0939C1A8C889000D147CE /* UserJoiningActivitiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserJoiningActivitiesViewController.xib; sourceTree = "<group>"; };
 		A5D126A01A8119E3000DE04D /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
 		A5D126A11A8119E3000DE04D /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
 		A5D126A21A8119E3000DE04D /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
@@ -265,9 +270,9 @@
 		BAB11C8A1A679C9A007FDE38 /* FollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowingViewController.h; sourceTree = "<group>"; };
 		BAB11C8B1A679C9A007FDE38 /* FollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowingViewController.m; sourceTree = "<group>"; };
 		BAB11C8C1A679C9A007FDE38 /* FollowingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowingViewController.xib; sourceTree = "<group>"; };
-		BAB11C8F1A679CE7007FDE38 /* UserActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserActivitiesViewController.h; sourceTree = "<group>"; };
-		BAB11C901A679CE7007FDE38 /* UserActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserActivitiesViewController.m; sourceTree = "<group>"; };
-		BAB11C911A679CE7007FDE38 /* UserActivitiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserActivitiesViewController.xib; sourceTree = "<group>"; };
+		BAB11C8F1A679CE7007FDE38 /* UserOwningActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserOwningActivitiesViewController.h; sourceTree = "<group>"; };
+		BAB11C901A679CE7007FDE38 /* UserOwningActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserOwningActivitiesViewController.m; sourceTree = "<group>"; };
+		BAB11C911A679CE7007FDE38 /* UserOwningActivitiesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserOwningActivitiesViewController.xib; sourceTree = "<group>"; };
 		BAB11C941A67A28B007FDE38 /* FollowerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FollowerViewController.h; sourceTree = "<group>"; };
 		BAB11C951A67A28B007FDE38 /* FollowerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FollowerViewController.m; sourceTree = "<group>"; };
 		BAB11C961A67A28B007FDE38 /* FollowerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FollowerViewController.xib; sourceTree = "<group>"; };
@@ -399,9 +404,12 @@
 				BAB11C941A67A28B007FDE38 /* FollowerViewController.h */,
 				BAB11C951A67A28B007FDE38 /* FollowerViewController.m */,
 				BAB11C961A67A28B007FDE38 /* FollowerViewController.xib */,
-				BAB11C8F1A679CE7007FDE38 /* UserActivitiesViewController.h */,
-				BAB11C901A679CE7007FDE38 /* UserActivitiesViewController.m */,
-				BAB11C911A679CE7007FDE38 /* UserActivitiesViewController.xib */,
+				BAB11C8F1A679CE7007FDE38 /* UserOwningActivitiesViewController.h */,
+				BAB11C901A679CE7007FDE38 /* UserOwningActivitiesViewController.m */,
+				BAB11C911A679CE7007FDE38 /* UserOwningActivitiesViewController.xib */,
+				A5D0939A1A8C889000D147CE /* UserJoiningActivitiesViewController.h */,
+				A5D0939B1A8C889000D147CE /* UserJoiningActivitiesViewController.m */,
+				A5D0939C1A8C889000D147CE /* UserJoiningActivitiesViewController.xib */,
 			);
 			name = My;
 			sourceTree = "<group>";
@@ -883,11 +891,12 @@
 				BA2009C71A6F84320052EE0F /* UserCreatedActivityViewController.xib in Resources */,
 				BA6BC7261A63627B00DA033C /* LoginViewController.xib in Resources */,
 				BAD65A781A5FA89200987B06 /* Main.storyboard in Resources */,
+				A5D0939E1A8C889000D147CE /* UserJoiningActivitiesViewController.xib in Resources */,
 				7E2F43121A6D428A00971789 /* PersonalProfileViewController.xib in Resources */,
 				BAD723381A64FAA300FB4645 /* PersonalInfoView.xib in Resources */,
 				BAB11CAE1A6CE032007FDE38 /* UserProfileCard.xib in Resources */,
 				BAB11C981A67A28B007FDE38 /* FollowerViewController.xib in Resources */,
-				BAB11C931A679CE7007FDE38 /* UserActivitiesViewController.xib in Resources */,
+				BAB11C931A679CE7007FDE38 /* UserOwningActivitiesViewController.xib in Resources */,
 				BA2009CC1A6F90A60052EE0F /* CommentViewController.xib in Resources */,
 				BAB810A41A63C1B400142DDA /* UserCreatActivityDescriptionView.xib in Resources */,
 				7E415BF21A66CABA0025E5FB /* InviteViewController.xib in Resources */,
@@ -951,6 +960,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D0939D1A8C889000D147CE /* UserJoiningActivitiesViewController.m in Sources */,
 				BA2009DC1A70D7060052EE0F /* UserDetailViewController.m in Sources */,
 				A58BCEA61A86803100C2300B /* SubmitCertificationProfileParameter.m in Sources */,
 				BA0355761A6638B100252F99 /* ResetPasswordParameter.m in Sources */,
@@ -968,7 +978,7 @@
 				A50367791A7BD3D300CACE08 /* ActivityModel+Helper.m in Sources */,
 				BA2009E81A7770F20052EE0F /* ValidateVerifyCodeParameter.m in Sources */,
 				A5FAA7951A7E5C0500C1FD54 /* ReplyActivityParameter.m in Sources */,
-				BAB11C921A679CE7007FDE38 /* UserActivitiesViewController.m in Sources */,
+				BAB11C921A679CE7007FDE38 /* UserOwningActivitiesViewController.m in Sources */,
 				BA6BC7341A63644500DA033C /* AbstractViewController.m in Sources */,
 				A503677C1A7CC47A00CACE08 /* ReplyInvitationParameter.m in Sources */,
 				BA03556D1A660E0400252F99 /* ValidateInviteCodeParameter.m in Sources */,

@@ -101,6 +101,10 @@ extern const NSInteger MyEditProfileUploadCertifyButtonTag;
  *  显示活动的参加人
  */
 extern const NSInteger kShowParticipantsTag;
+/**
+ *  点击某个活动成员
+ */
+extern const NSInteger kParticipantsCellTag;
 
 @interface ControllerCoordinator : NSObject
 

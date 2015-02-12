@@ -61,6 +61,10 @@ static NSString * const followingCellIdentifier = @"followingCell";
 #pragma mark - CCNetworkResponse
 - (void)didGetResponseNotification:(ConcreteResponseObject *)response
 {
+    if (![response.parameter.uniqueId isEqualToString:self.description]) {
+        return;
+    }
+    
     [self hideHud];
     
     if (response.error) {
@@ -98,8 +102,15 @@ static NSString * const followingCellIdentifier = @"followingCell";
     
     GetFollowingParameter * p = (GetFollowingParameter *)[ParameterFactory parameterWithApi:ApiGetFollowing];
     p.userIdentifier = self.userId;
-    
+    p.uniqueId = self.description;
     [[CCNetworkManager defaultManager] requestWithParameter:p];
+}
+
+
+#pragma mark - Public APIs
+- (void)setTableHeader:(UIView *)header
+{
+    [self.followingTable setTableHeaderView:header];
 }
 
 @end

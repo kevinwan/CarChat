@@ -37,10 +37,11 @@
     model.nickName = [self.nickName copyWithZone:zone];
     model.age = [self.age copyWithZone:zone];
     model.avatarUrl = [self.avatarUrl copyWithZone:zone];
-    model.certifications = [self.certifications copyWithZone:zone];
+//    model.certifications = [self.certifications copyWithZone:zone];
     model.gender = self.gender;
     model.city = [self.city copyWithZone:zone];
-    model.countOfActvity = [self.countOfActvity copyWithZone:zone];
+    model.countOfOwning = [self.countOfOwning copyWithZone:zone];
+    model.countOfJoining = [self.countOfJoining copyWithZone:zone];
     model.countOfFollower = [self.countOfFollower copyWithZone:zone];
     model.countOfFollowing = [self.countOfFollowing copyWithZone:zone];
     model.relationship = self.relationship;

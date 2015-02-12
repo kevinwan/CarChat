@@ -34,7 +34,6 @@ const CGFloat cellHeight = 114.f;
         [self.contentView addSubview:_certifyIcon];
         
         _contentLabel = [[UILabel alloc]initWithFrame:CGRectZero];
-        [_contentLabel setBackgroundColor:[UIColor lightGrayColor]];
         [_contentLabel setNumberOfLines:2];
         [_contentLabel setFont:[UIFont systemFontOfSize:12.f]];
         [self.contentView addSubview:_contentLabel];

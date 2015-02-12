@@ -10,6 +10,6 @@
 
 @implementation ABCParameter
 
-- (NSDictionary *)toDic {return nil;}
+- (NSDictionary *)toDic {return @{};}
 
 @end

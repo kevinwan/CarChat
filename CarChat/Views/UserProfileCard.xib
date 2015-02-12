@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -101,7 +101,7 @@
                         <color key="titleColor" red="0.091011218867704136" green="0.71236979022412694" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="touchFollower:" destination="iN0-l3-epB" eventType="touchUpInside" id="z74-n1-egQ"/>
+                        <action selector="touchJoining:" destination="iN0-l3-epB" eventType="touchUpInside" id="DsF-CW-svu"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="eeI-BH-Eut">
@@ -121,25 +121,16 @@
                         <action selector="touchFollowing:" destination="iN0-l3-epB" eventType="touchUpInside" id="65U-ox-Dad"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="QJe-VE-1h5">
-                    <rect key="frame" x="126" y="38" width="46" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.392156899" green="0.78823536630000002" blue="0.83921575550000005" alpha="1" colorSpace="deviceRGB"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
-                    <state key="normal" title="已关注">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
             </subviews>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="activityNumButton" destination="ppf-sT-1D5" id="T0A-Gy-NBV"/>
                 <outlet property="avatarView" destination="IHg-f5-ywr" id="o3N-Iv-kOg"/>
                 <outlet property="certifyView" destination="328-jh-uCt" id="4UA-0N-jwn"/>
-                <outlet property="followerNumButton" destination="WHw-62-NsW" id="3nb-ie-B9j"/>
                 <outlet property="followingNumButton" destination="eeI-BH-Eut" id="i2H-DI-Dpp"/>
                 <outlet property="genderView" destination="fnE-zu-pLu" id="wKg-bT-KAh"/>
+                <outlet property="joiningActivityNumButton" destination="WHw-62-NsW" id="x7R-mb-AFE"/>
                 <outlet property="nameLabel" destination="G9H-c4-w7v" id="hy5-fq-LcZ"/>
+                <outlet property="owingActivityNumButton" destination="ppf-sT-1D5" id="l5f-sy-n2u"/>
             </connections>
             <point key="canvasLocation" x="189" y="148"/>
         </view>

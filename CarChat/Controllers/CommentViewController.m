@@ -68,6 +68,10 @@ static CGFloat const kInputViewGrowHeight = 50.f;
 #pragma mark - CCNetworkResponse
 - (void)didGetResponseNotification:(ConcreteResponseObject *)response
 {
+    if (![response.parameter.uniqueId isEqualToString:self.description]) {
+        return;
+    }
+    
     [self hideHud];
     
     if (response.error) {
@@ -146,6 +150,7 @@ static CGFloat const kInputViewGrowHeight = 50.f;
 {
     GetCommentsInActivityParameter * p = (GetCommentsInActivityParameter *)[ParameterFactory parameterWithApi:ApiGetCommentsInActivity];
     p.activityIdentifier = self.activityId;
+    p.uniqueId = self.description;
     [[CCNetworkManager defaultManager] requestWithParameter:p];
 }
 
@@ -166,6 +171,7 @@ static CGFloat const kInputViewGrowHeight = 50.f;
     ReplyActivityParameter * r = (ReplyActivityParameter *)[ParameterFactory parameterWithApi:ApiReplyActivity];
     r.content = self.inputView.text;
     r.activityIdentifier = self.activityId;
+    r.uniqueId = self.description;
     [[CCNetworkManager defaultManager] requestWithParameter:r];
 }
 

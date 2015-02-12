@@ -12,4 +12,5 @@
 
 - (instancetype)initWithUserId:(NSString *)userId;
 
+- (void)setTableHeader:(UIView *)header;
 @end

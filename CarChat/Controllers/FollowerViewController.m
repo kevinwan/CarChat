@@ -58,6 +58,10 @@ static NSString * const followerCellIdentifier = @"followerCell";
 #pragma mark - CCNetworkResponse
 - (void)didGetResponseNotification:(ConcreteResponseObject *)response
 {
+    if (![response.parameter.uniqueId isEqualToString:self.description]) {
+        return;
+    }
+    
     [self hideHud];
     
     if (response.error) {
@@ -96,7 +100,7 @@ static NSString * const followerCellIdentifier = @"followerCell";
     
     GetFollowersParameter * p = (GetFollowersParameter *)[ParameterFactory parameterWithApi:ApiGetFollowers];
     p.userIdentifier = self.userId;
-    
+    p.uniqueId = self.description;
     [[CCNetworkManager defaultManager] requestWithParameter:p];
 }
 

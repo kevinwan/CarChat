@@ -19,11 +19,12 @@
 @property (nonatomic, assign) Gender gender;
 @property (nonatomic, readonly) NSString * genderString;
 @property (nonatomic, copy) NSString * city;
-@property (nonatomic, copy) NSString * countOfActvity;
-@property (nonatomic, copy) NSString * countOfFollowing;
-@property (nonatomic, copy) NSString * countOfFollower;
-@property (nonatomic, assign) NSInteger relationship;   // TODO: AVOS上写逻辑处理
+@property (nonatomic, copy) NSNumber * countOfOwning;
+@property (nonatomic, copy) NSNumber * countOfJoining;
+@property (nonatomic, copy) NSNumber * countOfFollowing;
+@property (nonatomic, copy) NSNumber * countOfFollower;
+@property (nonatomic, assign) Relationship relationship;
 @property (nonatomic, assign) NSInteger certifyStatus;
-@property (nonatomic, strong) NSArray * certifications; // TODO: ?
+//@property (nonatomic, strong) NSArray * certifications; // TODO: ?
 
 @end

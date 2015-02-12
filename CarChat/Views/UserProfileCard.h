@@ -12,17 +12,15 @@
 
 @interface UserProfileCard : UIView
 
-@property (strong, nonatomic) UIButton *relationshipButton;
-
 + (instancetype)view;
 
 - (void)layoutWithUser:(UserModel *)user;
 
 - (CGFloat)height;
 
-@property (nonatomic, strong) void(^activityTouched)(void);
+@property (nonatomic, strong) void(^owningActivityTouched)(void);
 @property (nonatomic, strong) void(^followingTouched)(void);
-@property (nonatomic, strong) void(^followerTouched)(void);
+@property (nonatomic, strong) void(^joiningActivityTouched)(void);
 @property (nonatomic, strong) void(^relationshipTouched)(void);
 
 @end

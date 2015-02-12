@@ -50,7 +50,9 @@ static NSString * const kParticipantCellIdentifier = @"participantCell";
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    self.navigationItem.title = @"参与人";
+    
     [self setupDelegator];
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetParticipants];
@@ -61,6 +63,10 @@ static NSString * const kParticipantCellIdentifier = @"participantCell";
 #pragma mark - CCNetworkResponse
 - (void)didGetResponseNotification:(ConcreteResponseObject *)response
 {
+    if (![response.parameter.uniqueId isEqualToString:self.description]) {
+        return;
+    }
+    
     [self hideHud];
     
     if (response.error) {
@@ -88,7 +94,7 @@ static NSString * const kParticipantCellIdentifier = @"participantCell";
     }];
     __weak typeof(self) weakRef = self;
     [self.participantsTableDelegate setSelectingBlock:^(UserModel * user) {
-        [ControllerCoordinator goNextFrom:weakRef whitTag:MyFollowerCellTag andContext:user.identifier];
+        [ControllerCoordinator goNextFrom:weakRef whitTag:kParticipantsCellTag andContext:user.identifier];
     }];
 }
 
@@ -97,6 +103,7 @@ static NSString * const kParticipantCellIdentifier = @"participantCell";
     [self showLoading:nil];
     GetParticipantsParameter * p = (GetParticipantsParameter *)[ParameterFactory parameterWithApi:ApiGetParticipants];
     p.activityIdentifier = self.activityid;
+    p.uniqueId = self.description;
     [[CCNetworkManager defaultManager] requestWithParameter:p];
 }
 

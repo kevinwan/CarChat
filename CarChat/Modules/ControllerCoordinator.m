@@ -15,7 +15,7 @@
 #import "InviteActivityDetailViewController.h"
 #import "InviteViewController.h"
 #import "AppDelegate.h"
-#import "UserActivitiesViewController.h"
+#import "UserOwningActivitiesViewController.h"
 #import "FollowingViewController.h"
 #import "FollowerViewController.h"
 #import "PersonalProfileViewController.h"
@@ -48,6 +48,7 @@ const NSInteger MyFollowerCellTag = 502;
 const NSInteger MyEditProfileTag = 503;
 const NSInteger MyEditProfileUploadCertifyButtonTag = 504;
 const NSInteger kShowParticipantsTag = 600;
+const NSInteger kParticipantsCellTag = 601;
 
 @implementation ControllerCoordinator
 
@@ -223,6 +224,10 @@ const NSInteger kShowParticipantsTag = 600;
             [vc.navigationController pushViewController:p animated:YES];
         }
             break;
+        case kParticipantsCellTag:
+        {
+            [vc.navigationController pushViewController:[[UserDetailViewController alloc]initWithUserId:(NSString *)context] animated:YES];
+        }
         default:
             break;
     }

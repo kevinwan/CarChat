@@ -8,7 +8,7 @@
 
 #import "TestViewController.h"
 #import "MyViewController.h"
-#import "UserActivitiesViewController.h"
+#import "UserOwningActivitiesViewController.h"
 #import "UserDetailViewController.h"
 #import "FollowingViewController.h"
 #import "FollowerViewController.h"
@@ -36,7 +36,7 @@
     [my setLeftNavigationBarItem:@"x" target:my andAction:@selector(dismissSelf)];
 }
 - (IBAction)useractivity:(id)sender {
-    UserActivitiesViewController * activity = [[UserActivitiesViewController alloc]initWithUserId:@""];
+    UserOwningActivitiesViewController * activity = [[UserOwningActivitiesViewController alloc]initWithUserId:@""];
     UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:activity];
     [self presentViewController:nav animated:YES completion:nil];
     

@@ -16,9 +16,9 @@
 @property (strong, nonatomic)  UILabel *nameLabel;
 @property (strong, nonatomic)  UIImageView *genderView;
 @property (strong, nonatomic)  UIImageView *certifyView;
-@property (strong, nonatomic)  UIButton *activityNumButton;
+@property (strong, nonatomic)  UIButton *owingActivityNumButton;
 @property (strong, nonatomic)  UIButton *followingNumButton;
-@property (strong, nonatomic)  UIButton *followerNumButton;
+@property (strong, nonatomic)  UIButton *joiningActivityNumButton;
 
 @end
 
@@ -29,6 +29,7 @@
 {
     if (self = [super initWithFrame:frame]) {
         self.avatarView = [[UIImageView alloc]initWithFrame:CGRectMake(10.f, 10.f, 50.f, 50.f)];
+        [self.avatarView makeRoundIfIsSquare];
         [self addSubview:self.avatarView];
         
         self.nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(68.f, 10.f, 244.f, 20.f)];
@@ -36,25 +37,26 @@
         [self addSubview:self.nameLabel];
         
         self.genderView = [[UIImageView alloc]initWithFrame:CGRectMake(68.f, 38.f, 20.f, 20.f)];
+        [self.genderView makeRoundIfIsSquare];
         [self addSubview:self.genderView];
         
         self.certifyView = [[UIImageView alloc]initWithFrame:CGRectMake(96.f, 38.f, 20.f, 20.f)];
         [self addSubview:self.certifyView];
         
-        UILabel * staticLB = [[UILabel alloc]initWithFrame:CGRectMake(32.f, 105.f, 42.f, 20.f)];
-        [staticLB setText:@"活动"];
+        UILabel * staticLB = [[UILabel alloc]initWithFrame:CGRectMake(25.f, 105.f, 54.f, 20.f)];
+        [staticLB setText:@"TA的发布"];
         [staticLB setFont:[UIFont systemFontOfSize:12.f]];
         [staticLB setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:staticLB];
         
         staticLB = [[UILabel alloc]initWithFrame:CGRectMake(127.f, 105.f, 67.f, 20.f)];
-        [staticLB setText:@"关注"];
+        [staticLB setText:@"TA的关注"];
         [staticLB setFont:[UIFont systemFontOfSize:12.f]];
         [staticLB setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:staticLB];
         
         staticLB = [[UILabel alloc]initWithFrame:CGRectMake(235.f, 105.f, 64.f, 20.f)];
-        [staticLB setText:@"听众"];
+        [staticLB setText:@"TA的参与"];
         [staticLB setFont:[UIFont systemFontOfSize:12.f]];
         [staticLB setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:staticLB];
@@ -67,13 +69,13 @@
         [staticLB setBackgroundColor:[UIColor darkGrayColor]];
         [self addSubview:staticLB];
         
-        self.activityNumButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [self.activityNumButton setFrame:CGRectMake(3.f, 74.f, 100.f, 51.f)];
-        [self.activityNumButton setTitle:@"0" forState:UIControlStateNormal];
-        [self.activityNumButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16.f]];
-        [self.activityNumButton setTitleEdgeInsets:UIEdgeInsetsMake(-10.f, 0, 0, 0)];
-        [self.activityNumButton addTarget:self action:@selector(touchActivity:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.activityNumButton];
+        self.owingActivityNumButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [self.owingActivityNumButton setFrame:CGRectMake(3.f, 74.f, 100.f, 51.f)];
+        [self.owingActivityNumButton setTitle:@"0" forState:UIControlStateNormal];
+        [self.owingActivityNumButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16.f]];
+        [self.owingActivityNumButton setTitleEdgeInsets:UIEdgeInsetsMake(-10.f, 0, 0, 0)];
+        [self.owingActivityNumButton addTarget:self action:@selector(touchActivity:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.owingActivityNumButton];
         
         self.followingNumButton = [UIButton buttonWithType:UIButtonTypeSystem];
         [self.followingNumButton setFrame:CGRectMake(110.f, 74.f, 100.f, 51.f)];
@@ -83,13 +85,13 @@
         [self.followingNumButton addTarget:self action:@selector(touchFollowing:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.followingNumButton];
         
-        self.followerNumButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [self.followerNumButton setFrame:CGRectMake(217.f, 74.f, 100.f, 51.f)];
-        [self.followerNumButton setTitle:@"0" forState:UIControlStateNormal];
-        [self.followerNumButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16.f]];
-        [self.followerNumButton setTitleEdgeInsets:UIEdgeInsetsMake(-10.f, 0, 0, 0)];
-        [self.followerNumButton addTarget:self action:@selector(touchFollower:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.followerNumButton];
+        self.joiningActivityNumButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        [self.joiningActivityNumButton setFrame:CGRectMake(217.f, 74.f, 100.f, 51.f)];
+        [self.joiningActivityNumButton setTitle:@"0" forState:UIControlStateNormal];
+        [self.joiningActivityNumButton.titleLabel setFont:[UIFont boldSystemFontOfSize:16.f]];
+        [self.joiningActivityNumButton setTitleEdgeInsets:UIEdgeInsetsMake(-10.f, 0, 0, 0)];
+        [self.joiningActivityNumButton addTarget:self action:@selector(touchJoining:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.joiningActivityNumButton];
     }
     
     return self;
@@ -122,49 +124,47 @@
     self.genderView.image = [user genderImage];
     [self.certifyView setBackgroundColor:[UIColor yellowColor]];
     
-    NSString * countOfActivity = user.countOfActvity ? : @"0";
-    NSString * countOfFollowing = user.countOfFollowing ? : @"0";
-    NSString * countOfFollower = user.countOfFollower ? : @"0";
+    NSString * countOfActivity = user.countOfOwning ? user.countOfOwning.stringValue : @"0";
+    NSString * countOfFollowing = user.countOfFollowing ? user.countOfFollower.stringValue : @"0";
+    NSString * countOfJoining = user.countOfJoining ? user.countOfJoining.stringValue : @"0";
     
-    [self.activityNumButton setTitle:countOfActivity forState:UIControlStateNormal];
+    [self.owingActivityNumButton setTitle:countOfActivity forState:UIControlStateNormal];
     [self.followingNumButton setTitle:countOfFollowing forState:UIControlStateNormal];
-    [self.followerNumButton setTitle:countOfFollower forState:UIControlStateNormal];
-//    [self configButtonWithRelationship:user.relationship];
-    // TODO: 获取真实关系后设置关注按钮，去掉假数据表示的按钮
-    [self configButtonWithRelationship:(size_t)self%0xf * 2];
+    [self.joiningActivityNumButton setTitle:countOfJoining forState:UIControlStateNormal];
+
 }
 
 #pragma mark - User Interaction
-- (void)configButtonWithRelationship:(Relationship)relationship
-{
-    if (relationship == 0) {
-        return;
-    }
-    
-    if (!self.relationshipButton) {
-        self.relationshipButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [self.relationshipButton setFrame:CGRectMake(126.f, 38.f, 46.f, 20.f)];
-        [self.relationshipButton.titleLabel setFont:[UIFont boldSystemFontOfSize:12.f]];
-        [self.relationshipButton setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
-        [self.relationshipButton addTarget:self action:@selector(touchRelationshipButton:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:self.relationshipButton];
-    }
-    
-    if (relationship & RelationshipFollowing) {
-        [self.relationshipButton setBackgroundColor:[UIColor greenColor]];
-        [self.relationshipButton setTitle:@"已关注" forState:UIControlStateNormal];
-    }
-    else {
-        [self.relationshipButton setBackgroundColor:[UIColor yellowColor]];
-        [self.relationshipButton setTitle:@"关注" forState:UIControlStateNormal];
-    }
-    
-    
-}
+//- (void)configButtonWithRelationship:(Relationship)relationship
+//{
+//    if (relationship == 0) {
+//        return;
+//    }
+//    
+//    if (!self.relationshipButton) {
+//        self.relationshipButton = [UIButton buttonWithType:UIButtonTypeSystem];
+//        [self.relationshipButton setFrame:CGRectMake(126.f, 38.f, 46.f, 20.f)];
+//        [self.relationshipButton.titleLabel setFont:[UIFont boldSystemFontOfSize:12.f]];
+//        [self.relationshipButton setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
+//        [self.relationshipButton addTarget:self action:@selector(touchRelationshipButton:) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:self.relationshipButton];
+//    }
+//    
+//    if (relationship & RelationshipFollowing) {
+//        [self.relationshipButton setBackgroundColor:[UIColor greenColor]];
+//        [self.relationshipButton setTitle:@"已关注" forState:UIControlStateNormal];
+//    }
+//    else {
+//        [self.relationshipButton setBackgroundColor:[UIColor yellowColor]];
+//        [self.relationshipButton setTitle:@"关注" forState:UIControlStateNormal];
+//    }
+//    
+//    
+//}
 
 - (IBAction)touchActivity:(id)sender {
-    if (self.activityTouched) {
-        self.activityTouched();
+    if (self.owningActivityTouched) {
+        self.owningActivityTouched();
     }
 }
 
@@ -174,9 +174,9 @@
     }
 }
 
-- (IBAction)touchFollower:(id)sender {
-    if (self.followerTouched) {
-        self.followerTouched();
+- (IBAction)touchJoining:(id)sender {
+    if (self.joiningActivityTouched) {
+        self.joiningActivityTouched();
     }
 }
 

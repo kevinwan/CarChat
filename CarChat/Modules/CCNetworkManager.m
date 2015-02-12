@@ -131,7 +131,7 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored"-Warc-performSelector-leaks"
     NSAssert([self respondsToSelector:apiSelector], @"api 方法未实现");
-    dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), ^{
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         [self performSelector:apiSelector withObject:parameter];
     });
 #pragma clang diagnostic pop
@@ -202,6 +202,7 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
                                  password:parameter.pwd
                                     block:
      ^(AVUser *user, NSError *error) {
+         [user setFetchWhenSave:YES];
          [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
      }
      ];
@@ -215,6 +216,7 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
 //    user.mobilePhoneNumber = parameter.phone;
     [user setObject:@1 forKey:@"certifyStatus"];
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [[AVUser currentUser] setFetchWhenSave:YES];
         [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
     }];
 }
@@ -301,11 +303,22 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
 {
     AVQuery * q = [AVUser query];
     [q whereKey:@"objectId" equalTo:parameter.userIdentifier];
-    [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        UserModel * user = nil;
-        if (error == nil && objects.count > 0) {
-            AVUser * queryResult = objects[0];
-            user = [UserModel userFromAVUser:queryResult];
+    [q getFirstObjectInBackgroundWithBlock:^(AVObject *object, NSError *error) {
+        AVUser * queryResult = (AVUser *)object;
+        UserModel * user = [UserModel userFromAVUser:queryResult];
+        
+        if ([object.objectId isEqualToString:[AVUser currentUser].objectId]) {
+            // 是当前用户，就不必查询关系了
+            [self raiseResponseWithObj:user error:error andRequestParameter:parameter];
+            return ;
+        }
+        
+        // 查询关系
+        AVQuery * q4TargetFollowee = [queryResult followerQuery];
+        [q4TargetFollowee whereKey:@"objectId" equalTo:[AVUser currentUser].objectId];
+        if ([q4TargetFollowee countObjects] > 0) {
+            // 说明当前用户在目标用户的follower表中
+            user.relationship = RelationshipFollowing;
         }
         [self raiseResponseWithObj:user error:error andRequestParameter:parameter];
     }];
@@ -447,6 +460,13 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
             [activity setObject:invitationCode forKey:@"invitationCode"];
             __weak typeof(activity) weakRef = activity;
             [activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                
+                if (!error) {
+                    // 用户发起活动数 ＋ 1
+                    [[AVUser currentUser] incrementKey:@"countOfOwning" byAmount:@1];
+                    [[AVUser currentUser] save];
+                }
+                
                 __strong typeof(weakRef) strongRef = weakRef;
                 [self raiseResponseWithObj:[ActivityModel activityFromAVObject:strongRef] error:error andRequestParameter:parameter];
             }];
@@ -490,6 +510,8 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
             
             [participants addObject:[AVUser currentUser]];
             [object incrementKey:@"countOfParticipants" byAmount:@1];
+            [[AVUser currentUser] incrementKey:@"countOfJoining" byAmount:@1];
+            [[AVUser currentUser] save];
             [object saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 LOG_EXPR(object);
                 [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
@@ -561,7 +583,7 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
                   [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
               }
               
-              // follow操作成功
+              // unfollow操作成功
               [current incrementKey:@"countOfFollowing" byAmount:@(-1)];
               [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                   if (!succeeded) {
