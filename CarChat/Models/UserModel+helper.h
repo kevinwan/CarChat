@@ -34,4 +34,7 @@
 // 是否是当前登陆用户的id
 + (BOOL)isCurrentUserId:(NSString *)identifier;
 
+// 退出当前正在登录的用户
++ (void)logoutCurrentUser;
+
 @end

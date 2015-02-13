@@ -49,6 +49,8 @@ static NSString * const activityCellIdentifier = @"myActivityIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.navigationItem.title = @"活动";
+    
     [self setupTableViewDelegator];
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiGetUserJoiningActivities];

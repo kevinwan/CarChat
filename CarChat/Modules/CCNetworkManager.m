@@ -313,13 +313,17 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
             return ;
         }
         
-        // 查询关系
-        AVQuery * q4TargetFollowee = [queryResult followerQuery];
-        [q4TargetFollowee whereKey:@"objectId" equalTo:[AVUser currentUser].objectId];
-        if ([q4TargetFollowee countObjects] > 0) {
-            // 说明当前用户在目标用户的follower表中
-            user.relationship = RelationshipFollowing;
+        if ([AVUser currentUser]) {
+            // 如果当前用户已经登陆，查询目标用户与当前用户关系
+            AVQuery * q4TargetFollowee = [queryResult followerQuery];
+            [q4TargetFollowee whereKey:@"objectId" equalTo:[AVUser currentUser].objectId];
+            if ([q4TargetFollowee countObjects] > 0) {
+                // 说明当前用户在目标用户的follower表中
+                user.relationship = RelationshipFollowing;
+            }
+
         }
+        
         [self raiseResponseWithObj:user error:error andRequestParameter:parameter];
     }];
 }
@@ -532,7 +536,8 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
 - (void)FollowUser:(FollowUserParameter *)parameter
 {
     AVUser * current = [AVUser currentUser];
-    AVUser * targetUser = [AVUser objectWithoutDataWithClassName:@"_User" objectId:parameter.userIdentifier];
+    AVQuery * targetUserQuery = [AVUser query];
+    AVUser * targetUser = (AVUser *)[targetUserQuery getObjectWithId:parameter.userIdentifier];
     if (!targetUser) {
         [self raiseResponseWithObj:nil error:[NSError errorWithDomain:@"" code:-1 userInfo:nil] andRequestParameter:parameter];
         return;
@@ -542,27 +547,30 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
         
         if (!succeeded) {
             [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+            return ;
         }
         
         // follow操作成功
         [current incrementKey:@"countOfFollowing" byAmount:@(1)];
         [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!succeeded) {
+//            if (!succeeded) {
                 [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
-                return ;
-            }
+//                return ;
+//            }
             
             // 当前用户countOfFOllowing ＋＋ 成功
-            [targetUser incrementKey:@"countOfFollower" byAmount:@(1)];
-            [targetUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (!succeeded) {
-                    [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
-                    return ;
-                }
-                
-                // 目标用户countOfFollower＋＋成功
-                [self raiseResponseWithObj:nil error:nil andRequestParameter:parameter];
-            }];
+            // 再对目标用户的countOfFollower ＋＋ 操作
+            // 目标客户countOfFollower＋＋操作有些问题，并且暂时用不到，注释掉
+//            [targetUser incrementKey:@"countOfFollower" byAmount:@(1)];
+//            [targetUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                if (!succeeded) {
+//                    [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+//                    return ;
+//                }
+//                
+//                // 目标用户countOfFollower＋＋成功
+//                [self raiseResponseWithObj:nil error:nil andRequestParameter:parameter];
+//            }];
         }];
     }];
 }
@@ -612,7 +620,7 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
     [q includeKey:@"followee"];
     [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSMutableArray * results = nil;
-        if (error == nil && results.count > 0) {
+        if (error == nil && objects.count > 0) {
             results = [NSMutableArray array];
             for (AVUser * user in objects) {
                 [results addObject:[UserModel userFromAVUser:user]];
@@ -628,7 +636,7 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
     [q includeKey:@"follower"];
     [q findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSMutableArray * results = nil;
-        if (error == nil && results.count > 0) {
+        if (error == nil && objects.count > 0) {
             results = [NSMutableArray array];
             for (AVUser * user in objects) {
                 [results addObject:[UserModel userFromAVUser:user]];

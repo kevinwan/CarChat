@@ -42,6 +42,8 @@ static NSString * const followerCellIdentifier = @"followerCell";
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.title = @"听众";
 
     [self setupDelegator];
     

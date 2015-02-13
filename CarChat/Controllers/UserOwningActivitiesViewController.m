@@ -45,6 +45,8 @@ static NSString * const activityCeleIdentifier = @"myActivityIdentifier";
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.title = @"活动";
 
     [self setupTableViewDelegator];
     

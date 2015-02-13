@@ -6,35 +6,42 @@
 //  Copyright (c) 2015年 GongPingJia. All rights reserved.
 //
 
-#import "MainActivitiesViewController.h"
+#import "SuggestActivitiesViewController.h"
 #import "ActivitiesCollectionDelegator.h"
 #import "ActivityModel.h"
 #import <UIImageView+WebCache.h>
 #import "GetSuggestActivitiesParameter.h"
 #import "EditActivityViewController.h"
+#import <SVPullToRefresh.h>
 
 static NSString * const activityCellIdentifier = @"activityCellIdentifier";
 
-@interface MainActivitiesViewController ()
+@interface SuggestActivitiesViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *suggestionTableView;
 @property (nonatomic, strong) NSMutableArray * activities;
 @property (nonatomic, strong) ActivitiesCollectionDelegator * tableDelegator;
 
 @end
 
-@implementation MainActivitiesViewController
+@implementation SuggestActivitiesViewController
 
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.navigationItem.title = @"活动";
+    self.navigationItem.title = @"推荐活动";
     [self setRightNavigationBarItem:@"创建" target:self andAction:@selector(gotoCreate)];
     
     [self setupDelegator];
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self
                                             forApi:ApiGetSuggestActivities];
+    
+    [self.suggestionTableView setShowsPullToRefresh:YES];
+    __weak typeof(self) weakSelf = self;
+    [self.suggestionTableView addPullToRefreshWithActionHandler:^{
+        [weakSelf requestSuggestActivities];
+    }];
     
     [self requestSuggestActivities];
 }
@@ -63,6 +70,7 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
 - (void)didGetResponseNotification:(ConcreteResponseObject *)response
 {
     [self hideHud];
+    [self.suggestionTableView.pullToRefreshView stopAnimating];
     if (response.error) {
         // failed
         [self showTip:response.error.localizedDescription];
@@ -71,6 +79,8 @@ static NSString * const activityCellIdentifier = @"activityCellIdentifier";
         // success
         NSString * api = response.api;
         if (api == ApiGetSuggestActivities) {
+            
+            [self.activities removeAllObjects];
             [self.activities addObjectsFromArray:(NSArray *)response.object];
             [self.suggestionTableView reloadData];
         }

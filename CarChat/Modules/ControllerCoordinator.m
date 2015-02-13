@@ -10,12 +10,12 @@
 #import "LoginViewController.h"
 #import "RegisterViewController.h"
 #import "ForgetPasswordViewController.h"
-#import "CompletePersonalInfoViewController.h"
 #import "ServerPolicyViewController.h"
 #import "InviteActivityDetailViewController.h"
 #import "InviteViewController.h"
 #import "AppDelegate.h"
 #import "UserOwningActivitiesViewController.h"
+#import "UserJoiningActivitiesViewController.h"
 #import "FollowingViewController.h"
 #import "FollowerViewController.h"
 #import "PersonalProfileViewController.h"
@@ -24,6 +24,7 @@
 #import "UserDetailViewController.h"
 #import "EditActivityViewController.h"
 #import "ParticipantsViewController.h"
+#import "SettingViewController.h"
 
 const NSInteger ShowLoginFromSomeWhereTag = 1;
 const NSInteger RegisterRegisterButtonTag = 101;
@@ -47,6 +48,10 @@ const NSInteger MyFollowingCellTag = 501;
 const NSInteger MyFollowerCellTag = 502;
 const NSInteger MyEditProfileTag = 503;
 const NSInteger MyEditProfileUploadCertifyButtonTag = 504;
+const NSInteger kMyOwningActivityButtonTag = 505;
+const NSInteger kMyJoiningActivityButtonTag = 506;
+const NSInteger kMyFollowingButtonTag = 507;
+const NSInteger kMySettingButtonTag = 508;
 const NSInteger kShowParticipantsTag = 600;
 const NSInteger kParticipantsCellTag = 601;
 
@@ -59,8 +64,9 @@ const NSInteger kParticipantsCellTag = 601;
     switch (tag) {
         case RegisterRegisterButtonTag:
         {
-            CompletePersonalInfoViewController * complete = [[CompletePersonalInfoViewController alloc]init];
-            [vc.navigationController pushViewController:complete
+            PersonalProfileViewController * profileVC = [[PersonalProfileViewController alloc]init];
+            UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:profileVC];
+            [vc.navigationController pushViewController:nav
                                                animated:YES];
         }
             break;
@@ -112,7 +118,7 @@ const NSInteger kParticipantsCellTag = 601;
                 currentTopContainer = vc.navigationController;
             }
             
-            UINavigationController * completeInfoNav = [[UINavigationController alloc]initWithRootViewController:[[CompletePersonalInfoViewController alloc]init]];
+            UINavigationController * completeInfoNav = [[UINavigationController alloc]initWithRootViewController:[[PersonalProfileViewController alloc]init]];
             [currentTopContainer presentViewController:completeInfoNav
                                               animated:YES
                                             completion:nil];
@@ -207,15 +213,33 @@ const NSInteger kParticipantsCellTag = 601;
             break;
         case MyEditProfileTag:
         {
-            PersonalProfileViewController * profileVC = [[PersonalProfileViewController alloc]initWithUserModel:(UserModel *)context];
-            UINavigationController * profileNav = [[UINavigationController alloc]initWithRootViewController:profileVC];
-            [vc.navigationController presentViewController:profileNav animated:YES completion:nil];
+            [vc.navigationController pushViewController:[[PersonalProfileViewController alloc]initWithUserModel:(UserModel *)context] animated:YES];
         }
             break;
         case MyEditProfileUploadCertifyButtonTag:
         {
             UploadCertifyProfileViewController *uploadVC = [[UploadCertifyProfileViewController alloc]initWithUserId:(NSString *)context];
             [vc.navigationController pushViewController:uploadVC animated:YES];
+        }
+            break;
+        case kMyFollowingButtonTag:
+        {
+            [vc.navigationController pushViewController:[[FollowingViewController alloc]initWithUserId:(NSString *)context] animated:YES];
+        }
+            break;
+        case kMyOwningActivityButtonTag:
+        {
+            [vc.navigationController pushViewController:[[UserOwningActivitiesViewController alloc]initWithUserId:(NSString *)context] animated:YES];
+        }
+            break;
+        case kMyJoiningActivityButtonTag:
+        {
+            [vc.navigationController pushViewController:[[UserJoiningActivitiesViewController alloc]initWithUserId:(NSString *)context] animated:YES];
+        }
+            break;
+        case kMySettingButtonTag:
+        {
+            [vc.navigationController pushViewController:[[SettingViewController alloc]init] animated:YES];
         }
             break;
         case kShowParticipantsTag:
@@ -228,6 +252,7 @@ const NSInteger kParticipantsCellTag = 601;
         {
             [vc.navigationController pushViewController:[[UserDetailViewController alloc]initWithUserId:(NSString *)context] animated:YES];
         }
+            break;
         default:
             break;
     }

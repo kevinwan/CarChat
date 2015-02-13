@@ -10,9 +10,6 @@
 #import "AbstractViewController.h"
 #import "UserModel.h"
 
-
-// TODO:重构这个类和completePersonalInfoViewCOntroller类，合并功能，复用
-
 @interface PersonalProfileViewController : AbstractViewController
 
 - (instancetype)initWithUserModel:(UserModel *)user;

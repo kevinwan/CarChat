@@ -88,4 +88,11 @@
 {
     return [[[AVUser currentUser] objectId] isEqualToString:identifier];
 }
+
+
+
++ (void)logoutCurrentUser
+{
+    [AVUser logOut];
+}
 @end

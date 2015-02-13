@@ -23,6 +23,7 @@ const CGFloat UserCellHeight = 66.f;
         [self.contentView addSubview:_avatar];
         
         _name = [[UILabel alloc]initWithFrame:CGRectZero];
+        [_name setFont:[UIFont systemFontOfSize:14.f]];
         [self.contentView addSubview:_name];
         
         _genderIcon = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, 20.f, 20.f)];

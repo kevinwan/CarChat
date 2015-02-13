@@ -13,6 +13,7 @@
 #import "UserModel+helper.h"
 #import "CreateActivityParameter.h"
 #import "ActivityModel+Helper.h"
+#import "ActivityInvitator.h"
 
 @interface EditActivityViewController ()
 
@@ -21,6 +22,8 @@
 @property (nonatomic, strong) ActivityModel * activity;
 
 @property (nonatomic, strong) ALAsset * asset;
+
+@property (nonatomic, strong) ActivityInvitator * invitator;
 
 @end
 
@@ -113,8 +116,9 @@
         [self showTip:response.error.localizedDescription];
     }
     else {
-        // 创建完成，发出邀请
-        [self sendInvitationWithCode:@"code"];
+//         创建完成，发出邀请
+        ActivityModel * m = response.object;
+        [self sendInvitationWithActivity:m];
     }
 }
 
@@ -168,9 +172,10 @@
     [[CCNetworkManager defaultManager] requestWithParameter:parameter];
 }
 
-- (void)sendInvitationWithCode:(NSString *)code
+- (void)sendInvitationWithActivity:(ActivityModel *)activity
 {
-    
+    self.invitator = [[ActivityInvitator alloc]initWithActivity:activity onViewController:self];
+    [self.invitator show];
 }
 
 @end

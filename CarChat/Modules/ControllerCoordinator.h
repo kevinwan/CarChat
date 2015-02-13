@@ -105,6 +105,22 @@ extern const NSInteger kShowParticipantsTag;
  *  点击某个活动成员
  */
 extern const NSInteger kParticipantsCellTag;
+/**
+ *  点击我创建的活动
+ */
+extern const NSInteger kMyOwningActivityButtonTag;
+/**
+ *  点击我的关注
+ */
+extern const NSInteger kMyFollowingButtonTag;
+/**
+ *  点击我加入的活动
+ */
+extern const NSInteger kMyJoiningActivityButtonTag;
+/**
+ *  点击我页面设置按钮
+ */
+extern const NSInteger kMySettingButtonTag;
 
 @interface ControllerCoordinator : NSObject
 

@@ -39,6 +39,7 @@ static NSInteger const kShouldUnfollowTag = 3;
                                           V
 */
 @property (nonatomic, strong) UserModel * user; // 查询到的user对象
+@property (nonatomic, strong) UserProfileCard * card;
 @property (nonatomic, strong) UserOwningActivitiesViewController * owningActivityVC;
 @property (nonatomic, strong) FollowingViewController * followingVC;
 @property (nonatomic, strong) UserJoiningActivitiesViewController * joiningActivityVC;
@@ -106,6 +107,7 @@ static NSInteger const kShouldUnfollowTag = 3;
         if (api == ApiGetUserInfo) {
             self.user = response.object;
             [self setupContentView];
+            [self configFollowButton];
         }
         else if (api == ApiFollowUser) {
             [self showTip:@"关注成功"];
@@ -125,29 +127,16 @@ static NSInteger const kShouldUnfollowTag = 3;
 #pragma mark - Internal Helper
 - (void)setupContentView
 {
-    UserProfileCard * card = [UserProfileCard view];
-    [card layoutWithUser:self.user];
-    [self.view addSubview:card];
-    [card setRelationshipTouched:^{
-        [self showLoading:@""];
-        if ([UserModel userIsCurrentUserFollowee:self.user]) {
-            // 关注用户，取关
-            UnfollowUserParameter * p = (UnfollowUserParameter *)[ParameterFactory parameterWithApi:ApiUnfollowUser];
-            [p setUserIdentifier:self.user.identifier];
-            [[CCNetworkManager defaultManager] requestWithParameter:p];
-        }
-        else {
-            // 未关注用户，关注
-            FollowUserParameter *p = (FollowUserParameter *)[ParameterFactory parameterWithApi:ApiFollowUser];
-            [p setUserIdentifier:self.user.identifier];
-            [[CCNetworkManager defaultManager] requestWithParameter:p];
-        }
-    }];
+    self.card = [UserProfileCard view];
+    [self.card layoutWithUser:self.user];
+//    [self.view addSubview:self.card];
     
+    
+    
+    CGRect restFrame = self.view.bounds;
     self.owningActivityVC = [[UserOwningActivitiesViewController alloc]initWithUserId:self.userId];
     self.followingVC = [[FollowingViewController alloc]initWithUserId:self.userId];
     self.joiningActivityVC = [[UserJoiningActivitiesViewController alloc]initWithUserId:self.userId];
-    CGRect restFrame = self.view.bounds;
 //    restFrame.origin.y = card.y + card.height;
 //    restFrame.size.height = restFrame.size.height - card.y - card.height;
     [self.owningActivityVC.view setFrame:restFrame];
@@ -163,27 +152,32 @@ static NSInteger const kShouldUnfollowTag = 3;
     [self.view addSubview:self.owningActivityVC.view];
     [self.owningActivityVC didMoveToParentViewController:self];
     
-    __weak typeof(self) weakRef = self;
-    __weak typeof(card) weakCard = card;
-    [card setOwningActivityTouched:^{
-        [weakRef.view bringSubviewToFront:weakRef.owningActivityVC.view];
-        [weakRef.owningActivityVC setTableHeader:weakCard];
+    __weak typeof(self) weakSelf = self;
+    __weak typeof(_card) weakCard = self.card;
+    [self.card setOwningActivityTouched:^{
+        [weakSelf.view bringSubviewToFront:weakSelf.owningActivityVC.view];
+        [weakSelf.followingVC setTableHeader:nil];
+        [weakSelf.joiningActivityVC setTableHeader:nil];
+        [weakSelf.owningActivityVC setTableHeader:weakCard];
     }];
-    [card setFollowingTouched:^{
-        [weakRef.view bringSubviewToFront:weakRef.followingVC.view];
-        [weakRef.followingVC setTableHeader:weakCard];
+    [self.card setFollowingTouched:^{
+        [weakSelf.view bringSubviewToFront:weakSelf.followingVC.view];
+        [weakSelf.joiningActivityVC setTableHeader:nil];
+        [weakSelf.owningActivityVC setTableHeader:nil];
+        [weakSelf.followingVC setTableHeader:weakCard];
     }];
-    [card setJoiningActivityTouched:^{
-        [weakRef.view bringSubviewToFront:weakRef.joiningActivityVC.view];
-        [weakRef.joiningActivityVC setTableHeader:weakCard];
+    [self.card setJoiningActivityTouched:^{
+        [weakSelf.view bringSubviewToFront:weakSelf.joiningActivityVC.view];
+        [weakSelf.followingVC setTableHeader:nil];
+        [weakSelf.owningActivityVC setTableHeader:nil];
+        [weakSelf.joiningActivityVC setTableHeader:weakCard];
     }];
     
-    [self.owningActivityVC setTableHeader:card];
+    [self.owningActivityVC setTableHeader:self.card];
 }
 
 - (void)requestUserInfo
 {
-#warning 在query方法中查询用户关系
     [self showLoading:@""];
     GetUserInfoParameter * p = (GetUserInfoParameter *)[ParameterFactory parameterWithApi:ApiGetUserInfo];
     p.userIdentifier = self.userId;
@@ -207,20 +201,26 @@ static NSInteger const kShouldUnfollowTag = 3;
     [self.followButton setHidden:hidden];
     
     if (hidden) {
-        self.owningActivityVC.view.height = self.followButton.y + kFollowButtonHeight;
-        self.joiningActivityVC.view.height = self.followButton.y + kFollowButtonHeight;
-        self.followingVC.view.height = self.followButton.y + kFollowButtonHeight;
+        self.owningActivityVC.view.height =
+        self.followButton.y + kFollowButtonHeight;
+        self.joiningActivityVC.view.height =
+        self.followButton.y + kFollowButtonHeight;
+        self.followingVC.view.height =
+        self.followButton.y + kFollowButtonHeight;
     }
     else {
-        self.owningActivityVC.view.height = self.followButton.y;
-        self.joiningActivityVC.view.height = self.followButton.y;
-        self.followingVC.view.height = self.followButton.y;
+        self.owningActivityVC.view.height =
+        self.followButton.y;
+        self.joiningActivityVC.view.height =
+        self.followButton.y;
+        self.followingVC.view.height =
+        self.followButton.y;
     }
 }
 
-- (void)configButton
+- (void)configFollowButton
 {
-    BOOL shouldHiddenFollowButton = [[UserModel currentUserId] isEqualToString:self.user.identifier];
+    BOOL shouldHiddenFollowButton = [[UserModel currentUserId] isEqualToString:self.user.identifier] || [UserModel currentUser] == nil;
     [self setFollowButtonHidden:shouldHiddenFollowButton];
     if (shouldHiddenFollowButton) {
         return;

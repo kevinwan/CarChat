@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainActivitiesViewController : AbstractViewController
+@interface SuggestActivitiesViewController : AbstractViewController
 
 @end

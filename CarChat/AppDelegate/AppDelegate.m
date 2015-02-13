@@ -7,7 +7,7 @@
 //
 
 #import "AppDelegate.h"
-#import "MainActivitiesViewController.h"
+#import "SuggestActivitiesViewController.h"
 #import "MyViewController.h"
 #import <SCLAlertView.h>
 #import "ActivityModel.h"
@@ -51,12 +51,13 @@ static const NSInteger MyNavItemTag = 2;
     _window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     UITabBarController * rootTabbar = [[UITabBarController alloc]init];
     [rootTabbar.tabBar setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]]];
+    [rootTabbar setEdgesForExtendedLayout:UIRectEdgeNone];
     NSDictionary * titleAttr = @{
                                 NSFontAttributeName:[UIFont boldSystemFontOfSize:18.f]
                                 };
     UIOffset titleOffset = UIOffsetMake(0.f, -12.f);
     // item 1 - suggest
-    MainActivitiesViewController * suggestVC = [[MainActivitiesViewController alloc]init];
+    SuggestActivitiesViewController * suggestVC = [[SuggestActivitiesViewController alloc]init];
     suggestVC.title = @"活动";
     suggestVC.tabBarItem = [[UITabBarItem alloc]initWithTitle:suggestVC.title image:nil tag:SuggestNavItemTag];
     [suggestVC.tabBarItem setTitleTextAttributes:titleAttr

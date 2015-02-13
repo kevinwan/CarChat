@@ -44,19 +44,19 @@
         [self addSubview:self.certifyView];
         
         UILabel * staticLB = [[UILabel alloc]initWithFrame:CGRectMake(25.f, 105.f, 54.f, 20.f)];
-        [staticLB setText:@"TA的发布"];
+        [staticLB setText:@"发布"];
         [staticLB setFont:[UIFont systemFontOfSize:12.f]];
         [staticLB setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:staticLB];
         
         staticLB = [[UILabel alloc]initWithFrame:CGRectMake(127.f, 105.f, 67.f, 20.f)];
-        [staticLB setText:@"TA的关注"];
+        [staticLB setText:@"关注"];
         [staticLB setFont:[UIFont systemFontOfSize:12.f]];
         [staticLB setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:staticLB];
         
         staticLB = [[UILabel alloc]initWithFrame:CGRectMake(235.f, 105.f, 64.f, 20.f)];
-        [staticLB setText:@"TA的参与"];
+        [staticLB setText:@"参与"];
         [staticLB setFont:[UIFont systemFontOfSize:12.f]];
         [staticLB setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:staticLB];
@@ -125,7 +125,7 @@
     [self.certifyView setBackgroundColor:[UIColor yellowColor]];
     
     NSString * countOfActivity = user.countOfOwning ? user.countOfOwning.stringValue : @"0";
-    NSString * countOfFollowing = user.countOfFollowing ? user.countOfFollower.stringValue : @"0";
+    NSString * countOfFollowing = user.countOfFollowing ? user.countOfFollowing.stringValue : @"0";
     NSString * countOfJoining = user.countOfJoining ? user.countOfJoining.stringValue : @"0";
     
     [self.owingActivityNumButton setTitle:countOfActivity forState:UIControlStateNormal];
@@ -180,9 +180,9 @@
     }
 }
 
-- (void)touchRelationshipButton:(id)sender {
-    if (self.relationshipTouched) {
-        self.relationshipTouched();
-    }
-}
+//- (void)touchRelationshipButton:(id)sender {
+//    if (self.relationshipTouched) {
+//        self.relationshipTouched();
+//    }
+//}
 @end

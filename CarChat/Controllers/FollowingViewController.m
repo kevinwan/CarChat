@@ -45,6 +45,8 @@ static NSString * const followingCellIdentifier = @"followingCell";
 #pragma mark - View Lifecycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.title = @"关注";
 
     [self setupDelegator];
     

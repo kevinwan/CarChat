@@ -21,6 +21,5 @@
 @property (nonatomic, strong) void(^owningActivityTouched)(void);
 @property (nonatomic, strong) void(^followingTouched)(void);
 @property (nonatomic, strong) void(^joiningActivityTouched)(void);
-@property (nonatomic, strong) void(^relationshipTouched)(void);
 
 @end
