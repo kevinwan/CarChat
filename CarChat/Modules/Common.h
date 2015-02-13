@@ -50,5 +50,8 @@ typedef NS_ENUM(NSInteger, SendingInvitationVia) {
     SendingInvitationViaInApp
 };
 
+// 修正图片方向
+UIImage * fixOrientation(UIImage * srcImg);
+
 #define kInviteTextContentWithInviteCode(x) [NSString stringWithFormat:@"我在“车聊”{{url}}创建了一个活动，邀请码是%@,等你来加入哟",(x)]
 #endif

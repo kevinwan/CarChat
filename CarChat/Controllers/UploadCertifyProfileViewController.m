@@ -63,7 +63,7 @@
     LOG_EXPR(assets);
     self.asset = assets[0];
     [self.scanLicenseButton setTitle:nil forState:UIControlStateNormal];
-    [self.scanLicenseButton setBackgroundImage:[UIImage imageWithCGImage: self.asset.defaultRepresentation.fullResolutionImage] forState:UIControlStateNormal];
+    [self.scanLicenseButton setBackgroundImage:[UIImage imageWithCGImage: self.asset.aspectRatioThumbnail] forState:UIControlStateNormal];
     [self enableSubmitButton];
 }
 

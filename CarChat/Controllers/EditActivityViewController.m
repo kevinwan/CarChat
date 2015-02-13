@@ -70,7 +70,7 @@
                                animated:YES
                              completion:nil];
         CFRunLoopRun();
-        return [UIImage imageWithCGImage: _weakRef.asset.defaultRepresentation.fullResolutionImage];
+        return [UIImage imageWithCGImage: _weakRef.asset.aspectRatioThumbnail];
     }];
     self.view = v;
     

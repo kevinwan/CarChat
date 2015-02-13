@@ -55,7 +55,7 @@
 {
     if (activity.posterImage) {
         UIImage * posterImage = activity.posterImage;
-        [self.posterView setImage:posterImage];
+        [self.posterView setImage:fixOrientation(posterImage)];
         self.userChoosedPoster = posterImage;
         self.originPosterUrl = nil;
     }
@@ -96,7 +96,7 @@
     if (self.choosePosterBlock) {
         UIImage * posterImage = self.choosePosterBlock();
         if (posterImage) {
-            [self.posterView setImage:posterImage];
+            [self.posterView setImage:fixOrientation(posterImage)];
             [self.posterView setNeedsDisplay];
         }
     }

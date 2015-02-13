@@ -229,7 +229,7 @@
 - (void)UzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
 {
     self.asset = assets[0];
-    [self.avatar setImage:[UIImage imageWithCGImage: self.asset.defaultRepresentation.fullResolutionImage]];
+    [self.avatar setImage:fixOrientation([UIImage imageWithCGImage:self.asset.aspectRatioThumbnail])];
 }
 
 - (void)UzysAssetsPickerControllerDidCancel:(UzysAssetsPickerController *)picker
@@ -263,7 +263,7 @@
     par.age = self.age.text;
     par.city = self.city.text;
     par.gender = self.gender.selectedSegmentIndex + 1;
-    par.avatar = UIImageJPEGRepresentation(self.avatar.image, .1);
+    par.avatar = UIImagePNGRepresentation(self.avatar.image);
     [[CCNetworkManager defaultManager] requestWithParameter:par];
 }
 

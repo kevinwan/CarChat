@@ -173,7 +173,7 @@ BOOL ImageDataHasPNGPreffix(NSData *data) {
                     data = UIImagePNGRepresentation(image);
                 }
                 else {
-                    data = UIImageJPEGRepresentation(image, (CGFloat)1.0);
+                    data = UIImagePNGRepresentation(image);
                 }
 #else
                 data = [NSBitmapImageRep representationOfImageRepsInArray:image.representations usingType: NSJPEGFileType properties:nil];

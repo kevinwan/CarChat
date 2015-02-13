@@ -446,7 +446,7 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
     // 创建邀请码
     NSString * invitationCode = [self getUnusedInviteCode];
     // 先保存图片
-    AVFile * poster = [AVFile fileWithName:@"poster.jpg" data:UIImageJPEGRepresentation(parameter.poster, .2)];
+    AVFile * poster = [AVFile fileWithName:@"poster.jpg" data:UIImagePNGRepresentation(parameter.poster)];
     [poster saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         // 保存图片成功之后保存活动数据
         if (succeeded) {

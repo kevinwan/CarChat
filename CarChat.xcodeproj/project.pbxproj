@@ -24,6 +24,7 @@
 		A50367791A7BD3D300CACE08 /* ActivityModel+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = A50367781A7BD3D300CACE08 /* ActivityModel+Helper.m */; };
 		A503677C1A7CC47A00CACE08 /* ReplyInvitationParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A503677B1A7CC47A00CACE08 /* ReplyInvitationParameter.m */; };
 		A503677F1A7CD90F00CACE08 /* GetParticipantsParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A503677E1A7CD90F00CACE08 /* GetParticipantsParameter.m */; };
+		A526C1311A8E614D0032813A /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = A526C1301A8E614D0032813A /* Common.m */; };
 		A58BCEA31A867D4D00C2300B /* GetUserOwningActivitiesParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEA21A867D4D00C2300B /* GetUserOwningActivitiesParameter.m */; };
 		A58BCEA61A86803100C2300B /* SubmitCertificationProfileParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEA51A86803100C2300B /* SubmitCertificationProfileParameter.m */; };
 		A58BCEA91A86808500C2300B /* GetActivitiesDetailParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEA81A86808500C2300B /* GetActivitiesDetailParameter.m */; };
@@ -168,6 +169,7 @@
 		A503677B1A7CC47A00CACE08 /* ReplyInvitationParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplyInvitationParameter.m; sourceTree = "<group>"; };
 		A503677D1A7CD90F00CACE08 /* GetParticipantsParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetParticipantsParameter.h; sourceTree = "<group>"; };
 		A503677E1A7CD90F00CACE08 /* GetParticipantsParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetParticipantsParameter.m; sourceTree = "<group>"; };
+		A526C1301A8E614D0032813A /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
 		A58BCEA11A867D4D00C2300B /* GetUserOwningActivitiesParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetUserOwningActivitiesParameter.h; sourceTree = "<group>"; };
 		A58BCEA21A867D4D00C2300B /* GetUserOwningActivitiesParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetUserOwningActivitiesParameter.m; sourceTree = "<group>"; };
 		A58BCEA41A86803100C2300B /* SubmitCertificationProfileParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmitCertificationProfileParameter.h; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 				BAB11C791A666793007FDE38 /* CollectionDelegator */,
 				7EF6A0141A641E510022DBCE /* Networking */,
 				BAB11C9E1A68F7A1007FDE38 /* Common.h */,
+				A526C1301A8E614D0032813A /* Common.m */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -1012,6 +1015,7 @@
 				BADD16D81A7A17DD004AE9FC /* GetFollowingParameter.m in Sources */,
 				BAB810A21A63C1A100142DDA /* UserCreatActivityDescriptionView.m in Sources */,
 				A58BCEBE1A8BB82700C2300B /* ParticipantsViewController.m in Sources */,
+				A526C1311A8E614D0032813A /* Common.m in Sources */,
 				BA6BC7251A63627B00DA033C /* LoginViewController.m in Sources */,
 				A503677F1A7CD90F00CACE08 /* GetParticipantsParameter.m in Sources */,
 				BAB11CA91A69FE5B007FDE38 /* ActivityCell.m in Sources */,
