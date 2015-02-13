@@ -107,14 +107,17 @@ static NSInteger const kShouldUnfollowTag = 3;
         if (api == ApiGetUserInfo) {
             self.user = response.object;
             [self setupContentView];
-            [self configFollowButton];
         }
         else if (api == ApiFollowUser) {
             [self showTip:@"关注成功"];
+            self.user.relationship |= RelationshipFollowing;
         }
         else if (api == ApiUnfollowUser) {
             [self showTip:@"取消关注成功"];
+            self.user.relationship &= ~RelationshipFollowing;
         }
+        
+        [self configFollowButton];
     }
 }
 

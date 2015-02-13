@@ -79,6 +79,7 @@
     UITableView * t = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [t setDelegate:self];
     [t setDataSource:self];
+    [t setTableFooterView:[UIView new]];
     [self.view addSubview:t];
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiSetPersonalInfo];
@@ -126,7 +127,7 @@
             // avatar
             cell.textLabel.text = @"头像";
             self.avatar.x = 250.f;
-            self.avatar.y = 2.f;
+            self.avatar.y = 3.f;
             [cell.contentView addSubview:self.avatar];
         }
             break;
@@ -135,9 +136,9 @@
             // nickname
             cell.textLabel.text = @"昵称";
             self.nickName.x = 60.f;
-            self.nickName.y = 5.f;
+            self.nickName.y = 9.f;
             self.nickName.width = 226.f;
-            self.nickName.height = 30.f;
+            self.nickName.height = 26.f;
             [cell.contentView addSubview:self.nickName];
         }
             break;
@@ -146,9 +147,9 @@
             // age
             cell.textLabel.text = @"年龄";
             self.age.x = 60.f;
-            self.age.y = 5.f;
+            self.age.y = 9.f;
             self.age.width = 226.f;
-            self.age.height = 30.f;
+            self.age.height = 26.f;
             [cell.contentView addSubview:self.age];
         }
             break;
@@ -157,9 +158,9 @@
             // gender
             cell.textLabel.text = @"性别";
             self.gender.x = 160.f;
-            self.gender.y = 5.f;
+            self.gender.y = 9.f;
             self.gender.width = 126.f;
-            self.gender.height = 30.f;
+            self.gender.height = 26.f;
             [cell.contentView addSubview:self.gender];
         }
             break;
@@ -168,9 +169,9 @@
             // city
             cell.textLabel.text = @"城市";
             self.city.x = 60.f;
-            self.city.y = 5.f;
+            self.city.y = 9.f;
             self.city.width = 226.f;
-            self.city.height = 30.f;
+            self.city.height = 26.f;
             [cell.contentView addSubview:self.city];
         }
             break;

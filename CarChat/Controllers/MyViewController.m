@@ -55,7 +55,8 @@
 #pragma mark - CCNetworkResponse
 - (void)didGetResponseNotification:(ConcreteResponseObject *)response
 {
-    if (![response.parameter.uniqueId isEqualToString:self.description]) {
+    if (response.parameter.api == ApiGetUserInfo
+        && ![response.parameter.uniqueId isEqualToString:self.description]) {
         return;
     }
     

@@ -315,10 +315,9 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
         
         if ([AVUser currentUser]) {
             // 如果当前用户已经登陆，查询目标用户与当前用户关系
-            AVQuery * q4TargetFollowee = [queryResult followerQuery];
-            [q4TargetFollowee whereKey:@"objectId" equalTo:[AVUser currentUser].objectId];
-            if ([q4TargetFollowee countObjects] > 0) {
-                // 说明当前用户在目标用户的follower表中
+            AVQuery * q4TargetFollower = [queryResult followerQuery];
+            [q4TargetFollower whereKey:@"follower" equalTo:[AVUser currentUser]];
+            if ([q4TargetFollower countObjects] > 0) {
                 user.relationship = RelationshipFollowing;
             }
 
@@ -428,7 +427,7 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
     AVQuery * query = [activity relationforKey:@"participants"].query;
     [query whereKey:@"objectId" equalTo:[AVUser currentUser].objectId];
     NSArray * users = [query findObjects];
-    if (users.count == 0 && [[(AVUser *)[activity objectForKey:@"owner"] objectId] isEqualToString:[AVUser currentUser].objectId]) {
+    if (users.count == 0 && ![[(AVUser *)[activity objectForKey:@"owner"] objectId] isEqualToString:[AVUser currentUser].objectId]) {
         [self raiseResponseWithObj:nil error:[NSError errorWithDomain:@"无法评论没有参加的活动" code:-1 userInfo:nil] andRequestParameter:parameter];
         return;
     }
@@ -536,8 +535,7 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
 - (void)FollowUser:(FollowUserParameter *)parameter
 {
     AVUser * current = [AVUser currentUser];
-    AVQuery * targetUserQuery = [AVUser query];
-    AVUser * targetUser = (AVUser *)[targetUserQuery getObjectWithId:parameter.userIdentifier];
+    AVUser * targetUser = [AVQuery getUserObjectWithId:parameter.userIdentifier];
     if (!targetUser) {
         [self raiseResponseWithObj:nil error:[NSError errorWithDomain:@"" code:-1 userInfo:nil] andRequestParameter:parameter];
         return;
@@ -578,7 +576,7 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
 - (void)UnfollowUser:(UnfollowUserParameter *)parameter
 {
     AVUser * current = [AVUser currentUser];
-    AVUser * targetUser = [AVUser objectWithoutDataWithClassName:@"_User" objectId:parameter.userIdentifier];
+    AVUser * targetUser = [AVQuery getUserObjectWithId:parameter.userIdentifier];
     if (!targetUser) {
         [self raiseResponseWithObj:nil error:[NSError errorWithDomain:@"" code:-1 userInfo:nil] andRequestParameter:parameter];
         return;
@@ -594,22 +592,23 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
               // unfollow操作成功
               [current incrementKey:@"countOfFollowing" byAmount:@(-1)];
               [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                  if (!succeeded) {
-                      [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
-                      return ;
-                  }
+//                  if (!succeeded) {
+                  [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+//                      return ;
+//                  }
                   
                   // 当前用户countOfFOllowing －－ 成功
-                  [targetUser incrementKey:@"countOfFollower" byAmount:@(-1)];
-                  [targetUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                      if (!succeeded) {
-                          [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
-                          return ;
-                      }
-                      
-                      // 目标用户countOfFollower－－成功
-                      [self raiseResponseWithObj:nil error:nil andRequestParameter:parameter];
-                  }];
+                  // 暂时不需要对目标用户做－－操作，也无法做到
+//                  [targetUser incrementKey:@"countOfFollower" byAmount:@(-1)];
+//                  [targetUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//                      if (!succeeded) {
+//                          [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+//                          return ;
+//                      }
+//                      
+//                      // 目标用户countOfFollower－－成功
+//                      [self raiseResponseWithObj:nil error:nil andRequestParameter:parameter];
+//                  }];
               }];
           }];
 }

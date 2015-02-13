@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumber;
 @property (weak, nonatomic) IBOutlet UITextField *verifyCode;
 @property (weak, nonatomic) IBOutlet UITextField *password;
-@property (nonatomic, assign) BOOL acceptServerPolicy;
+//@property (nonatomic, assign) BOOL acceptServerPolicy;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
 @end
@@ -112,10 +112,10 @@
         return;
     }
     
-    if (!self.acceptServerPolicy) {
-        [self showTip:@"请阅读并同意服务条款"];
-        return;
-    }
+//    if (!self.acceptServerPolicy) {
+//        [self showTip:@"请阅读并同意服务条款"];
+//        return;
+//    }
     
     [self showLoading:@"正在验证手机"];
     
@@ -127,16 +127,16 @@
 
 - (IBAction)checkIAgreePolicy:(UIButton *)sender
 {
-    if (sender.tag != 0) {
-        [sender setBackgroundColor:[UIColor redColor]];
-        sender.tag = 0;
-        self.acceptServerPolicy = NO;
-    }
-    else {
-        [sender setBackgroundColor:[UIColor greenColor]];
-        sender.tag = 1;
-        self.acceptServerPolicy = YES;
-    }
+//    if (sender.tag != 0) {
+//        [sender setBackgroundColor:[UIColor redColor]];
+//        sender.tag = 0;
+//        self.acceptServerPolicy = NO;
+//    }
+//    else {
+//        [sender setBackgroundColor:[UIColor greenColor]];
+//        sender.tag = 1;
+//        self.acceptServerPolicy = YES;
+//    }
 }
 
 - (IBAction)serverPolicy:(id)sender
