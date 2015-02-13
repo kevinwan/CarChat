@@ -17,6 +17,7 @@
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *posterView;
+@property (weak, nonatomic) IBOutlet UIImageView *posterMaskView;
 
 
 //  用户选择的图片文件。如果用户自己选择了图片，创建model时就用这个。
@@ -55,7 +56,7 @@
 {
     if (activity.posterImage) {
         UIImage * posterImage = activity.posterImage;
-        [self.posterView setImage:fixOrientation(posterImage)];
+        [self.posterView setImage:(posterImage)];
         self.userChoosedPoster = posterImage;
         self.originPosterUrl = nil;
     }
@@ -70,6 +71,9 @@
     self.toDate.text = activity.toDate;
     self.payType.text = activity.payTypeText;
     self.tip.text = activity.notice;
+    
+    [self.posterMaskView setHidden:YES];
+    [self checkIfAllFieldTexted];
 }
 
 - (void)beginEdit
@@ -96,7 +100,8 @@
     if (self.choosePosterBlock) {
         UIImage * posterImage = self.choosePosterBlock();
         if (posterImage) {
-            [self.posterView setImage:fixOrientation(posterImage)];
+            [self.posterMaskView setHidden:YES];
+            [self.posterView setImage:(posterImage)];
             [self.posterView setNeedsDisplay];
         }
     }

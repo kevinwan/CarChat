@@ -9,11 +9,13 @@
 #import "UploadCertifyProfileViewController.h"
 #import <UzysAssetsPickerController.h>
 #import "NSString+Helpers.h"
+#import "SubmitCertificationProfileParameter.h"
 
 @interface UploadCertifyProfileViewController ()
-@property (nonatomic, copy) NSString * userID;
 @property (weak, nonatomic) IBOutlet UITextField *plateNOFiled;
-@property (weak, nonatomic) IBOutlet UIButton *scanLicenseButton;
+@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *plateImageView;
 @property (nonatomic, strong) ALAsset * asset;
 
 @end
@@ -21,19 +23,11 @@
 @implementation UploadCertifyProfileViewController
 
 #pragma mark - Lifecycle
-- (instancetype)initWithUserId:(NSString *)userId
-{
-    if (self = [super init]) {
-        self.userID = userId;
-        
-        return self;
-    }
-    return nil;
-}
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextFieldTextDidChangeNotification object:self.plateNOFiled];
+    [[CCNetworkManager defaultManager] removeObserver:self forApi:ApiSubmitCertificationProfile];
 }
 
 #pragma mark - View Lifecycle
@@ -45,11 +39,14 @@
                              target:self
                           andAction:@selector(submit)];
     [self.navigationItem.rightBarButtonItem setEnabled:NO];
+    [self setLeftNavigationBarItem:@"关闭" target:self andAction:@selector(dismissSelf)];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(enableSubmitButton)
+                                             selector:@selector(refreshSubmitButton)
                                                  name:UITextFieldTextDidChangeNotification
                                                object:self.plateNOFiled];
+    
+    [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiSubmitCertificationProfile];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -57,19 +54,34 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - CCNetworkResponse
+- (void)didGetResponseNotification:(ConcreteResponseObject *)response
+{
+    [self hideHud];
+    
+    if (response.error) {
+        [self showTip:response.error.localizedDescription];
+    }
+    else {
+        [self showTip:@"上传成功" whenDone:^{
+            [self dismissSelf];
+        }];
+    }
+}
+
 #pragma mark - UzysAssetsPickerControllerDelegate
 - (void)UzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
 {
-    LOG_EXPR(assets);
     self.asset = assets[0];
-    [self.scanLicenseButton setTitle:nil forState:UIControlStateNormal];
-    [self.scanLicenseButton setBackgroundImage:[UIImage imageWithCGImage: self.asset.aspectRatioThumbnail] forState:UIControlStateNormal];
-    [self enableSubmitButton];
+    [self.uploadButton setHidden:YES];
+    [self.tipLabel setHidden:YES];
+    [self.plateImageView setImage:[UIImage imageWithCGImage: self.asset.aspectRatioThumbnail]];
+    [self refreshSubmitButton];
 }
 
 - (void)UzysAssetsPickerControllerDidCancel:(UzysAssetsPickerController *)picker
 {
-    [self enableSubmitButton];
+    [self refreshSubmitButton];
 }
 
 - (void)UzysAssetsPickerControllerDidExceedMaximumNumberOfSelection:(UzysAssetsPickerController *)picker
@@ -80,7 +92,11 @@
 #pragma mark - User Interaction
 - (void)submit
 {
-    // TODO: network request
+    [self showLoading:@"正在上传"];
+    SubmitCertificationProfileParameter * p = (SubmitCertificationProfileParameter *)[ParameterFactory parameterWithApi:ApiSubmitCertificationProfile];
+    p.plateNO = self.plateNOFiled.text;
+    p.licenseImage = [UIImage imageWithCGImage:self.asset.defaultRepresentation.fullResolutionImage];
+    [[CCNetworkManager defaultManager] requestWithParameter:p];
 }
 
 - (IBAction)pickLicenseImage:(id)sender
@@ -94,7 +110,7 @@
 }
 
 #pragma mark - Internal Helper
-- (void)enableSubmitButton
+- (void)refreshSubmitButton
 {
     [self.navigationItem.rightBarButtonItem setEnabled:(![self.plateNOFiled.text isBlank]) && self.asset];
 }

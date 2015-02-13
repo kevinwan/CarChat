@@ -10,4 +10,7 @@
 
 @interface SubmitCertificationProfileParameter : ABCParameter
 
+@property (nonatomic, copy) NSString * plateNO;
+@property (nonatomic, strong) UIImage * licenseImage;
+
 @end

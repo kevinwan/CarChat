@@ -10,6 +10,4 @@
 
 @interface UploadCertifyProfileViewController : AbstractViewController
 
-- (instancetype)initWithUserId:(NSString *)userId;
-
 @end

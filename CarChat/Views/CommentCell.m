@@ -30,8 +30,8 @@ const CGFloat cellHeight = 114.f;
         [_genderIcon makeRoundIfIsSquare];
         [self.contentView addSubview:_genderIcon];
         
-        _certifyIcon = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, 20.f, 20.f)];
-        [_certifyIcon makeRoundIfIsSquare];
+        _certifyIcon = [[UIImageView alloc]initWithFrame:CGRectMake(0.f, 0.f, 40.f, 20.f)];
+        [_certifyIcon setContentMode:UIViewContentModeCenter];
         [self.contentView addSubview:_certifyIcon];
         
         _contentLabel = [[UILabel alloc]initWithFrame:CGRectZero];
@@ -50,7 +50,7 @@ const CGFloat cellHeight = 114.f;
     
     [self.avatar setFrame:CGRectMake(8.f, 8.f, 50.f, 50.f)];
     [self.genderIcon setFrame:CGRectMake(66.f, 8.f, 20.f, 20.f)];
-    [self.certifyIcon setFrame:CGRectMake(94.f, 8.f, 20.f, 20.f)];
+    [self.certifyIcon setFrame:CGRectMake(94.f, 8.f, 40.f, 20.f)];
     [self.name setFrame:CGRectMake(66.f, 36.f, cellSize.width - 66.f - 8.f, 22.f)];
     [self.contentLabel setFrame:CGRectMake(8.f, 66.f, cellSize.width - 16.f, 32.f)];
 }

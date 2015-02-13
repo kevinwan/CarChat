@@ -9,6 +9,7 @@
 #import "ActivityInvitator.h"
 #import <MessageUI/MessageUI.h>
 #import "AppDelegate.h"
+#import "UserModel+helper.h"
 
 @interface ActivityInvitator ()
 
@@ -30,12 +31,25 @@
 
 - (void)show
 {
-    UIActionSheet * as = [[UIActionSheet alloc]initWithTitle:@"发送邀请"
-                                                    delegate:(id<UIActionSheetDelegate>)self
-                                           cancelButtonTitle:@"取消"
-                                      destructiveButtonTitle:nil
-                                           otherButtonTitles:@"短信", @"邮件", @"微信好友", @"微信朋友圈", nil];
-    [as showInView:self.targetVc.view];
+    CertifyStatus st = [UserModel currentUserCertifyStatus];
+    if (st == CertifyStatusVerifyed) {
+        UIActionSheet * as = [[UIActionSheet alloc]initWithTitle:@"发送邀请"
+                                                        delegate:(id<UIActionSheetDelegate>)self
+                                               cancelButtonTitle:@"取消"
+                                          destructiveButtonTitle:nil
+                                               otherButtonTitles:@"短信", @"邮件", @"微信好友", @"微信朋友圈", nil];
+        [as showInView:self.targetVc.view];
+    }
+    else if (st == CertifyStatusVerifying) {
+        UIAlertView * a = [[UIAlertView alloc]initWithTitle:@"抱歉" message:@"您的认证材料正在审核，审核通过后方可发起邀请" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [a show];
+    }
+    else if (st == CertifyStatusUnverifyed) {
+        UIAlertView * a = [[UIAlertView alloc]initWithTitle:@"抱歉" message:@"只有认证车主才能发出活动邀请，请在“我的”页面上传认证材料" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [a show];
+    }
+    
+    
 }
 
 #pragma mark - UIActionSheetDelegate

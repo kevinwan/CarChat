@@ -47,7 +47,7 @@ const NSInteger MyActivityCellTag = 500;
 const NSInteger MyFollowingCellTag = 501;
 const NSInteger MyFollowerCellTag = 502;
 const NSInteger MyEditProfileTag = 503;
-const NSInteger MyEditProfileUploadCertifyButtonTag = 504;
+const NSInteger kShowUploadPlateFromSomewhereTag = 504;
 const NSInteger kMyOwningActivityButtonTag = 505;
 const NSInteger kMyJoiningActivityButtonTag = 506;
 const NSInteger kMyFollowingButtonTag = 507;
@@ -140,8 +140,8 @@ const NSInteger kParticipantsCellTag = 601;
             break;
         case SuggestActivitiesSelectItem:
         {
-            UserCreatedActivityViewController * detail = [[UserCreatedActivityViewController alloc]initWithActivity:(ActivityModel *)context];
-            [vc.navigationController pushViewController:detail animated:YES];
+            EditActivityViewController * edit = [[EditActivityViewController alloc]initWithActivity:(ActivityModel *)context];
+            [vc.navigationController pushViewController:edit animated:YES];
         }
             break;
         case CreatedActivityCloseButtonItemTag:
@@ -216,10 +216,11 @@ const NSInteger kParticipantsCellTag = 601;
             [vc.navigationController pushViewController:[[PersonalProfileViewController alloc]initWithUserModel:(UserModel *)context] animated:YES];
         }
             break;
-        case MyEditProfileUploadCertifyButtonTag:
+        case kShowUploadPlateFromSomewhereTag:
         {
-            UploadCertifyProfileViewController *uploadVC = [[UploadCertifyProfileViewController alloc]initWithUserId:(NSString *)context];
-            [vc.navigationController pushViewController:uploadVC animated:YES];
+            UploadCertifyProfileViewController *uploadVC = [[UploadCertifyProfileViewController alloc]init];
+            UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:uploadVC];
+            [vc.navigationController presentViewController:nav animated:YES completion:nil];
         }
             break;
         case kMyFollowingButtonTag:

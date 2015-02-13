@@ -78,10 +78,10 @@
     return [AVUser currentUser] != nil;
 }
 
-+ (BOOL)isCurrentUserVerifyed
++ (CertifyStatus)currentUserCertifyStatus
 {
     AVUser * current = [AVUser currentUser];
-    return [[current objectForKey:@"certifyStatus"] integerValue] == CertifyStatusVerifyed;
+    return [[current objectForKey:@"certifyStatus"] integerValue];
 }
 
 + (BOOL)isCurrentUserId:(NSString *)identifier

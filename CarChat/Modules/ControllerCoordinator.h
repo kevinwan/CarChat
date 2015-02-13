@@ -94,9 +94,9 @@ extern const NSInteger MyFollowerCellTag;
  */
 extern const NSInteger MyEditProfileTag;
 /**
- *  在编辑资料页面，点击上传车主认证材料
+ *  在任何地方，上传车主认证材料
  */
-extern const NSInteger MyEditProfileUploadCertifyButtonTag;
+extern const NSInteger kShowUploadPlateFromSomewhereTag;
 /**
  *  显示活动的参加人
  */

@@ -229,7 +229,7 @@
 - (void)UzysAssetsPickerController:(UzysAssetsPickerController *)picker didFinishPickingAssets:(NSArray *)assets
 {
     self.asset = assets[0];
-    [self.avatar setImage:fixOrientation([UIImage imageWithCGImage:self.asset.aspectRatioThumbnail])];
+    [self.avatar setImage:([UIImage imageWithCGImage:self.asset.aspectRatioThumbnail])];
 }
 
 - (void)UzysAssetsPickerControllerDidCancel:(UzysAssetsPickerController *)picker

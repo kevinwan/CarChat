@@ -136,7 +136,7 @@ static CGFloat const kInputViewGrowHeight = 50.f;
         [cell.avatar sd_setImageWithURL:[NSURL URLWithString:item.user.avatarUrl]];
         cell.name.text = item.user.nickName;
         cell.genderIcon.image = item.user.genderImage;
-        [cell.certifyIcon sd_setImageWithURL:[NSURL URLWithString:item.user.avatarUrl]];
+        [cell.certifyIcon setImage:item.user.certifyStatusImage];
         cell.contentLabel.text = item.content;
     }];
     [self.tableDelegator setSelectingBlock:^(CommentModel * item) {

@@ -116,7 +116,8 @@
         [self showTip:response.error.localizedDescription];
     }
     else {
-//         创建完成，发出邀请
+        [self.view setUserInteractionEnabled:NO];
+        [_saveAndInviteButton setEnabled:NO];
         ActivityModel * m = response.object;
         [self sendInvitationWithActivity:m];
     }

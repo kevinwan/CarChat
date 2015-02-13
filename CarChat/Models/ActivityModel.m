@@ -74,6 +74,7 @@ static NSString * const boyAA = @"男士AA";
     model.invitationCode = [self.invitationCode copyWithZone:zone];
     model.notice = [self.notice copyWithZone:zone];
     model.countOfParticipants = [self.countOfParticipants copyWithZone:zone];
+    
     return model;
 }
 

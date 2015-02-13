@@ -27,6 +27,30 @@
     }
 }
 
+- (UIImage *)certifyStatusImage
+{
+    switch (self.certifyStatus) {
+        case CertifyStatusUnverifyed:
+        {
+            return [UIImage imageNamed:@"uncertify"];
+        }
+            break;
+        case CertifyStatusVerifying:
+        {
+            return [UIImage imageNamed:@"certifying"];
+        }
+            break;
+        case CertifyStatusVerifyed:
+        {
+            return [UIImage imageNamed:@"certifyed"];
+            break;
+        }
+        default:
+            return nil;
+            break;
+    }
+}
+
 #pragma mark - NSCopying
 - (instancetype)copyWithZone:(NSZone *)zone
 {

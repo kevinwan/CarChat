@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
@@ -112,6 +112,10 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="posterAdd.png" id="Mxj-6z-JTT">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -120,11 +124,12 @@
                 <outlet property="fromDate" destination="1ld-F5-HYZ" id="pqP-pS-dFF"/>
                 <outlet property="name" destination="siX-ha-tz3" id="3ug-1y-2Ch"/>
                 <outlet property="payType" destination="7Xw-0V-nN3" id="rDo-bC-H24"/>
+                <outlet property="posterMaskView" destination="Mxj-6z-JTT" id="ryf-f0-ms0"/>
                 <outlet property="posterView" destination="xwa-Ac-Gbr" id="sap-Bq-MSj"/>
                 <outlet property="tip" destination="Vri-Xm-YsZ" id="i6j-f0-D0I"/>
                 <outlet property="toDate" destination="eZi-Bq-Klc" id="USK-dQ-TBb"/>
             </connections>
-            <point key="canvasLocation" x="359" y="438"/>
+            <point key="canvasLocation" x="280" y="449"/>
         </view>
         <tapGestureRecognizer id="z5k-KG-1Dg">
             <connections>
@@ -132,6 +137,9 @@
             </connections>
         </tapGestureRecognizer>
     </objects>
+    <resources>
+        <image name="posterAdd.png" width="70" height="70"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

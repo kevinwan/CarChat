@@ -107,11 +107,12 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
     if (indexPath.row == 0) {
         [ControllerCoordinator goNextFrom:self whitTag:MyEditProfileTag andContext:[UserModel currentUser]];
     }
     else if (indexPath.row == 1) {
-        LOG_EXPR(@"车主认证");
+        [ControllerCoordinator goNextFrom:self whitTag:kShowUploadPlateFromSomewhereTag andContext:nil];
     }
 //    else if (indexPath.row == 2) {
 //        LOG_EXPR(@"相册管理");

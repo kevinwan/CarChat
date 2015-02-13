@@ -29,8 +29,8 @@
 + (NSString *)currentUserId;
 // 是否已登陆
 + (BOOL)isLoged;
-// 用户是否已验证
-+ (BOOL)isCurrentUserVerifyed;
+// 用户当前验证状态
++ (CertifyStatus)currentUserCertifyStatus;
 // 是否是当前登陆用户的id
 + (BOOL)isCurrentUserId:(NSString *)identifier;
 

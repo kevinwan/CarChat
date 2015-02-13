@@ -87,7 +87,7 @@ static NSString * const followerCellIdentifier = @"followerCell";
         [cell.avatar sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
         cell.name.text = user.nickName;
         cell.genderIcon.image = user.genderImage;
-        [cell.certifyIcon sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
+        [cell.certifyIcon setImage:user.certifyStatusImage];
     }];
     __weak typeof(self) weakRef = self;
     [self.followerDelegator setSelectingBlock:^(UserModel * user) {

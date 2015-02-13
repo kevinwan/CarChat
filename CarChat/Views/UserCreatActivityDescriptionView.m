@@ -44,7 +44,7 @@
     [self.nameLabel setText:activity.name];
     [self.starterAvtar sd_setImageWithURL:[NSURL URLWithString:activity.owner.avatarUrl]];
     [self.starterGender setImage:[activity.owner genderImage]];
-    [self.starterCertifyIcon setBackgroundColor:[UIColor blueColor]];
+    [self.starterCertifyIcon setImage:activity.owner.certifyStatusImage];
     [self.starterName setText: activity.owner.nickName];
     [self.countOfParticipants setText:[NSString stringWithFormat:@"%lu 人",[activity.countOfParticipants unsignedLongValue]]];
     [self.fromDateLabel setText:activity.fromDate];

@@ -40,7 +40,8 @@
         [self.genderView makeRoundIfIsSquare];
         [self addSubview:self.genderView];
         
-        self.certifyView = [[UIImageView alloc]initWithFrame:CGRectMake(96.f, 38.f, 20.f, 20.f)];
+        self.certifyView = [[UIImageView alloc]initWithFrame:CGRectMake(96.f, 38.f, 40.f, 20.f)];
+        [self.certifyView setContentMode:UIViewContentModeCenter];
         [self addSubview:self.certifyView];
         
         UILabel * staticLB = [[UILabel alloc]initWithFrame:CGRectMake(25.f, 105.f, 54.f, 20.f)];
@@ -108,7 +109,6 @@
     
     [self.avatarView makeRoundIfIsSquare];
     [self.genderView makeRoundIfIsSquare];
-    [self.certifyView makeRoundIfIsSquare];
 }
 
 #pragma mark - Public Api
@@ -122,7 +122,7 @@
     [self.avatarView sd_setImageWithURL:[NSURL URLWithString:user.avatarUrl]];
     self.nameLabel.text = user.nickName;
     self.genderView.image = [user genderImage];
-    [self.certifyView setBackgroundColor:[UIColor yellowColor]];
+    [self.certifyView setImage:user.certifyStatusImage];
     
     NSString * countOfActivity = user.countOfOwning ? user.countOfOwning.stringValue : @"0";
     NSString * countOfFollowing = user.countOfFollowing ? user.countOfFollowing.stringValue : @"0";

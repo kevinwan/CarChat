@@ -35,6 +35,7 @@
 #import "CommentModel.h"
 #import "CommentModel+helper.h"
 #import "ReplyActivityParameter.h"
+#import "SubmitCertificationProfileParameter.h"
 // TODO: 整理一下*Parameter.h
 
 static NSString * const baseUrl = @"http://www.baidu.com/";
@@ -327,8 +328,23 @@ NSString * const ApiValidateVerifyCode = @"ValidateVerifyCode";
     }];
 }
 
-- (void)SubmitCertificationProfile:(ABCParameter *)parameter
+- (void)SubmitCertificationProfile:(SubmitCertificationProfileParameter *)parameter
 {
+    AVFile * photo = [AVFile fileWithName:@"certifyProfile.png" data:UIImagePNGRepresentation(parameter.licenseImage)];
+    [photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error) {
+            [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+            return ;
+        }
+        
+        AVUser * current = [AVUser currentUser];
+        [current setObject:photo forKey:@"certifiyProfile"];
+        [current setObject:@2 forKey:@"certifyStatus"];
+        [current setObject:parameter.plateNO forKey:@"plateNO"];
+        [current saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [self raiseResponseWithObj:nil error:error andRequestParameter:parameter];
+        }];
+    }];
 }
 
 - (void)GetSuggestActivities:(GetSuggestActivitiesParameter *)parameter

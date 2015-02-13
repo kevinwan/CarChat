@@ -24,7 +24,8 @@
 @property (nonatomic, copy) NSNumber * countOfFollowing;
 @property (nonatomic, copy) NSNumber * countOfFollower;
 @property (nonatomic, assign) Relationship relationship;
-@property (nonatomic, assign) NSInteger certifyStatus;
+@property (nonatomic, assign) CertifyStatus certifyStatus;
+@property (nonatomic, readonly) UIImage * certifyStatusImage;
 @property (nonatomic, copy) NSArray * album;
 //@property (nonatomic, strong) NSArray * certifications; // TODO: ?
 
