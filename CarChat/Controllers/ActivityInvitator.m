@@ -63,8 +63,7 @@
             {
                 MFMessageComposeViewController * smsSender = [[MFMessageComposeViewController alloc] init];
                 smsSender.messageComposeDelegate= (id<MFMessageComposeViewControllerDelegate>)self;
-                // TODO: 编辑分享内容
-                smsSender.body = self.activity.invitationCode;
+                smsSender.body = kInviteTextContentWithInviteCode(self.activity.invitationCode);
                 [self.targetVc presentViewController:smsSender animated:YES completion:nil];
             }
             else
@@ -84,9 +83,8 @@
             if ([MFMailComposeViewController canSendMail]) {
                 MFMailComposeViewController * mailSender = [[MFMailComposeViewController alloc]init];
                 [mailSender setMailComposeDelegate:(id<MFMailComposeViewControllerDelegate>)self];
-                // TODO: 编辑邮件内容
                 [mailSender setSubject:self.activity.name];
-                [mailSender setMessageBody:self.activity.invitationCode isHTML:NO];
+                [mailSender setMessageBody:kInviteTextContentWithInviteCode(self.activity.invitationCode) isHTML:NO];
                 [self.targetVc.navigationController presentViewController:mailSender animated:YES completion:nil];
             }
             else
