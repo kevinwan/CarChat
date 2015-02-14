@@ -252,7 +252,7 @@
     if ([self.nickName.text isBlank]
         || [self.age.text isBlank]
         || [self.city.text isBlank]
-        || self.asset == nil) {
+        || (self.asset == nil && self.avatar.image == nil)) {
         [self showTip:@"请填写完整信息"];
         return;
     }

@@ -25,6 +25,7 @@
 #import "EditActivityViewController.h"
 #import "ParticipantsViewController.h"
 #import "SettingViewController.h"
+#import "CompletePersonalProfileViewController.h"
 
 const NSInteger ShowLoginFromSomeWhereTag = 1;
 const NSInteger RegisterRegisterButtonTag = 101;
@@ -64,9 +65,8 @@ const NSInteger kParticipantsCellTag = 601;
     switch (tag) {
         case RegisterRegisterButtonTag:
         {
-            PersonalProfileViewController * profileVC = [[PersonalProfileViewController alloc]init];
-            UINavigationController * nav = [[UINavigationController alloc]initWithRootViewController:profileVC];
-            [vc.navigationController pushViewController:nav
+            CompletePersonalProfileViewController * compVC = [[CompletePersonalProfileViewController alloc]init];
+            [vc.navigationController pushViewController:compVC
                                                animated:YES];
         }
             break;

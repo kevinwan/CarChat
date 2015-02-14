@@ -15,6 +15,7 @@
 
 - (void)layoutWithModel:(ActivityModel *)activity;
 
+@property (nonatomic, readonly) UIButton * viewParticipantsButton;
 @property (nonatomic, copy) void (^viewParticipantsBlock)();
 
 @end

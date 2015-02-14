@@ -23,7 +23,7 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.title = @"设置";
     
-    self.settingItems = @[@"清理缓存", @"打分鼓励", @"关于我们", @"版本介绍", @"当前版本", @"退出登录"];
+    self.settingItems = @[@"退出登录"]; //@"清理缓存", @"打分鼓励", @"关于我们", @"版本介绍", @"当前版本",
     
     UITableView * table = [[UITableView alloc]initWithFrame:self.view.bounds style:UITableViewStylePlain];
     [table setDelegate:self];
@@ -55,6 +55,10 @@
     
     cell.textLabel.text = self.settingItems[indexPath.row];
     
+    if ([self.settingItems[indexPath.row] isEqualToString:@"退出登录"]) {
+        cell.textLabel.textColor = [UIColor colorWithRed:1.000 green:0.423 blue:0.396 alpha:1.000];
+    }
+    
     return cell;
 }
 
@@ -62,13 +66,13 @@
 {
     switch (indexPath.row) {
         case 0:
-        case 1:
-        case 2:
-        case 3:
-        case 4:
-            [self showTip:@"敬请期待"];
-            break;
-        case 5:
+//        case 1:
+//        case 2:
+//        case 3:
+//        case 4:
+//            [self showTip:@"敬请期待"];
+//            break;
+//        case 5:
         {
             [UserModel logoutCurrentUser];
             

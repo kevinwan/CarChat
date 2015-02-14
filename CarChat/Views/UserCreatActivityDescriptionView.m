@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *starterName;
 
 @property (weak, nonatomic) IBOutlet UILabel *countOfParticipants;
+@property (weak, nonatomic) IBOutlet UIButton *viewParticipantsButton;
 @property (weak, nonatomic) IBOutlet UILabel *fromDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *toDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *destinyLabel;
@@ -31,6 +32,7 @@
 
 @implementation UserCreatActivityDescriptionView
 
+#pragma mark - Public APIs
 + (instancetype)view
 {
     UserCreatActivityDescriptionView * view = [[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil][0];
@@ -52,6 +54,11 @@
     [self.destinyLabel setText:activity.destination];
     [self.payLabel setText:activity.payTypeText];
     [self.noticeLabel setText:activity.notice];
+}
+
+- (UIButton *)viewParticipantsButton
+{
+    return _viewParticipantsButton;
 }
 
 #pragma mark - User Interaction

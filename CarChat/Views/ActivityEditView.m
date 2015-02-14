@@ -103,6 +103,7 @@
             [self.posterMaskView setHidden:YES];
             [self.posterView setImage:(posterImage)];
             [self.posterView setNeedsDisplay];
+            [self checkIfAllFieldTexted];
         }
     }
 }
@@ -180,7 +181,8 @@
     && ![self.fromDate.text isBlank]
     && ![self.toDate.text isBlank]
     && ![self.payType.text isBlank]
-    && ![self.tip.text isBlank]);
+    && ![self.tip.text isBlank]
+    && self.posterView.image != nil);
     [self didChangeValueForKey:@"isAllFieldFilled"];
 }
 

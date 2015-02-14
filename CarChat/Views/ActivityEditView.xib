@@ -22,21 +22,18 @@
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="给活动起个名字  " textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="14" id="siX-ha-tz3">
                     <rect key="frame" x="68" y="188" width="244" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.85232981929999996" green="1" blue="0.4103660945" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="目的地  " textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="14" id="sfd-sq-rmi">
                     <rect key="frame" x="68" y="219" width="244" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.85232981929999996" green="1" blue="0.4103660945" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="活动开始日期  " textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="14" id="1ld-F5-HYZ">
                     <rect key="frame" x="68" y="250" width="244" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.85232981926750895" green="1" blue="0.4103660944649774" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
@@ -46,7 +43,6 @@
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="活动结束日期  " textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="14" id="eZi-Bq-Klc">
                     <rect key="frame" x="68" y="281" width="244" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.85232981929999996" green="1" blue="0.4103660945" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
@@ -56,7 +52,6 @@
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="支付方式" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="14" id="7Xw-0V-nN3">
                     <rect key="frame" x="68" y="312" width="244" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.85232981929999996" green="1" blue="0.4103660945" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                     <connections>
@@ -66,7 +61,6 @@
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="注意事项，比如天气、交通" textAlignment="right" adjustsFontSizeToFit="NO" minimumFontSize="14" id="Vri-Xm-YsZ">
                     <rect key="frame" x="68" y="343" width="244" height="30"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" red="0.85232981929999996" green="1" blue="0.4103660945" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>

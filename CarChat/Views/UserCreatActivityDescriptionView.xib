@@ -188,6 +188,7 @@
                 <outlet property="starterGender" destination="6RZ-OQ-DFc" id="gR3-jG-rhF"/>
                 <outlet property="starterName" destination="jDo-rL-oeo" id="Tyw-Rl-HuQ"/>
                 <outlet property="toDateLabel" destination="XBb-hm-7U5" id="q46-8a-uio"/>
+                <outlet property="viewParticipantsButton" destination="mKq-o2-zsh" id="Ftl-dm-eQE"/>
             </connections>
             <point key="canvasLocation" x="-92" y="421"/>
         </view>

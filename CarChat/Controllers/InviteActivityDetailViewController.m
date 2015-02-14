@@ -47,6 +47,10 @@
     
     UserCreatActivityDescriptionView * view  = [UserCreatActivityDescriptionView view];
     [view layoutWithModel:self.activity];
+    __weak typeof(self) _weakRef = self;
+    [view setViewParticipantsBlock:^{
+        [ControllerCoordinator goNextFrom:_weakRef whitTag:kShowParticipantsTag andContext:_weakRef.activity.identifier];
+    }];
     [self.view addSubview:view];
     
     [[CCNetworkManager defaultManager] addObserver:(NSObject<CCNetworkResponse> *)self forApi:ApiReplyInvitation];

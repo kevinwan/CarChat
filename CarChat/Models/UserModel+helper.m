@@ -22,7 +22,7 @@
             return [UIImage imageNamed:@"female"];
             break;
         default:
-            return [[UIImage imageWithColor:[UIColor blackColor]]stretchableImageWithLeftCapWidth:1 topCapHeight:1];
+            return nil;
             break;
     }
 }

@@ -35,6 +35,8 @@
 		A526C1451A8E86850032813A /* uncertify@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A526C13F1A8E86850032813A /* uncertify@2x.png */; };
 		A526C1481A8E8D0F0032813A /* posterAdd.png in Resources */ = {isa = PBXBuildFile; fileRef = A526C1461A8E8D0F0032813A /* posterAdd.png */; };
 		A526C1491A8E8D0F0032813A /* posterAdd@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A526C1471A8E8D0F0032813A /* posterAdd@2x.png */; };
+		A526C14B1A8EE3B70032813A /* Images-2.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A526C14A1A8EE3B70032813A /* Images-2.xcassets */; };
+		A526C14E1A8EF5400032813A /* CompletePersonalProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A526C14D1A8EF5400032813A /* CompletePersonalProfileViewController.m */; };
 		A58BCEA31A867D4D00C2300B /* GetUserOwningActivitiesParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEA21A867D4D00C2300B /* GetUserOwningActivitiesParameter.m */; };
 		A58BCEA61A86803100C2300B /* SubmitCertificationProfileParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEA51A86803100C2300B /* SubmitCertificationProfileParameter.m */; };
 		A58BCEA91A86808500C2300B /* GetActivitiesDetailParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = A58BCEA81A86808500C2300B /* GetActivitiesDetailParameter.m */; };
@@ -190,6 +192,9 @@
 		A526C13F1A8E86850032813A /* uncertify@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "uncertify@2x.png"; sourceTree = "<group>"; };
 		A526C1461A8E8D0F0032813A /* posterAdd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = posterAdd.png; sourceTree = "<group>"; };
 		A526C1471A8E8D0F0032813A /* posterAdd@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "posterAdd@2x.png"; sourceTree = "<group>"; };
+		A526C14A1A8EE3B70032813A /* Images-2.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Images-2.xcassets"; sourceTree = "<group>"; };
+		A526C14C1A8EF5400032813A /* CompletePersonalProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompletePersonalProfileViewController.h; sourceTree = "<group>"; };
+		A526C14D1A8EF5400032813A /* CompletePersonalProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompletePersonalProfileViewController.m; sourceTree = "<group>"; };
 		A58BCEA11A867D4D00C2300B /* GetUserOwningActivitiesParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetUserOwningActivitiesParameter.h; sourceTree = "<group>"; };
 		A58BCEA21A867D4D00C2300B /* GetUserOwningActivitiesParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetUserOwningActivitiesParameter.m; sourceTree = "<group>"; };
 		A58BCEA41A86803100C2300B /* SubmitCertificationProfileParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmitCertificationProfileParameter.h; sourceTree = "<group>"; };
@@ -656,6 +661,8 @@
 				BAD723291A64D3DF00FB4645 /* ServerPolicyViewController.h */,
 				BAD7232A1A64D3DF00FB4645 /* ServerPolicyViewController.m */,
 				BAD7232B1A64D3DF00FB4645 /* ServerPolicyViewController.xib */,
+				A526C14C1A8EF5400032813A /* CompletePersonalProfileViewController.h */,
+				A526C14D1A8EF5400032813A /* CompletePersonalProfileViewController.m */,
 			);
 			name = Register;
 			sourceTree = "<group>";
@@ -761,6 +768,7 @@
 				BA6BC7121A63603E00DA033C /* Modules */,
 				BAD65A691A5FA89200987B06 /* Supporting Files */,
 				A5D1269F1A8119E2000DE04D /* 3rd_Party */,
+				A526C14A1A8EE3B70032813A /* Images-2.xcassets */,
 			);
 			path = CarChat;
 			sourceTree = "<group>";
@@ -956,6 +964,7 @@
 				BA2009DD1A70D7060052EE0F /* UserDetailViewController.xib in Resources */,
 				A526C1431A8E86850032813A /* certifying@2x.png in Resources */,
 				A526C1351A8E748A0032813A /* uploadLicense.png in Resources */,
+				A526C14B1A8EE3B70032813A /* Images-2.xcassets in Resources */,
 				BA6BC7281A63627B00DA033C /* SuggestActivitiesViewController.xib in Resources */,
 				A526C1451A8E86850032813A /* uncertify@2x.png in Resources */,
 				BAD65A7D1A5FA89200987B06 /* LaunchScreen.xib in Resources */,
@@ -1070,6 +1079,7 @@
 				BA2009E41A71E0A40052EE0F /* TestViewController.m in Sources */,
 				BAB11C7C1A6667C4007FDE38 /* CCStatusManager.m in Sources */,
 				BA2009D51A6FA5150052EE0F /* CollectionDelegator.m in Sources */,
+				A526C14E1A8EF5400032813A /* CompletePersonalProfileViewController.m in Sources */,
 				BA2009EB1A778BFF0052EE0F /* SetPersonalInfoParameter.m in Sources */,
 				7E415BEC1A66B2ED0025E5FB /* CreateActivityParameter.m in Sources */,
 				BAD723271A64BF5100FB4645 /* UIColor+Helper.m in Sources */,
@@ -1225,6 +1235,7 @@
 			baseConfigurationReference = 91A1C4A7F3479EED06C580E1 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_MODULES_AUTOLINK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CarChat/PrefixHeader.pch";
@@ -1246,6 +1257,7 @@
 			baseConfigurationReference = D0739C1B0EA98A7CE326B445 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_MODULES_AUTOLINK = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/CarChat/PrefixHeader.pch";

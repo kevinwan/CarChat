@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *password;
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 
+@property (nonatomic, assign) BOOL shouldDisableNavBarButton;
+
 @end
 
 @implementation LoginViewController
@@ -91,21 +93,29 @@
 
 - (void)goRegister
 {
+    [self setNavigationBarButtonEnable:NO];
+    
     SCLAlertView *alert = [[SCLAlertView alloc] init];
     
     UITextField *textField = [alert addTextField:@"输入邀请码"];
     
+    __weak typeof(self) weakSelf = self;
     [alert addButton:@"验证"
      validationBlock:^BOOL{
          return ![textField.text isBlank];
      }
          actionBlock:^(void) {
-             [self showLoading:@"正在验证"];
+             
+             weakSelf.shouldDisableNavBarButton = YES;
+             [weakSelf showLoading:@"正在验证"];
              LOG_EXPR(textField.text);
              ValidateInviteCodeParameter * parameter = (ValidateInviteCodeParameter *)[ParameterFactory parameterWithApi:ApiValidateInviteCode];
              [parameter setInviteCode:textField.text];
              [[CCNetworkManager defaultManager] requestWithParameter:parameter];
          }];
+    [alert alertIsDismissed:^{
+        [weakSelf setNavigationBarButtonEnable:!weakSelf.shouldDisableNavBarButton];
+    }];
     
     [alert showInfo:self.navigationController title:@"请输入您的邀请码" subTitle:nil closeButtonTitle:@"取消" duration:.0f];
 }
@@ -137,10 +147,13 @@
                 // 验证通过
                 ValidateInviteCodeParameter * parameter = (ValidateInviteCodeParameter *)response.parameter;
                 [[CCStatusManager defaultManager] setVerifyedInviteCode:parameter.inviteCode];
+                __weak typeof(self) weakRef = self;
                 [self showTip:@"验证成功" whenDone:^{
                     [ControllerCoordinator goNextFrom:self
                                               whitTag:LoginRegisterButtonTag
                                            andContext:nil];
+                    [weakRef setNavigationBarButtonEnable:YES];
+                    self.shouldDisableNavBarButton = NO;
                 }];
             }
             else {
@@ -168,6 +181,13 @@
 - (BOOL)isPhoneNumberValid
 {
     return [self.phoneNumber.text isMobileNumber];
+}
+
+#pragma mark - Internal Helper
+- (void)setNavigationBarButtonEnable:(BOOL)enable
+{
+    [self.navigationItem.leftBarButtonItem setEnabled:enable];
+    [self.navigationItem.rightBarButtonItem setEnabled:enable];
 }
 
 @end
